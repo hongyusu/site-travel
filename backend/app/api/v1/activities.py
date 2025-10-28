@@ -209,15 +209,15 @@ def search_activities(
     )
 
 
-@router.get("/{activity_id}", response_model=ActivityDetailResponse)
-def get_activity(
-    activity_id: int,
+@router.get("/slug/{slug}", response_model=ActivityDetailResponse)
+def get_activity_by_slug(
+    slug: str,
     db: Session = Depends(get_db),
     current_user = Depends(get_optional_current_user)
 ):
-    """Get activity details by ID."""
+    """Get activity details by slug."""
     activity = db.query(Activity).filter(
-        Activity.id == activity_id,
+        Activity.slug == slug,
         Activity.is_active == True
     ).first()
 
@@ -227,6 +227,11 @@ def get_activity(
             detail="Activity not found"
         )
 
+    return _get_activity_details(activity, db)
+
+
+def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResponse:
+    """Helper function to get detailed activity information."""
     # Load related data
     images = db.query(ActivityImage).filter(
         ActivityImage.activity_id == activity.id
@@ -298,6 +303,27 @@ def get_activity(
     return ActivityDetailResponse(**response_dict)
 
 
+@router.get("/{activity_id}", response_model=ActivityDetailResponse)
+def get_activity(
+    activity_id: int,
+    db: Session = Depends(get_db),
+    current_user = Depends(get_optional_current_user)
+):
+    """Get activity details by ID."""
+    activity = db.query(Activity).filter(
+        Activity.id == activity_id,
+        Activity.is_active == True
+    ).first()
+
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity not found"
+        )
+
+    return _get_activity_details(activity, db)
+
+
 @router.get("/slug/{slug}", response_model=ActivityDetailResponse)
 def get_activity_by_slug(
     slug: str,
@@ -316,8 +342,7 @@ def get_activity_by_slug(
             detail="Activity not found"
         )
 
-    # Reuse the get_activity logic
-    return get_activity(activity.id, db, current_user)
+    return _get_activity_details(activity, db)
 
 
 @router.get("/{activity_id}/similar", response_model=List[ActivityResponse])

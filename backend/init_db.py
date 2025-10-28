@@ -118,7 +118,7 @@ def init_db():
             ("Istanbul", "Turkey", "TR", 41.0082, 28.9784)
         ]
 
-        for name, country, code, lat, lng in destination_data:
+        for i, (name, country, code, lat, lng) in enumerate(destination_data):
             destination = Destination(
                 name=name,
                 slug=slugify(name),
@@ -127,7 +127,7 @@ def init_db():
                 latitude=lat,
                 longitude=lng,
                 is_featured=True,
-                image_url=f"https://source.unsplash.com/800x600/?{name},city"
+                image_url=f"https://picsum.photos/seed/{slugify(name)}/800/600"
             )
             destinations.append(destination)
             db.add(destination)
@@ -206,7 +206,7 @@ def init_db():
                 for i in range(3):
                     image = ActivityImage(
                         activity_id=activity.id,
-                        url=f"https://source.unsplash.com/800x600/?{destination.name},{template['category']}",
+                        url=f"https://picsum.photos/seed/{activity.slug}-{i}/800/600",
                         is_primary=(i == 0),
                         order_index=i
                     )
