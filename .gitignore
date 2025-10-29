@@ -63,3 +63,4 @@ htmlcov/
 
 # Build
 *.pyc
+ocrbot.pem
