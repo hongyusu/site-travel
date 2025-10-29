@@ -1,6 +1,6 @@
 """Database models."""
 
-from app.models.user import User, Vendor
+from app.models.user import User, Vendor, UserRole
 from app.models.activity import (
     Category,
     Destination,
@@ -20,6 +20,7 @@ from app.models.wishlist import Wishlist
 __all__ = [
     "User",
     "Vendor",
+    "UserRole",
     "Category",
     "Destination",
     "Activity",

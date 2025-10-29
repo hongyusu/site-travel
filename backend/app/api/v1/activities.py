@@ -14,7 +14,7 @@ from app.models import (
 )
 from app.schemas.activity import (
     ActivityResponse, ActivityDetailResponse, ActivitySearchParams,
-    CategoryResponse, DestinationResponse
+    CategoryResponse, DestinationResponse, ActivityCreate, ActivityUpdate
 )
 from app.schemas.common import PaginationParams, PaginatedResponse
 from app.api.deps import get_optional_current_user, get_current_vendor
@@ -47,6 +47,23 @@ def get_destinations(
     return destinations
 
 
+@router.get("/destinations/{slug}", response_model=DestinationResponse)
+def get_destination_by_slug(
+    slug: str,
+    db: Session = Depends(get_db)
+):
+    """Get destination by slug."""
+    destination = db.query(Destination).filter(Destination.slug == slug).first()
+
+    if not destination:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Destination not found"
+        )
+
+    return destination
+
+
 @router.get("/search", response_model=PaginatedResponse[ActivityResponse])
 def search_activities(
     q: Optional[str] = Query(None, description="Search query"),
@@ -64,6 +81,7 @@ def search_activities(
     instant_confirmation: Optional[bool] = Query(None, description="Instant confirmation only"),
     skip_the_line: Optional[bool] = Query(None, description="Skip the line only"),
     bestseller: Optional[bool] = Query(None, description="Bestsellers only"),
+    vendor_only: Optional[bool] = Query(None, description="Show only current vendor's activities"),
     sort_by: str = Query("recommended", description="Sort: recommended, price_asc, price_desc, rating, duration"),
     page: int = Query(1, ge=1, description="Page number"),
     per_page: int = Query(20, ge=1, le=100, description="Items per page"),
@@ -74,7 +92,12 @@ def search_activities(
     Search and filter activities.
     """
     # Base query with eager loading
-    query = db.query(Activity).filter(Activity.is_active == True)
+    # For vendor_only queries, show all activities (including inactive ones)
+    # For public queries, only show active activities
+    if vendor_only and current_user:
+        query = db.query(Activity)
+    else:
+        query = db.query(Activity).filter(Activity.is_active == True)
 
     # Join for filtering
     if destination_id or destination_slug or category_id or category_slug:
@@ -137,6 +160,22 @@ def search_activities(
 
     if bestseller is not None:
         query = query.filter(Activity.is_bestseller == bestseller)
+
+    # Vendor filter
+    if vendor_only and current_user:
+        # Get vendor ID from current user
+        vendor = db.query(Vendor).filter(Vendor.user_id == current_user.id).first()
+        if vendor:
+            query = query.filter(Activity.vendor_id == vendor.id)
+        else:
+            # If vendor_only is True but user is not a vendor, return empty results
+            return PaginatedResponse.create(
+                data=[],
+                page=page,
+                per_page=per_page,
+                total=0,
+                message="No activities found"
+            )
 
     # Get total count
     total = query.count()
@@ -285,6 +324,7 @@ def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResp
         "total_bookings": activity.total_bookings,
         "is_bestseller": activity.is_bestseller,
         "is_skip_the_line": activity.is_skip_the_line,
+        "is_active": activity.is_active,
         "primary_image": primary_image,
         "images": images,
         "categories": categories,
@@ -422,3 +462,219 @@ def get_similar_activities(
         response_activities.append(ActivityResponse(**activity_dict))
 
     return response_activities
+
+
+@router.post("", response_model=ActivityDetailResponse, status_code=status.HTTP_201_CREATED)
+def create_activity(
+    activity_data: ActivityCreate,
+    db: Session = Depends(get_db),
+    current_vendor = Depends(get_current_vendor)
+):
+    """Create a new activity (vendor only)."""
+    # Get vendor record from user
+    vendor = db.query(Vendor).filter(Vendor.user_id == current_vendor.id).first()
+    if not vendor:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Vendor profile not found"
+        )
+
+    # Create activity
+    activity = Activity(
+        vendor_id=vendor.id,
+        title=activity_data.title,
+        slug=slugify(activity_data.title),
+        short_description=activity_data.short_description,
+        description=activity_data.description,
+        price_adult=activity_data.price_adult,
+        price_child=activity_data.price_child,
+        duration_minutes=activity_data.duration_minutes,
+        max_group_size=activity_data.max_group_size,
+        instant_confirmation=activity_data.instant_confirmation,
+        free_cancellation_hours=activity_data.free_cancellation_hours,
+        languages=activity_data.languages,
+        is_bestseller=activity_data.is_bestseller,
+        is_skip_the_line=activity_data.is_skip_the_line,
+        is_active=True
+    )
+    db.add(activity)
+    db.flush()
+
+    # Add categories
+    for category_id in activity_data.category_ids:
+        db.add(ActivityCategory(activity_id=activity.id, category_id=category_id))
+
+    # Add destinations
+    for destination_id in activity_data.destination_ids:
+        db.add(ActivityDestination(activity_id=activity.id, destination_id=destination_id))
+
+    # Add images
+    for idx, img_data in enumerate(activity_data.images):
+        db.add(ActivityImage(
+            activity_id=activity.id,
+            url=img_data['url'],
+            alt_text=img_data.get('alt_text'),
+            is_primary=(idx == 0),
+            order_index=idx
+        ))
+
+    # Add highlights
+    for idx, highlight_text in enumerate(activity_data.highlights):
+        db.add(ActivityHighlight(
+            activity_id=activity.id,
+            text=highlight_text,
+            order_index=idx
+        ))
+
+    # Add includes/excludes
+    for idx, include_data in enumerate(activity_data.includes):
+        db.add(ActivityInclude(
+            activity_id=activity.id,
+            item=include_data['item'],
+            is_included=include_data['is_included'],
+            order_index=idx
+        ))
+
+    # Add FAQs
+    for idx, faq_data in enumerate(activity_data.faqs):
+        db.add(ActivityFAQ(
+            activity_id=activity.id,
+            question=faq_data['question'],
+            answer=faq_data['answer'],
+            order_index=idx
+        ))
+
+    # Add meeting point
+    if activity_data.meeting_point:
+        mp = activity_data.meeting_point
+        db.add(MeetingPoint(
+            activity_id=activity.id,
+            address=mp['address'],
+            instructions=mp.get('instructions'),
+            latitude=mp.get('latitude'),
+            longitude=mp.get('longitude')
+        ))
+
+    db.commit()
+    db.refresh(activity)
+
+    return _get_activity_details(activity, db)
+
+
+@router.put("/{activity_id}", response_model=ActivityDetailResponse)
+def update_activity(
+    activity_id: int,
+    activity_data: ActivityUpdate,
+    db: Session = Depends(get_db),
+    current_vendor = Depends(get_current_vendor)
+):
+    """Update an activity (vendor only)."""
+    # Get vendor record from user
+    vendor = db.query(Vendor).filter(Vendor.user_id == current_vendor.id).first()
+    if not vendor:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Vendor profile not found"
+        )
+
+    activity = db.query(Activity).filter(Activity.id == activity_id).first()
+
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity not found"
+        )
+
+    if activity.vendor_id != vendor.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not authorized to update this activity"
+        )
+
+    # Update fields
+    update_data = activity_data.dict(exclude_unset=True)
+    for field, value in update_data.items():
+        if value is not None:
+            setattr(activity, field, value)
+
+    # Update slug if title changed
+    if activity_data.title:
+        activity.slug = slugify(activity_data.title)
+
+    db.commit()
+    db.refresh(activity)
+
+    return _get_activity_details(activity, db)
+
+
+@router.delete("/{activity_id}", status_code=status.HTTP_204_NO_CONTENT)
+def delete_activity(
+    activity_id: int,
+    db: Session = Depends(get_db),
+    current_vendor = Depends(get_current_vendor)
+):
+    """Delete an activity (vendor only). Actually just marks as inactive."""
+    # Get vendor record from user
+    vendor = db.query(Vendor).filter(Vendor.user_id == current_vendor.id).first()
+    if not vendor:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Vendor profile not found"
+        )
+
+    activity = db.query(Activity).filter(Activity.id == activity_id).first()
+
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity not found"
+        )
+
+    if activity.vendor_id != vendor.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not authorized to delete this activity"
+        )
+
+    # Soft delete - mark as inactive
+    activity.is_active = False
+    db.commit()
+
+    return None
+
+
+@router.patch("/{activity_id}/toggle-status", response_model=ActivityDetailResponse)
+def toggle_activity_status(
+    activity_id: int,
+    db: Session = Depends(get_db),
+    current_vendor = Depends(get_current_vendor)
+):
+    """Toggle activity active/inactive status (vendor only)."""
+    # Get vendor record from user
+    vendor = db.query(Vendor).filter(Vendor.user_id == current_vendor.id).first()
+    if not vendor:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Vendor profile not found"
+        )
+
+    activity = db.query(Activity).filter(Activity.id == activity_id).first()
+
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity not found"
+        )
+
+    if activity.vendor_id != vendor.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not authorized to modify this activity"
+        )
+
+    # Toggle the status
+    activity.is_active = not activity.is_active
+    db.commit()
+    db.refresh(activity)
+
+    return _get_activity_details(activity, db)

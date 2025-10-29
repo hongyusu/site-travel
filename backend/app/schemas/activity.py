@@ -139,6 +139,7 @@ class ActivityResponse(BaseModel):
     total_reviews: int
     is_bestseller: bool
     is_skip_the_line: bool
+    is_active: bool = True
     free_cancellation_hours: int
     languages: List[str]
     primary_image: Optional[ActivityImageResponse] = None
