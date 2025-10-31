@@ -31,6 +31,16 @@ class ReviewImageResponse(BaseModel):
         from_attributes = True
 
 
+class ReviewCategoryResponse(BaseModel):
+    """Review category rating response."""
+    id: int
+    category_name: str
+    rating: int
+
+    class Config:
+        from_attributes = True
+
+
 class ReviewResponse(BaseModel):
     """Review response schema."""
     id: int
@@ -42,6 +52,7 @@ class ReviewResponse(BaseModel):
     helpful_count: int
     created_at: datetime
     images: List[ReviewImageResponse] = []
+    category_ratings: List[ReviewCategoryResponse] = []
 
     class Config:
         from_attributes = True

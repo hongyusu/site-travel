@@ -69,6 +69,41 @@ class Activity(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
+    # Pricing variations
+    has_multiple_tiers = Column(Boolean, default=False)
+    discount_percentage = Column(Integer)
+    original_price_adult = Column(DECIMAL(10, 2))
+    original_price_child = Column(DECIMAL(10, 2))
+
+    # Features & badges
+    is_likely_to_sell_out = Column(Boolean, default=False)
+    has_mobile_ticket = Column(Boolean, default=False)
+    has_best_price_guarantee = Column(Boolean, default=False)
+    is_verified_activity = Column(Boolean, default=False)
+    response_time_hours = Column(Integer, default=24)
+
+    # Accessibility
+    is_wheelchair_accessible = Column(Boolean, default=False)
+    is_stroller_accessible = Column(Boolean, default=False)
+    allows_service_animals = Column(Boolean, default=False)
+    has_infant_seats = Column(Boolean, default=False)
+
+    # Additional info
+    video_url = Column(String(500))
+    dress_code = Column(Text)
+    weather_dependent = Column(Boolean, default=False)
+    not_suitable_for = Column(Text)
+    what_to_bring = Column(Text)
+
+    # COVID-19
+    has_covid_measures = Column(Boolean, default=False)
+    covid_measures = Column(Text)
+
+    # Booking options
+    is_giftable = Column(Boolean, default=False)
+    allows_reserve_now_pay_later = Column(Boolean, default=False)
+    reserve_payment_deadline_hours = Column(Integer, default=24)
+
     # Computed fields
     average_rating = Column(DECIMAL(2, 1), default=0)
     total_reviews = Column(Integer, default=0)
@@ -89,6 +124,12 @@ class Activity(Base):
     wishlist_items = relationship("Wishlist", back_populates="activity", cascade="all, delete-orphan")
     cart_items = relationship("CartItem", back_populates="activity", cascade="all, delete-orphan")
 
+    # New relationships
+    timelines = relationship("ActivityTimeline", back_populates="activity", cascade="all, delete-orphan")
+    time_slots = relationship("ActivityTimeSlot", back_populates="activity", cascade="all, delete-orphan")
+    pricing_tiers = relationship("ActivityPricingTier", back_populates="activity", cascade="all, delete-orphan")
+    add_ons = relationship("ActivityAddOn", back_populates="activity", cascade="all, delete-orphan")
+
 
 class ActivityImage(Base):
     """Activity image model."""
@@ -99,7 +140,9 @@ class ActivityImage(Base):
     activity_id = Column(Integer, ForeignKey("activities.id", ondelete="CASCADE"), nullable=False)
     url = Column(String(500), nullable=False)
     alt_text = Column(String(255))
+    caption = Column(Text)
     is_primary = Column(Boolean, default=False)
+    is_hero = Column(Boolean, default=False)
     order_index = Column(Integer, default=0)
 
     # Relationships
@@ -187,6 +230,95 @@ class MeetingPoint(Base):
     instructions = Column(Text)
     latitude = Column(Float)
     longitude = Column(Float)
+    parking_info = Column(Text)
+    public_transport_info = Column(Text)
+    nearby_landmarks = Column(Text)
 
     # Relationships
     activity = relationship("Activity", back_populates="meeting_point")
+    photos = relationship("MeetingPointPhoto", back_populates="meeting_point", cascade="all, delete-orphan")
+
+
+class ActivityTimeline(Base):
+    """Activity timeline/itinerary model."""
+
+    __tablename__ = "activity_timelines"
+
+    id = Column(Integer, primary_key=True, index=True)
+    activity_id = Column(Integer, ForeignKey("activities.id", ondelete="CASCADE"), nullable=False)
+    step_number = Column(Integer, nullable=False)
+    title = Column(String(255), nullable=False)
+    description = Column(Text)
+    duration_minutes = Column(Integer)
+    image_url = Column(String(500))
+    order_index = Column(Integer, default=0)
+
+    # Relationships
+    activity = relationship("Activity", back_populates="timelines")
+
+
+class ActivityTimeSlot(Base):
+    """Activity time slot model."""
+
+    __tablename__ = "activity_time_slots"
+
+    id = Column(Integer, primary_key=True, index=True)
+    activity_id = Column(Integer, ForeignKey("activities.id", ondelete="CASCADE"), nullable=False)
+    slot_time = Column(String(5), nullable=False)  # HH:MM format
+    slot_label = Column(String(50))  # "Morning", "Afternoon", "Evening"
+    max_capacity = Column(Integer)
+    is_available = Column(Boolean, default=True)
+    price_adjustment = Column(DECIMAL(10, 2), default=0)
+
+    # Relationships
+    activity = relationship("Activity", back_populates="time_slots")
+
+
+class ActivityPricingTier(Base):
+    """Activity pricing tier model."""
+
+    __tablename__ = "activity_pricing_tiers"
+
+    id = Column(Integer, primary_key=True, index=True)
+    activity_id = Column(Integer, ForeignKey("activities.id", ondelete="CASCADE"), nullable=False)
+    tier_name = Column(String(100), nullable=False)  # "Standard", "Premium", "VIP"
+    tier_description = Column(Text)
+    price_adult = Column(DECIMAL(10, 2), nullable=False)
+    price_child = Column(DECIMAL(10, 2))
+    order_index = Column(Integer, default=0)
+    is_active = Column(Boolean, default=True)
+
+    # Relationships
+    activity = relationship("Activity", back_populates="pricing_tiers")
+
+
+class ActivityAddOn(Base):
+    """Activity add-on model."""
+
+    __tablename__ = "activity_add_ons"
+
+    id = Column(Integer, primary_key=True, index=True)
+    activity_id = Column(Integer, ForeignKey("activities.id", ondelete="CASCADE"), nullable=False)
+    name = Column(String(255), nullable=False)
+    description = Column(Text)
+    price = Column(DECIMAL(10, 2), nullable=False)
+    is_optional = Column(Boolean, default=True)
+    order_index = Column(Integer, default=0)
+
+    # Relationships
+    activity = relationship("Activity", back_populates="add_ons")
+
+
+class MeetingPointPhoto(Base):
+    """Meeting point photo model."""
+
+    __tablename__ = "meeting_point_photos"
+
+    id = Column(Integer, primary_key=True, index=True)
+    meeting_point_id = Column(Integer, ForeignKey("meeting_points.id", ondelete="CASCADE"), nullable=False)
+    url = Column(String(500), nullable=False)
+    caption = Column(String(255))
+    order_index = Column(Integer, default=0)
+
+    # Relationships
+    meeting_point = relationship("MeetingPoint", back_populates="photos")

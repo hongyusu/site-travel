@@ -7,7 +7,7 @@ from sqlalchemy import func, desc
 from datetime import datetime, timedelta
 
 from app.database import get_db
-from app.models import User, Vendor, Activity, Booking, Review, UserRole
+from app.models import User, Vendor, Activity, Booking, Review, UserRole, ActivityCategory, Category
 from app.schemas.common import PaginatedResponse, MessageResponse
 from app.api.deps import get_current_admin
 
@@ -274,11 +274,18 @@ def list_all_activities(
         vendor = db.query(Vendor).filter(Vendor.id == activity.vendor_id).first()
         booking_count = db.query(Booking).filter(Booking.activity_id == activity.id).count()
 
+        # Get categories for this activity
+        categories = db.query(Category).join(ActivityCategory).filter(
+            ActivityCategory.activity_id == activity.id
+        ).all()
+        category_names = [cat.name for cat in categories] if categories else []
+
         result.append({
             "id": activity.id,
             "title": activity.title,
             "slug": activity.slug,
             "vendor_name": vendor.company_name if vendor else None,
+            "categories": category_names,
             "price_adult": float(activity.price_adult),
             "is_active": activity.is_active,
             "average_rating": float(activity.average_rating) if activity.average_rating else None,

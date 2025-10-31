@@ -30,6 +30,7 @@ class Review(Base):
     user = relationship("User", back_populates="reviews")
     activity = relationship("Activity", back_populates="reviews")
     images = relationship("ReviewImage", back_populates="review", cascade="all, delete-orphan")
+    category_ratings = relationship("ReviewCategory", back_populates="review", cascade="all, delete-orphan")
 
     # Constraints
     __table_args__ = (
@@ -49,3 +50,22 @@ class ReviewImage(Base):
 
     # Relationships
     review = relationship("Review", back_populates="images")
+
+
+class ReviewCategory(Base):
+    """Review category rating model."""
+
+    __tablename__ = "review_categories"
+
+    id = Column(Integer, primary_key=True, index=True)
+    review_id = Column(Integer, ForeignKey("reviews.id", ondelete="CASCADE"), nullable=False)
+    category_name = Column(String(100), nullable=False)  # "Value for money", "Guide quality", etc.
+    rating = Column(Integer, nullable=False)
+
+    # Relationships
+    review = relationship("Review", back_populates="category_ratings")
+
+    # Constraints
+    __table_args__ = (
+        CheckConstraint('rating >= 1 AND rating <= 5', name='check_category_rating_range'),
+    )

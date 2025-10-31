@@ -7,7 +7,7 @@ from sqlalchemy import func
 from datetime import datetime
 
 from app.database import get_db
-from app.models import Review, ReviewImage, Activity, Booking, User, BookingStatus
+from app.models import Review, ReviewImage, ReviewCategory, Activity, Booking, User, BookingStatus
 from app.schemas.review import ReviewCreate, ReviewUpdate, ReviewResponse
 from app.schemas.common import PaginatedResponse, MessageResponse
 from app.api.deps import get_current_user
@@ -62,6 +62,7 @@ def get_activity_reviews(
     for review in reviews:
         user = db.query(User).filter(User.id == review.user_id).first()
         images = db.query(ReviewImage).filter(ReviewImage.review_id == review.id).all()
+        category_ratings = db.query(ReviewCategory).filter(ReviewCategory.review_id == review.id).all()
 
         response_reviews.append(ReviewResponse(
             id=review.id,
@@ -76,7 +77,8 @@ def get_activity_reviews(
             is_verified_booking=review.is_verified_booking,
             helpful_count=review.helpful_count,
             created_at=review.created_at,
-            images=images
+            images=images,
+            category_ratings=category_ratings
         ))
 
     return PaginatedResponse.create(

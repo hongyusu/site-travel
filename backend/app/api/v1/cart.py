@@ -6,9 +6,10 @@ from sqlalchemy.orm import Session
 from datetime import datetime, date
 from decimal import Decimal
 import uuid
+import json
 
 from app.database import get_db
-from app.models import CartItem, Activity, ActivityImage
+from app.models import CartItem, Activity, ActivityImage, ActivityTimeSlot, ActivityPricingTier, ActivityAddOn
 from app.schemas.booking import CartItemCreate, CartItemResponse
 from app.schemas.common import MessageResponse
 
@@ -20,6 +21,58 @@ def get_session_id(session_id: str = Header(None, alias="X-Session-ID")) -> str:
     if not session_id:
         session_id = str(uuid.uuid4())
     return session_id
+
+
+def calculate_cart_price(
+    db: Session,
+    activity: Activity,
+    adults: int,
+    children: int,
+    pricing_tier_id: int = None,
+    time_slot_id: int = None,
+    add_on_ids: List[int] = None,
+    add_on_quantities: dict = None
+) -> Decimal:
+    """Calculate total price for cart item with enhanced booking options."""
+    # Start with base prices
+    base_adult_price = Decimal(str(activity.price_adult))
+    base_child_price = Decimal(str(activity.price_child or 0))
+
+    # Apply pricing tier if selected
+    if pricing_tier_id:
+        tier = db.query(ActivityPricingTier).filter(
+            ActivityPricingTier.id == pricing_tier_id,
+            ActivityPricingTier.activity_id == activity.id
+        ).first()
+        if tier:
+            base_adult_price = tier.price_adult
+            base_child_price = tier.price_child or base_child_price
+
+    # Apply time slot price adjustment if selected
+    if time_slot_id:
+        slot = db.query(ActivityTimeSlot).filter(
+            ActivityTimeSlot.id == time_slot_id,
+            ActivityTimeSlot.activity_id == activity.id
+        ).first()
+        if slot and slot.price_adjustment:
+            base_adult_price += slot.price_adjustment
+            base_child_price += slot.price_adjustment
+
+    # Calculate participant costs
+    total = (base_adult_price * adults) + (base_child_price * children)
+
+    # Add add-ons
+    if add_on_ids and add_on_quantities:
+        add_ons = db.query(ActivityAddOn).filter(
+            ActivityAddOn.id.in_(add_on_ids),
+            ActivityAddOn.activity_id == activity.id
+        ).all()
+
+        for add_on in add_ons:
+            quantity = add_on_quantities.get(str(add_on.id), 0)
+            total += add_on.price * quantity
+
+    return total
 
 
 @router.get("/", response_model=List[CartItemResponse])
@@ -99,24 +152,31 @@ def add_to_cart(
         CartItem.booking_time == cart_item.booking_time
     ).first()
 
+    # Calculate price with enhanced booking options
+    total_price = calculate_cart_price(
+        db=db,
+        activity=activity,
+        adults=cart_item.adults,
+        children=cart_item.children,
+        pricing_tier_id=cart_item.pricing_tier_id,
+        time_slot_id=cart_item.time_slot_id,
+        add_on_ids=cart_item.add_on_ids,
+        add_on_quantities=cart_item.add_on_quantities
+    )
+
     if existing_item:
-        # Update quantities
+        # Update quantities and enhanced booking fields
         existing_item.adults = cart_item.adults
         existing_item.children = cart_item.children
-        existing_item.price = (
-            activity.price_adult * cart_item.adults +
-            (activity.price_child or 0) * cart_item.children
-        )
+        existing_item.price = total_price
+        existing_item.time_slot_id = cart_item.time_slot_id
+        existing_item.pricing_tier_id = cart_item.pricing_tier_id
+        existing_item.add_on_ids = json.dumps(cart_item.add_on_ids) if cart_item.add_on_ids else None
+        existing_item.add_on_quantities = json.dumps(cart_item.add_on_quantities) if cart_item.add_on_quantities else None
         db.commit()
         db.refresh(existing_item)
         db_cart_item = existing_item
     else:
-        # Calculate price
-        total_price = (
-            activity.price_adult * cart_item.adults +
-            (activity.price_child or 0) * cart_item.children
-        )
-
         # Create new cart item
         db_cart_item = CartItem(
             session_id=session_id,
@@ -125,7 +185,11 @@ def add_to_cart(
             booking_time=cart_item.booking_time,
             adults=cart_item.adults,
             children=cart_item.children,
-            price=total_price
+            price=total_price,
+            time_slot_id=cart_item.time_slot_id,
+            pricing_tier_id=cart_item.pricing_tier_id,
+            add_on_ids=json.dumps(cart_item.add_on_ids) if cart_item.add_on_ids else None,
+            add_on_quantities=json.dumps(cart_item.add_on_quantities) if cart_item.add_on_quantities else None
         )
 
         db.add(db_cart_item)
@@ -181,15 +245,28 @@ def update_cart_item(
 
     activity = db.query(Activity).filter(Activity.id == cart_item.activity_id).first()
 
-    # Update quantities and recalculate price
+    # Recalculate price with enhanced booking options
+    total_price = calculate_cart_price(
+        db=db,
+        activity=activity,
+        adults=cart_update.adults,
+        children=cart_update.children,
+        pricing_tier_id=cart_update.pricing_tier_id,
+        time_slot_id=cart_update.time_slot_id,
+        add_on_ids=cart_update.add_on_ids,
+        add_on_quantities=cart_update.add_on_quantities
+    )
+
+    # Update quantities and enhanced booking fields
     cart_item.adults = cart_update.adults
     cart_item.children = cart_update.children
     cart_item.booking_date = cart_update.booking_date
     cart_item.booking_time = cart_update.booking_time
-    cart_item.price = (
-        activity.price_adult * cart_update.adults +
-        (activity.price_child or 0) * cart_update.children
-    )
+    cart_item.price = total_price
+    cart_item.time_slot_id = cart_update.time_slot_id
+    cart_item.pricing_tier_id = cart_update.pricing_tier_id
+    cart_item.add_on_ids = json.dumps(cart_update.add_on_ids) if cart_update.add_on_ids else None
+    cart_item.add_on_quantities = json.dumps(cart_update.add_on_quantities) if cart_update.add_on_quantities else None
 
     db.commit()
     db.refresh(cart_item)

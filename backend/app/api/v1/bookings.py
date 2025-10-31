@@ -1,7 +1,7 @@
 """Booking endpoints."""
 
 from typing import List, Optional
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status, Body
 from sqlalchemy.orm import Session
 from sqlalchemy import and_, or_, func
 from datetime import datetime, date, timedelta
@@ -58,6 +58,12 @@ def create_booking(
         (activity.price_child or 0) * booking_data.children
     )
 
+    # Determine initial status based on activity settings
+    if activity.instant_confirmation:
+        initial_status = BookingStatus.CONFIRMED
+    else:
+        initial_status = BookingStatus.PENDING_VENDOR_APPROVAL
+
     # Create booking
     db_booking = Booking(
         user_id=current_user.id if current_user else None,
@@ -72,12 +78,16 @@ def create_booking(
         price_per_child=activity.price_child,
         total_price=total_price,
         currency=activity.price_currency,
-        status=BookingStatus.PENDING,
+        status=initial_status,
         customer_name=booking_data.customer_name or (current_user.full_name if current_user else None),
         customer_email=booking_data.customer_email or (current_user.email if current_user else None),
         customer_phone=booking_data.customer_phone or (current_user.phone if current_user else None),
         special_requirements=booking_data.special_requirements
     )
+
+    # Set confirmation timestamp if instant confirmation
+    if activity.instant_confirmation:
+        db_booking.confirmed_at = datetime.utcnow()
 
     db.add(db_booking)
 
@@ -87,13 +97,6 @@ def create_booking(
     try:
         db.commit()
         db.refresh(db_booking)
-
-        # Auto-confirm if instant confirmation is enabled
-        if activity.instant_confirmation:
-            db_booking.status = BookingStatus.CONFIRMED
-            db_booking.confirmed_at = datetime.utcnow()
-            db.commit()
-            db.refresh(db_booking)
 
     except Exception as e:
         db.rollback()
@@ -342,6 +345,85 @@ def get_vendor_bookings(
     )
 
 
+@router.patch("/vendor/{booking_id}/approve", response_model=BookingResponse)
+def approve_booking(
+    booking_id: int,
+    db: Session = Depends(get_db),
+    current_vendor: User = Depends(get_current_vendor)
+):
+    """Approve a pending booking."""
+    booking = db.query(Booking).filter(
+        Booking.id == booking_id,
+        Booking.vendor_id == current_vendor.vendor_profile.id
+    ).first()
+
+    if not booking:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Booking not found"
+        )
+
+    if booking.status != BookingStatus.PENDING_VENDOR_APPROVAL:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Can only approve bookings pending vendor approval"
+        )
+
+    # Approve booking
+    booking.status = BookingStatus.CONFIRMED
+    booking.confirmed_at = datetime.utcnow()
+    booking.vendor_approved_at = datetime.utcnow()
+
+    db.commit()
+    db.refresh(booking)
+
+    activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    return _prepare_booking_response(booking, activity, db)
+
+
+@router.patch("/vendor/{booking_id}/reject", response_model=BookingResponse)
+def reject_booking(
+    booking_id: int,
+    rejection_reason: str,
+    db: Session = Depends(get_db),
+    current_vendor: User = Depends(get_current_vendor)
+):
+    """Reject a pending booking."""
+    booking = db.query(Booking).filter(
+        Booking.id == booking_id,
+        Booking.vendor_id == current_vendor.vendor_profile.id
+    ).first()
+
+    if not booking:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Booking not found"
+        )
+
+    if booking.status != BookingStatus.PENDING_VENDOR_APPROVAL:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Can only reject bookings pending vendor approval"
+        )
+
+    if not rejection_reason or len(rejection_reason.strip()) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Rejection reason is required"
+        )
+
+    # Reject booking
+    booking.status = BookingStatus.REJECTED
+    booking.rejection_reason = rejection_reason
+    booking.vendor_rejected_at = datetime.utcnow()
+
+    db.commit()
+    db.refresh(booking)
+
+    activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    return _prepare_booking_response(booking, activity, db)
+
+
 @router.put("/vendor/{booking_id}/checkin", response_model=BookingResponse)
 def checkin_booking(
     booking_id: int,
@@ -369,6 +451,55 @@ def checkin_booking(
     # Mark as completed
     booking.status = BookingStatus.COMPLETED
     booking.completed_at = datetime.utcnow()
+
+    db.commit()
+    db.refresh(booking)
+
+    activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    return _prepare_booking_response(booking, activity, db)
+
+
+@router.post("/vendor/{booking_id}/cancel", response_model=BookingResponse)
+def vendor_cancel_booking(
+    booking_id: int,
+    reason: str = Body(..., embed=True),
+    db: Session = Depends(get_db),
+    current_vendor: User = Depends(get_current_vendor)
+):
+    """Vendor cancels a confirmed booking."""
+    booking = db.query(Booking).filter(
+        Booking.id == booking_id,
+        Booking.vendor_id == current_vendor.vendor_profile.id
+    ).first()
+
+    if not booking:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Booking not found"
+        )
+
+    if booking.status == BookingStatus.CANCELLED:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Booking is already cancelled"
+        )
+
+    if booking.status == BookingStatus.COMPLETED:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cannot cancel completed booking"
+        )
+
+    if not reason or len(reason.strip()) == 0:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Cancellation reason is required"
+        )
+
+    # Cancel booking
+    booking.status = BookingStatus.CANCELLED
+    booking.rejection_reason = reason  # Reuse this field for cancellation reason
+    booking.cancelled_at = datetime.utcnow()
 
     db.commit()
     db.refresh(booking)

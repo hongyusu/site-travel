@@ -17,11 +17,11 @@ class UserBase(BaseModel):
 class UserCreate(UserBase):
     """User creation schema."""
     password: str = Field(..., min_length=8, max_length=100)
-    confirm_password: str
+    confirm_password: Optional[str] = None
 
     @validator('confirm_password')
     def passwords_match(cls, v, values):
-        if 'password' in values and v != values['password']:
+        if v is not None and 'password' in values and v != values['password']:
             raise ValueError('Passwords do not match')
         return v
 
@@ -82,6 +82,15 @@ class VendorCreate(BaseModel):
     company_name: str = Field(..., min_length=1, max_length=255)
     description: Optional[str] = None
     logo_url: Optional[str] = Field(None, max_length=500)
+
+
+class VendorRegister(BaseModel):
+    """Combined vendor registration schema."""
+    email: EmailStr
+    full_name: str = Field(..., min_length=1, max_length=255)
+    phone: Optional[str] = Field(None, max_length=50)
+    password: str = Field(..., min_length=8, max_length=100)
+    company_name: str = Field(..., min_length=1, max_length=255)
 
 
 class VendorResponse(BaseModel):

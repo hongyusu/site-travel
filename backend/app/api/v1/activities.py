@@ -10,7 +10,9 @@ from app.database import get_db
 from app.models import (
     Activity, Category, Destination, ActivityImage,
     ActivityCategory, ActivityDestination, ActivityHighlight,
-    ActivityInclude, ActivityFAQ, MeetingPoint, Vendor
+    ActivityInclude, ActivityFAQ, MeetingPoint, Vendor,
+    ActivityTimeline, ActivityTimeSlot, ActivityPricingTier,
+    ActivityAddOn, MeetingPointPhoto
 )
 from app.schemas.activity import (
     ActivityResponse, ActivityDetailResponse, ActivitySearchParams,
@@ -231,6 +233,7 @@ def search_activities(
             "total_reviews": activity.total_reviews,
             "is_bestseller": activity.is_bestseller,
             "is_skip_the_line": activity.is_skip_the_line,
+            "is_active": activity.is_active,
             "free_cancellation_hours": activity.free_cancellation_hours,
             "languages": activity.languages,
             "primary_image": primary_image,
@@ -300,6 +303,30 @@ def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResp
         MeetingPoint.activity_id == activity.id
     ).first()
 
+    # Load meeting point photos if meeting point exists
+    if meeting_point:
+        meeting_point.photos = db.query(MeetingPointPhoto).filter(
+            MeetingPointPhoto.meeting_point_id == meeting_point.id
+        ).order_by(MeetingPointPhoto.order_index).all()
+
+    # Load new enhanced data
+    timelines = db.query(ActivityTimeline).filter(
+        ActivityTimeline.activity_id == activity.id
+    ).order_by(ActivityTimeline.order_index).all()
+
+    time_slots = db.query(ActivityTimeSlot).filter(
+        ActivityTimeSlot.activity_id == activity.id
+    ).order_by(ActivityTimeSlot.slot_time).all()
+
+    pricing_tiers = db.query(ActivityPricingTier).filter(
+        ActivityPricingTier.activity_id == activity.id,
+        ActivityPricingTier.is_active == True
+    ).order_by(ActivityPricingTier.order_index).all()
+
+    add_ons = db.query(ActivityAddOn).filter(
+        ActivityAddOn.activity_id == activity.id
+    ).order_by(ActivityAddOn.order_index).all()
+
     # Get vendor info
     vendor = db.query(Vendor).filter(Vendor.id == activity.vendor_id).first()
 
@@ -337,7 +364,36 @@ def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResp
             "id": vendor.id,
             "company_name": vendor.company_name,
             "is_verified": vendor.is_verified
-        }
+        },
+        # New enhanced fields
+        "has_multiple_tiers": activity.has_multiple_tiers,
+        "discount_percentage": activity.discount_percentage,
+        "original_price_adult": activity.original_price_adult,
+        "original_price_child": activity.original_price_child,
+        "is_likely_to_sell_out": activity.is_likely_to_sell_out,
+        "has_mobile_ticket": activity.has_mobile_ticket,
+        "has_best_price_guarantee": activity.has_best_price_guarantee,
+        "is_verified_activity": activity.is_verified_activity,
+        "response_time_hours": activity.response_time_hours,
+        "is_wheelchair_accessible": activity.is_wheelchair_accessible,
+        "is_stroller_accessible": activity.is_stroller_accessible,
+        "allows_service_animals": activity.allows_service_animals,
+        "has_infant_seats": activity.has_infant_seats,
+        "video_url": activity.video_url,
+        "dress_code": activity.dress_code,
+        "weather_dependent": activity.weather_dependent,
+        "not_suitable_for": activity.not_suitable_for,
+        "what_to_bring": activity.what_to_bring,
+        "has_covid_measures": activity.has_covid_measures,
+        "covid_measures": activity.covid_measures,
+        "is_giftable": activity.is_giftable,
+        "allows_reserve_now_pay_later": activity.allows_reserve_now_pay_later,
+        "reserve_payment_deadline_hours": activity.reserve_payment_deadline_hours,
+        # New relationships
+        "timelines": timelines,
+        "time_slots": time_slots,
+        "pricing_tiers": pricing_tiers,
+        "add_ons": add_ons
     }
 
     return ActivityDetailResponse(**response_dict)
@@ -453,6 +509,7 @@ def get_similar_activities(
             "total_reviews": act.total_reviews,
             "is_bestseller": act.is_bestseller,
             "is_skip_the_line": act.is_skip_the_line,
+            "is_active": act.is_active,
             "free_cancellation_hours": act.free_cancellation_hours,
             "languages": act.languages,
             "primary_image": primary_image,
@@ -495,7 +552,31 @@ def create_activity(
         languages=activity_data.languages,
         is_bestseller=activity_data.is_bestseller,
         is_skip_the_line=activity_data.is_skip_the_line,
-        is_active=True
+        is_active=True,
+        # New enhanced fields
+        has_multiple_tiers=activity_data.has_multiple_tiers,
+        discount_percentage=activity_data.discount_percentage,
+        original_price_adult=activity_data.original_price_adult,
+        original_price_child=activity_data.original_price_child,
+        is_likely_to_sell_out=activity_data.is_likely_to_sell_out,
+        has_mobile_ticket=activity_data.has_mobile_ticket,
+        has_best_price_guarantee=activity_data.has_best_price_guarantee,
+        is_verified_activity=activity_data.is_verified_activity,
+        response_time_hours=activity_data.response_time_hours,
+        is_wheelchair_accessible=activity_data.is_wheelchair_accessible,
+        is_stroller_accessible=activity_data.is_stroller_accessible,
+        allows_service_animals=activity_data.allows_service_animals,
+        has_infant_seats=activity_data.has_infant_seats,
+        video_url=activity_data.video_url,
+        dress_code=activity_data.dress_code,
+        weather_dependent=activity_data.weather_dependent,
+        not_suitable_for=activity_data.not_suitable_for,
+        what_to_bring=activity_data.what_to_bring,
+        has_covid_measures=activity_data.has_covid_measures,
+        covid_measures=activity_data.covid_measures,
+        is_giftable=activity_data.is_giftable,
+        allows_reserve_now_pay_later=activity_data.allows_reserve_now_pay_later,
+        reserve_payment_deadline_hours=activity_data.reserve_payment_deadline_hours
     )
     db.add(activity)
     db.flush()

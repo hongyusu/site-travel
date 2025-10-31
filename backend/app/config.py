@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     """Application settings."""
 
     # Application
-    APP_NAME: str = "GetYourGuide Clone"
+    APP_NAME: str = "MeetYourTravelPartner"
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = True
 

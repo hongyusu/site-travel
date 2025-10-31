@@ -12,7 +12,8 @@ from app.schemas.user import (
     UserResponse,
     UserLogin,
     Token,
-    VendorCreate
+    VendorCreate,
+    VendorRegister
 )
 from app.core.security import (
     verify_password,
@@ -77,16 +78,14 @@ def register(
 
 @router.post("/register-vendor", response_model=UserResponse, status_code=status.HTTP_201_CREATED)
 def register_vendor(
-    user_data: UserCreate,
-    vendor_data: VendorCreate,
+    data: VendorRegister,
     db: Session = Depends(get_db)
 ):
     """
     Register a new vendor.
 
     Args:
-        user_data: User registration data
-        vendor_data: Vendor registration data
+        data: Combined vendor registration data
         db: Database session
 
     Returns:
@@ -96,7 +95,7 @@ def register_vendor(
         HTTPException: If email already exists
     """
     # Check if user already exists
-    existing_user = db.query(User).filter(User.email == user_data.email).first()
+    existing_user = db.query(User).filter(User.email == data.email).first()
     if existing_user:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -105,10 +104,10 @@ def register_vendor(
 
     # Create user with vendor role
     db_user = User(
-        email=user_data.email,
-        password_hash=get_password_hash(user_data.password),
-        full_name=user_data.full_name,
-        phone=user_data.phone,
+        email=data.email,
+        password_hash=get_password_hash(data.password),
+        full_name=data.full_name,
+        phone=data.phone,
         role=UserRole.VENDOR
     )
 
@@ -119,9 +118,9 @@ def register_vendor(
         # Create vendor profile
         db_vendor = Vendor(
             user_id=db_user.id,
-            company_name=vendor_data.company_name,
-            description=vendor_data.description,
-            logo_url=vendor_data.logo_url,
+            company_name=data.company_name,
+            description=None,
+            logo_url=None,
             commission_rate=settings.DEFAULT_COMMISSION_RATE
         )
         db.add(db_vendor)

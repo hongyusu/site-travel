@@ -96,6 +96,12 @@ class CartItemCreate(BaseModel):
     adults: int = Field(1, ge=1)
     children: int = Field(0, ge=0)
 
+    # Enhanced booking fields (optional)
+    time_slot_id: Optional[int] = None
+    pricing_tier_id: Optional[int] = None
+    add_on_ids: Optional[List[int]] = None
+    add_on_quantities: Optional[dict] = None  # {add_on_id: quantity}
+
 
 class CartItemResponse(BaseModel):
     """Cart item response schema."""

@@ -13,7 +13,9 @@ from app.database import Base
 class BookingStatus(str, enum.Enum):
     """Booking status enumeration."""
     PENDING = "pending"
+    PENDING_VENDOR_APPROVAL = "pending_vendor_approval"
     CONFIRMED = "confirmed"
+    REJECTED = "rejected"
     CANCELLED = "cancelled"
     COMPLETED = "completed"
 
@@ -56,9 +58,14 @@ class Booking(Base):
     customer_phone = Column(String(50))
     special_requirements = Column(Text)
 
+    # Vendor management
+    rejection_reason = Column(Text)
+
     # Timestamps
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     confirmed_at = Column(DateTime(timezone=True))
+    vendor_approved_at = Column(DateTime(timezone=True))
+    vendor_rejected_at = Column(DateTime(timezone=True))
     cancelled_at = Column(DateTime(timezone=True))
     completed_at = Column(DateTime(timezone=True))
 
@@ -115,6 +122,13 @@ class CartItem(Base):
     adults = Column(Integer, default=1)
     children = Column(Integer, default=0)
     price = Column(DECIMAL(10, 2))
+
+    # Enhanced booking fields
+    time_slot_id = Column(Integer, ForeignKey("activity_time_slots.id", ondelete="SET NULL"))
+    pricing_tier_id = Column(Integer, ForeignKey("activity_pricing_tiers.id", ondelete="SET NULL"))
+    add_on_ids = Column(Text)  # JSON array of add-on IDs
+    add_on_quantities = Column(Text)  # JSON object {add_on_id: quantity}
+
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     # Relationships

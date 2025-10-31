@@ -35,7 +35,9 @@ class ActivityImageResponse(BaseModel):
     id: int
     url: str
     alt_text: Optional[str]
+    caption: Optional[str]
     is_primary: bool
+    is_hero: bool
 
     class Config:
         from_attributes = True
@@ -70,6 +72,16 @@ class ActivityFAQResponse(BaseModel):
         from_attributes = True
 
 
+class MeetingPointPhotoResponse(BaseModel):
+    """Meeting point photo response."""
+    id: int
+    url: str
+    caption: Optional[str]
+
+    class Config:
+        from_attributes = True
+
+
 class MeetingPointResponse(BaseModel):
     """Meeting point response."""
     id: int
@@ -77,6 +89,61 @@ class MeetingPointResponse(BaseModel):
     instructions: Optional[str]
     latitude: Optional[float]
     longitude: Optional[float]
+    parking_info: Optional[str]
+    public_transport_info: Optional[str]
+    nearby_landmarks: Optional[str]
+    photos: List[MeetingPointPhotoResponse] = []
+
+    class Config:
+        from_attributes = True
+
+
+class ActivityTimelineResponse(BaseModel):
+    """Activity timeline response."""
+    id: int
+    step_number: int
+    title: str
+    description: Optional[str]
+    duration_minutes: Optional[int]
+    image_url: Optional[str]
+
+    class Config:
+        from_attributes = True
+
+
+class ActivityTimeSlotResponse(BaseModel):
+    """Activity time slot response."""
+    id: int
+    slot_time: str
+    slot_label: Optional[str]
+    max_capacity: Optional[int]
+    is_available: bool
+    price_adjustment: Decimal
+
+    class Config:
+        from_attributes = True
+
+
+class ActivityPricingTierResponse(BaseModel):
+    """Activity pricing tier response."""
+    id: int
+    tier_name: str
+    tier_description: Optional[str]
+    price_adult: Decimal
+    price_child: Optional[Decimal]
+    is_active: bool
+
+    class Config:
+        from_attributes = True
+
+
+class ActivityAddOnResponse(BaseModel):
+    """Activity add-on response."""
+    id: int
+    name: str
+    description: Optional[str]
+    price: Decimal
+    is_optional: bool
 
     class Config:
         from_attributes = True
@@ -96,6 +163,31 @@ class ActivityBase(BaseModel):
     languages: List[str] = []
     is_bestseller: bool = False
     is_skip_the_line: bool = False
+
+    # New fields
+    has_multiple_tiers: bool = False
+    discount_percentage: Optional[int] = None
+    original_price_adult: Optional[Decimal] = None
+    original_price_child: Optional[Decimal] = None
+    is_likely_to_sell_out: bool = False
+    has_mobile_ticket: bool = False
+    has_best_price_guarantee: bool = False
+    is_verified_activity: bool = False
+    response_time_hours: int = 24
+    is_wheelchair_accessible: bool = False
+    is_stroller_accessible: bool = False
+    allows_service_animals: bool = False
+    has_infant_seats: bool = False
+    video_url: Optional[str] = None
+    dress_code: Optional[str] = None
+    weather_dependent: bool = False
+    not_suitable_for: Optional[str] = None
+    what_to_bring: Optional[str] = None
+    has_covid_measures: bool = False
+    covid_measures: Optional[str] = None
+    is_giftable: bool = False
+    allows_reserve_now_pay_later: bool = False
+    reserve_payment_deadline_hours: int = 24
 
 
 class ActivityCreate(ActivityBase):
@@ -162,6 +254,37 @@ class ActivityDetailResponse(ActivityResponse):
     faqs: List[ActivityFAQResponse] = []
     meeting_point: Optional[MeetingPointResponse] = None
     vendor: dict
+
+    # New enhanced fields
+    has_multiple_tiers: bool
+    discount_percentage: Optional[int]
+    original_price_adult: Optional[Decimal]
+    original_price_child: Optional[Decimal]
+    is_likely_to_sell_out: bool
+    has_mobile_ticket: bool
+    has_best_price_guarantee: bool
+    is_verified_activity: bool
+    response_time_hours: int
+    is_wheelchair_accessible: bool
+    is_stroller_accessible: bool
+    allows_service_animals: bool
+    has_infant_seats: bool
+    video_url: Optional[str]
+    dress_code: Optional[str]
+    weather_dependent: bool
+    not_suitable_for: Optional[str]
+    what_to_bring: Optional[str]
+    has_covid_measures: bool
+    covid_measures: Optional[str]
+    is_giftable: bool
+    allows_reserve_now_pay_later: bool
+    reserve_payment_deadline_hours: int
+
+    # New relationships
+    timelines: List[ActivityTimelineResponse] = []
+    time_slots: List[ActivityTimeSlotResponse] = []
+    pricing_tiers: List[ActivityPricingTierResponse] = []
+    add_ons: List[ActivityAddOnResponse] = []
 
     class Config:
         from_attributes = True

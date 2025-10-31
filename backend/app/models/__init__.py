@@ -11,10 +11,15 @@ from app.models.activity import (
     ActivityHighlight,
     ActivityInclude,
     ActivityFAQ,
-    MeetingPoint
+    MeetingPoint,
+    ActivityTimeline,
+    ActivityTimeSlot,
+    ActivityPricingTier,
+    ActivityAddOn,
+    MeetingPointPhoto
 )
 from app.models.booking import Booking, BookingStatus, Availability, CartItem
-from app.models.review import Review, ReviewImage
+from app.models.review import Review, ReviewImage, ReviewCategory
 from app.models.wishlist import Wishlist
 
 __all__ = [
@@ -31,11 +36,17 @@ __all__ = [
     "ActivityInclude",
     "ActivityFAQ",
     "MeetingPoint",
+    "ActivityTimeline",
+    "ActivityTimeSlot",
+    "ActivityPricingTier",
+    "ActivityAddOn",
+    "MeetingPointPhoto",
     "Booking",
     "BookingStatus",
     "Availability",
     "CartItem",
     "Review",
     "ReviewImage",
+    "ReviewCategory",
     "Wishlist",
 ]
