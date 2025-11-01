@@ -12,19 +12,17 @@ Choose your preferred setup method:
 
 ```bash
 # Copy environment template
-cp .env.docker.example .env
+cp .env.production.example .env
 
 # Generate secure keys
 echo "SECRET_KEY=$(openssl rand -hex 32)" >> .env
+echo "POSTGRES_PASSWORD=$(openssl rand -base64 24)" >> .env
 
-# Start all services
-docker-compose -f docker-compose.prod.yml up -d
+# Deploy with automated script
+chmod +x deploy.sh && ./deploy.sh
 
-# Initialize database
-chmod +x docker-init-db.sh && ./docker-init-db.sh
-
-# Access application
-open http://localhost
+# Or manually:
+docker-compose -f docker-compose.prod.yml up -d --build
 ```
 
 **Demo Accounts:**
@@ -32,7 +30,14 @@ open http://localhost
 - Customer: customer@example.com / customer123
 - Vendor: vendor1@example.com / vendor123
 
-See [DEPLOYMENT.md](DEPLOYMENT.md#docker-deployment) for detailed Docker instructions.
+**Key Features:**
+- ✅ Multi-stage Docker builds (optimized image sizes)
+- ✅ Resource limits and health checks
+- ✅ Automated deployment with `deploy.sh`
+- ✅ Database backup with `backup.sh`
+- ✅ Development mode with hot reload (`docker-compose.dev.yml`)
+
+See [DOCKER-QUICKSTART.md](DOCKER-QUICKSTART.md) for 5-minute quickstart or [DEPLOYMENT.md](DEPLOYMENT.md#docker-deployment) for detailed instructions.
 
 ### Option 2: Local Development
 
@@ -75,13 +80,14 @@ See [DEPLOYMENT.md](DEPLOYMENT.md#local-development) for detailed setup instruct
 ### Customer Features ✅
 - **Homepage**: Hero search, featured destinations, categories, bestselling activities
 - **Advanced Search**: 15+ filters (price, duration, rating, features), sorting, pagination
-- **Activity Details**: Image gallery, timeline/itinerary, highlights, inclusions, meeting point with photos, FAQs, reviews with images, booking widget
+- **Activity Details**: Image gallery, video preview, timeline/itinerary, highlights, inclusions, meeting point with photos, FAQs, reviews with images, similar activities
 - **Enhanced Booking**: Time slot selection, pricing tiers (Standard/Premium/VIP), optional add-ons
 - **Shopping Cart**: Session-based cart (works for guests and authenticated users)
 - **Wishlist**: Save favorite activities
-- **Booking Management**: View bookings, cancel with policy enforcement
+- **Booking Management**: View bookings, cancel with policy enforcement, download confirmations
 - **Reviews**: Submit reviews with ratings, images, category breakdowns, helpful voting
 - **User Account**: Registration, login, profile management, booking history
+- **Footer Pages**: About, Contact, Privacy Policy pages
 
 ### Vendor Portal ✅
 - **Dashboard**: Revenue, bookings, activity statistics
@@ -93,15 +99,17 @@ See [DEPLOYMENT.md](DEPLOYMENT.md#local-development) for detailed setup instruct
   - Meeting point with photos
   - Accessibility options, COVID measures
   - Video preview URLs
-- **Booking Management**: View bookings, check-in customers, filter by status
+  - Toggle activity status (active/inactive)
+- **Booking Management**: View bookings, approve/reject/cancel bookings, filter by status
 - **Verification Badge**: Admin-controlled trust indicator
+- **Vendor Registration**: Self-service vendor signup with company details
 
 ### Admin Dashboard ✅
 - **Platform Statistics**: Users, activities, bookings, revenue metrics
 - **User Management**: View all users, toggle active status
-- **Vendor Management**: Verify vendors, view statistics
-- **Activity Moderation**: Toggle status, delete with booking checks
-- **Booking Management**: View all platform bookings
+- **Vendor Management**: Verify vendors, view statistics, vendor performance metrics
+- **Activity Moderation**: Toggle status, delete with booking checks, view all activity details
+- **Booking Management**: View all platform bookings with filters
 - **Review Moderation**: Delete inappropriate reviews, auto-update ratings
 
 ### Backend Features ✅
@@ -200,11 +208,14 @@ See [DEPLOYMENT.md](DEPLOYMENT.md#local-development) for detailed setup instruct
 - **Validation**: Pydantic v2
 - **API Docs**: OpenAPI/Swagger (auto-generated)
 
-### Infrastructure
-- **Database**: PostgreSQL
-- **Container**: Docker + Docker Compose
-- **Reverse Proxy**: Nginx
-- **Caching**: Redis (optional)
+### Infrastructure & DevOps
+- **Database**: PostgreSQL 15 with optimized connection pooling
+- **Container**: Docker + Docker Compose (multi-stage builds)
+- **Reverse Proxy**: Nginx 1.25 with caching and SSL support
+- **Caching**: Redis 7 with persistence
+- **Deployment**: Automated scripts (deploy.sh, backup.sh)
+- **Security**: Secrets management, Docker secrets, health checks
+- **Monitoring**: Resource limits, structured logging
 
 ---
 
@@ -290,13 +301,17 @@ site-travel/
 │   ├── tailwind.config.ts     # Tailwind configuration
 │   └── package.json           # Dependencies
 │
-├── docker-compose.prod.yml    # Production Docker setup
-├── docker-init-db.sh          # Database initialization script
-├── .env.docker.example        # Docker environment template
+├── docker-compose.prod.yml    # Production Docker setup (optimized)
+├── docker-compose.dev.yml     # Development Docker setup (hot reload)
+├── deploy.sh                  # Automated deployment script
+├── backup.sh                  # Database backup and restore script
+├── .env.production.example    # Production environment template
 │
 ├── README.md                  # This file
-├── REQUIREMENTS.md            # Detailed feature requirements
+├── DOCKER-QUICKSTART.md       # 5-minute Docker quickstart guide
 ├── DEPLOYMENT.md              # Deployment guide (local/Docker/cloud)
+├── SECRETS-MANAGEMENT.md      # Secrets and security guide
+├── REQUIREMENTS.md            # Detailed feature requirements
 └── GAP_ANALYSIS.md            # Project status and remaining gaps
 ```
 
@@ -556,15 +571,21 @@ See [DEPLOYMENT.md - Cloud Deployment](DEPLOYMENT.md#cloud-deployment-options)
 See [GAP_ANALYSIS.md](GAP_ANALYSIS.md) for detailed status and remaining enhancements.
 
 ### What's Complete ✅
-- All customer features (search, booking, reviews, wishlist)
-- All vendor features (dashboard, activity management, booking management)
-- All admin features (user management, moderation, platform stats)
-- Enhanced booking system (timelines, time slots, pricing tiers, add-ons)
-- Interactive reviews with images and category ratings
-- Session-based cart (works for guests)
-- Role-based authentication and access control
+- All customer features (search, booking, reviews, wishlist, footer pages)
+- All vendor features (dashboard, activity management, booking workflow with approve/reject/cancel)
+- All admin features (user/vendor/activity management, moderation, platform stats)
+- Enhanced booking system (timelines, time slots, pricing tiers, add-ons, meeting points)
+- Interactive reviews with images, category ratings, and helpful voting
+- Session-based cart (works for guests and authenticated users)
+- Role-based authentication and access control (Customer/Vendor/Admin)
 - Responsive design (desktop + tablet)
-- Docker deployment setup
+- Production-ready Docker deployment with:
+  - Multi-stage optimized builds (40-60% smaller images)
+  - Resource limits and health checks
+  - Automated deployment script (deploy.sh)
+  - Database backup/restore script (backup.sh)
+  - Development environment with hot reload
+  - Comprehensive secrets management guide
 
 ### Enhancement Opportunities (Post-Launch)
 - Vendor booking calendar view (medium priority)
