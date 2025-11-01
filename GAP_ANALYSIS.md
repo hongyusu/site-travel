@@ -309,6 +309,200 @@ The application has reached **100% feature completion** for MVP launch. All core
 
 ---
 
+## 🔮 Future Enhancement Requirements (Post-MVP)
+
+### 1. **Multi-Language Support & Translation** 🔮
+
+**Requirement:** Internationalization (i18n) to support multiple languages for global expansion
+
+**Scope:**
+1. **Frontend Translation System**
+   - Multi-language content management
+   - Language switcher in header
+   - Locale-based routing (e.g., `/en/activities`, `/es/activities`)
+   - RTL (Right-to-Left) support for Arabic, Hebrew
+   - Date/time/currency formatting per locale
+
+2. **LLM/AI Translation Integration**
+   - **Option A: Google Cloud Translation API**
+     - Real-time translation of user-generated content (reviews, descriptions)
+     - Automatic detection of source language
+     - Neural machine translation quality
+     - Cost: ~$20/1M characters
+
+   - **Option B: OpenAI GPT-4 Translation**
+     - Context-aware translations with better nuance
+     - Can handle idiomatic expressions and cultural context
+     - More expensive but higher quality for marketing content
+     - Cost: ~$30/1M tokens
+
+   - **Option C: Claude API Translation**
+     - High-quality translations with cultural awareness
+     - Good for maintaining brand voice across languages
+     - Cost: ~$15/1M tokens
+
+3. **Database Schema Updates**
+   - Add `language` field to activities, reviews, descriptions
+   - Create translation tables (activity_translations, review_translations)
+   - Store original language + translated versions
+   - Cache translations to reduce API calls
+
+4. **Translation Workflow**
+   - Vendor creates activity in primary language
+   - Auto-translate to 5-10 target languages via AI
+   - Display translated content with "Translated from [language]" badge
+   - Allow human review and editing of AI translations
+   - Store translation confidence scores
+
+**Languages Priority:**
+1. English (default)
+2. Spanish
+3. French
+4. German
+5. Italian
+6. Japanese
+7. Chinese (Simplified)
+8. Portuguese
+9. Arabic
+10. Russian
+
+**Impact:** HIGH for global expansion, MEDIUM for current MVP
+
+**Estimated Time:** 20-30 hours
+- i18n framework setup: 4-6 hours
+- Database schema updates: 3-4 hours
+- AI translation integration: 8-10 hours
+- Language switcher UI: 2-3 hours
+- Testing across languages: 3-4 hours
+- RTL support: 2-3 hours
+
+**Priority:** 🔮 **FUTURE** (Post-MVP Phase 2)
+
+---
+
+### 2. **Email Notification System** 🔮
+
+**Requirement:** Automated email notifications for key user actions and system events
+
+**Scope:**
+
+1. **Transactional Emails**
+   - **User Registration/Welcome Email**
+     - Welcome message with getting started guide
+     - Email verification link
+     - Account activation confirmation
+
+   - **Booking Confirmations**
+     - Instant booking confirmation with details
+     - Booking reference number
+     - Activity details, date, time, meeting point
+     - Add to calendar link (ICS file)
+     - Cancellation policy reminder
+
+   - **Booking Status Updates**
+     - Vendor approval notification
+     - Booking rejection with reason
+     - Cancellation confirmation
+     - Check-in reminder (24 hours before)
+
+   - **Password Reset**
+     - Secure reset link with expiration
+     - Confirmation after password change
+
+2. **Vendor Notifications**
+   - New booking received
+   - Booking cancellation alert
+   - Review posted for their activity
+   - Payout/earnings summary (weekly/monthly)
+   - Activity approval/rejection from admin
+
+3. **Admin Notifications**
+   - New vendor registration pending approval
+   - Flagged reviews requiring moderation
+   - System errors or issues
+   - Daily/weekly summary reports
+
+4. **Marketing Emails** (Future Phase 3)
+   - Personalized recommendations based on wishlist
+   - Special offers and promotions
+   - Newsletter with new activities
+   - Abandoned cart reminders
+   - Post-visit review requests
+
+**Email Service Integration Options:**
+
+1. **SendGrid** (Recommended)
+   - Free tier: 100 emails/day
+   - Reliable delivery
+   - Template management
+   - Analytics (open rates, click rates)
+   - Cost: Free → $20/mo for 40k emails
+
+2. **Amazon SES** (Best for AWS deployment)
+   - $0.10 per 1,000 emails
+   - High deliverability
+   - Integrates with existing AWS infrastructure
+   - Requires domain verification
+
+3. **Mailgun**
+   - Free tier: 5,000 emails/month
+   - Developer-friendly API
+   - Good for transactional emails
+
+4. **Resend** (Modern option)
+   - Free tier: 3,000 emails/month
+   - React email templates
+   - Best-in-class developer experience
+   - Built-in email testing
+
+**Technical Implementation:**
+
+1. **Email Templates**
+   - Use React Email or MJML for responsive templates
+   - Brand-consistent design matching website
+   - Plain text fallback for accessibility
+   - Localized templates for i18n support
+
+2. **Queue System**
+   - Implement email queue using Redis/Celery
+   - Retry logic for failed sends
+   - Rate limiting to avoid spam filters
+   - Background job processing
+
+3. **Database Schema**
+   - `email_logs` table to track sent emails
+   - Track: recipient, subject, template, status, sent_at
+   - `user_email_preferences` for opt-in/opt-out
+   - Unsubscribe management
+
+4. **GDPR Compliance**
+   - One-click unsubscribe links
+   - Email preference center
+   - Store consent for marketing emails
+   - Respect do-not-email lists
+
+**Impact:** HIGH - Critical for user engagement and communication
+
+**Estimated Time:** 15-20 hours
+- Email service integration: 3-4 hours
+- Template creation (10+ templates): 6-8 hours
+- Queue system setup: 3-4 hours
+- Preference management: 2-3 hours
+- Testing and deliverability: 2-3 hours
+
+**Priority:** 🔮 **FUTURE** (Post-MVP Phase 1 - High Priority)
+
+**Recommended Implementation Order:**
+1. User registration/verification emails (Week 1)
+2. Booking confirmation emails (Week 1)
+3. Booking status update emails (Week 2)
+4. Vendor notification emails (Week 2)
+5. Password reset emails (Week 3)
+6. Admin notifications (Week 3)
+7. Marketing emails (Phase 3 - Future)
+
+---
+
 ## 🆕 New Features Added (Not in Original Requirements)
 
 ### 1. **Interactive Review System** 🆕

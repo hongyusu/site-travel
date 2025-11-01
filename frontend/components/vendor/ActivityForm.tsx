@@ -64,6 +64,7 @@ export default function ActivityForm({ activityId, mode }: ActivityFormProps) {
     what_to_bring: '',
     not_suitable_for: '',
     covid_measures: '',
+    cancellation_policy: '',
     // Enhanced relationships
     timelines: [] as any[],
     time_slots: [] as any[],
@@ -144,6 +145,7 @@ export default function ActivityForm({ activityId, mode }: ActivityFormProps) {
         what_to_bring: activity.what_to_bring || '',
         not_suitable_for: activity.not_suitable_for || '',
         covid_measures: activity.covid_measures || '',
+        cancellation_policy: activity.cancellation_policy || '',
         // Enhanced relationships
         timelines: activity.timelines || [],
         time_slots: activity.time_slots || [],
@@ -280,6 +282,131 @@ export default function ActivityForm({ activityId, mode }: ActivityFormProps) {
               rows={6}
               placeholder="Detailed description of the activity"
             />
+          </div>
+
+          {/* Highlights */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Highlights
+            </label>
+            {formData.highlights.map((highlight, index) => (
+              <div key={index} className="flex gap-2 mb-2">
+                <input
+                  type="text"
+                  value={highlight}
+                  onChange={(e) => updateArrayItem('highlights', index, e.target.value)}
+                  className="input-field flex-1"
+                  placeholder="e.g., Skip-the-line access to all attractions"
+                />
+                <button
+                  type="button"
+                  onClick={() => removeArrayItem('highlights', index)}
+                  className="btn-secondary px-3"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              onClick={() => addArrayItem('highlights', '')}
+              className="btn-secondary mt-2"
+            >
+              <Plus className="w-4 h-4 mr-2" />
+              Add Highlight
+            </button>
+          </div>
+
+          {/* Included/Excluded Items */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              What's Included / Not Included
+            </label>
+            <div className="grid grid-cols-2 gap-4">
+              {/* Included Items */}
+              <div>
+                <h4 className="text-sm font-medium text-green-700 mb-2">✓ Included</h4>
+                {formData.includes.filter(i => i.is_included).map((item, index) => {
+                  const globalIndex = formData.includes.indexOf(item);
+                  return (
+                    <div key={globalIndex} className="flex gap-2 mb-2">
+                      <input
+                        type="text"
+                        value={item.item}
+                        onChange={(e) => updateArrayItem('includes', globalIndex, { ...item, item: e.target.value })}
+                        className="input-field flex-1"
+                        placeholder="e.g., Hotel pickup and drop-off"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => updateArrayItem('includes', globalIndex, { ...item, is_included: false })}
+                        className="btn-secondary px-2"
+                        title="Move to Not Included"
+                      >
+                        →
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => removeArrayItem('includes', globalIndex)}
+                        className="btn-secondary px-2"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  );
+                })}
+                <button
+                  type="button"
+                  onClick={() => addArrayItem('includes', { item: '', is_included: true })}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-3 h-3 mr-1" />
+                  Add Included Item
+                </button>
+              </div>
+
+              {/* Excluded Items */}
+              <div>
+                <h4 className="text-sm font-medium text-red-700 mb-2">✗ Not Included</h4>
+                {formData.includes.filter(i => !i.is_included).map((item, index) => {
+                  const globalIndex = formData.includes.indexOf(item);
+                  return (
+                    <div key={globalIndex} className="flex gap-2 mb-2">
+                      <input
+                        type="text"
+                        value={item.item}
+                        onChange={(e) => updateArrayItem('includes', globalIndex, { ...item, item: e.target.value })}
+                        className="input-field flex-1"
+                        placeholder="e.g., Meals and drinks"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => updateArrayItem('includes', globalIndex, { ...item, is_included: true })}
+                        className="btn-secondary px-2"
+                        title="Move to Included"
+                      >
+                        ←
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => removeArrayItem('includes', globalIndex)}
+                        className="btn-secondary px-2"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+                  );
+                })}
+                <button
+                  type="button"
+                  onClick={() => addArrayItem('includes', { item: '', is_included: false })}
+                  className="btn-secondary text-sm"
+                >
+                  <Plus className="w-3 h-3 mr-1" />
+                  Add Excluded Item
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -593,6 +720,19 @@ export default function ActivityForm({ activityId, mode }: ActivityFormProps) {
               value={formData.free_cancellation_hours}
               onChange={(e) => setFormData({ ...formData, free_cancellation_hours: parseInt(e.target.value) || 0 })}
               className="input-field"
+            />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Cancellation Policy
+            </label>
+            <textarea
+              value={formData.cancellation_policy}
+              onChange={(e) => setFormData({ ...formData, cancellation_policy: e.target.value })}
+              rows={4}
+              className="input-field"
+              placeholder="e.g., Full refund if cancelled 24 hours before the start time. No refund for no-shows or late cancellations. Changes to booking may be subject to availability and additional charges."
             />
           </div>
         </div>

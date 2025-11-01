@@ -155,7 +155,10 @@ export default function VendorDashboardPage() {
               <h1 className="text-3xl font-bold text-gray-900">Vendor Dashboard</h1>
               <p className="text-gray-600 mt-1">Welcome back, {user?.full_name}</p>
             </div>
-            <Link href="/vendor/activities/new" className="btn-primary flex items-center">
+            <Link
+              href="/vendor/activities/new"
+              className="btn-primary flex items-center shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 animate-pulse hover:animate-none"
+            >
               <Plus className="w-5 h-5 mr-2" />
               Add Activity
             </Link>
@@ -223,10 +226,20 @@ export default function VendorDashboardPage() {
 
           {activities.length === 0 ? (
             <div className="p-12 text-center">
-              <p className="text-gray-600 mb-4">You haven't created any activities yet.</p>
-              <Link href="/vendor/activities/new" className="btn-primary inline-block">
-                Create Your First Activity
-              </Link>
+              <div className="max-w-md mx-auto">
+                <div className="w-24 h-24 mx-auto bg-primary-50 rounded-full flex items-center justify-center mb-4">
+                  <Plus className="w-12 h-12 text-primary" />
+                </div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">No Activities Yet</h3>
+                <p className="text-gray-600 mb-6">Get started by creating your first activity. Share your experiences with travelers worldwide!</p>
+                <Link
+                  href="/vendor/activities/new"
+                  className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
+                >
+                  <Plus className="w-6 h-6" />
+                  Create Your First Activity
+                </Link>
+              </div>
             </div>
           ) : (
             <div className="overflow-x-auto">
