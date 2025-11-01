@@ -45,7 +45,7 @@ def add_enhanced_features():
                     duration = random.randint(30, 90)
                     timeline = ActivityTimeline(
                         activity_id=activity.id,
-                        order=i + 1,
+                        step_number=i + 1,
                         title=f"Stop {i+1}: {stop_name}",
                         description=description,
                         duration_minutes=duration
