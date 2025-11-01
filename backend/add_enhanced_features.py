@@ -62,11 +62,11 @@ def add_enhanced_features():
                 ("Evening", "18:00", Decimal("15.00"))
             ]
 
-            for name, time, adj in time_options[:4]:
+            for label, time, adj in time_options[:4]:
                 slot = ActivityTimeSlot(
                     activity_id=activity.id,
-                    name=name,
-                    start_time=time,
+                    slot_label=label,
+                    slot_time=time,
                     price_adjustment=adj,
                     max_capacity=random.randint(10, 30)
                 )
@@ -84,29 +84,29 @@ def add_enhanced_features():
             for tier_name, adult_mult, child_mult in tiers:
                 tier = ActivityPricingTier(
                     activity_id=activity.id,
-                    name=tier_name,
+                    tier_name=tier_name,
                     price_adult=Decimal(str(base_price * (1 + adult_mult))),
                     price_child=Decimal(str(float(activity.price_child or 0) * (1 + child_mult))) if activity.price_child else None,
-                    description=f"{tier_name} experience with additional benefits"
+                    tier_description=f"{tier_name} experience with additional benefits"
                 )
                 db.add(tier)
                 tier_count += 1
 
             # Add add-ons
             addons_options = [
-                ("Professional Photos", Decimal("25.00"), False),
-                ("Lunch Package", Decimal("35.00"), False),
-                ("Private Guide", Decimal("50.00"), False),
-                ("Audio Guide", Decimal("10.00"), True)
+                ("Professional Photos", Decimal("25.00"), True),
+                ("Lunch Package", Decimal("35.00"), True),
+                ("Private Guide", Decimal("50.00"), True),
+                ("Audio Guide", Decimal("10.00"), False)
             ]
 
-            for addon_name, price, required in random.sample(addons_options, min(3, len(addons_options))):
+            for addon_name, price, optional in random.sample(addons_options, min(3, len(addons_options))):
                 addon = ActivityAddOn(
                     activity_id=activity.id,
                     name=addon_name,
                     description=f"Enhance your experience with {addon_name.lower()}",
                     price=price,
-                    is_required=required
+                    is_optional=optional
                 )
                 db.add(addon)
                 addon_count += 1
