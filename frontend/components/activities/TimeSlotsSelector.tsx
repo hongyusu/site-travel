@@ -3,6 +3,7 @@
 import { ActivityTimeSlot } from "@/types";
 import { Clock } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface TimeSlotsSelectorProps {
   timeSlots: ActivityTimeSlot[];
@@ -15,6 +16,7 @@ export default function TimeSlotsSelector({
   selectedSlotId,
   onSlotSelect,
 }: TimeSlotsSelectorProps) {
+  const { getTranslation } = useLanguage();
   const [selected, setSelected] = useState<number | undefined>(selectedSlotId);
 
   if (!timeSlots || timeSlots.length === 0) return null;
@@ -26,7 +28,7 @@ export default function TimeSlotsSelector({
 
   return (
     <div className="mb-6">
-      <h3 className="text-lg font-semibold mb-3">Select Time</h3>
+      <h3 className="text-lg font-semibold mb-3">{getTranslation('timeslots.select_time')}</h3>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
         {timeSlots.map((slot) => {
           const isSelected = selected === slot.id;
@@ -71,7 +73,7 @@ export default function TimeSlotsSelector({
                   </div>
                 )}
                 {!slot.is_available && (
-                  <div className="text-xs text-red-500 mt-1">Sold Out</div>
+                  <div className="text-xs text-red-500 mt-1">{getTranslation('timeslots.sold_out')}</div>
                 )}
               </div>
 

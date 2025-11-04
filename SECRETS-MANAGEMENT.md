@@ -1,6 +1,6 @@
 # Secrets Management Guide
 
-Comprehensive guide for managing secrets, API keys, and sensitive configuration in the GetYourGuide application.
+Comprehensive guide for managing secrets, API keys, and sensitive configuration in the FindTravelMate application.
 
 ## Table of Contents
 
@@ -43,7 +43,7 @@ nano .env
 
 **Development .env:**
 ```bash
-DATABASE_URL=postgresql://postgres:dev_password@localhost:5432/getyourguide
+DATABASE_URL=postgresql://postgres:dev_password@localhost:5432/findtravelmate
 SECRET_KEY=<generated-key>
 POSTGRES_PASSWORD=dev_password
 CORS_ORIGINS='["http://localhost:3000"]'
@@ -53,7 +53,7 @@ CORS_ORIGINS='["http://localhost:3000"]'
 
 ```bash
 # Use stronger passwords
-DATABASE_URL=postgresql://postgres:<strong-password>@staging-db:5432/getyourguide
+DATABASE_URL=postgresql://postgres:<strong-password>@staging-db:5432/findtravelmate
 SECRET_KEY=<production-grade-key>
 ```
 
@@ -63,7 +63,7 @@ SECRET_KEY=<production-grade-key>
 
 ```bash
 # All secrets must be unique and strong
-DATABASE_URL=postgresql://postgres:<RANDOM-64-CHAR-PASSWORD>@prod-db:5432/getyourguide
+DATABASE_URL=postgresql://postgres:<RANDOM-64-CHAR-PASSWORD>@prod-db:5432/findtravelmate
 SECRET_KEY=<RANDOM-64-CHAR-KEY>
 POSTGRES_PASSWORD=<RANDOM-64-CHAR-PASSWORD>
 ```
@@ -221,12 +221,12 @@ secrets:
 ```bash
 # Store secret
 aws secretsmanager create-secret \
-    --name getyourguide/production/db_password \
+    --name findtravelmate/production/db_password \
     --secret-string "mySecretPassword"
 
 # Retrieve in application
 aws secretsmanager get-secret-value \
-    --secret-id getyourguide/production/db_password \
+    --secret-id findtravelmate/production/db_password \
     --query SecretString \
     --output text
 ```
@@ -242,8 +242,8 @@ def get_secret(secret_name):
     return json.loads(response['SecretString'])
 
 # Use in settings
-secret = get_secret('getyourguide/production/db_password')
-DATABASE_URL = f"postgresql://postgres:{secret['password']}@db:5432/getyourguide"
+secret = get_secret('findtravelmate/production/db_password')
+DATABASE_URL = f"postgresql://postgres:{secret['password']}@db:5432/findtravelmate"
 ```
 
 ### Option 4: HashiCorp Vault (Enterprise)
@@ -318,7 +318,7 @@ SECRET_KEY = get_secret_from_file("SECRET_KEY")
 NEW_PASSWORD=$(openssl rand -base64 48)
 
 # Step 2: Update database
-docker exec getyourguide_db psql -U postgres -c \
+docker exec findtravelmate_db psql -U postgres -c \
     "ALTER USER postgres WITH PASSWORD '$NEW_PASSWORD';"
 
 # Step 3: Update .env
@@ -407,7 +407,7 @@ echo "SECRET_KEY=$NEW_SECRET" >> .env
 docker-compose -f docker-compose.prod.yml restart backend
 
 # 4. Force all users to re-authenticate
-docker exec getyourguide_backend python -c \
+docker exec findtravelmate_backend python -c \
     "from app.database import SessionLocal; from app.models import User; \
      db = SessionLocal(); db.query(User).update({'last_password_reset': datetime.now()}); \
      db.commit()"

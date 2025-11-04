@@ -5,8 +5,10 @@ import DestinationCard from '@/components/destinations/DestinationCard';
 import { Destination } from '@/types';
 import { apiClient } from '@/lib/api';
 import { Search } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function DestinationsPage() {
+  const { getCountryName } = useLanguage();
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [filteredDestinations, setFilteredDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
@@ -96,7 +98,7 @@ export default function DestinationsPage() {
           <div className="space-y-12">
             {Object.entries(groupedDestinations).map(([country, dests]) => (
               <div key={country}>
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">{country}</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">{getCountryName(country)}</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {dests.map((dest, index) => (
                     <DestinationCard

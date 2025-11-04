@@ -8,10 +8,12 @@ import SearchBar from '@/components/search/SearchBar';
 import { Activity, SearchParams, PaginatedResponse, Category, Destination } from '@/types';
 import { apiClient } from '@/lib/api';
 import { SlidersHorizontal } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function SearchPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
+  const { getTranslation, language } = useLanguage();
   const [activities, setActivities] = useState<Activity[]>([]);
   const [pagination, setPagination] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -50,6 +52,11 @@ export default function SearchPage() {
     fetchData();
     fetchMetadata();
   }, [searchParams]);
+
+  // Re-fetch data when language changes
+  useEffect(() => {
+    fetchMetadata();
+  }, [language]);
 
   const fetchData = async (append: boolean = false) => {
     if (!append) {
@@ -147,7 +154,7 @@ export default function SearchPage() {
       <div className="bg-white border-b">
         <div className="container mx-auto px-4 py-6">
           <SearchBar
-            placeholder="Search for activities..."
+            placeholder={getTranslation('search.placeholder')}
             className="max-w-3xl mx-auto"
           />
         </div>
@@ -162,7 +169,7 @@ export default function SearchPage() {
               className="btn-secondary w-full flex items-center justify-center"
             >
               <SlidersHorizontal className="w-5 h-5 mr-2" />
-              Filters
+              {getTranslation('button.filter')}
             </button>
           </div>
 
@@ -182,11 +189,11 @@ export default function SearchPage() {
             <div className="flex justify-between items-center mb-6">
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">
-                  {filters.q ? `Search results for "${filters.q}"` : 'All Activities'}
+                  {filters.q ? `${getTranslation('search.title.search_results')} "${filters.q}"` : getTranslation('search.title.all_activities')}
                 </h1>
                 {pagination && (
                   <p className="text-gray-600 mt-1">
-                    {pagination.total} activities found
+                    {pagination.total} {getTranslation('search.activities_found')}
                   </p>
                 )}
               </div>
@@ -197,11 +204,11 @@ export default function SearchPage() {
                 onChange={(e) => handleSortChange(e.target.value)}
                 className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
               >
-                <option value="recommended">Recommended</option>
-                <option value="price_asc">Price: Low to High</option>
-                <option value="price_desc">Price: High to Low</option>
-                <option value="rating">Highest Rated</option>
-                <option value="duration">Duration</option>
+                <option value="recommended">{getTranslation('search.sort.recommended')}</option>
+                <option value="price_asc">{getTranslation('search.sort.price_low_high')}</option>
+                <option value="price_desc">{getTranslation('search.sort.price_high_low')}</option>
+                <option value="rating">{getTranslation('search.sort.highest_rated')}</option>
+                <option value="duration">{getTranslation('search.sort.duration')}</option>
               </select>
             </div>
 
@@ -237,10 +244,10 @@ export default function SearchPage() {
                             <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                             <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                           </svg>
-                          Loading...
+                          {getTranslation('search.loading')}
                         </>
                       ) : (
-                        `Load More (${activities.length} of ${pagination.total})`
+                        `${getTranslation('search.load_more')} (${activities.length} of ${pagination.total})`
                       )}
                     </button>
                   </div>
@@ -252,16 +259,16 @@ export default function SearchPage() {
             {!loading && activities.length === 0 && (
               <div className="text-center py-12">
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  No activities found
+                  {getTranslation('search.no_results.title')}
                 </h3>
                 <p className="text-gray-600 mb-6">
-                  Try adjusting your filters or search terms
+                  {getTranslation('search.no_results.subtitle')}
                 </p>
                 <button
                   onClick={() => handleFilterChange({ q: filters.q })}
                   className="btn-primary"
                 >
-                  Clear Filters
+                  {getTranslation('search.clear_filters')}
                 </button>
               </div>
             )}

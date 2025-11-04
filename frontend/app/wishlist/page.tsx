@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 import { Heart, Loader2 } from 'lucide-react';
 import { apiClient } from '@/lib/api';
 import ActivityCard from '@/components/activities/ActivityCard';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function WishlistPage() {
+  const { getTranslation } = useLanguage();
   const router = useRouter();
   const [activities, setActivities] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -33,7 +35,7 @@ export default function WishlistPage() {
       if (err.response?.status === 401) {
         router.push('/login?return=/wishlist');
       } else {
-        setError('Failed to load wishlist. Please try again.');
+        setError(getTranslation('wishlist.failed_to_load'));
       }
     } finally {
       setLoading(false);
@@ -45,7 +47,7 @@ export default function WishlistPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <Loader2 className="w-12 h-12 animate-spin text-primary mx-auto" />
-          <p className="mt-4 text-gray-600">Loading your wishlist...</p>
+          <p className="mt-4 text-gray-600">{getTranslation('wishlist.loading')}</p>
         </div>
       </div>
     );
@@ -60,7 +62,7 @@ export default function WishlistPage() {
             onClick={fetchWishlist}
             className="mt-4 btn-primary"
           >
-            Try Again
+            {getTranslation('wishlist.try_again')}
           </button>
         </div>
       </div>
@@ -75,9 +77,9 @@ export default function WishlistPage() {
           <div className="flex items-center space-x-3">
             <Heart className="w-8 h-8 text-red-500 fill-current" />
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">My Wishlist</h1>
+              <h1 className="text-3xl font-bold text-gray-900">{getTranslation('wishlist.title')}</h1>
               <p className="text-gray-600 mt-1">
-                {activities.length} {activities.length === 1 ? 'activity' : 'activities'} saved
+                {activities.length} {activities.length === 1 ? getTranslation('wishlist.activity') : getTranslation('wishlist.activities')} {getTranslation('wishlist.saved')}
               </p>
             </div>
           </div>
@@ -89,15 +91,15 @@ export default function WishlistPage() {
         {activities.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-12 text-center">
             <Heart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">Your wishlist is empty</h2>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">{getTranslation('wishlist.empty_title')}</h2>
             <p className="text-gray-600 mb-6">
-              Start adding activities you're interested in by clicking the heart icon
+              {getTranslation('wishlist.empty_description')}
             </p>
             <button
               onClick={() => router.push('/')}
               className="btn-primary"
             >
-              Explore Activities
+              {getTranslation('wishlist.explore_activities')}
             </button>
           </div>
         ) : (

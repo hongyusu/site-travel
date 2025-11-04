@@ -6,6 +6,7 @@ import { apiClient } from '@/lib/api';
 import { toast } from 'react-hot-toast';
 import ReviewForm from './ReviewForm';
 import Image from 'next/image';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface Review {
   id: number;
@@ -30,6 +31,7 @@ export default function ReviewsSection({
   averageRating,
   totalReviews
 }: ReviewsSectionProps) {
+  const { getTranslation } = useLanguage();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [reviews, setReviews] = useState<Review[]>([]);
   const [loading, setLoading] = useState(true);
@@ -223,7 +225,7 @@ export default function ReviewsSection({
     <div className="space-y-6">
       {/* Rating Overview */}
       <div className="bg-white rounded-lg p-6 border border-gray-200">
-        <h3 className="text-xl font-semibold mb-4">Customer Reviews</h3>
+        <h3 className="text-xl font-semibold mb-4">{getTranslation('reviews.customer_reviews')}</h3>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Average Rating */}
@@ -247,7 +249,7 @@ export default function ReviewsSection({
                 onClick={() => setShowReviewForm(true)}
                 className="btn-primary text-sm px-4 py-2"
               >
-                Write a Review
+                {getTranslation('reviews.write_review')}
               </button>
             )}
           </div>
@@ -329,7 +331,7 @@ export default function ReviewsSection({
                 }}
                 className="text-primary text-sm hover:text-primary-600 mb-3 font-medium"
               >
-                Show more
+                {getTranslation('reviews.show_more')}
               </button>
             )}
             {expandedReviews.includes(review.id) && review.comment.length > 100 && (
@@ -341,7 +343,7 @@ export default function ReviewsSection({
                 }}
                 className="text-primary text-sm hover:text-primary-600 mb-3 font-medium"
               >
-                Show less
+                {getTranslation('reviews.show_less')}
               </button>
             )}
 
@@ -380,7 +382,7 @@ export default function ReviewsSection({
                 }`}
               >
                 <ThumbsUp className="w-4 h-4 mr-1" />
-                Helpful ({review.helpful_count})
+                {getTranslation('reviews.helpful')} ({review.helpful_count})
               </button>
             </div>
           </div>
@@ -394,7 +396,7 @@ export default function ReviewsSection({
             onClick={handleLoadMore}
             className="inline-flex items-center px-6 py-3 border border-gray-300 rounded-full hover:bg-gray-50"
           >
-            Show more reviews
+            {getTranslation('reviews.show_more')}
             <ChevronDown className="w-4 h-4 ml-2" />
           </button>
         </div>

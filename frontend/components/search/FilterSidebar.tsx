@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { SearchParams } from '@/types';
 import { X } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface FilterSidebarProps {
   filters: SearchParams;
@@ -18,6 +19,7 @@ export default function FilterSidebar({
   destinations = []
 }: FilterSidebarProps) {
   const [localFilters, setLocalFilters] = useState<SearchParams>(filters);
+  const { getTranslation } = useLanguage();
 
   const handlePriceChange = (min: string, max: string) => {
     const updated = {
@@ -75,14 +77,14 @@ export default function FilterSidebar({
     <div className="bg-white rounded-lg shadow p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
-        <h3 className="font-semibold text-lg">Filters</h3>
+        <h3 className="font-semibold text-lg">{getTranslation('filter.title')}</h3>
         {hasActiveFilters && (
           <button
             onClick={clearFilters}
             className="text-sm text-primary hover:text-primary-600 flex items-center"
           >
             <X className="w-4 h-4 mr-1" />
-            Clear all
+            {getTranslation('filter.clear_all')}
           </button>
         )}
       </div>
@@ -90,13 +92,13 @@ export default function FilterSidebar({
       {/* Category Filter */}
       {categories.length > 0 && (
         <div className="border-t pt-4">
-          <h4 className="font-medium mb-3">Category</h4>
+          <h4 className="font-medium mb-3">{getTranslation('filter.category')}</h4>
           <select
             value={localFilters.category_slug || ''}
             onChange={(e) => handleCategoryChange(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
           >
-            <option value="">All categories</option>
+            <option value="">{getTranslation('filter.all_categories')}</option>
             {categories.map((cat) => (
               <option key={cat.id} value={cat.slug}>
                 {cat.name}
@@ -109,13 +111,13 @@ export default function FilterSidebar({
       {/* Destination Filter */}
       {destinations.length > 0 && (
         <div className="border-t pt-4">
-          <h4 className="font-medium mb-3">Destination</h4>
+          <h4 className="font-medium mb-3">{getTranslation('nav.destinations')}</h4>
           <select
             value={localFilters.destination_slug || ''}
             onChange={(e) => handleDestinationChange(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
           >
-            <option value="">All destinations</option>
+            <option value="">{getTranslation('filter.all_destinations')}</option>
             {destinations.map((dest) => (
               <option key={dest.id} value={dest.slug}>
                 {dest.name}
@@ -127,11 +129,11 @@ export default function FilterSidebar({
 
       {/* Price Range */}
       <div className="border-t pt-4">
-        <h4 className="font-medium mb-3">Price Range (€)</h4>
+        <h4 className="font-medium mb-3">{getTranslation('filter.price_range')}</h4>
         <div className="flex items-center space-x-2">
           <input
             type="number"
-            placeholder="Min"
+            placeholder={getTranslation('filter.price.min')}
             value={localFilters.min_price || ''}
             onChange={(e) => handlePriceChange(e.target.value, String(localFilters.max_price || ''))}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -139,7 +141,7 @@ export default function FilterSidebar({
           <span>-</span>
           <input
             type="number"
-            placeholder="Max"
+            placeholder={getTranslation('filter.price.max')}
             value={localFilters.max_price || ''}
             onChange={(e) => handlePriceChange(String(localFilters.min_price || ''), e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -149,11 +151,11 @@ export default function FilterSidebar({
 
       {/* Duration */}
       <div className="border-t pt-4">
-        <h4 className="font-medium mb-3">Duration (hours)</h4>
+        <h4 className="font-medium mb-3">{getTranslation('filter.duration_hours')}</h4>
         <div className="flex items-center space-x-2">
           <input
             type="number"
-            placeholder="Min"
+            placeholder={getTranslation('filter.price.min')}
             value={localFilters.min_duration ? localFilters.min_duration / 60 : ''}
             onChange={(e) => handleDurationChange(String(parseFloat(e.target.value || '0') * 60), String(localFilters.max_duration || ''))}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -161,7 +163,7 @@ export default function FilterSidebar({
           <span>-</span>
           <input
             type="number"
-            placeholder="Max"
+            placeholder={getTranslation('filter.price.max')}
             value={localFilters.max_duration ? localFilters.max_duration / 60 : ''}
             onChange={(e) => handleDurationChange(String(localFilters.min_duration || ''), String(parseFloat(e.target.value || '0') * 60))}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent"
@@ -171,7 +173,7 @@ export default function FilterSidebar({
 
       {/* Rating */}
       <div className="border-t pt-4">
-        <h4 className="font-medium mb-3">Minimum Rating</h4>
+        <h4 className="font-medium mb-3">{getTranslation('filter.min_rating')}</h4>
         <div className="space-y-2">
           {[4.5, 4.0, 3.5, 3.0].map((rating) => (
             <label key={rating} className="flex items-center cursor-pointer">
@@ -195,14 +197,14 @@ export default function FilterSidebar({
               onChange={() => handleRatingChange(0)}
               className="mr-2"
             />
-            <span className="text-sm">Any rating</span>
+            <span className="text-sm">{getTranslation('filter.any_rating')}</span>
           </label>
         </div>
       </div>
 
       {/* Features */}
       <div className="border-t pt-4">
-        <h4 className="font-medium mb-3">Features</h4>
+        <h4 className="font-medium mb-3">{getTranslation('filter.features')}</h4>
         <div className="space-y-2">
           <label className="flex items-center cursor-pointer">
             <input
@@ -211,7 +213,7 @@ export default function FilterSidebar({
               onChange={(e) => handleCheckboxChange('free_cancellation', e.target.checked)}
               className="mr-2"
             />
-            <span className="text-sm">Free cancellation</span>
+            <span className="text-sm">{getTranslation('filter.free_cancellation')}</span>
           </label>
           <label className="flex items-center cursor-pointer">
             <input
@@ -220,7 +222,7 @@ export default function FilterSidebar({
               onChange={(e) => handleCheckboxChange('instant_confirmation', e.target.checked)}
               className="mr-2"
             />
-            <span className="text-sm">Instant confirmation</span>
+            <span className="text-sm">{getTranslation('filter.instant_confirmation')}</span>
           </label>
           <label className="flex items-center cursor-pointer">
             <input
@@ -229,7 +231,7 @@ export default function FilterSidebar({
               onChange={(e) => handleCheckboxChange('skip_the_line', e.target.checked)}
               className="mr-2"
             />
-            <span className="text-sm">Skip the line</span>
+            <span className="text-sm">{getTranslation('filter.skip_the_line')}</span>
           </label>
           <label className="flex items-center cursor-pointer">
             <input
@@ -238,7 +240,7 @@ export default function FilterSidebar({
               onChange={(e) => handleCheckboxChange('bestseller', e.target.checked)}
               className="mr-2"
             />
-            <span className="text-sm">Bestseller</span>
+            <span className="text-sm">{getTranslation('filter.bestseller')}</span>
           </label>
         </div>
       </div>

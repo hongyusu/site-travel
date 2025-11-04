@@ -3,6 +3,7 @@
 import { ActivityAddOn } from "@/types";
 import { Plus, Minus, AlertCircle } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface AddOnsSelectorProps {
   addOns: ActivityAddOn[];
@@ -15,6 +16,7 @@ export default function AddOnsSelector({
   selectedAddOns = [],
   onAddOnsChange,
 }: AddOnsSelectorProps) {
+  const { getTranslation } = useLanguage();
   const [selections, setSelections] = useState<Map<number, number>>(
     new Map(selectedAddOns.map(a => [a.id, a.quantity]))
   );
@@ -43,7 +45,7 @@ export default function AddOnsSelector({
 
   return (
     <div className="mb-6">
-      <h3 className="text-lg font-semibold mb-3">Add-ons & Extras</h3>
+      <h3 className="text-lg font-semibold mb-3">{getTranslation('addons.add_ons')}</h3>
 
       {/* Required Add-ons */}
       {requiredAddOns.length > 0 && (
@@ -51,7 +53,7 @@ export default function AddOnsSelector({
           <div className="flex items-center gap-2 mb-3">
             <AlertCircle className="w-5 h-5 text-orange-600" />
             <h4 className="text-sm font-semibold text-orange-600 uppercase">
-              Required
+              {getTranslation('addons.required')}
             </h4>
           </div>
           <div className="space-y-3">
@@ -74,7 +76,7 @@ export default function AddOnsSelector({
                       ${addOn.price}
                     </div>
                     <div className="text-xs text-orange-600 font-medium mt-1">
-                      REQUIRED
+                      {getTranslation('addons.required').toUpperCase()}
                     </div>
                   </div>
                 </div>
@@ -88,7 +90,7 @@ export default function AddOnsSelector({
       {optionalAddOns.length > 0 && (
         <div>
           <h4 className="text-sm font-semibold text-gray-600 uppercase mb-3">
-            Optional Extras
+            {getTranslation('addons.optional_extras')}
           </h4>
           <div className="space-y-3">
             {optionalAddOns.map((addOn) => {
@@ -120,7 +122,7 @@ export default function AddOnsSelector({
                       </div>
                       {quantity > 0 && (
                         <div className="text-xs text-blue-600 font-medium mt-1">
-                          Total: ${(addOn.price * quantity).toFixed(2)}
+                          {getTranslation('addons.total')}: ${(addOn.price * quantity).toFixed(2)}
                         </div>
                       )}
                     </div>

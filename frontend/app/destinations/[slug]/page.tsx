@@ -8,10 +8,12 @@ import { Activity, Destination } from '@/types';
 import { apiClient } from '@/lib/api';
 import { getImageUrl } from '@/lib/utils';
 import { MapPin } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function DestinationDetailPage() {
   const params = useParams();
   const slug = params.slug as string;
+  const { getCountryName } = useLanguage();
   const [destination, setDestination] = useState<Destination | null>(null);
   const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
@@ -84,7 +86,7 @@ export default function DestinationDetailPage() {
           <div className="container mx-auto">
             <div className="flex items-center text-white mb-2">
               <MapPin className="w-5 h-5 mr-2" />
-              {destination.country && <span>{destination.country}</span>}
+              {destination.country && <span>{getCountryName(destination.country)}</span>}
             </div>
             <h1 className="text-5xl font-bold text-white mb-4">{destination.name}</h1>
             {destination.is_featured && (

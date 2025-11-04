@@ -1,11 +1,11 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import ActivityForm from '@/components/vendor/ActivityForm';
+import ActivityFormWithLanguages from '@/components/vendor/ActivityFormWithLanguages';
 
 export default function EditActivityPage() {
   const params = useParams();
   const activityId = parseInt(params.id as string);
 
-  return <ActivityForm mode="edit" activityId={activityId} />;
+  return <ActivityFormWithLanguages mode="edit" activityId={activityId} />;
 }

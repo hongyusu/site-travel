@@ -1,6 +1,6 @@
-# GetYourGuide Clone - Backend
+# FindTravelMate - Backend
 
-FastAPI backend for the GetYourGuide clone project.
+FastAPI backend for the FindTravelMate project.
 
 ## Setup Instructions
 
@@ -20,7 +20,7 @@ docker-compose up -d postgres
 ```
 
 This will start PostgreSQL on port 5432 with:
-- Database: `getyourguide`
+- Database: `findtravelmate`
 - Username: `postgres`
 - Password: `password`
 
@@ -59,7 +59,7 @@ python init_db.py
 
 This will create:
 - Database tables
-- Admin user: `admin@getyourguide.com` / `admin123`
+- Admin user: `admin@findtravelmate.com` / `admin123`
 - Customer user: `customer@example.com` / `customer123`
 - 5 Vendor accounts: `vendor1-5@example.com` / `vendor123`
 - 10 destinations (cities)

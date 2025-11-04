@@ -22,6 +22,7 @@ class Category(Base):
     # Relationships
     activities = relationship("ActivityCategory", back_populates="category")
     children = relationship("Category", backref="parent", remote_side=[id])
+    translations = relationship("CategoryTranslation", back_populates="category")
 
 
 class Destination(Base):
@@ -42,6 +43,7 @@ class Destination(Base):
 
     # Relationships
     activities = relationship("ActivityDestination", back_populates="destination")
+    translations = relationship("DestinationTranslation", back_populates="destination")
 
 
 class Activity(Base):
@@ -130,6 +132,9 @@ class Activity(Base):
     pricing_tiers = relationship("ActivityPricingTier", back_populates="activity", cascade="all, delete-orphan")
     add_ons = relationship("ActivityAddOn", back_populates="activity", cascade="all, delete-orphan")
 
+    # Translation relationships
+    translations = relationship("ActivityTranslation", back_populates="activity", cascade="all, delete-orphan")
+
 
 class ActivityImage(Base):
     """Activity image model."""
@@ -187,6 +192,7 @@ class ActivityHighlight(Base):
 
     # Relationships
     activity = relationship("Activity", back_populates="highlights")
+    translations = relationship("ActivityHighlightTranslation", back_populates="highlight", cascade="all, delete-orphan")
 
 
 class ActivityInclude(Base):
@@ -202,6 +208,7 @@ class ActivityInclude(Base):
 
     # Relationships
     activity = relationship("Activity", back_populates="includes")
+    translations = relationship("ActivityIncludeTranslation", back_populates="include_item", cascade="all, delete-orphan")
 
 
 class ActivityFAQ(Base):
@@ -217,6 +224,7 @@ class ActivityFAQ(Base):
 
     # Relationships
     activity = relationship("Activity", back_populates="faqs")
+    translations = relationship("ActivityFAQTranslation", back_populates="faq", cascade="all, delete-orphan")
 
 
 class MeetingPoint(Base):
@@ -237,6 +245,7 @@ class MeetingPoint(Base):
     # Relationships
     activity = relationship("Activity", back_populates="meeting_point")
     photos = relationship("MeetingPointPhoto", back_populates="meeting_point", cascade="all, delete-orphan")
+    translations = relationship("MeetingPointTranslation", back_populates="meeting_point", cascade="all, delete-orphan")
 
 
 class ActivityTimeline(Base):
@@ -255,6 +264,7 @@ class ActivityTimeline(Base):
 
     # Relationships
     activity = relationship("Activity", back_populates="timelines")
+    translations = relationship("ActivityTimelineTranslation", back_populates="timeline", cascade="all, delete-orphan")
 
 
 class ActivityTimeSlot(Base):
@@ -290,6 +300,7 @@ class ActivityPricingTier(Base):
 
     # Relationships
     activity = relationship("Activity", back_populates="pricing_tiers")
+    translations = relationship("ActivityPricingTierTranslation", back_populates="pricing_tier", cascade="all, delete-orphan")
 
 
 class ActivityAddOn(Base):
@@ -307,6 +318,7 @@ class ActivityAddOn(Base):
 
     # Relationships
     activity = relationship("Activity", back_populates="add_ons")
+    translations = relationship("ActivityAddOnTranslation", back_populates="addon", cascade="all, delete-orphan")
 
 
 class MeetingPointPhoto(Base):

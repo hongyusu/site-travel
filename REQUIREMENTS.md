@@ -1,4 +1,4 @@
-# GetYourGuide Clone - Project Requirements Document
+# FindTravelMate Clone - Project Requirements Document
 
 ## Table of Contents
 1. [Project Overview](#project-overview)
@@ -17,7 +17,7 @@
 ## Project Overview
 
 ### Goal
-Build a complete replica of GetYourGuide.com - a marketplace for booking travel experiences, tours, and activities.
+Build a complete replica of FindTravelMate.com - a marketplace for booking travel experiences, tours, and activities.
 
 ### Scope
 - **Full marketplace functionality**: Browse, search, book activities
@@ -25,9 +25,9 @@ Build a complete replica of GetYourGuide.com - a marketplace for booking travel 
 - **No payment processing initially**: Mock checkout (Stripe integration later)
 - **English only**: No multi-language support
 - **EUR currency only**: No currency conversion
-- **Desktop & Mobile responsive**: Match GetYourGuide's design
+- **Desktop & Mobile responsive**: Match FindTravelMate's design
 
-### Key Statistics (from GetYourGuide)
+### Key Statistics (from FindTravelMate)
 - 150,000+ experiences
 - 12,000+ cities worldwide
 - 30,000+ experience partners (vendors)
@@ -1022,7 +1022,7 @@ GET    /admin/stats         - Platform statistics
 - [ ] Responsive on mobile devices
 
 ### Visual Requirements ✓
-- [ ] Matches GetYourGuide color scheme
+- [ ] Matches FindTravelMate color scheme
 - [ ] Similar layout and structure
 - [ ] Activity cards look authentic
 - [ ] Booking widget is sticky

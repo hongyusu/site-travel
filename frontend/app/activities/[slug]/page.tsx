@@ -13,6 +13,8 @@ import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import TimelineSection from '@/components/activities/TimelineSection';
 import ActivityBadges from '@/components/activities/ActivityBadges';
 import ActivityVideo from '@/components/activities/ActivityVideo';
+import TranslationNotAvailable from '@/components/TranslationNotAvailable';
+import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Star, Clock, Users, Globe, Check, X, MapPin,
   ChevronDown, ChevronUp, Shield, Award
@@ -21,6 +23,7 @@ import {
 export default function ActivityDetailsPage() {
   const params = useParams();
   const slug = params.slug as string;
+  const { language, getTranslation, getDestinationName, getCategoryName, getLanguageName } = useLanguage();
   const [activity, setActivity] = useState<ActivityDetailResponse | null>(null);
   const [similarActivities, setSimilarActivities] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +32,7 @@ export default function ActivityDetailsPage() {
 
   useEffect(() => {
     fetchActivity();
-  }, [slug]);
+  }, [slug, language]);
 
   const fetchActivity = async () => {
     try {
@@ -143,8 +146,8 @@ export default function ActivityDetailsPage() {
         {/* Breadcrumbs */}
         <Breadcrumbs
           items={[
-            { label: activity.destinations[0]?.name || 'Activities', href: activity.destinations[0] ? `/search?destination=${activity.destinations[0].slug}` : '/search' },
-            { label: activity.categories[0]?.name || 'Category', href: activity.categories[0] ? `/search?category=${activity.categories[0].slug}` : undefined },
+            { label: activity.destinations[0] ? getDestinationName(activity.destinations[0].slug, activity.destinations[0].name) : 'Activities', href: activity.destinations[0] ? `/search?destination=${activity.destinations[0].slug}` : '/search' },
+            { label: activity.categories[0] ? getCategoryName(activity.categories[0].slug, activity.categories[0].name) : 'Category', href: activity.categories[0] ? `/search?category=${activity.categories[0].slug}` : undefined },
             { label: activity.title }
           ]}
         />
@@ -166,7 +169,7 @@ export default function ActivityDetailsPage() {
                         href={`/search?destination=${dest.slug}`}
                         className="text-primary hover:text-primary-600"
                       >
-                        {dest.name}
+                        {getDestinationName(dest.slug, dest.name)}
                       </Link>
                     ))}
                   </div>
@@ -176,24 +179,24 @@ export default function ActivityDetailsPage() {
                     {activity.is_bestseller && (
                       <span className="badge bg-orange-100 text-orange-800 font-semibold">
                         <Award className="w-3 h-3 mr-1" />
-                        BESTSELLER
+                        {getTranslation('badge.bestseller')}
                       </span>
                     )}
                     {activity.is_skip_the_line && (
                       <span className="badge bg-purple-100 text-purple-800">
-                        Skip the line
+                        {getTranslation('badge.skip_the_line')}
                       </span>
                     )}
                     {activity.free_cancellation_hours > 0 && (
                       <span className="badge bg-green-100 text-green-800">
                         <Check className="w-3 h-3 mr-1" />
-                        Free cancellation
+                        {getTranslation('badge.free_cancellation')}
                       </span>
                     )}
                     {activity.instant_confirmation && (
                       <span className="badge bg-blue-100 text-blue-800">
                         <Shield className="w-3 h-3 mr-1" />
-                        Instant confirmation
+                        {getTranslation('badge.instant_confirmation')}
                       </span>
                     )}
                   </div>
@@ -210,7 +213,7 @@ export default function ActivityDetailsPage() {
                   </span>
                 </div>
                 <div className="text-gray-600">
-                  {activity.total_bookings}+ booked
+                  {activity.total_bookings}+ {getTranslation('activity.booked')}
                 </div>
               </div>
 
@@ -222,21 +225,25 @@ export default function ActivityDetailsPage() {
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Users className="w-4 h-4 mr-1" />
-                  Max {activity.max_group_size} people
+                  {getTranslation('booking.max_people')} {activity.max_group_size} {getTranslation('booking.people')}
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Globe className="w-4 h-4 mr-1" />
-                  {activity.languages.join(', ')}
+                  {activity.languages.map(lang => getLanguageName(lang)).join(', ')}
                 </div>
               </div>
             </div>
 
             {/* Description */}
             <div className="prose max-w-none">
-              <h3 className="text-xl font-semibold mb-4">Overview</h3>
-              <p className="text-gray-700 whitespace-pre-line">
-                {activity.description}
-              </p>
+              <h3 className="text-xl font-semibold mb-4">{getTranslation('activity.overview')}</h3>
+              {activity.description ? (
+                <p className="text-gray-700 whitespace-pre-line">
+                  {activity.description}
+                </p>
+              ) : (
+                <TranslationNotAvailable fieldName={getTranslation('activity.overview')} />
+              )}
             </div>
 
             {/* Activity Badges */}
@@ -253,9 +260,9 @@ export default function ActivityDetailsPage() {
             )}
 
             {/* Highlights */}
-            {activity.highlights && activity.highlights.length > 0 && (
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Highlights</h3>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">{getTranslation('activity.highlights')}</h3>
+              {activity.highlights && activity.highlights.length > 0 ? (
                 <ul className="space-y-2">
                   {activity.highlights.map((highlight, index) => (
                     <li key={index} className="flex items-start">
@@ -264,16 +271,18 @@ export default function ActivityDetailsPage() {
                     </li>
                   ))}
                 </ul>
-              </div>
-            )}
+              ) : (
+                <TranslationNotAvailable fieldName="Highlights" />
+              )}
+            </div>
 
             {/* What's Included / Not Included */}
-            {activity.includes && activity.includes.length > 0 && (
-              <div>
-                <h3 className="text-xl font-semibold mb-4">What's included</h3>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">{getTranslation('activity.included')}</h3>
+              {activity.includes && activity.includes.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
-                    <h4 className="font-medium text-green-700 mb-2">Included</h4>
+                    <h4 className="font-medium text-green-700 mb-2">{getTranslation('activity.included')}</h4>
                     <ul className="space-y-2">
                       {activity.includes
                         .filter(item => item.is_included)
@@ -286,7 +295,7 @@ export default function ActivityDetailsPage() {
                     </ul>
                   </div>
                   <div>
-                    <h4 className="font-medium text-red-700 mb-2">Not included</h4>
+                    <h4 className="font-medium text-red-700 mb-2">{getTranslation('activity.excluded')}</h4>
                     <ul className="space-y-2">
                       {activity.includes
                         .filter(item => !item.is_included)
@@ -299,35 +308,37 @@ export default function ActivityDetailsPage() {
                     </ul>
                   </div>
                 </div>
-              </div>
-            )}
+              ) : (
+                <TranslationNotAvailable fieldName="What's included" />
+              )}
+            </div>
 
             {/* Additional Information */}
             {(activity.what_to_bring || activity.not_suitable_for || activity.dress_code || activity.covid_measures) && (
               <div className="bg-blue-50 rounded-lg p-6 border border-blue-200">
-                <h3 className="text-xl font-semibold mb-4">Important information</h3>
+                <h3 className="text-xl font-semibold mb-4">{getTranslation('activity.important_info')}</h3>
                 <div className="space-y-4">
                   {activity.what_to_bring && (
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">What to bring</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{getTranslation('activity.what_to_bring')}</h4>
                       <p className="text-gray-700 whitespace-pre-line">{activity.what_to_bring}</p>
                     </div>
                   )}
                   {activity.not_suitable_for && (
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Not suitable for</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{getTranslation('activity.not_suitable_for')}</h4>
                       <p className="text-gray-700 whitespace-pre-line">{activity.not_suitable_for}</p>
                     </div>
                   )}
                   {activity.dress_code && (
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">Dress code</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{getTranslation('activity.dress_code')}</h4>
                       <p className="text-gray-700 whitespace-pre-line">{activity.dress_code}</p>
                     </div>
                   )}
                   {activity.covid_measures && (
                     <div>
-                      <h4 className="font-medium text-gray-900 mb-2">COVID-19 safety measures</h4>
+                      <h4 className="font-medium text-gray-900 mb-2">{getTranslation('activity.covid_measures')}</h4>
                       <p className="text-gray-700 whitespace-pre-line">{activity.covid_measures}</p>
                     </div>
                   )}
@@ -338,7 +349,7 @@ export default function ActivityDetailsPage() {
             {/* Meeting Point */}
             {activity.meeting_point && (
               <div>
-                <h3 className="text-xl font-semibold mb-4">Meeting point</h3>
+                <h3 className="text-xl font-semibold mb-4">{getTranslation('activity.meeting_point')}</h3>
                 <div className="bg-white rounded-lg p-4 border border-gray-200">
                   <div className="flex items-start mb-2">
                     <MapPin className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
@@ -357,7 +368,7 @@ export default function ActivityDetailsPage() {
                   {/* Meeting Point Photos */}
                   {activity.meeting_point.photos && activity.meeting_point.photos.length > 0 && (
                     <div className="mt-4">
-                      <h4 className="font-medium text-gray-900 mb-3">Meeting point photos</h4>
+                      <h4 className="font-medium text-gray-900 mb-3">{getTranslation('activity.meeting_point_photos')}</h4>
                       <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                         {activity.meeting_point.photos.map((photo: any, index: number) => (
                           <div key={index} className="relative h-32 rounded-lg overflow-hidden border border-gray-200">
@@ -394,7 +405,7 @@ export default function ActivityDetailsPage() {
                     </div>
                   ) : (
                     <div className="h-48 bg-gray-100 rounded-lg mt-3 flex items-center justify-center">
-                      <span className="text-gray-500">Map not available</span>
+                      <span className="text-gray-500">{getTranslation('activity.map_not_available')}</span>
                     </div>
                   )}
                 </div>
@@ -402,9 +413,9 @@ export default function ActivityDetailsPage() {
             )}
 
             {/* FAQs */}
-            {activity.faqs && activity.faqs.length > 0 && (
-              <div>
-                <h3 className="text-xl font-semibold mb-4">Frequently asked questions</h3>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">{getTranslation('activity.faqs')}</h3>
+              {activity.faqs && activity.faqs.length > 0 ? (
                 <div className="space-y-3">
                   {activity.faqs.map((faq, index) => (
                     <div key={index} className="bg-white rounded-lg border border-gray-200">
@@ -429,17 +440,19 @@ export default function ActivityDetailsPage() {
                     </div>
                   ))}
                 </div>
-              </div>
-            )}
+              ) : (
+                <TranslationNotAvailable fieldName="FAQs" />
+              )}
+            </div>
 
             {/* Vendor Info */}
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xl font-semibold">Activity provider</h3>
+                <h3 className="text-xl font-semibold">{getTranslation('activity.provider')}</h3>
                 {activity.vendor.is_verified && (
                   <div className="flex items-center text-green-600">
                     <Shield className="w-4 h-4 mr-1" />
-                    <span className="text-sm">Verified</span>
+                    <span className="text-sm">{getTranslation('activity.verified')}</span>
                   </div>
                 )}
               </div>
@@ -468,7 +481,7 @@ export default function ActivityDetailsPage() {
         {similarActivities.length > 0 && (
           <div className="mt-16">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              You might also like
+              {getTranslation('activity.similar')}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {similarActivities.slice(0, 4).map(activity => (

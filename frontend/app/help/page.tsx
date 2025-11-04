@@ -115,7 +115,7 @@ export default function HelpPage() {
             <p className="text-gray-600 mb-4">
               Get help via email within 24 hours
             </p>
-            <a href="mailto:support@meetyourtravelpartner.com" className="text-primary hover:text-primary-600 font-medium">
+            <a href="mailto:support@findtravelmate.com" className="text-primary hover:text-primary-600 font-medium">
               Send Email
             </a>
           </div>

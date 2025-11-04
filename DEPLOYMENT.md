@@ -1,6 +1,6 @@
 # Deployment Guide
 
-Complete guide for deploying the GetYourGuide clone application locally, with Docker, or on cloud infrastructure.
+Complete guide for deploying the FindTravelMate clone application locally, with Docker, or on cloud infrastructure.
 
 ## Table of Contents
 
@@ -65,12 +65,12 @@ sudo systemctl enable postgresql
 
 ```bash
 # macOS
-createdb getyourguide
+createdb findtravelmate
 
 # Ubuntu
-sudo -u postgres createdb getyourguide
-sudo -u postgres psql -c "CREATE USER getyourguide_user WITH PASSWORD 'dev_password';"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE getyourguide TO getyourguide_user;"
+sudo -u postgres createdb findtravelmate
+sudo -u postgres psql -c "CREATE USER findtravelmate_user WITH PASSWORD 'dev_password';"
+sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE findtravelmate TO findtravelmate_user;"
 ```
 
 ### Clone Repository
@@ -103,7 +103,7 @@ pip install -r requirements.txt
 
 # Create .env file
 cat > .env <<EOF
-DATABASE_URL=postgresql://postgres:@localhost:5432/getyourguide
+DATABASE_URL=postgresql://postgres:@localhost:5432/findtravelmate
 SECRET_KEY=$(openssl rand -hex 32)
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
@@ -146,7 +146,7 @@ npm run dev
 
 After running `init_db.py`, the following accounts are available:
 
-- **Admin**: admin@getyourguide.com / admin123
+- **Admin**: admin@findtravelmate.com / admin123
 - **Customer**: customer@example.com / customer123
 - **Vendor**: vendor1@example.com / vendor123
 
@@ -303,28 +303,28 @@ docker-compose -f docker-compose.prod.yml up -d
 #### Backup Database
 ```bash
 # Create timestamped backup
-docker-compose -f docker-compose.prod.yml exec postgres pg_dump -U postgres getyourguide > backup_$(date +%Y%m%d_%H%M%S).sql
+docker-compose -f docker-compose.prod.yml exec postgres pg_dump -U postgres findtravelmate > backup_$(date +%Y%m%d_%H%M%S).sql
 
 # Or using docker exec directly
-docker exec getyourguide_db pg_dump -U postgres getyourguide > backup.sql
+docker exec findtravelmate_db pg_dump -U postgres findtravelmate > backup.sql
 ```
 
 #### Restore Database
 ```bash
 # Restore from backup
-docker-compose -f docker-compose.prod.yml exec -T postgres psql -U postgres getyourguide < backup.sql
+docker-compose -f docker-compose.prod.yml exec -T postgres psql -U postgres findtravelmate < backup.sql
 
 # Or using docker exec
-docker exec -i getyourguide_db psql -U postgres getyourguide < backup.sql
+docker exec -i findtravelmate_db psql -U postgres findtravelmate < backup.sql
 ```
 
 #### Access Database Console
 ```bash
 # Connect to PostgreSQL
-docker-compose -f docker-compose.prod.yml exec postgres psql -U postgres getyourguide
+docker-compose -f docker-compose.prod.yml exec postgres psql -U postgres findtravelmate
 
 # Or
-docker exec -it getyourguide_db psql -U postgres getyourguide
+docker exec -it findtravelmate_db psql -U postgres findtravelmate
 ```
 
 #### Reset Database
@@ -351,7 +351,7 @@ docker-compose -f docker-compose.prod.yml logs [service-name]
 docker-compose -f docker-compose.prod.yml ps
 
 # Check container details
-docker inspect getyourguide_backend
+docker inspect findtravelmate_backend
 
 # Check resource usage
 docker stats
@@ -469,10 +469,10 @@ JWT_SECRET=$(openssl rand -hex 32)
 
 # Update .env file
 cat > .env <<EOF
-POSTGRES_DB=getyourguide
+POSTGRES_DB=findtravelmate
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/getyourguide
+DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/findtravelmate
 SECRET_KEY=${SECRET_KEY}
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
@@ -522,16 +522,16 @@ sudo systemctl restart docker
 ```
 
 #### Automated Backups (Docker)
-Create backup script `/usr/local/bin/backup-docker-getyourguide.sh`:
+Create backup script `/usr/local/bin/backup-docker-findtravelmate.sh`:
 ```bash
 #!/bin/bash
-BACKUP_DIR="/var/backups/getyourguide"
+BACKUP_DIR="/var/backups/findtravelmate"
 DATE=$(date +%Y%m%d_%H%M%S)
 
 mkdir -p $BACKUP_DIR
 
 # Backup database
-docker exec getyourguide_db pg_dump -U postgres getyourguide > $BACKUP_DIR/db_$DATE.sql
+docker exec findtravelmate_db pg_dump -U postgres findtravelmate > $BACKUP_DIR/db_$DATE.sql
 
 # Backup volumes
 docker run --rm \
@@ -548,10 +548,10 @@ echo "✅ Backup completed: $DATE"
 
 ```bash
 # Make executable
-sudo chmod +x /usr/local/bin/backup-docker-getyourguide.sh
+sudo chmod +x /usr/local/bin/backup-docker-findtravelmate.sh
 
 # Add to crontab (daily at 2 AM)
-(crontab -l 2>/dev/null; echo "0 2 * * * /usr/local/bin/backup-docker-getyourguide.sh") | crontab -
+(crontab -l 2>/dev/null; echo "0 2 * * * /usr/local/bin/backup-docker-findtravelmate.sh") | crontab -
 ```
 
 ---
@@ -606,24 +606,24 @@ sudo systemctl enable postgresql
 
 # Create database and user
 sudo -u postgres psql <<EOF
-CREATE DATABASE getyourguide;
-CREATE USER getyourguide_user WITH PASSWORD 'your_secure_password_here';
-GRANT ALL PRIVILEGES ON DATABASE getyourguide TO getyourguide_user;
-ALTER USER getyourguide_user CREATEDB;
+CREATE DATABASE findtravelmate;
+CREATE USER findtravelmate_user WITH PASSWORD 'your_secure_password_here';
+GRANT ALL PRIVILEGES ON DATABASE findtravelmate TO findtravelmate_user;
+ALTER USER findtravelmate_user CREATEDB;
 \q
 EOF
 
 # Test connection
-psql -U getyourguide_user -d getyourguide -h localhost -W
+psql -U findtravelmate_user -d findtravelmate -h localhost -W
 ```
 
 ### 3. Deploy Application
 
 ```bash
 # Create application directory
-sudo mkdir -p /var/www/getyourguide
-sudo chown $USER:$USER /var/www/getyourguide
-cd /var/www/getyourguide
+sudo mkdir -p /var/www/findtravelmate
+sudo chown $USER:$USER /var/www/findtravelmate
+cd /var/www/findtravelmate
 
 # Clone repository
 git clone <your-repo-url> .
@@ -638,7 +638,7 @@ pip install -r requirements.txt
 
 # Create environment file
 cat > .env <<EOF
-DATABASE_URL=postgresql://getyourguide_user:your_secure_password_here@localhost:5432/getyourguide
+DATABASE_URL=postgresql://findtravelmate_user:your_secure_password_here@localhost:5432/findtravelmate
 SECRET_KEY=$(openssl rand -hex 32)
 ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
@@ -654,7 +654,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000
 # Press Ctrl+C after verifying it works
 
 # Setup frontend
-cd /var/www/getyourguide/frontend
+cd /var/www/findtravelmate/frontend
 npm install
 
 # Create production environment file
@@ -675,18 +675,18 @@ npm start
 #### Backend Service
 
 ```bash
-sudo tee /etc/systemd/system/getyourguide-backend.service > /dev/null <<EOF
+sudo tee /etc/systemd/system/findtravelmate-backend.service > /dev/null <<EOF
 [Unit]
-Description=GetYourGuide Backend API
+Description=FindTravelMate Backend API
 After=network.target postgresql.service
 Requires=postgresql.service
 
 [Service]
 Type=simple
 User=$USER
-WorkingDirectory=/var/www/getyourguide/backend
-Environment="PATH=/var/www/getyourguide/backend/venv/bin"
-ExecStart=/var/www/getyourguide/backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
+WorkingDirectory=/var/www/findtravelmate/backend
+Environment="PATH=/var/www/findtravelmate/backend/venv/bin"
+ExecStart=/var/www/findtravelmate/backend/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 Restart=always
 RestartSec=10
 
@@ -696,11 +696,11 @@ EOF
 
 # Enable and start backend service
 sudo systemctl daemon-reload
-sudo systemctl enable getyourguide-backend
-sudo systemctl start getyourguide-backend
+sudo systemctl enable findtravelmate-backend
+sudo systemctl start findtravelmate-backend
 
 # Check status
-sudo systemctl status getyourguide-backend
+sudo systemctl status findtravelmate-backend
 ```
 
 #### Frontend Service (using PM2)
@@ -710,8 +710,8 @@ sudo systemctl status getyourguide-backend
 sudo npm install -g pm2
 
 # Start frontend with PM2
-cd /var/www/getyourguide/frontend
-pm2 start npm --name "getyourguide-frontend" -- start
+cd /var/www/findtravelmate/frontend
+pm2 start npm --name "findtravelmate-frontend" -- start
 
 # Save PM2 configuration
 pm2 save
@@ -722,13 +722,13 @@ pm2 startup
 
 # Check PM2 status
 pm2 status
-pm2 logs getyourguide-frontend
+pm2 logs findtravelmate-frontend
 ```
 
 ### 5. Configure Nginx
 
 ```bash
-sudo tee /etc/nginx/sites-available/getyourguide > /dev/null <<'EOF'
+sudo tee /etc/nginx/sites-available/findtravelmate > /dev/null <<'EOF'
 # Backend API upstream
 upstream backend {
     server 127.0.0.1:8000;
@@ -796,7 +796,7 @@ server {
 EOF
 
 # Enable site
-sudo ln -sf /etc/nginx/sites-available/getyourguide /etc/nginx/sites-enabled/
+sudo ln -sf /etc/nginx/sites-available/findtravelmate /etc/nginx/sites-enabled/
 
 # Remove default site
 sudo rm -f /etc/nginx/sites-enabled/default
@@ -877,7 +877,7 @@ ssh -i your-key.pem ubuntu@ec2-xxx.compute.amazonaws.com
 # - Enable automated backups
 
 # 2. Update backend .env
-DATABASE_URL=postgresql://username:password@your-rds-endpoint:5432/getyourguide
+DATABASE_URL=postgresql://username:password@your-rds-endpoint:5432/findtravelmate
 
 # 3. Run init_db.py from EC2
 ```
@@ -959,7 +959,7 @@ curl https://yourdomain.com/docs
 curl https://yourdomain.com
 
 # Check database
-psql -U getyourguide_user -d getyourguide -h localhost -c "SELECT COUNT(*) FROM users;"
+psql -U findtravelmate_user -d findtravelmate -h localhost -c "SELECT COUNT(*) FROM users;"
 ```
 
 ### 2. Create Admin Account
@@ -967,7 +967,7 @@ psql -U getyourguide_user -d getyourguide -h localhost -c "SELECT COUNT(*) FROM 
 If you didn't run `init_db.py` with demo data:
 
 ```bash
-cd /var/www/getyourguide/backend
+cd /var/www/findtravelmate/backend
 source venv/bin/activate
 
 python3 <<EOF
@@ -1025,12 +1025,12 @@ ncdu /var/www  # Disk usage analysis
 
 ```bash
 # Backend logs (systemd)
-sudo journalctl -u getyourguide-backend -f
-sudo journalctl -u getyourguide-backend -n 100
+sudo journalctl -u findtravelmate-backend -f
+sudo journalctl -u findtravelmate-backend -n 100
 
 # Frontend logs (PM2)
-pm2 logs getyourguide-frontend
-pm2 logs getyourguide-frontend --lines 100
+pm2 logs findtravelmate-frontend
+pm2 logs findtravelmate-frontend --lines 100
 
 # Nginx access logs
 sudo tail -f /var/log/nginx/access.log
@@ -1048,23 +1048,23 @@ sudo tail -f /var/log/postgresql/postgresql-14-main.log
 
 ```bash
 # Create backup script
-sudo tee /usr/local/bin/backup-getyourguide.sh > /dev/null <<'EOF'
+sudo tee /usr/local/bin/backup-findtravelmate.sh > /dev/null <<'EOF'
 #!/bin/bash
-BACKUP_DIR="/var/backups/getyourguide"
+BACKUP_DIR="/var/backups/findtravelmate"
 DATE=$(date +%Y%m%d_%H%M%S)
 RETENTION_DAYS=7
 
 mkdir -p $BACKUP_DIR
 
 # Backup database
-sudo -u postgres pg_dump getyourguide | gzip > $BACKUP_DIR/db_$DATE.sql.gz
+sudo -u postgres pg_dump findtravelmate | gzip > $BACKUP_DIR/db_$DATE.sql.gz
 
 # Backup application files (optional)
 tar -czf $BACKUP_DIR/app_$DATE.tar.gz \
-  --exclude='/var/www/getyourguide/backend/venv' \
-  --exclude='/var/www/getyourguide/frontend/node_modules' \
-  --exclude='/var/www/getyourguide/frontend/.next' \
-  /var/www/getyourguide
+  --exclude='/var/www/findtravelmate/backend/venv' \
+  --exclude='/var/www/findtravelmate/frontend/node_modules' \
+  --exclude='/var/www/findtravelmate/frontend/.next' \
+  /var/www/findtravelmate
 
 # Keep only recent backups
 find $BACKUP_DIR -name "db_*.sql.gz" -mtime +$RETENTION_DAYS -delete
@@ -1073,59 +1073,59 @@ find $BACKUP_DIR -name "app_*.tar.gz" -mtime +$RETENTION_DAYS -delete
 echo "✅ Backup completed: $DATE"
 EOF
 
-sudo chmod +x /usr/local/bin/backup-getyourguide.sh
+sudo chmod +x /usr/local/bin/backup-findtravelmate.sh
 
 # Add to crontab (daily at 2 AM)
-(crontab -l 2>/dev/null; echo "0 2 * * * /usr/local/bin/backup-getyourguide.sh") | crontab -
+(crontab -l 2>/dev/null; echo "0 2 * * * /usr/local/bin/backup-findtravelmate.sh") | crontab -
 
 # Test backup script
-/usr/local/bin/backup-getyourguide.sh
+/usr/local/bin/backup-findtravelmate.sh
 
 # List backups
-ls -lh /var/backups/getyourguide/
+ls -lh /var/backups/findtravelmate/
 ```
 
 #### Restore from Backup
 
 ```bash
 # Stop services
-sudo systemctl stop getyourguide-backend
-pm2 stop getyourguide-frontend
+sudo systemctl stop findtravelmate-backend
+pm2 stop findtravelmate-frontend
 
 # Restore database
-gunzip < /var/backups/getyourguide/db_20250131_020000.sql.gz | \
-  psql -U getyourguide_user -d getyourguide
+gunzip < /var/backups/findtravelmate/db_20250131_020000.sql.gz | \
+  psql -U findtravelmate_user -d findtravelmate
 
 # Restore application files (if needed)
 cd /var/www
-sudo tar -xzf /var/backups/getyourguide/app_20250131_020000.tar.gz
+sudo tar -xzf /var/backups/findtravelmate/app_20250131_020000.tar.gz
 
 # Start services
-sudo systemctl start getyourguide-backend
-pm2 start getyourguide-frontend
+sudo systemctl start findtravelmate-backend
+pm2 start findtravelmate-frontend
 ```
 
 ### Updating Application
 
 ```bash
 # 1. Backup before updating
-/usr/local/bin/backup-getyourguide.sh
+/usr/local/bin/backup-findtravelmate.sh
 
 # 2. Pull latest changes
-cd /var/www/getyourguide
+cd /var/www/findtravelmate
 git pull origin main
 
 # 3. Update backend
 cd backend
 source venv/bin/activate
 pip install -r requirements.txt
-sudo systemctl restart getyourguide-backend
+sudo systemctl restart findtravelmate-backend
 
 # 4. Update frontend
 cd ../frontend
 npm install
 npm run build
-pm2 restart getyourguide-frontend
+pm2 restart findtravelmate-frontend
 
 # 5. Verify
 curl https://yourdomain.com/docs
@@ -1136,7 +1136,7 @@ curl https://yourdomain.com/
 
 ```bash
 # Connect to database
-sudo -u postgres psql getyourguide
+sudo -u postgres psql findtravelmate
 
 # Create performance indexes
 CREATE INDEX IF NOT EXISTS idx_activities_slug ON activities(slug);
@@ -1158,8 +1158,8 @@ VACUUM ANALYZE;
 
 ```bash
 # Create log rotation config
-sudo tee /etc/logrotate.d/getyourguide > /dev/null <<EOF
-/var/log/getyourguide/*.log {
+sudo tee /etc/logrotate.d/findtravelmate > /dev/null <<EOF
+/var/log/findtravelmate/*.log {
     daily
     rotate 14
     compress
@@ -1169,7 +1169,7 @@ sudo tee /etc/logrotate.d/getyourguide > /dev/null <<EOF
     create 0640 www-data www-data
     sharedscripts
     postrotate
-        systemctl reload getyourguide-backend > /dev/null 2>&1 || true
+        systemctl reload findtravelmate-backend > /dev/null 2>&1 || true
     endscript
 }
 EOF
@@ -1197,38 +1197,38 @@ EOF
 
 ```bash
 # Check logs
-sudo journalctl -u getyourguide-backend -n 100
+sudo journalctl -u findtravelmate-backend -n 100
 
 # Check if port 8000 is in use
 sudo lsof -i :8000
 sudo netstat -tulpn | grep 8000
 
 # Test manually
-cd /var/www/getyourguide/backend
+cd /var/www/findtravelmate/backend
 source venv/bin/activate
 uvicorn app.main:app --host 0.0.0.0 --port 8000
 
 # Restart service
-sudo systemctl restart getyourguide-backend
+sudo systemctl restart findtravelmate-backend
 ```
 
 #### Frontend Not Starting
 
 ```bash
 # Check PM2 logs
-pm2 logs getyourguide-frontend --err
-pm2 logs getyourguide-frontend --out
+pm2 logs findtravelmate-frontend --err
+pm2 logs findtravelmate-frontend --out
 
 # Check process status
 pm2 status
 
 # Test manually
-cd /var/www/getyourguide/frontend
+cd /var/www/findtravelmate/frontend
 npm start
 
 # Restart
-pm2 restart getyourguide-frontend
-pm2 reload getyourguide-frontend
+pm2 restart findtravelmate-frontend
+pm2 reload findtravelmate-frontend
 ```
 
 #### Database Connection Issues
@@ -1238,7 +1238,7 @@ pm2 reload getyourguide-frontend
 sudo systemctl status postgresql
 
 # Test connection
-psql -U getyourguide_user -d getyourguide -h localhost
+psql -U findtravelmate_user -d findtravelmate -h localhost
 
 # Check PostgreSQL logs
 sudo tail -f /var/log/postgresql/postgresql-14-main.log
@@ -1293,8 +1293,8 @@ htop
 ps aux --sort=-%mem | head
 
 # Restart services if needed
-sudo systemctl restart getyourguide-backend
-pm2 restart getyourguide-frontend
+sudo systemctl restart findtravelmate-backend
+pm2 restart findtravelmate-frontend
 
 # Consider increasing swap
 sudo fallocate -l 2G /swapfile
@@ -1319,7 +1319,7 @@ sudo apt clean
 sudo apt autoremove
 
 # Clean old backups
-sudo find /var/backups/getyourguide -mtime +30 -delete
+sudo find /var/backups/findtravelmate -mtime +30 -delete
 ```
 
 ---

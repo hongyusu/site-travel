@@ -5,7 +5,7 @@ export default function PressPage() {
   const pressReleases = [
     {
       date: 'January 15, 2024',
-      title: 'MeetYourTravelPartner Reaches 10 Million Happy Travelers',
+      title: 'FindTravelMate Reaches 10 Million Happy Travelers',
       excerpt: 'Platform celebrates major milestone as global travel continues strong recovery...',
     },
     {
@@ -15,7 +15,7 @@ export default function PressPage() {
     },
     {
       date: 'October 20, 2023',
-      title: 'MeetYourTravelPartner Launches Enhanced Vendor Dashboard',
+      title: 'FindTravelMate Launches Enhanced Vendor Dashboard',
       excerpt: 'New features empower activity providers with better insights and booking management...',
     },
   ];
@@ -43,8 +43,8 @@ export default function PressPage() {
               <div className="space-y-3 text-gray-700">
                 <p className="flex items-center">
                   <Mail className="w-5 h-5 text-primary mr-2" />
-                  <a href="mailto:press@meetyourtravelpartner.com" className="text-primary hover:underline">
-                    press@meetyourtravelpartner.com
+                  <a href="mailto:press@findtravelmate.com" className="text-primary hover:underline">
+                    press@findtravelmate.com
                   </a>
                 </p>
                 <p className="text-gray-600">
@@ -116,7 +116,7 @@ export default function PressPage() {
         <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">In the News</h2>
           <p className="text-gray-600 mb-6">
-            MeetYourTravelPartner has been featured in leading travel and technology publications worldwide
+            FindTravelMate has been featured in leading travel and technology publications worldwide
           </p>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 items-center opacity-60">
             <div className="text-center text-2xl font-bold text-gray-400">TechCrunch</div>
@@ -132,7 +132,7 @@ export default function PressPage() {
           <p className="text-xl mb-6">
             Get in touch with our press team for interviews, quotes, and exclusive content
           </p>
-          <a href="mailto:press@meetyourtravelpartner.com" className="btn-secondary inline-block">
+          <a href="mailto:press@findtravelmate.com" className="btn-secondary inline-block">
             Contact Press Team
           </a>
         </div>

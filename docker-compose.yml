@@ -3,12 +3,12 @@ version: '3.8'
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: getyourguide_db
+    container_name: findtravelmate_db
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: getyourguide
+      POSTGRES_DB: findtravelmate
     ports:
       - "5432:5432"
     volumes:
@@ -21,7 +21,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: getyourguide_redis
+    container_name: findtravelmate_redis
     restart: unless-stopped
     ports:
       - "6379:6379"
@@ -38,12 +38,12 @@ services:
   #   build:
   #     context: ./backend
   #     dockerfile: Dockerfile
-  #   container_name: getyourguide_backend
+  #   container_name: findtravelmate_backend
   #   restart: unless-stopped
   #   ports:
   #     - "8000:8000"
   #   environment:
-  #     DATABASE_URL: postgresql://postgres:password@postgres:5432/getyourguide
+  #     DATABASE_URL: postgresql://postgres:password@postgres:5432/findtravelmate
   #   depends_on:
   #     - postgres
   #     - redis

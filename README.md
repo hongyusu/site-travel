@@ -1,4 +1,4 @@
-# GetYourGuide Clone
+# FindTravelMate
 
 A full-stack travel activities marketplace built with FastAPI (backend) and Next.js (frontend). Complete with customer booking, vendor management, and admin moderation.
 
@@ -26,7 +26,7 @@ docker-compose -f docker-compose.prod.yml up -d --build
 ```
 
 **Demo Accounts:**
-- Admin: admin@getyourguide.com / admin123
+- Admin: admin@findtravelmate.com / admin123
 - Customer: customer@example.com / customer123
 - Vendor: vendor1@example.com / vendor123
 
@@ -37,33 +37,13 @@ docker-compose -f docker-compose.prod.yml up -d --build
 - ✅ Database backup with `backup.sh`
 - ✅ Development mode with hot reload (`docker-compose.dev.yml`)
 
-See [DOCKER-QUICKSTART.md](DOCKER-QUICKSTART.md) for 5-minute quickstart or [DEPLOYMENT.md](DEPLOYMENT.md#docker-deployment) for detailed instructions.
+See [DOCKER_SETUP_GUIDE.md](DOCKER_SETUP_GUIDE.md) for complete Docker setup instructions.
 
 ### Option 2: Local Development
 
 ```bash
-# Backend setup
-cd backend
-pyenv virtualenv 3.12.8 getyourguide
-pyenv local getyourguide
-pip install -r requirements.txt
-
-# Create .env file
-cat > .env <<EOF
-DATABASE_URL=postgresql://user:password@localhost:5432/getyourguide
-SECRET_KEY=$(openssl rand -hex 32)
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=30
-EOF
-
-# Initialize database and start server
-python init_db.py
-python -m uvicorn app.main:app --reload --port 8000
-
-# Frontend setup (new terminal)
-cd frontend
-npm install
-npm run dev
+# Quick terminal setup (3 terminals required)
+# See SETUP_GUIDE.md for detailed terminal-based instructions
 ```
 
 **Access:**
@@ -71,7 +51,7 @@ npm run dev
 - Backend API: http://localhost:8000
 - API Docs: http://localhost:8000/docs
 
-See [DEPLOYMENT.md](DEPLOYMENT.md#local-development) for detailed setup instructions.
+See [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed terminal-based setup instructions.
 
 ---
 
@@ -308,7 +288,8 @@ site-travel/
 ├── .env.production.example    # Production environment template
 │
 ├── README.md                  # This file
-├── DOCKER-QUICKSTART.md       # 5-minute Docker quickstart guide
+├── SETUP_GUIDE.md             # Terminal-based setup guide
+├── DOCKER_SETUP_GUIDE.md      # Complete Docker setup guide  
 ├── DEPLOYMENT.md              # Deployment guide (local/Docker/cloud)
 ├── SECRETS-MANAGEMENT.md      # Secrets and security guide
 ├── REQUIREMENTS.md            # Detailed feature requirements
@@ -472,7 +453,7 @@ API Documentation: http://localhost:8000/docs (auto-generated Swagger UI)
 ## 🎨 Design System
 
 ### Colors
-- **Primary**: `#FC6500` (GetYourGuide Orange)
+- **Primary**: `#FC6500` (FindTravelMate Orange)
 - **Primary Hover**: `#E55A00`
 - **Success**: `#10B981` (Green)
 - **Error**: `#EF4444` (Red)
@@ -513,7 +494,7 @@ The `init_db.py` script creates comprehensive demo data:
 ### Accounts (Auto-created)
 ```
 Admin:
-- Email: admin@getyourguide.com
+- Email: admin@findtravelmate.com
 - Password: admin123
 
 Customer:
@@ -627,13 +608,12 @@ This is a learning/demo project. Feel free to fork and experiment!
 
 ## 📄 License
 
-This project is for educational purposes only. GetYourGuide is a registered trademark of GetYourGuide AG.
+This project is for educational purposes only.
 
 ## 🙏 Acknowledgments
 
-- Inspired by [GetYourGuide.com](https://www.getyourguide.com)
 - Built with [FastAPI](https://fastapi.tiangolo.com/) and [Next.js](https://nextjs.org/)
-- Design system based on GetYourGuide's branding
+- Modern travel marketplace design
 - Icons from [Lucide React](https://lucide.dev/)
 
 ---

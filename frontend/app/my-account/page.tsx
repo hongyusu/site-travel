@@ -5,8 +5,10 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { User, Mail, Phone, Calendar, Shield } from 'lucide-react';
 import { apiClient } from '@/lib/api';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function MyAccountPage() {
+  const { getTranslation } = useLanguage();
   const router = useRouter();
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
@@ -69,7 +71,7 @@ export default function MyAccountPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto" />
-          <p className="mt-4 text-gray-600">Loading...</p>
+          <p className="mt-4 text-gray-600">{getTranslation('account.loading')}</p>
         </div>
       </div>
     );
@@ -78,7 +80,7 @@ export default function MyAccountPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Account</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">{getTranslation('account.my_account')}</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Sidebar */}
@@ -102,25 +104,25 @@ export default function MyAccountPage() {
                   href="/my-account"
                   className="block px-4 py-2 bg-primary-50 text-primary rounded-lg font-medium"
                 >
-                  Profile
+                  {getTranslation('account.profile')}
                 </Link>
                 <Link
                   href="/bookings"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg"
                 >
-                  My Bookings
+                  {getTranslation('account.my_bookings')}
                 </Link>
                 <Link
                   href="/wishlist"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg"
                 >
-                  Wishlist
+                  {getTranslation('account.wishlist')}
                 </Link>
                 <Link
                   href="/settings"
                   className="block px-4 py-2 text-gray-700 hover:bg-gray-50 rounded-lg"
                 >
-                  Settings
+                  {getTranslation('account.settings')}
                 </Link>
               </nav>
             </div>
@@ -130,13 +132,13 @@ export default function MyAccountPage() {
           <main className="lg:col-span-2">
             <div className="bg-white rounded-lg shadow p-6">
               <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900">Profile Information</h2>
+                <h2 className="text-2xl font-bold text-gray-900">{getTranslation('account.profile_information')}</h2>
                 {!editing && (
                   <button
                     onClick={() => setEditing(true)}
                     className="text-primary hover:text-primary-600 font-medium"
                   >
-                    Edit Profile
+                    {getTranslation('account.edit_profile')}
                   </button>
                 )}
               </div>
@@ -145,7 +147,7 @@ export default function MyAccountPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label htmlFor="full_name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name
+                      {getTranslation('account.full_name')}
                     </label>
                     <input
                       type="text"
@@ -160,7 +162,7 @@ export default function MyAccountPage() {
 
                   <div>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone Number
+                      {getTranslation('account.phone_number')}
                     </label>
                     <input
                       type="tel"
@@ -174,7 +176,7 @@ export default function MyAccountPage() {
 
                   <div className="flex space-x-4">
                     <button type="submit" className="btn-primary">
-                      Save Changes
+                      {getTranslation('account.save_changes')}
                     </button>
                     <button
                       type="button"
@@ -187,7 +189,7 @@ export default function MyAccountPage() {
                       }}
                       className="btn-secondary"
                     >
-                      Cancel
+                      {getTranslation('account.cancel')}
                     </button>
                   </div>
                 </form>
@@ -196,23 +198,23 @@ export default function MyAccountPage() {
                   <div className="flex items-start">
                     <User className="w-5 h-5 text-gray-400 mr-3 mt-1" />
                     <div>
-                      <div className="text-sm text-gray-500">Full Name</div>
-                      <div className="text-gray-900 font-medium">{user?.full_name || 'Not set'}</div>
+                      <div className="text-sm text-gray-500">{getTranslation('account.full_name')}</div>
+                      <div className="text-gray-900 font-medium">{user?.full_name || getTranslation('account.not_set')}</div>
                     </div>
                   </div>
 
                   <div className="flex items-start">
                     <Mail className="w-5 h-5 text-gray-400 mr-3 mt-1" />
                     <div>
-                      <div className="text-sm text-gray-500">Email Address</div>
+                      <div className="text-sm text-gray-500">{getTranslation('account.email_address')}</div>
                       <div className="text-gray-900 font-medium">{user?.email}</div>
                       {user?.email_verified ? (
                         <span className="inline-flex items-center text-xs text-success mt-1">
                           <Shield className="w-3 h-3 mr-1" />
-                          Verified
+                          {getTranslation('account.verified')}
                         </span>
                       ) : (
-                        <span className="text-xs text-gray-500 mt-1">Not verified</span>
+                        <span className="text-xs text-gray-500 mt-1">{getTranslation('account.not_verified')}</span>
                       )}
                     </div>
                   </div>
@@ -220,15 +222,15 @@ export default function MyAccountPage() {
                   <div className="flex items-start">
                     <Phone className="w-5 h-5 text-gray-400 mr-3 mt-1" />
                     <div>
-                      <div className="text-sm text-gray-500">Phone Number</div>
-                      <div className="text-gray-900 font-medium">{user?.phone || 'Not set'}</div>
+                      <div className="text-sm text-gray-500">{getTranslation('account.phone_number')}</div>
+                      <div className="text-gray-900 font-medium">{user?.phone || getTranslation('account.not_set')}</div>
                     </div>
                   </div>
 
                   <div className="flex items-start">
                     <Calendar className="w-5 h-5 text-gray-400 mr-3 mt-1" />
                     <div>
-                      <div className="text-sm text-gray-500">Member Since</div>
+                      <div className="text-sm text-gray-500">{getTranslation('account.member_since')}</div>
                       <div className="text-gray-900 font-medium">
                         {new Date(user?.created_at).toLocaleDateString('en-US', {
                           year: 'numeric',
@@ -246,15 +248,15 @@ export default function MyAccountPage() {
             <div className="grid grid-cols-3 gap-4 mt-6">
               <div className="bg-white rounded-lg shadow p-6 text-center">
                 <div className="text-3xl font-bold text-primary mb-2">0</div>
-                <div className="text-sm text-gray-600">Total Bookings</div>
+                <div className="text-sm text-gray-600">{getTranslation('account.total_bookings')}</div>
               </div>
               <div className="bg-white rounded-lg shadow p-6 text-center">
                 <div className="text-3xl font-bold text-primary mb-2">0</div>
-                <div className="text-sm text-gray-600">Wishlist Items</div>
+                <div className="text-sm text-gray-600">{getTranslation('account.wishlist_items')}</div>
               </div>
               <div className="bg-white rounded-lg shadow p-6 text-center">
                 <div className="text-3xl font-bold text-primary mb-2">0</div>
-                <div className="text-sm text-gray-600">Reviews</div>
+                <div className="text-sm text-gray-600">{getTranslation('account.reviews')}</div>
               </div>
             </div>
           </main>

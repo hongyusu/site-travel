@@ -2,9 +2,11 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { ShoppingCart, User, Menu, X, Search, Globe } from 'lucide-react';
+import { ShoppingCart, User, Menu, X, Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { apiClient } from '@/lib/api';
+import LanguageSelector from '@/components/LanguageSelector';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,6 +14,7 @@ export default function Header() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userRole, setUserRole] = useState<string | null>(null);
   const router = useRouter();
+  const { getTranslation } = useLanguage();
 
   useEffect(() => {
     // Check if user is logged in
@@ -73,25 +76,22 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-primary">MeetYourTravelPartner</span>
+            <span className="text-2xl font-bold text-primary">FindTravelMate</span>
           </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             <Link href="/search" className="text-gray-700 hover:text-primary transition-colors">
-              Explore
+              {getTranslation('nav.activities')}
             </Link>
             <Link href="/destinations" className="text-gray-700 hover:text-primary transition-colors">
-              Destinations
+              {getTranslation('nav.destinations')}
             </Link>
-            <button className="flex items-center text-gray-700 hover:text-primary transition-colors">
-              <Globe className="w-4 h-4 mr-1" />
-              EUR · English
-            </button>
           </nav>
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
+            <LanguageSelector />
             <Link href="/cart" className="relative p-2">
               <ShoppingCart className="w-6 h-6 text-gray-700" />
               {cartCount > 0 && (
@@ -124,30 +124,30 @@ export default function Header() {
                     </>
                   )}
                   <Link href="/my-account" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    My Account
+                    {getTranslation('nav.profile')}
                   </Link>
                   <Link href="/bookings" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    My Bookings
+                    {getTranslation('nav.bookings')}
                   </Link>
                   <Link href="/wishlist" className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
-                    Wishlist
+                    {getTranslation('nav.wishlist')}
                   </Link>
                   <hr className="my-1" />
                   <button
                     onClick={handleLogout}
                     className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                   >
-                    Sign Out
+                    {getTranslation('nav.logout')}
                   </button>
                 </div>
               </div>
             ) : (
               <div className="flex items-center space-x-2">
                 <Link href="/login" className="text-gray-700 hover:text-primary transition-colors px-3 py-2">
-                  Sign In
+                  {getTranslation('nav.signin')}
                 </Link>
                 <Link href="/register" className="btn-primary py-2 px-4 text-sm">
-                  Sign Up
+                  {getTranslation('nav.signup')}
                 </Link>
               </div>
             )}
@@ -167,13 +167,13 @@ export default function Header() {
           <div className="md:hidden py-4 border-t">
             <nav className="flex flex-col space-y-4">
               <Link href="/search" className="text-gray-700 hover:text-primary transition-colors">
-                Explore
+                {getTranslation('nav.activities')}
               </Link>
               <Link href="/destinations" className="text-gray-700 hover:text-primary transition-colors">
-                Destinations
+                {getTranslation('nav.destinations')}
               </Link>
               <Link href="/cart" className="text-gray-700 hover:text-primary transition-colors">
-                Cart ({cartCount})
+                {getTranslation('nav.cart')} ({cartCount})
               </Link>
               {isLoggedIn ? (
                 <>
@@ -188,28 +188,28 @@ export default function Header() {
                     </Link>
                   )}
                   <Link href="/my-account" className="text-gray-700 hover:text-primary transition-colors">
-                    My Account
+                    {getTranslation('nav.profile')}
                   </Link>
                   <Link href="/bookings" className="text-gray-700 hover:text-primary transition-colors">
-                    My Bookings
+                    {getTranslation('nav.bookings')}
                   </Link>
                   <Link href="/wishlist" className="text-gray-700 hover:text-primary transition-colors">
-                    Wishlist
+                    {getTranslation('nav.wishlist')}
                   </Link>
                   <button
                     onClick={handleLogout}
                     className="text-left text-gray-700 hover:text-primary transition-colors"
                   >
-                    Sign Out
+                    {getTranslation('nav.logout')}
                   </button>
                 </>
               ) : (
                 <>
                   <Link href="/login" className="text-gray-700 hover:text-primary transition-colors">
-                    Sign In
+                    {getTranslation('nav.signin')}
                   </Link>
                   <Link href="/register" className="text-primary font-medium">
-                    Sign Up
+                    {getTranslation('nav.signup')}
                   </Link>
                 </>
               )}

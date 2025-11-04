@@ -1,7 +1,7 @@
 'use client';
 
-import ActivityForm from '@/components/vendor/ActivityForm';
+import ActivityFormWithLanguages from '@/components/vendor/ActivityFormWithLanguages';
 
 export default function NewActivityPage() {
-  return <ActivityForm mode="create" />;
+  return <ActivityFormWithLanguages mode="create" />;
 }

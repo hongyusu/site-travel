@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "🚀 Starting GetYourGuide Backend..."
+echo "🚀 Starting FindTravelMate Backend..."
 
 # Color codes for output
 RED='\033[0;31m'
@@ -173,7 +173,7 @@ trap shutdown SIGTERM SIGINT
 # Main execution
 main() {
     print_info "========================================"
-    print_info "  GetYourGuide Backend Entrypoint"
+    print_info "  FindTravelMate Backend Entrypoint"
     print_info "========================================"
 
     # Validate environment

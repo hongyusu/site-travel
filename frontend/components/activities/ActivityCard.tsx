@@ -7,12 +7,14 @@ import { Star, Clock, Users, MapPin, Check, Heart } from 'lucide-react';
 import { Activity } from '@/types';
 import { formatPrice, formatDuration, getImageUrl } from '@/lib/utils';
 import { apiClient } from '@/lib/api';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface ActivityCardProps {
   activity: Activity;
 }
 
 export default function ActivityCard({ activity }: ActivityCardProps) {
+  const { getTranslation, getDestinationName } = useLanguage();
   const [inWishlist, setInWishlist] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -73,16 +75,22 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
             fill
             className="object-cover group-hover:scale-110 transition-transform duration-300"
           />
-          {activity.is_bestseller && (
-            <div className="absolute top-2 left-2">
-              <span className="badge badge-primary">Bestseller</span>
-            </div>
-          )}
-          {activity.is_skip_the_line && (
-            <div className="absolute top-2 right-2">
-              <span className="badge bg-purple-100 text-purple-800">Skip the line</span>
-            </div>
-          )}
+          
+          {/* Top-left badges */}
+          <div className="absolute top-2 left-2 flex flex-col gap-2">
+            {activity.is_bestseller && (
+              <span className="badge badge-primary">{getTranslation('badge.bestseller')}</span>
+            )}
+            {activity.is_skip_the_line && (
+              <span className="badge bg-purple-100 text-purple-800">{getTranslation('badge.skip_the_line')}</span>
+            )}
+            {activity.free_cancellation_hours > 0 && (
+              <span className="badge bg-green-100 text-green-800">{getTranslation('badge.free_cancellation')}</span>
+            )}
+            {activity.instant_confirmation && (
+              <span className="badge bg-blue-100 text-blue-800">{getTranslation('badge.instant_confirmation')}</span>
+            )}
+          </div>
         </div>
 
         {/* Content */}
@@ -91,13 +99,13 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
           {activity.destinations && activity.destinations.length > 0 && (
             <div className="flex items-center text-gray-500 text-sm mb-1">
               <MapPin className="w-3 h-3 mr-1" />
-              <span>{activity.destinations[0].name}</span>
+              <span>{getDestinationName(activity.destinations[0].slug, activity.destinations[0].name)}</span>
             </div>
           )}
 
           {/* Title */}
           <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
-            {activity.title}
+            {activity.title || <span className="text-gray-400 italic">Translation not available</span>}
           </h3>
 
           {/* Rating */}
@@ -124,7 +132,7 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
             {activity.max_group_size && (
               <div className="flex items-center">
                 <Users className="w-4 h-4 mr-1" />
-                <span>Max {activity.max_group_size}</span>
+                <span>{getTranslation('booking.max_people')} {activity.max_group_size}</span>
               </div>
             )}
           </div>
@@ -134,13 +142,13 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
             {activity.free_cancellation_hours > 0 && (
               <div className="flex items-center text-success text-sm">
                 <Check className="w-4 h-4 mr-1" />
-                <span>Free cancellation</span>
+                <span>{getTranslation('badge.free_cancellation')}</span>
               </div>
             )}
             {activity.instant_confirmation && (
               <div className="flex items-center text-success text-sm">
                 <Check className="w-4 h-4 mr-1" />
-                <span>Instant confirmation</span>
+                <span>{getTranslation('badge.instant_confirmation')}</span>
               </div>
             )}
           </div>
@@ -148,11 +156,11 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
           {/* Price */}
           <div className="flex items-baseline justify-between mt-auto">
             <div>
-              <span className="text-sm text-gray-500">From</span>
+              <span className="text-sm text-gray-500">{getTranslation('booking.from')}</span>
               <p className="text-xl font-bold text-gray-900">
                 {formatPrice(activity.price_adult)}
               </p>
-              <span className="text-sm text-gray-500">per person</span>
+              <span className="text-sm text-gray-500">{getTranslation('booking.per_person')}</span>
             </div>
           </div>
         </div>
@@ -162,7 +170,7 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
       <button
         onClick={toggleWishlist}
         disabled={isLoading}
-        className="absolute top-3 right-3 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-all z-10"
+        className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-all z-20"
         title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
       >
         <Heart

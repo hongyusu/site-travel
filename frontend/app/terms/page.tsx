@@ -15,7 +15,7 @@ export default function TermsPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>
               <p className="text-gray-700 mb-4">
-                By accessing and using MeetYourTravelPartner (the "Platform"), you accept and agree to be bound by
+                By accessing and using FindTravelMate (the "Platform"), you accept and agree to be bound by
                 these Terms of Service. If you do not agree to these terms, please do not use our Platform.
               </p>
             </section>
@@ -36,7 +36,7 @@ export default function TermsPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">3. Bookings and Payments</h2>
               <p className="text-gray-700 mb-4">
                 When you make a booking through our Platform, you enter into a contract with the activity provider,
-                not with MeetYourTravelPartner. We act as an intermediary to facilitate the booking.
+                not with FindTravelMate. We act as an intermediary to facilitate the booking.
               </p>
               <ul className="list-disc list-inside space-y-2 text-gray-700 ml-4">
                 <li>All bookings are subject to availability</li>
@@ -94,7 +94,7 @@ export default function TermsPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Limitation of Liability</h2>
               <p className="text-gray-700 mb-4">
-                MeetYourTravelPartner is not liable for any indirect, incidental, or consequential damages arising
+                FindTravelMate is not liable for any indirect, incidental, or consequential damages arising
                 from your use of the Platform or participation in activities booked through the Platform.
               </p>
             </section>
@@ -129,7 +129,7 @@ export default function TermsPage() {
                 For questions about these Terms, please contact us at:
               </p>
               <p className="text-gray-700">
-                Email: legal@meetyourtravelpartner.com<br />
+                Email: legal@findtravelmate.com<br />
                 Address: 123 Market Street, San Francisco, CA 94103
               </p>
             </section>

@@ -216,6 +216,43 @@ class ActivityUpdate(BaseModel):
     is_bestseller: Optional[bool] = None
     is_skip_the_line: Optional[bool] = None
     is_active: Optional[bool] = None
+    
+    # Category and destination relationships
+    category_ids: Optional[List[int]] = None
+    destination_ids: Optional[List[int]] = None
+    
+    # Content arrays
+    highlights: Optional[List[str]] = None
+    includes: Optional[List[dict]] = None  # [{"item": "...", "is_included": true/false}]
+    faqs: Optional[List[dict]] = None  # [{"question": "...", "answer": "..."}]
+    
+    # Meeting point
+    meeting_point: Optional[dict] = None  # {"address": "...", "instructions": "...", "latitude": ..., "longitude": ...}
+    
+    # Additional feature flags
+    has_mobile_ticket: Optional[bool] = None
+    has_best_price_guarantee: Optional[bool] = None
+    is_verified_activity: Optional[bool] = None
+    is_likely_to_sell_out: Optional[bool] = None
+    is_wheelchair_accessible: Optional[bool] = None
+    is_stroller_accessible: Optional[bool] = None
+    allows_service_animals: Optional[bool] = None
+    has_infant_seats: Optional[bool] = None
+    is_giftable: Optional[bool] = None
+    allows_reserve_now_pay_later: Optional[bool] = None
+    has_covid_measures: Optional[bool] = None
+    weather_dependent: Optional[bool] = None
+    response_time_hours: Optional[int] = None
+    reserve_payment_deadline_hours: Optional[int] = None
+    video_url: Optional[str] = None
+    dress_code: Optional[str] = None
+    what_to_bring: Optional[str] = None
+    not_suitable_for: Optional[str] = None
+    covid_measures: Optional[str] = None
+    
+    # Multilingual support
+    supported_languages: Optional[List[str]] = None
+    translations: Optional[dict] = None  # {"es": {"title": "...", "description": "..."}, ...}
 
 
 class ActivityResponse(BaseModel):

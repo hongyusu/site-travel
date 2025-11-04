@@ -21,6 +21,18 @@ from app.models.activity import (
 from app.models.booking import Booking, BookingStatus, Availability, CartItem
 from app.models.review import Review, ReviewImage, ReviewCategory
 from app.models.wishlist import Wishlist
+from app.models.translation import (
+    ActivityTranslation,
+    ActivityHighlightTranslation,
+    ActivityIncludeTranslation,
+    ActivityFAQTranslation,
+    ActivityTimelineTranslation,
+    ActivityPricingTierTranslation,
+    ActivityAddOnTranslation,
+    MeetingPointTranslation,
+    CategoryTranslation,
+    DestinationTranslation
+)
 
 __all__ = [
     "User",
@@ -49,4 +61,14 @@ __all__ = [
     "ReviewImage",
     "ReviewCategory",
     "Wishlist",
+    "ActivityTranslation",
+    "ActivityHighlightTranslation",
+    "ActivityIncludeTranslation",
+    "ActivityFAQTranslation",
+    "ActivityTimelineTranslation",
+    "ActivityPricingTierTranslation",
+    "ActivityAddOnTranslation",
+    "MeetingPointTranslation",
+    "CategoryTranslation",
+    "DestinationTranslation",
 ]

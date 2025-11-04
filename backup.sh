@@ -21,7 +21,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_NAME="getyourguide"
+PROJECT_NAME="findtravelmate"
 DB_CONTAINER="${PROJECT_NAME}_db"
 BACKUP_DIR="./backups"
 BACKUP_RETENTION_DAYS="${BACKUP_RETENTION_DAYS:-7}"
@@ -85,7 +85,7 @@ create_backup() {
     source .env 2>/dev/null || true
 
     # Create backup
-    docker exec "$DB_CONTAINER" pg_dump -U postgres -Fc getyourguide > "$BACKUP_FILE"
+    docker exec "$DB_CONTAINER" pg_dump -U postgres -Fc findtravelmate > "$BACKUP_FILE"
 
     if [ ! -f "$BACKUP_FILE" ]; then
         print_error "Failed to create backup file"
@@ -216,12 +216,12 @@ restore_backup() {
 
     # Drop and recreate database
     print_info "Recreating database..."
-    docker exec "$DB_CONTAINER" psql -U postgres -c "DROP DATABASE IF EXISTS getyourguide;"
-    docker exec "$DB_CONTAINER" psql -U postgres -c "CREATE DATABASE getyourguide;"
+    docker exec "$DB_CONTAINER" psql -U postgres -c "DROP DATABASE IF EXISTS findtravelmate;"
+    docker exec "$DB_CONTAINER" psql -U postgres -c "CREATE DATABASE findtravelmate;"
 
     # Restore backup
     print_info "Restoring data..."
-    docker exec -i "$DB_CONTAINER" pg_restore -U postgres -d getyourguide -v < "$backup_file"
+    docker exec -i "$DB_CONTAINER" pg_restore -U postgres -d findtravelmate -v < "$backup_file"
 
     # Restart backend
     print_info "Starting backend service..."

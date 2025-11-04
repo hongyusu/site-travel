@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { MapPin } from 'lucide-react';
 import { Destination } from '@/types';
 import { getImageUrl } from '@/lib/utils';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface DestinationCardProps {
   destination: Destination;
@@ -15,6 +16,7 @@ export default function DestinationCard({
   destination,
   variant = 'default'
 }: DestinationCardProps) {
+  const { getCountryName } = useLanguage();
   const heightClass = variant === 'large' ? 'h-80' : 'h-64';
 
   return (
@@ -35,7 +37,7 @@ export default function DestinationCard({
           <div className="flex items-center mb-2">
             <MapPin className="w-4 h-4 mr-1" />
             {destination.country && (
-              <span className="text-sm">{destination.country}</span>
+              <span className="text-sm">{getCountryName(destination.country)}</span>
             )}
           </div>
           <h3 className="text-2xl font-bold mb-1">{destination.name}</h3>

@@ -21,7 +21,7 @@ const getSessionId = () => {
   return sessionId;
 };
 
-// Add auth token and session ID to requests
+// Add auth token, session ID, and language to requests
 api.interceptors.request.use((config) => {
   if (typeof window !== 'undefined') {
     const token = localStorage.getItem('access_token');
@@ -32,6 +32,20 @@ api.interceptors.request.use((config) => {
     const sessionId = getSessionId();
     if (sessionId) {
       config.headers['X-Session-ID'] = sessionId;
+    }
+
+    // Add language parameter to requests
+    const language = localStorage.getItem('preferredLanguage') || 'en';
+    // Add language param to GET requests for content endpoints
+    if (config.method === 'get' && (
+      config.url?.includes('/activities') ||
+      config.url?.includes('/destinations') ||
+      config.url?.includes('/categories')
+    )) {
+      config.params = {
+        ...config.params,
+        language,
+      };
     }
   }
   return config;

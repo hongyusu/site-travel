@@ -9,6 +9,7 @@ import { apiClient } from '@/lib/api';
 import TimeSlotsSelector from '@/components/activities/TimeSlotsSelector';
 import PricingTiersSelector from '@/components/activities/PricingTiersSelector';
 import AddOnsSelector from '@/components/activities/AddOnsSelector';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface BookingWidgetProps {
   activity: ActivityDetailResponse;
@@ -16,6 +17,7 @@ interface BookingWidgetProps {
 
 export default function BookingWidget({ activity }: BookingWidgetProps) {
   const router = useRouter();
+  const { getTranslation, getPricingTierName } = useLanguage();
   const [bookingDate, setBookingDate] = useState('');
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
@@ -129,15 +131,15 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
           {viewingCount > 0 && (
             <div className="flex items-center text-sm text-orange-600 bg-orange-50 rounded-lg p-2">
               <Eye className="w-4 h-4 mr-2" />
-              <span className="font-medium">{viewingCount} people</span>
-              <span className="ml-1">viewing this activity now</span>
+              <span className="font-medium">{viewingCount} {getTranslation('booking.people_viewing')}</span>
+              <span className="ml-1">{getTranslation('booking.viewing_now')}</span>
             </div>
           )}
           {spotsLeft < 10 && spotsLeft > 0 && (
             <div className="flex items-center text-sm text-red-600 bg-red-50 rounded-lg p-2">
               <Zap className="w-4 h-4 mr-2" />
-              <span className="font-medium">Only {spotsLeft} spots left</span>
-              <span className="ml-1">for selected date!</span>
+              <span className="font-medium">{getTranslation('booking.only_spots_left')} {spotsLeft} {getTranslation('booking.spots_left')}</span>
+              <span className="ml-1">{getTranslation('booking.for_selected_date')}</span>
             </div>
           )}
         </div>
@@ -147,21 +149,21 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
         {activity.is_bestseller && (
           <div className="inline-flex items-center bg-gradient-to-r from-orange-500 to-pink-500 text-white text-xs font-semibold px-3 py-1 rounded-full mb-3">
             <Award className="w-3 h-3 mr-1" />
-            POPULAR CHOICE
+            {getTranslation('booking.popular_choice')}
           </div>
         )}
-        <div className="text-sm text-gray-500 mb-1">From</div>
+        <div className="text-sm text-gray-500 mb-1">{getTranslation('booking.from')}</div>
         <div className="text-3xl font-bold text-gray-900">
           {formatPrice(activity.price_adult)}
         </div>
-        <div className="text-sm text-gray-500">per person</div>
+        <div className="text-sm text-gray-500">{getTranslation('booking.per_person')}</div>
       </div>
 
       {/* Date Selection */}
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           <Calendar className="w-4 h-4 inline mr-1" />
-          Select Date
+          {getTranslation('booking.select_date')}
         </label>
         <input
           type="date"
@@ -204,13 +206,13 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
       <div className="mb-4">
         <label className="block text-sm font-medium text-gray-700 mb-2">
           <Users className="w-4 h-4 inline mr-1" />
-          Participants
+          {getTranslation('booking.select_tickets')}
         </label>
 
         {/* Adults */}
         <div className="flex items-center justify-between mb-3 p-3 border border-gray-200 rounded-lg">
           <div>
-            <div className="font-medium">Adults</div>
+            <div className="font-medium">{getTranslation('booking.adult')}</div>
             <div className="text-sm text-gray-500">Age 18+</div>
           </div>
           <div className="flex items-center space-x-3">
@@ -234,7 +236,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
         {activity.price_child && (
           <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
             <div>
-              <div className="font-medium">Children</div>
+              <div className="font-medium">{getTranslation('booking.child')}</div>
               <div className="text-sm text-gray-500">Age 0-17</div>
             </div>
             <div className="flex items-center space-x-3">
@@ -261,13 +263,13 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
         {activity.duration_minutes && (
           <div className="flex items-center">
             <Clock className="w-4 h-4 mr-2" />
-            Duration: {Math.floor(activity.duration_minutes / 60)}h {activity.duration_minutes % 60}m
+            {getTranslation('booking.duration')}: {Math.floor(activity.duration_minutes / 60)}h {activity.duration_minutes % 60}m
           </div>
         )}
         {activity.max_group_size && (
           <div className="flex items-center">
             <Users className="w-4 h-4 mr-2" />
-            Max group size: {activity.max_group_size}
+            {getTranslation('booking.max_group_size')}: {activity.max_group_size}
           </div>
         )}
       </div>
@@ -305,7 +307,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
               <div className="flex justify-between items-center mb-2">
                 <span className="text-gray-600">
                   {adults} adult{adults > 1 ? 's' : ''} × {formatPrice(basePrice)}
-                  {selectedTier && <span className="text-xs ml-1">({selectedTier.tier_name})</span>}
+                  {selectedTier && <span className="text-xs ml-1">({getPricingTierName(selectedTier.tier_name)})</span>}
                 </span>
                 <span className="font-medium">
                   {formatPrice(basePrice * adults)}
@@ -317,7 +319,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
                 <div className="flex justify-between items-center mb-2">
                   <span className="text-gray-600">
                     {children} child{children > 1 ? 'ren' : ''} × {formatPrice(childPrice)}
-                    {selectedTier && <span className="text-xs ml-1">({selectedTier.tier_name})</span>}
+                    {selectedTier && <span className="text-xs ml-1">({getPricingTierName(selectedTier.tier_name)})</span>}
                   </span>
                   <span className="font-medium">
                     {formatPrice(childPrice * children)}
@@ -345,7 +347,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
         })()}
 
         <div className="flex justify-between items-center text-lg font-bold border-t pt-2 mt-2">
-          <span>Total</span>
+          <span>{getTranslation('booking.total')}</span>
           <span>{formatPrice(totalPrice)}</span>
         </div>
       </div>
@@ -356,7 +358,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
         disabled={loading || !bookingDate}
         className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        {loading ? 'Adding...' : 'Add to Cart'}
+        {loading ? getTranslation('booking.adding') : getTranslation('booking.add_to_cart')}
       </button>
 
       {/* Features */}
@@ -366,7 +368,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
             <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
-            Free cancellation up to {activity.free_cancellation_hours} hours before
+            {getTranslation('booking.free_cancellation')} {activity.free_cancellation_hours} {getTranslation('booking.hours_before')}
           </div>
         )}
         {activity.instant_confirmation && (
@@ -374,7 +376,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
             <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
             </svg>
-            Instant confirmation
+            {getTranslation('booking.instant_confirmation')}
           </div>
         )}
       </div>

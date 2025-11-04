@@ -20,7 +20,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_NAME="getyourguide"
+PROJECT_NAME="findtravelmate"
 COMPOSE_FILE="docker-compose.prod.yml"
 BACKUP_DIR="./backups"
 LOG_FILE="./logs/deploy-$(date +%Y%m%d-%H%M%S).log"
@@ -133,7 +133,7 @@ create_backup() {
 
     if docker ps | grep -q "${PROJECT_NAME}_db"; then
         print_info "Creating database backup..."
-        docker exec "${PROJECT_NAME}_db" pg_dump -U postgres getyourguide > "$BACKUP_FILE"
+        docker exec "${PROJECT_NAME}_db" pg_dump -U postgres findtravelmate > "$BACKUP_FILE"
 
         if [ -f "$BACKUP_FILE" ]; then
             BACKUP_SIZE=$(du -h "$BACKUP_FILE" | cut -f1)

@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // GetYourGuide colors
+        // FindTravelMate colors
         primary: {
           DEFAULT: "#FC6500",
           hover: "#E55A00",

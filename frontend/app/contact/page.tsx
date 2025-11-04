@@ -123,12 +123,12 @@ export default function ContactPage() {
               <Mail className="w-10 h-10 text-primary mb-3" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Email</h3>
               <p className="text-gray-600 mb-2">General Inquiries:</p>
-              <a href="mailto:support@meetyourtravelpartner.com" className="text-primary hover:underline">
-                support@meetyourtravelpartner.com
+              <a href="mailto:support@findtravelmate.com" className="text-primary hover:underline">
+                support@findtravelmate.com
               </a>
               <p className="text-gray-600 mt-3 mb-2">Vendor Support:</p>
-              <a href="mailto:vendors@meetyourtravelpartner.com" className="text-primary hover:underline">
-                vendors@meetyourtravelpartner.com
+              <a href="mailto:vendors@findtravelmate.com" className="text-primary hover:underline">
+                vendors@findtravelmate.com
               </a>
             </div>
 

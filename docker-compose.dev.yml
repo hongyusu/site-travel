@@ -11,12 +11,12 @@ version: '3.8'
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: getyourguide_db_dev
+    container_name: findtravelmate_db_dev
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dev_password_123}
-      POSTGRES_DB: getyourguide
+      POSTGRES_DB: findtravelmate
     ports:
       - "5432:5432"
     volumes:
@@ -31,7 +31,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: getyourguide_redis_dev
+    container_name: findtravelmate_redis_dev
     restart: unless-stopped
     ports:
       - "6379:6379"
@@ -51,13 +51,13 @@ services:
       context: ./backend
       dockerfile: Dockerfile.dev
       target: development
-    container_name: getyourguide_backend_dev
+    container_name: findtravelmate_backend_dev
     restart: unless-stopped
     ports:
       - "8000:8000"
       - "5678:5678"  # Python debugger port
     environment:
-      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-dev_password_123}@postgres:5432/getyourguide
+      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-dev_password_123}@postgres:5432/findtravelmate
       SECRET_KEY: ${SECRET_KEY:-dev-secret-key-please-change-in-production}
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRE_MINUTES: 30
@@ -83,7 +83,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile.dev
       target: development
-    container_name: getyourguide_frontend_dev
+    container_name: findtravelmate_frontend_dev
     restart: unless-stopped
     ports:
       - "3000:3000"
@@ -114,12 +114,12 @@ services:
   # Database admin interface
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: getyourguide_pgadmin_dev
+    container_name: findtravelmate_pgadmin_dev
     restart: unless-stopped
     ports:
       - "5050:80"
     environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@getyourguide.local}
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@findtravelmate.local}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin123}
       PGADMIN_CONFIG_SERVER_MODE: 'False'
       PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
@@ -133,7 +133,7 @@ services:
   # Redis admin interface
   redis-commander:
     image: rediscommander/redis-commander:latest
-    container_name: getyourguide_redis_commander_dev
+    container_name: findtravelmate_redis_commander_dev
     restart: unless-stopped
     ports:
       - "8081:8081"

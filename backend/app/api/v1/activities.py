@@ -1,7 +1,7 @@
 """Activity endpoints."""
 
 from typing import List, Optional
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, status, Header
 from sqlalchemy.orm import Session, joinedload
 from sqlalchemy import and_, or_, func
 from decimal import Decimal
@@ -20,6 +20,11 @@ from app.schemas.activity import (
 )
 from app.schemas.common import PaginationParams, PaginatedResponse
 from app.api.deps import get_optional_current_user, get_current_vendor
+from app.utils.translation import (
+    validate_language, get_translated_activity, get_translated_highlights,
+    get_translated_includes, get_translated_faqs, get_translated_timelines,
+    get_translated_pricing_tiers, get_translated_add_ons, get_translated_meeting_point
+)
 from slugify import slugify
 
 router = APIRouter()
@@ -27,26 +32,58 @@ router = APIRouter()
 
 @router.get("/categories", response_model=List[CategoryResponse])
 def get_categories(
+    language: str = Query('en', description="Language for translation (en, es, zh, fr)"),
     db: Session = Depends(get_db)
 ):
     """Get all categories."""
+    from app.utils.translation import get_translated_category, validate_language
+    
+    language = validate_language(language)
     categories = db.query(Category).order_by(Category.order_index).all()
-    return categories
+    
+    # Apply translations if needed
+    if language == 'en':
+        return categories
+    
+    translated_categories = []
+    for category in categories:
+        translated_data = get_translated_category(category, language, db)
+        # Create a mock category object for the response
+        translated_category = type('Category', (), translated_data)()
+        translated_categories.append(translated_category)
+    
+    return translated_categories
 
 
 @router.get("/destinations", response_model=List[DestinationResponse])
 def get_destinations(
     featured_only: bool = False,
+    language: str = Query('en', description="Language for translation (en, es, zh, fr)"),
     db: Session = Depends(get_db)
 ):
     """Get all destinations."""
+    from app.utils.translation import get_translated_destination, validate_language
+    
+    language = validate_language(language)
     query = db.query(Destination)
 
     if featured_only:
         query = query.filter(Destination.is_featured == True)
 
     destinations = query.order_by(Destination.name).all()
-    return destinations
+    
+    # Apply translations if needed
+    if language == 'en':
+        return destinations
+    
+    translated_destinations = []
+    for destination in destinations:
+        translated_data = get_translated_destination(destination, language, db)
+        # Create a mock destination object for the response
+        translated_destination = type('Destination', (), translated_data)()
+        translated_destinations.append(translated_destination)
+    
+    return translated_destinations
 
 
 @router.get("/destinations/{slug}", response_model=DestinationResponse)
@@ -85,6 +122,7 @@ def search_activities(
     bestseller: Optional[bool] = Query(None, description="Bestsellers only"),
     vendor_only: Optional[bool] = Query(None, description="Show only current vendor's activities"),
     sort_by: str = Query("recommended", description="Sort: recommended, price_asc, price_desc, rating, duration"),
+    language: str = Query('en', description="Language for translation (en, es, zh, fr)"),
     page: int = Query(1, ge=1, description="Page number"),
     per_page: int = Query(20, ge=1, le=100, description="Items per page"),
     db: Session = Depends(get_db),
@@ -93,6 +131,9 @@ def search_activities(
     """
     Search and filter activities.
     """
+    # Validate language parameter
+    language = validate_language(language)
+    
     # Base query with eager loading
     # For vendor_only queries, show all activities (including inactive ones)
     # For public queries, only show active activities
@@ -221,11 +262,20 @@ def search_activities(
             ActivityDestination.activity_id == activity.id
         ).all()
 
+        # Apply translations if needed
+        if language != 'en':
+            translated_data = get_translated_activity(activity, language, db)
+            title = translated_data.get('title', activity.title)
+            short_description = translated_data.get('short_description', activity.short_description)
+        else:
+            title = activity.title
+            short_description = activity.short_description
+        
         activity_dict = {
             "id": activity.id,
-            "title": activity.title,
+            "title": title,
             "slug": activity.slug,
-            "short_description": activity.short_description,
+            "short_description": short_description,
             "price_adult": activity.price_adult,
             "price_child": activity.price_child,
             "duration_minutes": activity.duration_minutes,
@@ -254,6 +304,7 @@ def search_activities(
 @router.get("/slug/{slug}", response_model=ActivityDetailResponse)
 def get_activity_by_slug(
     slug: str,
+    language: str = Query('en', regex="^(en|es|zh|fr)$", description="Language code"),
     db: Session = Depends(get_db),
     current_user = Depends(get_optional_current_user)
 ):
@@ -269,11 +320,14 @@ def get_activity_by_slug(
             detail="Activity not found"
         )
 
-    return _get_activity_details(activity, db)
+    return _get_activity_details(activity, db, language)
 
 
-def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResponse:
-    """Helper function to get detailed activity information."""
+def _get_activity_details(activity: Activity, db: Session, language: str = 'en') -> ActivityDetailResponse:
+    """Helper function to get detailed activity information with language support."""
+    # Validate language
+    language = validate_language(language)
+
     # Load related data
     images = db.query(ActivityImage).filter(
         ActivityImage.activity_id == activity.id
@@ -330,15 +384,26 @@ def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResp
     # Get vendor info
     vendor = db.query(Vendor).filter(Vendor.id == activity.vendor_id).first()
 
+    # Get translated content
+    translated_activity = get_translated_activity(activity, language, db)
+    translated_highlights = get_translated_highlights(highlights, language, db)
+    translated_includes = get_translated_includes(includes, language, db)
+    translated_faqs = get_translated_faqs(faqs, language, db)
+    translated_timelines = get_translated_timelines(timelines, language, db)
+    translated_pricing_tiers = get_translated_pricing_tiers(pricing_tiers, language, db)
+    translated_add_ons = get_translated_add_ons(add_ons, language, db)
+    translated_meeting_point = get_translated_meeting_point(meeting_point, language, db)
+
     # Prepare response
     primary_image = next((img for img in images if img.is_primary), None)
 
+    # Use translated content WITHOUT fallback (user requirement: Option 2)
     response_dict = {
         "id": activity.id,
-        "title": activity.title,
+        "title": translated_activity['title'] if language != 'en' else activity.title,
         "slug": activity.slug,
-        "short_description": activity.short_description,
-        "description": activity.description,
+        "short_description": translated_activity['short_description'] if language != 'en' else activity.short_description,
+        "description": translated_activity['description'] if language != 'en' else activity.description,
         "price_adult": activity.price_adult,
         "price_child": activity.price_child,
         "duration_minutes": activity.duration_minutes,
@@ -356,10 +421,10 @@ def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResp
         "images": images,
         "categories": categories,
         "destinations": destinations,
-        "highlights": highlights,
-        "includes": includes,
-        "faqs": faqs,
-        "meeting_point": meeting_point,
+        "highlights": translated_highlights,
+        "includes": translated_includes,
+        "faqs": translated_faqs,
+        "meeting_point": translated_meeting_point,
         "vendor": {
             "id": vendor.id,
             "company_name": vendor.company_name,
@@ -380,20 +445,20 @@ def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResp
         "allows_service_animals": activity.allows_service_animals,
         "has_infant_seats": activity.has_infant_seats,
         "video_url": activity.video_url,
-        "dress_code": activity.dress_code,
+        "dress_code": translated_activity['dress_code'] if language != 'en' else activity.dress_code,
         "weather_dependent": activity.weather_dependent,
-        "not_suitable_for": activity.not_suitable_for,
-        "what_to_bring": activity.what_to_bring,
+        "not_suitable_for": translated_activity['not_suitable_for'] if language != 'en' else activity.not_suitable_for,
+        "what_to_bring": translated_activity['what_to_bring'] if language != 'en' else activity.what_to_bring,
         "has_covid_measures": activity.has_covid_measures,
-        "covid_measures": activity.covid_measures,
+        "covid_measures": translated_activity['covid_measures'] if language != 'en' else activity.covid_measures,
         "is_giftable": activity.is_giftable,
         "allows_reserve_now_pay_later": activity.allows_reserve_now_pay_later,
         "reserve_payment_deadline_hours": activity.reserve_payment_deadline_hours,
         # New relationships
-        "timelines": timelines,
+        "timelines": translated_timelines,
         "time_slots": time_slots,
-        "pricing_tiers": pricing_tiers,
-        "add_ons": add_ons
+        "pricing_tiers": translated_pricing_tiers,
+        "add_ons": translated_add_ons
     }
 
     return ActivityDetailResponse(**response_dict)
@@ -402,6 +467,7 @@ def _get_activity_details(activity: Activity, db: Session) -> ActivityDetailResp
 @router.get("/{activity_id}", response_model=ActivityDetailResponse)
 def get_activity(
     activity_id: int,
+    language: str = Query('en', regex="^(en|es|zh|fr)$", description="Language code"),
     db: Session = Depends(get_db),
     current_user = Depends(get_optional_current_user)
 ):
@@ -417,12 +483,13 @@ def get_activity(
             detail="Activity not found"
         )
 
-    return _get_activity_details(activity, db)
+    return _get_activity_details(activity, db, language)
 
 
 @router.get("/slug/{slug}", response_model=ActivityDetailResponse)
 def get_activity_by_slug(
     slug: str,
+    language: str = Query('en', regex="^(en|es|zh|fr)$", description="Language code"),
     db: Session = Depends(get_db),
     current_user = Depends(get_optional_current_user)
 ):
@@ -438,7 +505,7 @@ def get_activity_by_slug(
             detail="Activity not found"
         )
 
-    return _get_activity_details(activity, db)
+    return _get_activity_details(activity, db, language)
 
 
 @router.get("/{activity_id}/similar", response_model=List[ActivityResponse])
@@ -672,8 +739,11 @@ def update_activity(
             detail="Not authorized to update this activity"
         )
 
-    # Update fields
-    update_data = activity_data.dict(exclude_unset=True)
+    # Update basic fields (excluding relationships and arrays)
+    update_data = activity_data.dict(exclude_unset=True, exclude={
+        'category_ids', 'destination_ids', 'highlights', 'includes', 'faqs', 
+        'meeting_point', 'translations', 'supported_languages'
+    })
     for field, value in update_data.items():
         if value is not None:
             setattr(activity, field, value)
@@ -681,6 +751,84 @@ def update_activity(
     # Update slug if title changed
     if activity_data.title:
         activity.slug = slugify(activity_data.title)
+
+    # Update category relationships
+    if activity_data.category_ids is not None:
+        # Remove existing categories
+        db.query(ActivityCategory).filter(ActivityCategory.activity_id == activity_id).delete()
+        # Add new categories
+        for category_id in activity_data.category_ids:
+            db.add(ActivityCategory(activity_id=activity_id, category_id=category_id))
+
+    # Update destination relationships
+    if activity_data.destination_ids is not None:
+        # Remove existing destinations
+        db.query(ActivityDestination).filter(ActivityDestination.activity_id == activity_id).delete()
+        # Add new destinations
+        for destination_id in activity_data.destination_ids:
+            db.add(ActivityDestination(activity_id=activity_id, destination_id=destination_id))
+
+    # Update highlights
+    if activity_data.highlights is not None:
+        # Remove existing highlights
+        db.query(ActivityHighlight).filter(ActivityHighlight.activity_id == activity_id).delete()
+        # Add new highlights
+        for idx, highlight_text in enumerate(activity_data.highlights):
+            if highlight_text.strip():  # Only add non-empty highlights
+                db.add(ActivityHighlight(
+                    activity_id=activity_id,
+                    text=highlight_text,
+                    order_index=idx
+                ))
+
+    # Update includes/excludes
+    if activity_data.includes is not None:
+        # Remove existing includes
+        db.query(ActivityInclude).filter(ActivityInclude.activity_id == activity_id).delete()
+        # Add new includes
+        for idx, include_data in enumerate(activity_data.includes):
+            if include_data.get('item', '').strip():  # Only add non-empty items
+                db.add(ActivityInclude(
+                    activity_id=activity_id,
+                    item=include_data['item'],
+                    is_included=include_data.get('is_included', True),
+                    order_index=idx
+                ))
+
+    # Update FAQs
+    if activity_data.faqs is not None:
+        # Remove existing FAQs
+        db.query(ActivityFAQ).filter(ActivityFAQ.activity_id == activity_id).delete()
+        # Add new FAQs
+        for idx, faq_data in enumerate(activity_data.faqs):
+            if faq_data.get('question', '').strip() and faq_data.get('answer', '').strip():  # Only add complete FAQs
+                db.add(ActivityFAQ(
+                    activity_id=activity_id,
+                    question=faq_data['question'],
+                    answer=faq_data['answer'],
+                    order_index=idx
+                ))
+
+    # Update meeting point
+    if activity_data.meeting_point is not None:
+        # Remove existing meeting point
+        db.query(MeetingPoint).filter(MeetingPoint.activity_id == activity_id).delete()
+        # Add new meeting point if address provided
+        if activity_data.meeting_point.get('address', '').strip():
+            mp = activity_data.meeting_point
+            db.add(MeetingPoint(
+                activity_id=activity_id,
+                address=mp['address'],
+                instructions=mp.get('instructions'),
+                latitude=mp.get('latitude'),
+                longitude=mp.get('longitude')
+            ))
+
+    # Handle multilingual translations
+    if activity_data.translations is not None:
+        # For now, store translations in a JSON field or handle them separately
+        # This would require additional models for translations
+        pass
 
     db.commit()
     db.refresh(activity)

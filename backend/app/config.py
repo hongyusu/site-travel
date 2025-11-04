@@ -14,7 +14,7 @@ class Settings(BaseSettings):
     """Application settings."""
 
     # Application
-    APP_NAME: str = "MeetYourTravelPartner"
+    APP_NAME: str = "FindTravelMate"
     APP_VERSION: str = "1.0.0"
     DEBUG: bool = True
 
@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     PORT: int = 8000
 
     # Database
-    DATABASE_URL: str = "postgresql://postgres:password@localhost:5432/getyourguide"
+    DATABASE_URL: str = "postgresql://postgres:password@localhost:5432/findtravelmate"
     DATABASE_ECHO: bool = False
 
     # Security

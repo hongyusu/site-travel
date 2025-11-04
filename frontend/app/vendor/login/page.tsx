@@ -54,9 +54,9 @@ export default function VendorLoginPage() {
       // Small delay to ensure localStorage is written
       await new Promise(resolve => setTimeout(resolve, 100));
 
-      // Force full page reload to ensure proper redirect
+      // Use Next.js router for redirect
       console.log('Redirecting to:', returnUrl);
-      window.location.replace(returnUrl);
+      router.replace(returnUrl);
     } catch (err: any) {
       setError(err.response?.data?.detail || 'Invalid email or password');
     } finally {

@@ -20,7 +20,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SSH_KEY="$SCRIPT_DIR/ocrbot.pem"
 EC2_HOST="ec2-54-78-136-48.eu-west-1.compute.amazonaws.com"
 EC2_USER="ubuntu"
-DEPLOY_DIR="/home/ubuntu/getyourguide"
+DEPLOY_DIR="/home/ubuntu/findtravelmate"
 
 print_info() {
     echo -e "${GREEN}[INFO]${NC} $1"
@@ -128,7 +128,7 @@ configure_environment() {
         sed -i 's/LOG_LEVEL=.*/LOG_LEVEL=INFO/' .env
         sed -i 's/NEXT_PUBLIC_API_URL=.*/NEXT_PUBLIC_API_URL=http:\/\/54.78.136.48:8000/' .env
         sed -i "s|CORS_ORIGINS=.*|CORS_ORIGINS='[\"http://54.78.136.48:3000\",\"http://54.78.136.48\"]'|" .env
-        sed -i "s|DATABASE_URL=.*|DATABASE_URL=postgresql://postgres:$DB_PASSWORD@postgres:5432/getyourguide|" .env
+        sed -i "s|DATABASE_URL=.*|DATABASE_URL=postgresql://postgres:$DB_PASSWORD@postgres:5432/findtravelmate|" .env
 
         # Make scripts executable
         chmod +x deploy.sh backup.sh backend/docker-entrypoint.sh docker-init-db.sh
@@ -227,7 +227,7 @@ show_summary() {
     echo "  API Docs:  http://54.78.136.48:8000/docs"
     echo ""
     print_info "Demo Accounts:"
-    echo "  Admin:    admin@getyourguide.com / admin123"
+    echo "  Admin:    admin@findtravelmate.com / admin123"
     echo "  Customer: customer@example.com / customer123"
     echo "  Vendor:   vendor1@example.com / vendor123"
     echo ""

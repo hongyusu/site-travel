@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "react-hot-toast";
+import { LanguageProvider } from "@/contexts/LanguageContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,7 +18,7 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "MeetYourTravelPartner - Tours, Activities & Skip-the-Line Tickets",
+  title: "FindTravelMate - Tours, Activities & Skip-the-Line Tickets",
   description: "Book unforgettable tours and activities worldwide. Skip-the-line tickets, guided tours, and unique experiences at the best prices.",
 };
 
@@ -31,10 +32,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Toaster position="top-right" />
-        <Header />
-        <main>{children}</main>
-        <Footer />
+        <LanguageProvider>
+          <Toaster position="top-right" />
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </LanguageProvider>
       </body>
     </html>
   );

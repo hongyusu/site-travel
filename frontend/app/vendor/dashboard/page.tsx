@@ -55,7 +55,15 @@ export default function VendorDashboardPage() {
     } catch (error: any) {
       console.error('Dashboard: Error fetching data:', error);
       console.error('Dashboard: Error details:', error.response?.data);
-      router.push('/vendor/login?return=/vendor/dashboard');
+      
+      // Only redirect to login if it's an authentication error (401)
+      if (error.response?.status === 401) {
+        console.log('Dashboard: Authentication error, redirecting to login');
+        router.push('/vendor/login?return=/vendor/dashboard');
+      } else {
+        console.log('Dashboard: Non-auth error, staying on page');
+        // For other errors, just show them in the UI but don't redirect
+      }
     } finally {
       setLoading(false);
     }

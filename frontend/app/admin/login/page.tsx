@@ -84,7 +84,7 @@ export default function AdminLoginPage() {
                 onChange={handleInputChange}
                 required
                 className="input-field"
-                placeholder="admin@getyourguide.com"
+                placeholder="admin@findtravelmate.com"
               />
             </div>
 
@@ -124,7 +124,7 @@ export default function AdminLoginPage() {
 
         <div className="mt-4 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
           <p className="text-xs text-yellow-800 text-center">
-            <strong>Demo:</strong> admin@getyourguide.com / admin123
+            <strong>Demo:</strong> admin@findtravelmate.com / admin123
           </p>
         </div>
       </div>

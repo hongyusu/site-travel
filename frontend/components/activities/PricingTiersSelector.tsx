@@ -3,6 +3,7 @@
 import { ActivityPricingTier } from "@/types";
 import { Check, Crown, Star, Sparkles } from "lucide-react";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface PricingTiersSelectorProps {
   pricingTiers: ActivityPricingTier[];
@@ -15,6 +16,7 @@ export default function PricingTiersSelector({
   selectedTierId,
   onTierSelect,
 }: PricingTiersSelectorProps) {
+  const { getTranslation, getPricingTierName, language, languageOptions } = useLanguage();
   const [selected, setSelected] = useState<number | undefined>(selectedTierId);
 
   if (!pricingTiers || pricingTiers.length === 0) return null;
@@ -59,7 +61,7 @@ export default function PricingTiersSelector({
 
   return (
     <div className="mb-6">
-      <h3 className="text-lg font-semibold mb-3">Select Ticket Type</h3>
+      <h3 className="text-lg font-semibold mb-3">{getTranslation('pricing.select_option')}</h3>
       <div className="space-y-4">
         {pricingTiers.map((tier) => {
           const isSelected = selected === tier.id;
@@ -80,7 +82,7 @@ export default function PricingTiersSelector({
               <div className="flex items-start justify-between mb-3">
                 <div className="flex items-center gap-2">
                   <Icon className={`w-5 h-5 ${colors.icon}`} />
-                  <h4 className="font-bold text-lg">{tier.tier_name}</h4>
+                  <h4 className="font-bold text-lg">{getPricingTierName(tier.tier_name)}</h4>
                 </div>
                 {isSelected && (
                   <div className={`w-6 h-6 ${colors.badge} rounded-full flex items-center justify-center`}>
@@ -99,19 +101,19 @@ export default function PricingTiersSelector({
                 <span className="text-2xl font-bold text-gray-900">
                   ${tier.price_adult}
                 </span>
-                <span className="text-sm text-gray-500">per adult</span>
+                <span className="text-sm text-gray-500">{getTranslation('booking.per_person')}</span>
               </div>
 
               {tier.price_child && (
                 <div className="mt-1 text-sm text-gray-600">
-                  ${tier.price_child} per child
+                  ${tier.price_child} {getTranslation('booking.child').toLowerCase()}
                 </div>
               )}
 
               {!tier.is_active && (
                 <div className="absolute inset-0 bg-gray-500 bg-opacity-10 rounded-lg flex items-center justify-center">
                   <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                    Unavailable
+                    {getTranslation('timeslots.sold_out')}
                   </span>
                 </div>
               )}

@@ -9,8 +9,10 @@ import { Booking } from '@/types';
 import { apiClient } from '@/lib/api';
 import { formatPrice, getImageUrl } from '@/lib/utils';
 import ReviewForm from '@/components/reviews/ReviewForm';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function BookingsPage() {
+  const { getTranslation } = useLanguage();
   const searchParams = useSearchParams();
   const success = searchParams.get('success');
   const [bookings, setBookings] = useState<Booking[]>([]);
@@ -54,6 +56,21 @@ export default function BookingsPage() {
     }
   };
 
+  const getStatusText = (status: string) => {
+    switch (status) {
+      case 'confirmed':
+        return getTranslation('bookings.status_confirmed');
+      case 'pending':
+        return getTranslation('bookings.status_pending');
+      case 'cancelled':
+        return getTranslation('bookings.status_cancelled');
+      case 'completed':
+        return getTranslation('bookings.status_completed');
+      default:
+        return status.charAt(0).toUpperCase() + status.slice(1);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50">
@@ -76,17 +93,17 @@ export default function BookingsPage() {
         <div className="bg-white rounded-lg shadow-lg p-8 max-w-md text-center">
           <CheckCircle className="w-16 h-16 text-success mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Booking Confirmed!
+            {getTranslation('bookings.booking_confirmed')}
           </h1>
           <p className="text-gray-600 mb-6">
-            Your booking has been confirmed. A confirmation email has been sent to your email address.
+            {getTranslation('bookings.confirmation_email_sent')}
           </p>
           <div className="space-y-3">
             <Link href="/search" className="btn-primary w-full block">
-              Book More Activities
+              {getTranslation('bookings.book_more_activities')}
             </Link>
             <Link href="/" className="block text-primary hover:text-primary-600">
-              Return to Homepage
+              {getTranslation('bookings.return_to_homepage')}
             </Link>
           </div>
         </div>
@@ -100,23 +117,23 @@ export default function BookingsPage() {
         {success && (
           <div className="bg-success-light border border-success text-success px-6 py-4 rounded-lg mb-8 flex items-center">
             <CheckCircle className="w-6 h-6 mr-3 flex-shrink-0" />
-            <p>Your booking has been confirmed! Check your email for confirmation details.</p>
+            <p>{getTranslation('bookings.confirmation_success')}</p>
           </div>
         )}
 
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">My Bookings</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">{getTranslation('bookings.title')}</h1>
 
         {bookings.length === 0 ? (
           <div className="bg-white rounded-lg shadow p-12 text-center">
             <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
-              No bookings yet
+              {getTranslation('bookings.no_bookings_yet')}
             </h2>
             <p className="text-gray-600 mb-6">
-              Start exploring and book your next adventure
+              {getTranslation('bookings.start_exploring')}
             </p>
             <Link href="/search" className="btn-primary">
-              Browse Activities
+              {getTranslation('bookings.browse_activities')}
             </Link>
           </div>
         ) : (
@@ -127,10 +144,10 @@ export default function BookingsPage() {
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <span className={`inline-block px-3 py-1 rounded-full text-sm font-medium ${getStatusColor(booking.status)}`}>
-                        {booking.status.charAt(0).toUpperCase() + booking.status.slice(1)}
+                        {getStatusText(booking.status)}
                       </span>
                       <p className="text-sm text-gray-500 mt-2">
-                        Booking Reference: {booking.booking_ref}
+                        {getTranslation('bookings.booking_reference')}: {booking.booking_ref}
                       </p>
                     </div>
                     <div className="text-right">
@@ -181,21 +198,21 @@ export default function BookingsPage() {
 
                         <div className="flex items-center">
                           <Users className="w-4 h-4 mr-2 text-gray-400" />
-                          {booking.adults} adult{booking.adults > 1 ? 's' : ''}
-                          {booking.children > 0 && `, ${booking.children} child${booking.children > 1 ? 'ren' : ''}`}
+                          {booking.adults} {booking.adults > 1 ? getTranslation('bookings.adults') : getTranslation('bookings.adult')}
+                          {booking.children > 0 && `, ${booking.children} ${booking.children > 1 ? getTranslation('bookings.children') : getTranslation('bookings.child')}`}
                         </div>
 
                         {booking.activity.duration_minutes && (
                           <div className="flex items-center">
                             <Clock className="w-4 h-4 mr-2 text-gray-400" />
-                            Duration: {Math.floor(booking.activity.duration_minutes / 60)}h {booking.activity.duration_minutes % 60}m
+                            {getTranslation('bookings.duration')}: {Math.floor(booking.activity.duration_minutes / 60)}h {booking.activity.duration_minutes % 60}m
                           </div>
                         )}
                       </div>
 
                       {booking.special_requirements && (
                         <div className="mt-3 p-3 bg-gray-50 rounded text-sm">
-                          <strong className="text-gray-700">Special Requirements:</strong>
+                          <strong className="text-gray-700">{getTranslation('bookings.special_requirements')}:</strong>
                           <p className="text-gray-600 mt-1">{booking.special_requirements}</p>
                         </div>
                       )}
@@ -210,10 +227,10 @@ export default function BookingsPage() {
                           href={`/order-confirmation?ref=${booking.booking_ref}`}
                           className="btn-secondary flex-1"
                         >
-                          View Details
+                          {getTranslation('bookings.view_details')}
                         </Link>
                         <button className="btn-secondary text-red-600 hover:bg-red-50">
-                          Cancel Booking
+                          {getTranslation('bookings.cancel_booking')}
                         </button>
                       </>
                     )}
@@ -223,7 +240,7 @@ export default function BookingsPage() {
                         className="btn-primary flex items-center justify-center"
                       >
                         <Star className="w-4 h-4 mr-2" />
-                        Leave a Review
+                        {getTranslation('bookings.leave_review')}
                       </button>
                     )}
                   </div>

@@ -108,7 +108,7 @@ export default function CookiesPage() {
                 If you have questions about our use of cookies, please contact us at:
               </p>
               <p className="text-gray-700">
-                Email: privacy@meetyourtravelpartner.com<br />
+                Email: privacy@findtravelmate.com<br />
                 Address: 123 Market Street, San Francisco, CA 94103
               </p>
             </section>

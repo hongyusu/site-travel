@@ -184,7 +184,7 @@ export default function AffiliatePage() {
           <p className="text-xl mb-6">
             Join thousands of affiliates earning commissions with us
           </p>
-          <a href="mailto:affiliates@meetyourtravelpartner.com" className="btn-secondary inline-block">
+          <a href="mailto:affiliates@findtravelmate.com" className="btn-secondary inline-block">
             Apply Now
           </a>
         </div>

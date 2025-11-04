@@ -9,12 +9,14 @@ import ActivityCard from '@/components/activities/ActivityCard';
 import { Activity, Category, Destination } from '@/types';
 import { apiClient } from '@/lib/api';
 import { ArrowRight, Shield, Clock, Award } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function HomePage() {
   const [featuredDestinations, setFeaturedDestinations] = useState<Destination[]>([]);
   const [popularActivities, setPopularActivities] = useState<Activity[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const { getTranslation } = useLanguage();
 
   useEffect(() => {
     fetchHomePageData();
@@ -33,6 +35,7 @@ export default function HomePage() {
       setCategories(categoriesRes.data.slice(0, 8));
     } catch (error) {
       console.error('Error fetching homepage data:', error);
+      console.error('Full error details:', error.response || error);
     } finally {
       setLoading(false);
     }
@@ -52,14 +55,14 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-gradient-to-br from-primary/60 to-orange-600/60"></div>
         <div className="relative z-10 container mx-auto px-4 text-center">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
-            Meet Your Perfect Travel Partner
+            {getTranslation('homepage.hero.title')}
           </h1>
           <p className="text-xl md:text-2xl text-white mb-8 drop-shadow-md">
-            Connect with local experts and discover authentic experiences
+            {getTranslation('homepage.hero.subtitle')}
           </p>
           <div className="max-w-3xl mx-auto">
             <SearchBar
-              placeholder="Where would you like to explore?"
+              placeholder={getTranslation('homepage.search.placeholder')}
               showDatePicker={true}
               autoFocus={true}
             />
@@ -73,18 +76,18 @@ export default function HomePage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
               <Shield className="w-12 h-12 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-lg mb-2">Trusted by millions</h3>
-              <p className="text-gray-600">Over 150,000 activities worldwide</p>
+              <h3 className="font-semibold text-lg mb-2">{getTranslation('homepage.trust.millions.title')}</h3>
+              <p className="text-gray-600">{getTranslation('homepage.trust.millions.desc')}</p>
             </div>
             <div className="text-center">
               <Clock className="w-12 h-12 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-lg mb-2">Free cancellation</h3>
-              <p className="text-gray-600">Most activities offer free cancellation</p>
+              <h3 className="font-semibold text-lg mb-2">{getTranslation('homepage.trust.cancellation.title')}</h3>
+              <p className="text-gray-600">{getTranslation('homepage.trust.cancellation.desc')}</p>
             </div>
             <div className="text-center">
               <Award className="w-12 h-12 text-primary mx-auto mb-3" />
-              <h3 className="font-semibold text-lg mb-2">Best price guarantee</h3>
-              <p className="text-gray-600">Find it cheaper? We'll refund the difference</p>
+              <h3 className="font-semibold text-lg mb-2">{getTranslation('homepage.trust.guarantee.title')}</h3>
+              <p className="text-gray-600">{getTranslation('homepage.trust.guarantee.desc')}</p>
             </div>
           </div>
         </div>
@@ -96,14 +99,14 @@ export default function HomePage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Popular destinations
+                {getTranslation('homepage.destinations.title')}
               </h2>
               <p className="text-gray-600">
-                Explore our most popular travel destinations
+                {getTranslation('homepage.destinations.subtitle')}
               </p>
             </div>
             <a href="/destinations" className="text-primary hover:text-primary-600 flex items-center font-medium">
-              See all destinations
+              {getTranslation('button.view_more')}
               <ArrowRight className="w-4 h-4 ml-1" />
             </a>
           </div>
@@ -133,10 +136,10 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-2">
-              Browse by category
+              {getTranslation('homepage.categories.title')}
             </h2>
             <p className="text-gray-600">
-              Find the perfect activity for your interests
+              {getTranslation('homepage.categories.subtitle')}
             </p>
           </div>
 
@@ -162,14 +165,14 @@ export default function HomePage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Bestselling activities
+                {getTranslation('homepage.activities.title')}
               </h2>
               <p className="text-gray-600">
-                Our most popular tours and activities
+                {getTranslation('homepage.activities.subtitle')}
               </p>
             </div>
             <a href="/search?bestseller=true" className="text-primary hover:text-primary-600 flex items-center font-medium">
-              See all activities
+              {getTranslation('button.view_more')}
               <ArrowRight className="w-4 h-4 ml-1" />
             </a>
           </div>
@@ -194,17 +197,17 @@ export default function HomePage() {
       <section className="bg-primary py-16">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Become a vendor
+            {getTranslation('homepage.vendor.title')}
           </h2>
           <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
-            Join thousands of activity providers and reach millions of travelers worldwide
+            {getTranslation('homepage.vendor.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/vendor/register" className="btn-secondary">
-              List your activity
+              {getTranslation('homepage.vendor.list_activity')}
             </a>
             <a href="/vendor/login" className="bg-white/10 hover:bg-white/20 text-white font-medium py-3 px-6 rounded-full transition-colors">
-              Vendor login
+              {getTranslation('homepage.vendor.login')}
             </a>
           </div>
         </div>
