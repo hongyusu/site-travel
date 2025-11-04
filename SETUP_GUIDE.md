@@ -254,11 +254,355 @@ site-travel/
 └── docker-compose.yml    # Database setup
 ```
 
+## Production AWS Deployment
+
+### AWS Server Information
+- **Server**: `ssh -i "ocrbot.pem" ubuntu@ec2-54-217-173-125.eu-west-1.compute.amazonaws.com`
+- **Frontend URL**: http://54.217.173.125:3000
+- **Backend API**: http://54.217.173.125:8000/api/v1
+- **API Documentation**: http://54.217.173.125:8000/api/v1/docs
+
+### Services Configuration
+- **Backend**: Systemd service (`findtravelmate-backend.service`)
+- **Frontend**: PM2 process manager
+- **Database**: PostgreSQL system service
+
+### Service Management Commands
+```bash
+# Backend service
+sudo systemctl status findtravelmate-backend
+sudo systemctl restart findtravelmate-backend
+sudo systemctl stop findtravelmate-backend
+
+# Frontend service  
+pm2 list
+pm2 restart findtravelmate-frontend
+pm2 stop findtravelmate-frontend
+pm2 logs findtravelmate-frontend
+
+# Database service
+sudo systemctl status postgresql
+```
+
+### Demo Accounts (AWS Production)
+- **Customer**: `customer@example.com / customer123` ✅ Tested working
+- **Admin**: `admin@findtravelmate.com / admin123` 
+- **Vendor**: `vendor1@example.com / vendor123` (vendor1-5 available)
+
+## AWS Database Management
+
+### Database Backup and Restoration Process
+
+#### Creating Local Database Backup
+```bash
+# From project root directory
+cd /path/to/site-travel
+
+# Ensure DATABASE_URL is set for local database
+export DATABASE_URL="postgresql://hongyusu@localhost:5432/findtravelmate"
+
+# Create backup using the provided script
+python backend/backup_database.py
+# Output: backup_YYYY-MM-DD_HH-MM-SS.sql (e.g., backup_2025-11-04_22-45-58.sql)
+```
+
+#### Transferring Backup to AWS
+```bash
+# Copy backup file to AWS server
+scp -i "ocrbot.pem" backup_2025-11-04_22-45-58.sql ubuntu@ec2-54-217-173-125.eu-west-1.compute.amazonaws.com:/home/ubuntu/
+```
+
+#### Restoring Database on AWS
+```bash
+# SSH into AWS server
+ssh -i "ocrbot.pem" ubuntu@ec2-54-217-173-125.eu-west-1.compute.amazonaws.com
+
+# Set database password (if needed)
+export PGPASSWORD=ubuntu123
+
+# Drop existing database (DESTRUCTIVE - be careful!)
+dropdb --host localhost --port 5432 --username ubuntu --if-exists findtravelmate
+
+# Create fresh database
+createdb --host localhost --port 5432 --username ubuntu findtravelmate
+
+# Restore from backup
+psql --host localhost --port 5432 --username ubuntu --dbname findtravelmate --file backup_2025-11-04_22-45-58.sql --quiet
+
+# Verify restoration
+psql --host localhost --port 5432 --username ubuntu --dbname findtravelmate --command "SELECT COUNT(*) FROM activities;"
+psql --host localhost --port 5432 --username ubuntu --dbname findtravelmate --command "SELECT name FROM categories ORDER BY name;"
+```
+
+#### Database User Setup (Required for Backend Service)
+```bash
+# Connect to PostgreSQL as superuser
+sudo -u postgres psql
+
+# Create ubuntu user with password (if doesn't exist)
+CREATE USER ubuntu WITH PASSWORD 'ubuntu123';
+GRANT ALL PRIVILEGES ON DATABASE findtravelmate TO ubuntu;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA public TO ubuntu;
+GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA public TO ubuntu;
+\q
+```
+
+### Data Consistency Verification
+
+#### Comparing Local vs AWS Database
+```bash
+# Local database check
+export DATABASE_URL="postgresql://hongyusu@localhost:5432/findtravelmate"
+psql $DATABASE_URL -c "SELECT COUNT(*) FROM activities;"
+psql $DATABASE_URL -c "SELECT COUNT(*) FROM categories;"
+psql $DATABASE_URL -c "SELECT name FROM categories ORDER BY name;"
+
+# AWS database check (via SSH)
+ssh -i "ocrbot.pem" ubuntu@ec2-54-217-173-125.eu-west-1.compute.amazonaws.com "
+export PGPASSWORD=ubuntu123
+psql --host localhost --port 5432 --username ubuntu --dbname findtravelmate -c 'SELECT COUNT(*) FROM activities;'
+psql --host localhost --port 5432 --username ubuntu --dbname findtravelmate -c 'SELECT COUNT(*) FROM categories;'
+psql --host localhost --port 5432 --username ubuntu --dbname findtravelmate -c 'SELECT name FROM categories ORDER BY name;'
+"
+```
+
+#### Expected Data After Restoration (November 2025)
+- **Categories**: 10 (Tours, Food & Drink, Museums & Culture, Outdoor Activities, Study Tours, Adventure, Luxury Experiences, Family-Friendly, Historical Sites, Nature & Wildlife)
+- **Activities**: 21 (including Stockholm tours, Louvre visits, Chinese cultural experiences)
+- **Destinations**: 10+ cities worldwide
+- **Users**: 20+ (admin, customers, vendors)
+
+## AWS Deployment Issues and Solutions
+
+### Issue 1: CSS Not Loading (FIXED ✅)
+**Problem**: CSS files returning 404, website appeared unstyled
+**Root Cause**: 
+- Multiple conflicting Next.js processes running on port 3000
+- PM2 configuration issues with production vs development mode
+**Solution**:
+```bash
+# Kill conflicting processes
+ps aux | grep -E '(node|next|npm)' | grep -v grep
+kill [process_ids]
+
+# Use development mode for AWS (simpler and more reliable)
+# ecosystem.config.js:
+{
+  script: 'npm',
+  args: 'run dev',
+  env: {
+    NODE_ENV: 'development',
+    NEXT_PUBLIC_API_URL: 'http://54.217.173.125:8000/api/v1'
+  }
+}
+```
+
+### Issue 2: Database Data Inconsistency (FIXED ✅)
+**Problem**: AWS database had different/outdated data compared to local development
+**Root Cause**: 
+- AWS database was initialized with older sample data
+- Local database had been updated with new categories and activities
+- No automated sync between local and production databases
+**Solution**:
+```bash
+# Complete database replacement workflow:
+# 1. Create fresh backup from local database
+# 2. Transfer backup to AWS server  
+# 3. Drop and recreate AWS database
+# 4. Restore from local backup
+# 5. Verify data consistency
+
+# Key Learning: Always verify data consistency between environments
+```
+
+### Issue 3: Backend Service Configuration (FIXED ✅)
+**Problem**: Backend API service failing to start due to configuration errors
+**Root Cause**: 
+- CORS_ORIGINS environment variable format causing parsing errors
+- Pydantic settings validation failing
+- Database authentication issues (missing password)
+**Solution**:
+```bash
+# Fixed systemd service configuration
+# /etc/systemd/system/findtravelmate-backend.service:
+[Service]
+Environment=DATABASE_URL=postgresql://ubuntu:ubuntu123@localhost:5432/findtravelmate
+Environment=APP_NAME=FindTravelMate
+Environment=SECRET_KEY=fc63a21a723d1c5cd0da733b3fcb84f5db481cf61439270181aba7c65809e53f
+# Note: Removed CORS_ORIGINS to use defaults from config.py
+
+sudo systemctl daemon-reload && sudo systemctl restart findtravelmate-backend
+```
+
+### Issue 4: Frontend Restart Loops (FIXED ✅)
+**Problem**: PM2 frontend service constantly restarting (900+ restarts)
+**Root Cause**: 
+- Port 3000 conflicts from orphaned Next.js processes
+- PM2 trying to start multiple instances on same port
+**Solution**:
+```bash
+# Clean shutdown and restart
+pm2 stop findtravelmate-frontend && pm2 delete findtravelmate-frontend
+sudo kill $(sudo ss -tulpn | grep :3000 | awk '{print $7}' | cut -d',' -f2 | cut -d'=' -f2)
+pm2 start ecosystem.config.js
+```
+
+### Working Configuration (November 2025)
+- **Frontend**: Next.js development mode via PM2
+- **Backend**: Systemd service with simplified configuration (no CORS_ORIGINS override)
+- **Database**: PostgreSQL system service with complete data restoration from local
+- **Static Assets**: Served correctly by Next.js dev server
+- **API Connectivity**: Full backend functionality verified
+- **Data Sync**: Complete consistency between local and AWS environments
+
+## Deployment Best Practices & Lessons Learned
+
+### Database Management Lessons
+
+#### 1. Environment Data Consistency
+**Problem**: Production and development databases can diverge over time
+**Solution**: 
+- Implement regular database sync procedures
+- Always verify data consistency before and after deployments
+- Use explicit backup/restore workflows for critical updates
+
+#### 2. Database Authentication
+**Problem**: Default PostgreSQL setup may not have proper user credentials
+**Solution**:
+- Create dedicated database users with passwords for application access
+- Set proper permissions for all tables, sequences, and schemas
+- Document database credentials securely
+
+#### 3. Backup Strategy
+**Lessons Learned**:
+- Create timestamped backups: `backup_YYYY-MM-DD_HH-MM-SS.sql`
+- Verify backup integrity before restoration
+- Use `--quiet` flag for production restores to reduce log noise
+- Always test restoration process in non-production environment first
+
+### Service Configuration Lessons
+
+#### 1. Environment Variable Management
+**Problem**: Complex environment variables (like JSON arrays) can cause parsing errors
+**Solution**:
+- Use application defaults when possible instead of environment overrides
+- Keep systemd service files simple and minimal
+- Document working configurations for future reference
+
+#### 2. Process Management
+**Problem**: Multiple processes competing for same ports cause instability
+**Solution**:
+- Always clean up orphaned processes before restarting services
+- Use process managers (PM2, systemd) consistently
+- Monitor restart counters to detect configuration issues early
+
+#### 3. Development vs Production Mode
+**Key Finding**: For AWS deployment, Next.js development mode proved more reliable than production build
+**Reasons**:
+- Simpler asset serving
+- Better error reporting
+- Easier debugging
+- No build step complexity
+
+### Troubleshooting Methodology
+
+#### 1. Layer-by-Layer Debugging
+1. **Database Layer**: Verify data and connectivity first
+2. **Backend Layer**: Test API endpoints independently
+3. **Frontend Layer**: Check static assets and API integration
+4. **Service Layer**: Ensure all processes are running correctly
+
+#### 2. Verification Commands
+```bash
+# Service status checks
+sudo systemctl status findtravelmate-backend
+pm2 status
+
+# Database connectivity
+psql $DATABASE_URL -c "SELECT COUNT(*) FROM activities;"
+
+# API endpoint testing
+curl -s http://localhost:8000/api/v1/activities/categories
+
+# Port conflict detection
+sudo ss -tulpn | grep :3000
+sudo ss -tulpn | grep :8000
+```
+
+#### 3. Log Analysis Priority
+1. **systemctl/journalctl logs**: For service startup issues
+2. **PM2 logs**: For frontend application errors
+3. **Database logs**: For connection and query issues
+4. **Browser console**: For client-side API issues
+
+### Future Deployment Considerations
+
+#### 1. Automated Database Sync
+- Consider implementing database migration scripts
+- Set up automated backup schedules
+- Create database seeding procedures for new environments
+
+#### 2. Configuration Management
+- Use infrastructure as code (Terraform, CloudFormation)
+- Implement proper secrets management
+- Document all manual configuration steps
+
+#### 3. Monitoring and Alerting
+- Set up health checks for all services
+- Monitor database performance and disk space
+- Implement alerting for service failures
+
+### Deployment Checklist
+- [ ] Verify database user credentials and permissions
+- [ ] Create fresh database backup from source environment
+- [ ] Test API endpoints after deployment
+- [ ] Check for port conflicts and orphaned processes
+- [ ] Verify frontend can load data from backend
+- [ ] Test user authentication flows
+- [ ] Confirm all demo accounts work correctly
+
+## Automated Deployment Scripts
+
+### Quick Start with Scripts
+```bash
+# 1. Verify local deployment
+export DATABASE_URL="postgresql://hongyusu@localhost:5432/findtravelmate"
+python scripts/verify_deployment.py --local
+
+# 2. Deploy to AWS (fully automated)
+./scripts/deploy_to_aws.sh
+
+# 3. Verify AWS deployment
+python scripts/verify_deployment.py --aws
+
+# 4. Compare environments
+python scripts/verify_deployment.py --compare
+```
+
+### Available Scripts
+
+#### 🚀 Deployment Automation
+- **`scripts/deploy_to_aws.sh`**: Complete AWS deployment automation
+- **`scripts/verify_deployment.py`**: Deployment verification and comparison
+- **`backend/backup_database.py`**: Create timestamped database backups
+- **`backend/restore_database.py`**: Restore database from backup files
+
+#### 📋 Script Features
+- **Backup/Restore**: Automated database synchronization between environments
+- **Service Management**: Automated restart of backend and frontend services
+- **Verification**: Health checks for database, API, and frontend
+- **Comparison**: Data consistency checks between local and AWS
+- **Error Handling**: Comprehensive error checking and rollback capabilities
+
+#### 📁 Script Documentation
+See [scripts/README.md](scripts/README.md) for detailed documentation and usage examples.
+
 ## Next Steps
 
 After successful setup:
-1. Explore the API documentation at http://localhost:8000/api/v1/docs
+1. Explore the API documentation at http://localhost:8000/api/v1/docs (local) or http://54.217.173.125:8000/api/v1/docs (AWS)
 2. Test user registration and login
 3. Browse activities and destinations
 4. Test booking flow
 5. Access admin panel for content management
+6. Use the automated deployment scripts for future updates
