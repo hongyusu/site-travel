@@ -18,7 +18,7 @@ NC='\033[0m'
 # Configuration
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SSH_KEY="$SCRIPT_DIR/ocrbot.pem"
-EC2_HOST="ec2-54-78-136-48.eu-west-1.compute.amazonaws.com"
+EC2_HOST="ec2-54-217-173-125.eu-west-1.compute.amazonaws.com"
 EC2_USER="ubuntu"
 DEPLOY_DIR="/home/ubuntu/findtravelmate"
 
@@ -126,8 +126,8 @@ configure_environment() {
         # Set production values
         sed -i 's/PYTHON_ENV=.*/PYTHON_ENV=production/' .env
         sed -i 's/LOG_LEVEL=.*/LOG_LEVEL=INFO/' .env
-        sed -i 's/NEXT_PUBLIC_API_URL=.*/NEXT_PUBLIC_API_URL=http:\/\/54.78.136.48:8000/' .env
-        sed -i "s|CORS_ORIGINS=.*|CORS_ORIGINS='[\"http://54.78.136.48:3000\",\"http://54.78.136.48\"]'|" .env
+        sed -i 's/NEXT_PUBLIC_API_URL=.*/NEXT_PUBLIC_API_URL=http:\/\/54.217.173.125:8000/' .env
+        sed -i "s|CORS_ORIGINS=.*|CORS_ORIGINS='[\"http://54.217.173.125:3000\",\"http://54.217.173.125\"]'|" .env
         sed -i "s|DATABASE_URL=.*|DATABASE_URL=postgresql://postgres:$DB_PASSWORD@postgres:5432/findtravelmate|" .env
 
         # Make scripts executable
@@ -181,14 +181,14 @@ EOF
     sleep 10
 
     # Test backend
-    if curl -sf http://54.78.136.48:8000/docs > /dev/null; then
+    if curl -sf http://54.217.173.125:8000/docs > /dev/null; then
         print_success "Backend is healthy"
     else
         print_error "Backend health check failed"
     fi
 
     # Test frontend
-    if curl -sf http://54.78.136.48:3000 > /dev/null; then
+    if curl -sf http://54.217.173.125:3000 > /dev/null; then
         print_success "Frontend is healthy"
     else
         print_error "Frontend health check failed"
@@ -222,9 +222,9 @@ show_summary() {
     print_info "🎉 Deployment completed successfully!"
     echo ""
     print_info "Access URLs:"
-    echo "  Frontend:  http://54.78.136.48:3000"
-    echo "  Backend:   http://54.78.136.48:8000"
-    echo "  API Docs:  http://54.78.136.48:8000/docs"
+    echo "  Frontend:  http://54.217.173.125:3000"
+    echo "  Backend:   http://54.217.173.125:8000"
+    echo "  API Docs:  http://54.217.173.125:8000/docs"
     echo ""
     print_info "Demo Accounts:"
     echo "  Admin:    admin@findtravelmate.com / admin123"
@@ -232,7 +232,7 @@ show_summary() {
     echo "  Vendor:   vendor1@example.com / vendor123"
     echo ""
     print_info "SSH Access:"
-    echo "  ssh -i ocrbot.pem ubuntu@ec2-54-78-136-48.eu-west-1.compute.amazonaws.com"
+    echo "  ssh -i ocrbot.pem ubuntu@ec2-54-217-173-125.eu-west-1.compute.amazonaws.com"
     echo ""
     print_info "Management Commands (on server):"
     echo "  cd $DEPLOY_DIR"

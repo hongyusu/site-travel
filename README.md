@@ -290,8 +290,6 @@ site-travel/
 ├── README.md                  # This file
 ├── SETUP_GUIDE.md             # Terminal-based setup guide
 ├── DOCKER_SETUP_GUIDE.md      # Complete Docker setup guide  
-├── DEPLOYMENT.md              # Deployment guide (local/Docker/cloud)
-├── SECRETS-MANAGEMENT.md      # Secrets and security guide
 ├── REQUIREMENTS.md            # Detailed feature requirements
 └── GAP_ANALYSIS.md            # Project status and remaining gaps
 ```
@@ -527,19 +525,11 @@ Vendors:
 
 ### Local Development
 For local development with hot reload and debugging.
-See [DEPLOYMENT.md - Local Development](DEPLOYMENT.md#local-development)
+See [SETUP_GUIDE.md](SETUP_GUIDE.md) for detailed terminal-based setup instructions.
 
 ### Docker (Recommended)
 Complete containerized setup with PostgreSQL, Redis, Nginx.
-See [DEPLOYMENT.md - Docker Deployment](DEPLOYMENT.md#docker-deployment)
-
-### Traditional Server
-Manual deployment to Ubuntu/Linux server with systemd services.
-See [DEPLOYMENT.md - Traditional Server](DEPLOYMENT.md#traditional-server-deployment)
-
-### Cloud Platforms
-Deployment guides for AWS, GCP, DigitalOcean.
-See [DEPLOYMENT.md - Cloud Deployment](DEPLOYMENT.md#cloud-deployment-options)
+See [DOCKER_SETUP_GUIDE.md](DOCKER_SETUP_GUIDE.md) for complete Docker setup instructions.
 
 ---
 

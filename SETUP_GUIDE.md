@@ -1,6 +1,6 @@
 # FindTravelMate - Terminal Setup Guide
 
-> **Consolidates**: Terminal/local development sections from README.md and DEPLOYMENT.md
+> **Consolidates**: Terminal/local development sections from README.md and previous documentation
 
 This guide provides step-by-step instructions to run the FindTravelMate travel website locally using multiple terminal windows (non-Docker setup).
 

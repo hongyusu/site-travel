@@ -512,7 +512,7 @@ The application has reached **100% feature completion** for MVP launch. All core
 
 ### 2. **Docker Deployment** 🆕
 - **Feature:** Complete Docker Compose setup with PostgreSQL, Redis, Nginx
-- **Files:** `docker-compose.prod.yml`, `Dockerfile` (backend/frontend), `DOCKER-DEPLOYMENT.md`
+- **Files:** `docker-compose.prod.yml`, `Dockerfile` (backend/frontend), `DOCKER_SETUP_GUIDE.md`
 - **Status:** ✅ Fully implemented
 
 ### 3. **GitHub Repository** 🆕
@@ -665,7 +665,7 @@ All references to "GetYourGuide/getyourguide" have been updated to "FindTravelMa
 
 #### Documentation (17 files)
 - REQUIREMENTS.md, AWS-DEPLOYMENT-GUIDE.md, DOCKER-QUICKSTART.md
-- GAP_ANALYSIS.md, DEPLOYMENT.md, SECRETS-MANAGEMENT.md
+- GAP_ANALYSIS.md, SETUP_GUIDE.md, DOCKER_SETUP_GUIDE.md
 - README.md, backend/README.md
 - All deployment scripts and documentation
 
