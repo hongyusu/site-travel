@@ -7,6 +7,7 @@ from sqlalchemy.exc import IntegrityError
 
 from app.database import get_db
 from app.models.user import User, UserRole, Vendor
+from app.models import Booking, Review, Wishlist
 from app.schemas.user import (
     UserCreate,
     UserResponse,
@@ -247,3 +248,34 @@ def refresh_token(
         access_token=access_token,
         refresh_token=new_refresh_token
     )
+
+
+@router.get("/me/statistics")
+def get_user_statistics(
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+):
+    """
+    Get current user's statistics.
+
+    Args:
+        current_user: Current authenticated user
+        db: Database session
+
+    Returns:
+        dict: User statistics including bookings, wishlist items, and reviews counts
+    """
+    # Count bookings
+    total_bookings = db.query(Booking).filter(Booking.user_id == current_user.id).count()
+    
+    # Count wishlist items
+    wishlist_items = db.query(Wishlist).filter(Wishlist.user_id == current_user.id).count()
+    
+    # Count reviews
+    reviews = db.query(Review).filter(Review.user_id == current_user.id).count()
+    
+    return {
+        "total_bookings": total_bookings,
+        "wishlist_items": wishlist_items,
+        "reviews": reviews
+    }

@@ -13,6 +13,11 @@ export default function MyAccountPage() {
   const [user, setUser] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const [editing, setEditing] = useState(false);
+  const [stats, setStats] = useState({
+    total_bookings: 0,
+    wishlist_items: 0,
+    reviews: 0
+  });
   const [formData, setFormData] = useState({
     full_name: '',
     phone: ''
@@ -30,12 +35,17 @@ export default function MyAccountPage() {
         return;
       }
 
-      const response = await apiClient.auth.getProfile();
-      setUser(response.data);
+      const [profileResponse, statsResponse] = await Promise.all([
+        apiClient.auth.getProfile(),
+        apiClient.auth.getStatistics()
+      ]);
+
+      setUser(profileResponse.data);
       setFormData({
-        full_name: response.data.full_name || '',
-        phone: response.data.phone || ''
+        full_name: profileResponse.data.full_name || '',
+        phone: profileResponse.data.phone || ''
       });
+      setStats(statsResponse.data);
     } catch (error) {
       console.error('Error fetching profile:', error);
       // If unauthorized, redirect to login
@@ -247,15 +257,15 @@ export default function MyAccountPage() {
             {/* Account Statistics */}
             <div className="grid grid-cols-3 gap-4 mt-6">
               <div className="bg-white rounded-lg shadow p-6 text-center">
-                <div className="text-3xl font-bold text-primary mb-2">0</div>
+                <div className="text-3xl font-bold text-primary mb-2">{stats.total_bookings}</div>
                 <div className="text-sm text-gray-600">{getTranslation('account.total_bookings')}</div>
               </div>
               <div className="bg-white rounded-lg shadow p-6 text-center">
-                <div className="text-3xl font-bold text-primary mb-2">0</div>
+                <div className="text-3xl font-bold text-primary mb-2">{stats.wishlist_items}</div>
                 <div className="text-sm text-gray-600">{getTranslation('account.wishlist_items')}</div>
               </div>
               <div className="bg-white rounded-lg shadow p-6 text-center">
-                <div className="text-3xl font-bold text-primary mb-2">0</div>
+                <div className="text-3xl font-bold text-primary mb-2">{stats.reviews}</div>
                 <div className="text-sm text-gray-600">{getTranslation('account.reviews')}</div>
               </div>
             </div>

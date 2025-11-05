@@ -8,8 +8,9 @@ import CategoryCard from '@/components/categories/CategoryCard';
 import ActivityCard from '@/components/activities/ActivityCard';
 import { Activity, Category, Destination } from '@/types';
 import { apiClient } from '@/lib/api';
-import { ArrowRight, Shield, Clock, Award } from 'lucide-react';
+import { ArrowRight, Shield, Clock, Award, Calendar, User } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import Link from 'next/link';
 
 export default function HomePage() {
   const [featuredDestinations, setFeaturedDestinations] = useState<Destination[]>([]);
@@ -17,6 +18,34 @@ export default function HomePage() {
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
   const { getTranslation } = useLanguage();
+
+  // Featured blog posts (static data from blog page)
+  const featuredBlogPosts = [
+    {
+      title: '10 Hidden Gems in Rome You Must Visit',
+      excerpt: 'Discover the lesser-known attractions that make Rome truly magical...',
+      date: 'January 20, 2024',
+      author: 'Sarah Mitchell',
+      category: 'Destination Guides',
+      image: 'https://picsum.photos/seed/blog-rome/800/500',
+    },
+    {
+      title: 'How to Plan the Perfect Family Vacation',
+      excerpt: 'Essential tips for creating unforgettable memories with your loved ones...',
+      date: 'January 15, 2024',
+      author: 'David Chen',
+      category: 'Travel Tips',
+      image: 'https://picsum.photos/seed/blog-family/800/500',
+    },
+    {
+      title: 'Best Time to Visit European Capitals',
+      excerpt: 'Your comprehensive guide to seasonal travel across Europe...',
+      date: 'January 10, 2024',
+      author: 'Emma Rodriguez',
+      category: 'Travel Planning',
+      image: 'https://picsum.photos/seed/blog-europe/800/500',
+    },
+  ];
 
   useEffect(() => {
     fetchHomePageData();
@@ -189,6 +218,55 @@ export default function HomePage() {
                 <ActivityCard key={activity.id} activity={activity} />
               ))
             )}
+          </div>
+        </div>
+      </section>
+
+      {/* Travel Stories */}
+      <section className="py-16 bg-gray-50">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-between items-center mb-8">
+            <div>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                Travel Stories & Tips
+              </h2>
+              <p className="text-gray-600">
+                Inspiration and advice from our travel experts
+              </p>
+            </div>
+            <Link href="/blog" className="text-primary hover:text-primary-600 flex items-center font-medium">
+              Read Our Blog
+              <ArrowRight className="w-4 h-4 ml-1" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {featuredBlogPosts.map((post, index) => (
+              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+                <div className="relative h-48">
+                  <Image
+                    src={post.image}
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-6">
+                  <span className="text-primary text-sm font-semibold">{post.category}</span>
+                  <h3 className="text-xl font-bold text-gray-900 mt-2 mb-3 line-clamp-2">{post.title}</h3>
+                  <p className="text-gray-600 mb-4 line-clamp-2">{post.excerpt}</p>
+                  <div className="flex items-center text-sm text-gray-500 mb-3">
+                    <Calendar className="w-4 h-4 mr-1" />
+                    <span className="mr-4">{post.date}</span>
+                    <User className="w-4 h-4 mr-1" />
+                    <span>{post.author}</span>
+                  </div>
+                  <Link href="/blog" className="text-primary hover:text-primary-600 font-medium flex items-center">
+                    Read More <ArrowRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

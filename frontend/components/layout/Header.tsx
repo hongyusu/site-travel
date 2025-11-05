@@ -87,6 +87,9 @@ export default function Header() {
             <Link href="/destinations" className="text-gray-700 hover:text-primary transition-colors">
               {getTranslation('nav.destinations')}
             </Link>
+            <Link href="/blog" className="text-gray-700 hover:text-primary transition-colors">
+              Blog
+            </Link>
           </nav>
 
           {/* Desktop Actions */}
@@ -171,6 +174,9 @@ export default function Header() {
               </Link>
               <Link href="/destinations" className="text-gray-700 hover:text-primary transition-colors">
                 {getTranslation('nav.destinations')}
+              </Link>
+              <Link href="/blog" className="text-gray-700 hover:text-primary transition-colors">
+                Blog
               </Link>
               <Link href="/cart" className="text-gray-700 hover:text-primary transition-colors">
                 {getTranslation('nav.cart')} ({cartCount})

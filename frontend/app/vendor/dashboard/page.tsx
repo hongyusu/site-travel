@@ -7,9 +7,11 @@ import { Plus, Edit, Trash2, Eye, TrendingUp, Calendar, DollarSign, ToggleLeft, 
 import { api, apiClient } from '@/lib/api';
 import BookingCalendar from '@/components/vendor/BookingCalendar';
 import BookingDetailsModal from '@/components/vendor/BookingDetailsModal';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function VendorDashboardPage() {
   const router = useRouter();
+  const { getTranslation, language } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [activities, setActivities] = useState<any[]>([]);
   const [bookings, setBookings] = useState<any[]>([]);
@@ -20,6 +22,27 @@ export default function VendorDashboardPage() {
   useEffect(() => {
     fetchDashboardData();
   }, []);
+
+  // Re-fetch activities when language changes
+  useEffect(() => {
+    if (user && activities.length > 0) {
+      fetchActivities();
+    }
+  }, [language]);
+
+  const fetchActivities = async () => {
+    try {
+      console.log('Dashboard: Fetching activities with language:', language);
+      const activitiesResponse = await apiClient.activities.search({ 
+        vendor_only: true,
+        language: language 
+      });
+      setActivities(activitiesResponse.data.data || activitiesResponse.data);
+      console.log('Dashboard: Activities updated for language:', language);
+    } catch (error: any) {
+      console.error('Dashboard: Error fetching activities:', error);
+    }
+  };
 
   const fetchDashboardData = async () => {
     try {
@@ -35,7 +58,7 @@ export default function VendorDashboardPage() {
       console.log('Dashboard: Fetching profile, activities, and bookings...');
       const [profileResponse, activitiesResponse, bookingsResponse] = await Promise.all([
         apiClient.auth.getProfile(),
-        apiClient.activities.search({ vendor_only: true }),
+        apiClient.activities.search({ vendor_only: true, language: language }),
         api.get('/bookings/vendor/bookings'),
       ]);
 
@@ -70,14 +93,14 @@ export default function VendorDashboardPage() {
   };
 
   const handleDeleteActivity = async (id: number) => {
-    if (!confirm('Are you sure you want to delete this activity?')) return;
+    if (!confirm(getTranslation('vendor.confirm_delete'))) return;
 
     try {
       await apiClient.activities.delete(id);
       setActivities(activities.filter(a => a.id !== id));
     } catch (error) {
       console.error('Error deleting activity:', error);
-      alert('Failed to delete activity');
+      alert(getTranslation('vendor.delete_failed'));
     }
   };
 
@@ -91,12 +114,12 @@ export default function VendorDashboardPage() {
       ));
     } catch (error) {
       console.error('Error toggling activity status:', error);
-      alert('Failed to toggle activity status');
+      alert(getTranslation('vendor.toggle_failed'));
     }
   };
 
   const handleApproveBooking = async (bookingId: number) => {
-    if (!confirm('Approve this booking?')) return;
+    if (!confirm(getTranslation('vendor.approve_confirm'))) return;
 
     try {
       await api.post(`/bookings/vendor/${bookingId}/approve`);
@@ -105,12 +128,12 @@ export default function VendorDashboardPage() {
       setBookings(response.data.data || response.data);
     } catch (error) {
       console.error('Error approving booking:', error);
-      alert('Failed to approve booking');
+      alert(getTranslation('vendor.approve_failed'));
     }
   };
 
   const handleRejectBooking = async (bookingId: number) => {
-    const reason = prompt('Please provide a reason for rejection:');
+    const reason = prompt(getTranslation('vendor.reject_reason'));
     if (!reason) return;
 
     try {
@@ -120,12 +143,12 @@ export default function VendorDashboardPage() {
       setBookings(response.data.data || response.data);
     } catch (error) {
       console.error('Error rejecting booking:', error);
-      alert('Failed to reject booking');
+      alert(getTranslation('vendor.reject_failed'));
     }
   };
 
   const handleCancelBooking = async (bookingId: number) => {
-    const reason = prompt('Please provide a reason for cancellation:');
+    const reason = prompt(getTranslation('vendor.cancel_reason'));
     if (!reason) return;
 
     try {
@@ -135,7 +158,7 @@ export default function VendorDashboardPage() {
       setBookings(response.data.data || response.data);
     } catch (error) {
       console.error('Error cancelling booking:', error);
-      alert('Failed to cancel booking');
+      alert(getTranslation('vendor.cancel_failed'));
     }
   };
 
@@ -144,7 +167,7 @@ export default function VendorDashboardPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto" />
-          <p className="mt-4 text-gray-600">Loading...</p>
+          <p className="mt-4 text-gray-600">{getTranslation('vendor.loading')}</p>
         </div>
       </div>
     );
@@ -160,15 +183,15 @@ export default function VendorDashboardPage() {
         <div className="container mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Vendor Dashboard</h1>
-              <p className="text-gray-600 mt-1">Welcome back, {user?.full_name}</p>
+              <h1 className="text-3xl font-bold text-gray-900">{getTranslation('vendor.dashboard')}</h1>
+              <p className="text-gray-600 mt-1">{getTranslation('vendor.welcome_back')}, {user?.full_name}</p>
             </div>
             <Link
               href="/vendor/activities/new"
               className="btn-primary flex items-center shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 animate-pulse hover:animate-none"
             >
               <Plus className="w-5 h-5 mr-2" />
-              Add Activity
+              {getTranslation('vendor.add_activity')}
             </Link>
           </div>
         </div>
@@ -180,7 +203,7 @@ export default function VendorDashboardPage() {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Activities</p>
+                <p className="text-sm text-gray-600">{getTranslation('vendor.total_activities')}</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{activities.length}</p>
               </div>
               <div className="w-12 h-12 bg-primary-50 rounded-full flex items-center justify-center">
@@ -192,7 +215,7 @@ export default function VendorDashboardPage() {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Active Activities</p>
+                <p className="text-sm text-gray-600">{getTranslation('vendor.active_activities')}</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{activeActivities}</p>
               </div>
               <div className="w-12 h-12 bg-success-50 rounded-full flex items-center justify-center">
@@ -204,7 +227,7 @@ export default function VendorDashboardPage() {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Bookings</p>
+                <p className="text-sm text-gray-600">{getTranslation('vendor.total_bookings')}</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">{bookings.length}</p>
               </div>
               <div className="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center">
@@ -216,7 +239,7 @@ export default function VendorDashboardPage() {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm text-gray-600">Total Revenue</p>
+                <p className="text-sm text-gray-600">{getTranslation('vendor.total_revenue')}</p>
                 <p className="text-3xl font-bold text-gray-900 mt-2">€{totalRevenue.toFixed(2)}</p>
               </div>
               <div className="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center">
@@ -229,7 +252,7 @@ export default function VendorDashboardPage() {
         {/* Activities Table */}
         <div className="bg-white rounded-lg shadow overflow-hidden">
           <div className="p-6 border-b border-gray-200">
-            <h2 className="text-xl font-bold text-gray-900">Your Activities</h2>
+            <h2 className="text-xl font-bold text-gray-900">{getTranslation('vendor.your_activities')}</h2>
           </div>
 
           {activities.length === 0 ? (
@@ -238,14 +261,14 @@ export default function VendorDashboardPage() {
                 <div className="w-24 h-24 mx-auto bg-primary-50 rounded-full flex items-center justify-center mb-4">
                   <Plus className="w-12 h-12 text-primary" />
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">No Activities Yet</h3>
-                <p className="text-gray-600 mb-6">Get started by creating your first activity. Share your experiences with travelers worldwide!</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-2">{getTranslation('vendor.no_activities_yet')}</h3>
+                <p className="text-gray-600 mb-6">{getTranslation('vendor.get_started_message')}</p>
                 <Link
                   href="/vendor/activities/new"
                   className="btn-primary inline-flex items-center gap-2 text-lg px-8 py-4 shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200"
                 >
                   <Plus className="w-6 h-6" />
-                  Create Your First Activity
+                  {getTranslation('vendor.create_first_activity')}
                 </Link>
               </div>
             </div>
@@ -255,22 +278,22 @@ export default function VendorDashboardPage() {
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Activity
+                      {getTranslation('vendor.activity')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Category
+                      {getTranslation('vendor.category')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Price
+                      {getTranslation('vendor.price')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Rating
+                      {getTranslation('vendor.rating')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
+                      {getTranslation('vendor.status')}
                     </th>
                     <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
+                      {getTranslation('vendor.actions')}
                     </th>
                   </tr>
                 </thead>
@@ -301,7 +324,7 @@ export default function VendorDashboardPage() {
                             ? 'bg-success-light text-success'
                             : 'bg-gray-100 text-gray-800'
                         }`}>
-                          {activity.is_active ? 'Active' : 'Inactive'}
+                          {activity.is_active ? getTranslation('vendor.active') : getTranslation('vendor.inactive')}
                         </span>
                       </td>
                       <td className="px-6 py-4 text-right text-sm font-medium">
@@ -347,7 +370,7 @@ export default function VendorDashboardPage() {
         {/* Recent Bookings */}
         <div className="bg-white rounded-lg shadow overflow-hidden mt-8">
           <div className="p-6 border-b border-gray-200 flex justify-between items-center">
-            <h2 className="text-xl font-bold text-gray-900">Recent Bookings</h2>
+            <h2 className="text-xl font-bold text-gray-900">{getTranslation('vendor.recent_bookings')}</h2>
             <div className="flex gap-2">
               <button
                 onClick={() => setViewMode('list')}
@@ -358,7 +381,7 @@ export default function VendorDashboardPage() {
                 }`}
               >
                 <List className="w-4 h-4" />
-                List
+                {getTranslation('vendor.list')}
               </button>
               <button
                 onClick={() => setViewMode('calendar')}
@@ -369,14 +392,14 @@ export default function VendorDashboardPage() {
                 }`}
               >
                 <CalendarDays className="w-4 h-4" />
-                Calendar
+                {getTranslation('vendor.calendar')}
               </button>
             </div>
           </div>
 
           {bookings.length === 0 ? (
             <div className="p-12 text-center">
-              <p className="text-gray-600">No bookings yet.</p>
+              <p className="text-gray-600">{getTranslation('vendor.no_bookings_yet')}</p>
             </div>
           ) : viewMode === 'calendar' ? (
             <div className="p-6">
@@ -391,25 +414,25 @@ export default function VendorDashboardPage() {
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Booking Ref
+                      {getTranslation('vendor.booking_ref')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Activity
+                      {getTranslation('vendor.activity')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Customer
+                      {getTranslation('vendor.customer')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Date
+                      {getTranslation('vendor.date')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Amount
+                      {getTranslation('vendor.amount')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Status
+                      {getTranslation('vendor.status')}
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                      Actions
+                      {getTranslation('vendor.actions')}
                     </th>
                   </tr>
                 </thead>
@@ -457,18 +480,18 @@ export default function VendorDashboardPage() {
                                 e.stopPropagation();
                                 handleApproveBooking(booking.id);
                               }}
-                              className="text-sm text-green-600 hover:text-green-800 font-medium"
+                              className="px-3 py-1 text-xs bg-green-100 text-green-700 hover:bg-green-200 hover:text-green-800 font-medium rounded-full transition-colors"
                             >
-                              Approve
+                              {getTranslation('vendor.approve')}
                             </button>
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleRejectBooking(booking.id);
                               }}
-                              className="text-sm text-red-600 hover:text-red-800 font-medium"
+                              className="px-3 py-1 text-xs bg-red-100 text-red-700 hover:bg-red-200 hover:text-red-800 font-medium rounded-full transition-colors"
                             >
-                              Reject
+                              {getTranslation('vendor.reject')}
                             </button>
                           </div>
                         )}
@@ -479,7 +502,7 @@ export default function VendorDashboardPage() {
                             <button
                               onClick={async (e) => {
                                 e.stopPropagation();
-                                if (confirm('Mark this booking as checked in?')) {
+                                if (confirm(getTranslation('vendor.checkin_confirm'))) {
                                   try {
                                     await api.put(`/bookings/vendor/${booking.id}/checkin`);
                                     // Refresh bookings
@@ -487,22 +510,22 @@ export default function VendorDashboardPage() {
                                     setBookings(response.data.data || response.data);
                                   } catch (error) {
                                     console.error('Error checking in booking:', error);
-                                    alert('Failed to check in booking');
+                                    alert(getTranslation('vendor.checkin_failed'));
                                   }
                                 }
                               }}
-                              className="text-sm text-primary hover:text-primary-600 font-medium"
+                              className="px-3 py-1 text-xs bg-blue-100 text-blue-700 hover:bg-blue-200 hover:text-blue-800 font-medium rounded-full transition-colors"
                             >
-                              Check In
+                              {getTranslation('vendor.check_in')}
                             </button>
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();
                                 handleCancelBooking(booking.id);
                               }}
-                              className="text-sm text-gray-600 hover:text-gray-800 font-medium"
+                              className="px-3 py-1 text-xs bg-gray-100 text-gray-700 hover:bg-gray-200 hover:text-gray-800 font-medium rounded-full transition-colors"
                             >
-                              Cancel
+                              {getTranslation('vendor.cancel')}
                             </button>
                           </div>
                         )}

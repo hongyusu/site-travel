@@ -145,6 +145,8 @@ export const apiClient = {
       api.get(endpoints.me),
     updateProfile: (data: any) =>
       api.put(endpoints.me, data),
+    getStatistics: () =>
+      api.get('/auth/me/statistics'),
   },
 
   activities: {

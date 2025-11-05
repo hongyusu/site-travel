@@ -24,6 +24,20 @@ interface TranslatableContent {
     highlights: string[];
     includes: { item: string; is_included: boolean }[];
     faqs: { question: string; answer: string }[];
+    pricing_tiers: { 
+      tier_name: string; 
+      tier_description: string; 
+      price_adult: string; 
+      price_child: string; 
+      order_index: number;
+    }[];
+    add_ons: {
+      name: string;
+      description: string;
+      price: string;
+      is_optional: boolean;
+      order_index: number;
+    }[];
   };
 }
 
@@ -52,6 +66,11 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
     is_skip_the_line: false,
     category_ids: [] as number[],
     destination_ids: [] as number[],
+    // Pricing variations
+    discount_percentage: '',
+    original_price_adult: '',
+    original_price_child: '',
+    has_multiple_tiers: false,
     // Features
     has_mobile_ticket: false,
     has_best_price_guarantee: false,
@@ -73,6 +92,9 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       instructions: '',
       latitude: null as number | null,
       longitude: null as number | null,
+      parking_info: '',
+      public_transport_info: '',
+      nearby_landmarks: '',
     },
   });
 
@@ -90,6 +112,8 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       highlights: [''],
       includes: [{ item: '', is_included: true }],
       faqs: [{ question: '', answer: '' }],
+      pricing_tiers: [],
+      add_ons: [],
     },
     es: {
       title: '',
@@ -103,6 +127,8 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       highlights: [''],
       includes: [{ item: '', is_included: true }],
       faqs: [{ question: '', answer: '' }],
+      pricing_tiers: [],
+      add_ons: [],
     },
     zh: {
       title: '',
@@ -116,6 +142,8 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       highlights: [''],
       includes: [{ item: '', is_included: true }],
       faqs: [{ question: '', answer: '' }],
+      pricing_tiers: [],
+      add_ons: [],
     },
     fr: {
       title: '',
@@ -129,6 +157,8 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       highlights: [''],
       includes: [{ item: '', is_included: true }],
       faqs: [{ question: '', answer: '' }],
+      pricing_tiers: [],
+      add_ons: [],
     },
   });
 
@@ -209,6 +239,12 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
           is_skip_the_line: englishData.is_skip_the_line,
           category_ids: englishData.categories?.map((c: any) => c.id) || [],
           destination_ids: englishData.destinations?.map((d: any) => d.id) || [],
+          // Pricing variations
+          discount_percentage: englishData.discount_percentage?.toString() || '',
+          original_price_adult: englishData.original_price_adult?.toString() || '',
+          original_price_child: englishData.original_price_child?.toString() || '',
+          has_multiple_tiers: englishData.has_multiple_tiers || false,
+          // Features
           has_mobile_ticket: englishData.has_mobile_ticket || false,
           has_best_price_guarantee: englishData.has_best_price_guarantee || false,
           is_verified_activity: englishData.is_verified_activity || false,
@@ -229,6 +265,9 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
             instructions: '',
             latitude: null,
             longitude: null,
+            parking_info: '',
+            public_transport_info: '',
+            nearby_landmarks: '',
           },
         });
       }
@@ -249,6 +288,20 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
           highlights: data.highlights?.map((h: any) => h.text) || [''],
           includes: data.includes?.map((i: any) => ({ item: i.item, is_included: i.is_included })) || [{ item: '', is_included: true }],
           faqs: data.faqs?.map((f: any) => ({ question: f.question, answer: f.answer })) || [{ question: '', answer: '' }],
+          pricing_tiers: data.pricing_tiers?.map((t: any) => ({
+            tier_name: t.tier_name || '',
+            tier_description: t.tier_description || '',
+            price_adult: t.price_adult?.toString() || '',
+            price_child: t.price_child?.toString() || '',
+            order_index: t.order_index || 0,
+          })) || [],
+          add_ons: data.add_ons?.map((a: any) => ({
+            name: a.name || '',
+            description: a.description || '',
+            price: a.price?.toString() || '',
+            is_optional: a.is_optional !== false,
+            order_index: a.order_index || 0,
+          })) || [],
         };
       });
       
@@ -277,6 +330,10 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
         max_group_size: baseData.max_group_size ? parseInt(baseData.max_group_size) : null,
         response_time_hours: baseData.response_time_hours ? parseInt(baseData.response_time_hours) : null,
         reserve_payment_deadline_hours: baseData.reserve_payment_deadline_hours ? parseInt(baseData.reserve_payment_deadline_hours) : null,
+        // Pricing variations
+        discount_percentage: baseData.discount_percentage ? parseInt(baseData.discount_percentage) : null,
+        original_price_adult: baseData.original_price_adult ? parseFloat(baseData.original_price_adult) : null,
+        original_price_child: baseData.original_price_child ? parseFloat(baseData.original_price_child) : null,
         supported_languages: enabledLanguages, // Always all 4 languages
         translations: {
           es: translations['es'],
@@ -370,6 +427,72 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
     const newFaqs = [...translations[lang].faqs];
     newFaqs[index] = { ...newFaqs[index], [field]: value };
     updateTranslation(lang, 'faqs', newFaqs);
+  };
+
+  // Pricing Tier functions
+  const addPricingTier = (lang: Language) => {
+    if (lang !== 'en') return; // Only allow editing in English
+    const newTier = {
+      tier_name: '',
+      tier_description: '',
+      price_adult: '',
+      price_child: '',
+      order_index: translations[lang].pricing_tiers.length,
+    };
+    updateTranslation(lang, 'pricing_tiers', [...translations[lang].pricing_tiers, newTier]);
+  };
+
+  const removePricingTier = (lang: Language, index: number) => {
+    if (lang !== 'en') return; // Only allow editing in English
+    const newTiers = translations[lang].pricing_tiers.filter((_, i) => i !== index);
+    // Reorder indices
+    const reorderedTiers = newTiers.map((tier, i) => ({ ...tier, order_index: i }));
+    updateTranslation(lang, 'pricing_tiers', reorderedTiers);
+  };
+
+  const updatePricingTier = (lang: Language, index: number, field: string, value: any) => {
+    if (lang !== 'en') return; // Only allow editing in English
+    const newTiers = [...translations[lang].pricing_tiers];
+    newTiers[index] = { ...newTiers[index], [field]: value };
+    updateTranslation(lang, 'pricing_tiers', newTiers);
+  };
+
+  const addDefaultPricingTiers = (lang: Language) => {
+    if (lang !== 'en') return; // Only allow editing in English
+    const defaultTiers = [
+      { tier_name: 'Standard', tier_description: 'Basic package with essential features', price_adult: '', price_child: '', order_index: 0 },
+      { tier_name: 'Premium', tier_description: 'Enhanced experience with additional benefits', price_adult: '', price_child: '', order_index: 1 },
+      { tier_name: 'VIP', tier_description: 'Luxury experience with exclusive access', price_adult: '', price_child: '', order_index: 2 },
+    ];
+    updateTranslation(lang, 'pricing_tiers', defaultTiers);
+  };
+
+  // Add-on functions
+  const addAddOn = (lang: Language) => {
+    if (lang !== 'en') return; // Only allow editing in English
+    const newAddOn = {
+      name: '',
+      description: '',
+      price: '',
+      is_optional: true,
+      order_index: translations[lang].add_ons.length,
+    };
+    updateTranslation(lang, 'add_ons', [...translations[lang].add_ons, newAddOn]);
+  };
+
+  const removeAddOn = (lang: Language, index: number) => {
+    if (lang !== 'en') return; // Only allow editing in English
+    const newAddOns = translations[lang].add_ons.filter((_, i) => i !== index);
+    // Reorder indices
+    const reorderedAddOns = newAddOns.map((addon, i) => ({ ...addon, order_index: i }));
+    updateTranslation(lang, 'add_ons', reorderedAddOns);
+  };
+
+  const updateAddOn = (lang: Language, index: number, field: string, value: any) => {
+    if (lang !== 'en') return; // Only allow editing in English
+    const newAddOns = [...translations[lang].add_ons];
+    newAddOns[index] = { ...newAddOns[index], [field]: value };
+    updateTranslation(lang, 'add_ons', newAddOns);
   };
 
   if (loading) {
@@ -659,6 +782,71 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
               </p>
             )}
           </div>
+
+          {/* FAQs */}
+          <div>
+            <label className="block text-sm font-medium mb-2">
+              Frequently Asked Questions
+              {activeLanguage !== 'en' && (
+                <span className="ml-2 text-sm text-amber-600">(Read-only)</span>
+              )}
+            </label>
+            {translations[activeLanguage].faqs.map((faq, index) => (
+              <div key={index} className="mb-4 p-4 border rounded-lg">
+                <div className="mb-2">
+                  <input
+                    type="text"
+                    value={faq.question}
+                    onChange={(e) => activeLanguage === 'en' ? updateFaq(activeLanguage, index, 'question', e.target.value) : null}
+                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none ${
+                      activeLanguage !== 'en' ? 'bg-gray-100 cursor-not-allowed' : ''
+                    }`}
+                    disabled={activeLanguage !== 'en'}
+                    placeholder={activeLanguage !== 'en' ? 'Translation will be available soon' : 'Enter question'}
+                  />
+                </div>
+                <div className="mb-2">
+                  <textarea
+                    value={faq.answer}
+                    onChange={(e) => activeLanguage === 'en' ? updateFaq(activeLanguage, index, 'answer', e.target.value) : null}
+                    rows={3}
+                    className={`w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none ${
+                      activeLanguage !== 'en' ? 'bg-gray-100 cursor-not-allowed' : ''
+                    }`}
+                    disabled={activeLanguage !== 'en'}
+                    placeholder={activeLanguage !== 'en' ? 'Translation will be available soon' : 'Enter answer'}
+                  />
+                </div>
+                {activeLanguage === 'en' && (
+                  <button
+                    type="button"
+                    onClick={() => removeFaq(activeLanguage, index)}
+                    className="flex items-center gap-2 px-3 py-1 text-red-600 hover:bg-red-50 rounded-lg text-sm"
+                  >
+                    <X className="w-4 h-4" />
+                    Remove FAQ
+                  </button>
+                )}
+              </div>
+            ))}
+            {activeLanguage === 'en' && (
+              <button
+                type="button"
+                onClick={() => addFaq(activeLanguage)}
+                className="mt-2 flex items-center gap-2 px-4 py-2 text-primary border border-primary rounded-lg hover:bg-orange-50"
+              >
+                <Plus className="w-4 h-4" />
+                Add FAQ
+              </button>
+            )}
+            {activeLanguage !== 'en' && (
+              <p className="mt-1 text-sm text-blue-600 flex items-center gap-1">
+                <Info className="w-4 h-4" />
+                Translations will be handled automatically. Currently showing English content.
+              </p>
+            )}
+          </div>
+
         </div>
       </div>
 
@@ -695,6 +883,61 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
               onChange={(e) => setBaseData({ ...baseData, price_child: e.target.value })}
               className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
             />
+          </div>
+
+          {/* Original Price Adult (for discounts) */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Original Adult Price (€)</label>
+            <input
+              type="number"
+              step="0.01"
+              value={baseData.original_price_adult}
+              onChange={(e) => setBaseData({ ...baseData, original_price_adult: e.target.value })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="Leave empty if no discount"
+            />
+            <p className="text-xs text-gray-600 mt-1">Used to show strikethrough price for discounts</p>
+          </div>
+
+          {/* Original Price Child (for discounts) */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Original Child Price (€)</label>
+            <input
+              type="number"
+              step="0.01"
+              value={baseData.original_price_child}
+              onChange={(e) => setBaseData({ ...baseData, original_price_child: e.target.value })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="Leave empty if no discount"
+            />
+          </div>
+
+          {/* Discount Percentage */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Discount Percentage (%)</label>
+            <input
+              type="number"
+              min="0"
+              max="100"
+              value={baseData.discount_percentage}
+              onChange={(e) => setBaseData({ ...baseData, discount_percentage: e.target.value })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="e.g. 20 for 20% off"
+            />
+          </div>
+
+          {/* Reserve Payment Deadline */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Reserve Payment Deadline (hours)</label>
+            <input
+              type="number"
+              min="1"
+              value={baseData.reserve_payment_deadline_hours}
+              onChange={(e) => setBaseData({ ...baseData, reserve_payment_deadline_hours: e.target.value })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="24"
+            />
+            <p className="text-xs text-gray-600 mt-1">For reserve now, pay later option</p>
           </div>
 
           {/* Duration */}
@@ -758,6 +1001,47 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
             </select>
             <p className="text-xs text-gray-600 mt-1">Hold Ctrl/Cmd to select multiple</p>
           </div>
+
+          {/* Video URL */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Video URL</label>
+            <input
+              type="url"
+              value={baseData.video_url}
+              onChange={(e) => setBaseData({ ...baseData, video_url: e.target.value })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="https://youtube.com/watch?v=..."
+            />
+            <p className="text-xs text-gray-600 mt-1">YouTube, Vimeo, or direct video link</p>
+          </div>
+
+          {/* Response Time */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Response Time (hours)</label>
+            <input
+              type="number"
+              min="1"
+              value={baseData.response_time_hours}
+              onChange={(e) => setBaseData({ ...baseData, response_time_hours: e.target.value })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="24"
+            />
+            <p className="text-xs text-gray-600 mt-1">How quickly you respond to booking requests</p>
+          </div>
+
+          {/* Free Cancellation Hours */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Free Cancellation (hours before)</label>
+            <input
+              type="number"
+              min="0"
+              value={baseData.free_cancellation_hours}
+              onChange={(e) => setBaseData({ ...baseData, free_cancellation_hours: parseInt(e.target.value) || 0 })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="24"
+            />
+            <p className="text-xs text-gray-600 mt-1">0 = no free cancellation</p>
+          </div>
         </div>
 
         {/* Features Checkboxes */}
@@ -767,12 +1051,20 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
             {[
               { key: 'instant_confirmation', label: 'Instant Confirmation' },
               { key: 'has_mobile_ticket', label: 'Mobile Ticket' },
+              { key: 'has_best_price_guarantee', label: 'Best Price Guarantee' },
+              { key: 'is_verified_activity', label: 'Verified Activity' },
               { key: 'is_bestseller', label: 'Bestseller' },
               { key: 'is_skip_the_line', label: 'Skip the Line' },
+              { key: 'is_likely_to_sell_out', label: 'Likely to Sell Out' },
               { key: 'is_wheelchair_accessible', label: 'Wheelchair Accessible' },
+              { key: 'is_stroller_accessible', label: 'Stroller Accessible' },
+              { key: 'allows_service_animals', label: 'Service Animals Allowed' },
+              { key: 'has_infant_seats', label: 'Infant Seats Available' },
               { key: 'allows_reserve_now_pay_later', label: 'Reserve Now, Pay Later' },
               { key: 'is_giftable', label: 'Giftable' },
+              { key: 'has_covid_measures', label: 'Has COVID-19 Measures' },
               { key: 'weather_dependent', label: 'Weather Dependent' },
+              { key: 'has_multiple_tiers', label: 'Multiple Pricing Tiers' },
             ].map(({ key, label }) => (
               <label key={key} className="flex items-center gap-2 cursor-pointer">
                 <input
@@ -784,6 +1076,323 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
                 <span className="text-sm">{label}</span>
               </label>
             ))}
+          </div>
+        </div>
+
+        {/* Pricing Tiers */}
+        <div className="mt-8">
+          <h4 className="font-medium mb-3">Pricing Tiers (Standard, Premium, VIP)</h4>
+          <p className="text-sm text-gray-600 mb-4">
+            Create different pricing options for your activity. Leave empty if you only want basic pricing.
+          </p>
+          
+          {translations['en'].pricing_tiers.length === 0 && (
+            <div className="mb-4 p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm text-gray-600 mb-3">No pricing tiers created yet.</p>
+              <button
+                type="button"
+                onClick={() => addDefaultPricingTiers('en')}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200"
+              >
+                <Plus className="w-4 h-4" />
+                Add Standard/Premium/VIP Tiers
+              </button>
+            </div>
+          )}
+
+          {translations['en'].pricing_tiers.map((tier, index) => (
+            <div key={index} className="mb-6 p-4 border rounded-lg bg-gray-50">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Tier Name */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Tier Name</label>
+                  <input
+                    type="text"
+                    value={tier.tier_name}
+                    onChange={(e) => updatePricingTier('en', index, 'tier_name', e.target.value)}
+                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                    placeholder="e.g. Standard, Premium, VIP"
+                  />
+                </div>
+
+                {/* Adult Price */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Adult Price (€) *</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={tier.price_adult}
+                    onChange={(e) => updatePricingTier('en', index, 'price_adult', e.target.value)}
+                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                    required
+                  />
+                </div>
+
+                {/* Child Price */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Child Price (€)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={tier.price_child}
+                    onChange={(e) => updatePricingTier('en', index, 'price_child', e.target.value)}
+                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                  />
+                </div>
+
+                {/* Description */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium mb-1">Description</label>
+                  <textarea
+                    value={tier.tier_description}
+                    onChange={(e) => updatePricingTier('en', index, 'tier_description', e.target.value)}
+                    rows={2}
+                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                    placeholder="Describe what's included in this tier"
+                  />
+                </div>
+              </div>
+
+              <div className="mt-3 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => removePricingTier('en', index)}
+                  className="flex items-center gap-2 px-3 py-1 text-red-600 hover:bg-red-50 rounded-lg text-sm"
+                >
+                  <X className="w-4 h-4" />
+                  Remove Tier
+                </button>
+              </div>
+            </div>
+          ))}
+
+          {translations['en'].pricing_tiers.length > 0 && (
+            <button
+              type="button"
+              onClick={() => addPricingTier('en')}
+              className="mt-2 flex items-center gap-2 px-4 py-2 text-primary border border-primary rounded-lg hover:bg-orange-50"
+            >
+              <Plus className="w-4 h-4" />
+              Add Custom Tier
+            </button>
+          )}
+        </div>
+
+        {/* Add-ons Management */}
+        <div className="mt-8">
+          <h4 className="font-medium mb-3">Add-ons & Extras</h4>
+          <p className="text-sm text-gray-600 mb-4">
+            Offer optional extras that customers can add to their booking for an additional fee.
+          </p>
+          
+          {translations['en'].add_ons.length === 0 && (
+            <div className="mb-4 p-4 bg-gray-50 rounded-lg">
+              <p className="text-sm text-gray-600 mb-3">No add-ons created yet.</p>
+              <button
+                type="button"
+                onClick={() => addAddOn('en')}
+                className="flex items-center gap-2 px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200"
+              >
+                <Plus className="w-4 h-4" />
+                Add Your First Add-on
+              </button>
+            </div>
+          )}
+
+          {translations['en'].add_ons.map((addon, index) => (
+            <div key={index} className="mb-6 p-4 border rounded-lg bg-gray-50">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {/* Add-on Name */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Add-on Name *</label>
+                  <input
+                    type="text"
+                    value={addon.name}
+                    onChange={(e) => updateAddOn('en', index, 'name', e.target.value)}
+                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                    placeholder="e.g. Professional Photos, Audio Guide, Lunch"
+                    required
+                  />
+                </div>
+
+                {/* Price */}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Price (€) *</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    value={addon.price}
+                    onChange={(e) => updateAddOn('en', index, 'price', e.target.value)}
+                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                    required
+                  />
+                </div>
+
+                {/* Description */}
+                <div className="md:col-span-2">
+                  <label className="block text-sm font-medium mb-1">Description</label>
+                  <textarea
+                    value={addon.description}
+                    onChange={(e) => updateAddOn('en', index, 'description', e.target.value)}
+                    rows={2}
+                    className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+                    placeholder="Describe what this add-on includes"
+                  />
+                </div>
+
+                {/* Optional checkbox */}
+                <div className="md:col-span-2">
+                  <label className="flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={addon.is_optional}
+                      onChange={(e) => updateAddOn('en', index, 'is_optional', e.target.checked)}
+                      className="w-4 h-4 text-primary rounded focus:ring-2 focus:ring-primary"
+                    />
+                    <span className="text-sm">This is an optional add-on (customers can choose to skip)</span>
+                  </label>
+                </div>
+              </div>
+
+              <div className="mt-3 flex justify-end">
+                <button
+                  type="button"
+                  onClick={() => removeAddOn('en', index)}
+                  className="flex items-center gap-2 px-3 py-1 text-red-600 hover:bg-red-50 rounded-lg text-sm"
+                >
+                  <X className="w-4 h-4" />
+                  Remove Add-on
+                </button>
+              </div>
+            </div>
+          ))}
+
+          {translations['en'].add_ons.length > 0 && (
+            <button
+              type="button"
+              onClick={() => addAddOn('en')}
+              className="mt-2 flex items-center gap-2 px-4 py-2 text-primary border border-primary rounded-lg hover:bg-orange-50"
+            >
+              <Plus className="w-4 h-4" />
+              Add Another Add-on
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Meeting Point Details */}
+      <div className="mb-8 p-6 bg-white rounded-lg shadow-sm border">
+        <h3 className="text-lg font-semibold mb-4">Meeting Point</h3>
+        <p className="text-sm text-gray-600 mb-4">
+          Provide detailed information about where participants should meet.
+        </p>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Address */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium mb-2">Address</label>
+            <input
+              type="text"
+              value={baseData.meeting_point.address}
+              onChange={(e) => setBaseData({
+                ...baseData,
+                meeting_point: { ...baseData.meeting_point, address: e.target.value }
+              })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="123 Main Street, City, Country"
+            />
+          </div>
+
+          {/* Instructions */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium mb-2">Meeting Instructions</label>
+            <textarea
+              value={baseData.meeting_point.instructions}
+              onChange={(e) => setBaseData({
+                ...baseData,
+                meeting_point: { ...baseData.meeting_point, instructions: e.target.value }
+              })}
+              rows={3}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="Look for the guide with a blue umbrella near the fountain..."
+            />
+          </div>
+
+          {/* Latitude */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Latitude</label>
+            <input
+              type="number"
+              step="any"
+              value={baseData.meeting_point.latitude || ''}
+              onChange={(e) => setBaseData({
+                ...baseData,
+                meeting_point: { ...baseData.meeting_point, latitude: e.target.value ? parseFloat(e.target.value) : null }
+              })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="48.8566"
+            />
+          </div>
+
+          {/* Longitude */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Longitude</label>
+            <input
+              type="number"
+              step="any"
+              value={baseData.meeting_point.longitude || ''}
+              onChange={(e) => setBaseData({
+                ...baseData,
+                meeting_point: { ...baseData.meeting_point, longitude: e.target.value ? parseFloat(e.target.value) : null }
+              })}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="2.3522"
+            />
+          </div>
+
+          {/* Parking Info */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Parking Information</label>
+            <textarea
+              value={baseData.meeting_point.parking_info}
+              onChange={(e) => setBaseData({
+                ...baseData,
+                meeting_point: { ...baseData.meeting_point, parking_info: e.target.value }
+              })}
+              rows={2}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="Paid parking available on Main Street..."
+            />
+          </div>
+
+          {/* Public Transport Info */}
+          <div>
+            <label className="block text-sm font-medium mb-2">Public Transport</label>
+            <textarea
+              value={baseData.meeting_point.public_transport_info}
+              onChange={(e) => setBaseData({
+                ...baseData,
+                meeting_point: { ...baseData.meeting_point, public_transport_info: e.target.value }
+              })}
+              rows={2}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="Take Metro Line 1 to Central Station..."
+            />
+          </div>
+
+          {/* Nearby Landmarks */}
+          <div className="md:col-span-2">
+            <label className="block text-sm font-medium mb-2">Nearby Landmarks</label>
+            <textarea
+              value={baseData.meeting_point.nearby_landmarks}
+              onChange={(e) => setBaseData({
+                ...baseData,
+                meeting_point: { ...baseData.meeting_point, nearby_landmarks: e.target.value }
+              })}
+              rows={2}
+              className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-primary focus:outline-none"
+              placeholder="Next to the cathedral, opposite the town hall..."
+            />
           </div>
         </div>
       </div>

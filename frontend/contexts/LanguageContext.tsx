@@ -221,6 +221,7 @@ const translations: Record<Language, Record<string, string>> = {
     'booking.free_cancellation': 'Free cancellation up to',
     'booking.hours_before': 'hours before',
     'booking.instant_confirmation': 'Instant confirmation',
+    'booking.was': 'was',
     
     // Time slots
     'timeslots.select_time': 'Select Time',
@@ -693,6 +694,7 @@ const translations: Record<Language, Record<string, string>> = {
     'booking.free_cancellation': 'Cancelación gratuita hasta',
     'booking.hours_before': 'horas antes',
     'booking.instant_confirmation': 'Confirmación instantánea',
+    'booking.was': 'era',
     
     // Time slots
     'timeslots.select_time': 'Seleccionar Hora',
@@ -1165,6 +1167,7 @@ const translations: Record<Language, Record<string, string>> = {
     'booking.free_cancellation': '免费取消至',
     'booking.hours_before': '小时前',
     'booking.instant_confirmation': '即时确认',
+    'booking.was': '原价',
     
     // Time slots
     'timeslots.select_time': '选择时间',
@@ -1637,6 +1640,7 @@ const translations: Record<Language, Record<string, string>> = {
     'booking.free_cancellation': 'Annulation gratuite jusqu\'à',
     'booking.hours_before': 'heures avant',
     'booking.instant_confirmation': 'Confirmation instantanée',
+    'booking.was': 'était',
     
     // Time slots
     'timeslots.select_time': 'Sélectionner l\'Heure',

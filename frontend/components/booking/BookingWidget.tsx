@@ -18,7 +18,11 @@ interface BookingWidgetProps {
 export default function BookingWidget({ activity }: BookingWidgetProps) {
   const router = useRouter();
   const { getTranslation, getPricingTierName } = useLanguage();
-  const [bookingDate, setBookingDate] = useState('');
+  const [bookingDate, setBookingDate] = useState(() => {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split('T')[0];
+  });
   const [adults, setAdults] = useState(1);
   const [children, setChildren] = useState(0);
   const [selectedTimeSlotId, setSelectedTimeSlotId] = useState<number | undefined>();
@@ -153,9 +157,28 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
           </div>
         )}
         <div className="text-sm text-gray-500 mb-1">{getTranslation('booking.from')}</div>
-        <div className="text-3xl font-bold text-gray-900">
-          {formatPrice(activity.price_adult)}
-        </div>
+        
+        {/* Show discount pricing if available */}
+        {activity.original_price_adult && activity.discount_percentage ? (
+          <div className="space-y-1">
+            <div className="flex items-center gap-2">
+              <div className="text-3xl font-bold text-gray-900">
+                {formatPrice(activity.price_adult)}
+              </div>
+              <div className="bg-red-100 text-red-800 text-xs font-semibold px-2 py-1 rounded">
+                -{activity.discount_percentage}%
+              </div>
+            </div>
+            <div className="text-sm text-gray-500 line-through">
+              {getTranslation('booking.was')} {formatPrice(activity.original_price_adult)}
+            </div>
+          </div>
+        ) : (
+          <div className="text-3xl font-bold text-gray-900">
+            {formatPrice(activity.price_adult)}
+          </div>
+        )}
+        
         <div className="text-sm text-gray-500">{getTranslation('booking.per_person')}</div>
       </div>
 

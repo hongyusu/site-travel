@@ -59,11 +59,21 @@ export default function ReviewForm({
       onClose();
     } catch (error: any) {
       console.error('Error submitting review:', error);
+      console.error('Error response:', error.response?.data);
+      console.error('Review data being sent:', {
+        activity_id: activityId,
+        booking_id: bookingId,
+        rating,
+        title: title.trim(),
+        comment: comment.trim()
+      });
 
       // Extract error message from response
       let errorMessage = 'Failed to submit review';
       if (error.response?.data?.detail) {
         errorMessage = error.response.data.detail;
+      } else if (error.response?.data?.message) {
+        errorMessage = error.response.data.message;
       } else if (error.message) {
         errorMessage = error.message;
       }
