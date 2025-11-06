@@ -228,14 +228,14 @@ export default function HomePage() {
           <div className="flex justify-between items-center mb-8">
             <div>
               <h2 className="text-3xl font-bold text-gray-900 mb-2">
-                Travel Stories & Tips
+                {getTranslation('blog.homepage.title')}
               </h2>
               <p className="text-gray-600">
-                Inspiration and advice from our travel experts
+                {getTranslation('blog.homepage.subtitle')}
               </p>
             </div>
             <Link href="/blog" className="text-primary hover:text-primary-600 flex items-center font-medium">
-              Read Our Blog
+              {getTranslation('blog.homepage.read_blog')}
               <ArrowRight className="w-4 h-4 ml-1" />
             </Link>
           </div>
@@ -262,7 +262,7 @@ export default function HomePage() {
                     <span>{post.author}</span>
                   </div>
                   <Link href="/blog" className="text-primary hover:text-primary-600 font-medium flex items-center">
-                    Read More <ArrowRight className="w-4 h-4 ml-1" />
+                    {getTranslation('blog.read_more')} <ArrowRight className="w-4 h-4 ml-1" />
                   </Link>
                 </div>
               </div>
