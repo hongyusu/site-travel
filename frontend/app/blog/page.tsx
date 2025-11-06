@@ -1,8 +1,13 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
 import { Calendar, User, ArrowRight } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function BlogPage() {
+  const { getTranslation } = useLanguage();
+  
   const posts = [
     {
       title: '10 Hidden Gems in Rome You Must Visit',
@@ -39,12 +44,12 @@ export default function BlogPage() {
   ];
 
   const categories = [
-    'All Posts',
-    'Destination Guides',
-    'Travel Tips',
-    'Travel Planning',
-    'Sustainable Travel',
-    'Food & Culture',
+    getTranslation('blog.all_posts'),
+    getTranslation('blog.category.destination_guides'),
+    getTranslation('blog.category.travel_tips'),
+    getTranslation('blog.category.travel_planning'),
+    getTranslation('blog.category.sustainable_travel'),
+    getTranslation('blog.category.food_culture'),
   ];
 
   return (
@@ -52,9 +57,9 @@ export default function BlogPage() {
       {/* Hero */}
       <div className="bg-primary text-white py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Travel Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">{getTranslation('blog.title')}</h1>
           <p className="text-xl text-white/90 max-w-3xl">
-            Inspiration, tips, and stories from around the world
+            {getTranslation('blog.subtitle')}
           </p>
         </div>
       </div>
@@ -102,7 +107,7 @@ export default function BlogPage() {
                 <span>{posts[0].author}</span>
               </div>
               <Link href="#" className="text-primary hover:text-primary-600 font-medium flex items-center">
-                Read More <ArrowRight className="w-4 h-4 ml-1" />
+                {getTranslation('blog.read_more')} <ArrowRight className="w-4 h-4 ml-1" />
               </Link>
             </div>
           </div>
@@ -129,7 +134,7 @@ export default function BlogPage() {
                   <span>{post.date}</span>
                 </div>
                 <Link href="#" className="text-primary hover:text-primary-600 font-medium flex items-center">
-                  Read More <ArrowRight className="w-4 h-4 ml-1" />
+                  {getTranslation('blog.read_more')} <ArrowRight className="w-4 h-4 ml-1" />
                 </Link>
               </div>
             </div>
@@ -138,18 +143,18 @@ export default function BlogPage() {
 
         {/* Newsletter */}
         <div className="bg-primary rounded-lg shadow-lg p-8 text-center text-white">
-          <h2 className="text-3xl font-bold mb-4">Subscribe to Our Newsletter</h2>
+          <h2 className="text-3xl font-bold mb-4">{getTranslation('blog.newsletter.title')}</h2>
           <p className="text-xl mb-6">
-            Get travel tips, destination guides, and exclusive deals delivered to your inbox
+            {getTranslation('blog.newsletter.subtitle')}
           </p>
           <form className="max-w-md mx-auto flex gap-3">
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder={getTranslation('blog.newsletter.placeholder')}
               className="flex-1 px-4 py-3 rounded-lg text-gray-900"
             />
             <button type="submit" className="btn-secondary whitespace-nowrap">
-              Subscribe
+              {getTranslation('blog.newsletter.subscribe')}
             </button>
           </form>
         </div>

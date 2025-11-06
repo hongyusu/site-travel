@@ -88,7 +88,7 @@ export default function Header() {
               {getTranslation('nav.destinations')}
             </Link>
             <Link href="/blog" className="text-gray-700 hover:text-primary transition-colors">
-              Blog
+              {getTranslation('nav.blog')}
             </Link>
           </nav>
 
@@ -176,7 +176,7 @@ export default function Header() {
                 {getTranslation('nav.destinations')}
               </Link>
               <Link href="/blog" className="text-gray-700 hover:text-primary transition-colors">
-                Blog
+                {getTranslation('nav.blog')}
               </Link>
               <Link href="/cart" className="text-gray-700 hover:text-primary transition-colors">
                 {getTranslation('nav.cart')} ({cartCount})
