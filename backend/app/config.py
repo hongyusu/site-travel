@@ -59,6 +59,14 @@ class Settings(BaseSettings):
     FREE_CANCELLATION_HOURS: int = 24
     DEFAULT_CURRENCY: str = "EUR"
 
+    # Email
+    RESEND_API_KEY: str = "re_W314AQWC_AWo6mye59GD11pSfZ8533yG4"
+    EMAIL_FROM: str = "onboarding@resend.dev"  # Use verified domain for testing
+    EMAIL_FROM_NAME: str = "FindTravelMate"
+    EMAIL_ENABLED: bool = True  # Enable for testing with verified email
+    EMAIL_TESTING_MODE: bool = True  # Redirect all emails to verified address
+    EMAIL_TEST_RECIPIENT: str = "hongyu.su.uh@gmail.com"  # Your verified email
+
     class Config:
         env_file = ".env"
         case_sensitive = True

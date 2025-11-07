@@ -1,0 +1,61 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Booking Confirmation - {{ booking_reference }}{% endblock %}
+
+{% block content %}
+<h1>Booking Confirmed! 🎉</h1>
+
+<p>Hi {{ user_name }},</p>
+
+<p>Great news! Your booking has been confirmed and you're all set for an amazing experience.</p>
+
+<div class="booking-details">
+    <h3>Booking Details</h3>
+    <div class="detail-row">
+        <span class="detail-label">Booking Reference:</span>
+        <span class="detail-value"><strong>{{ booking_reference }}</strong></span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Activity:</span>
+        <span class="detail-value">{{ activity_title }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Date & Time:</span>
+        <span class="detail-value">{{ booking_date }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Total Amount:</span>
+        <span class="detail-value"><strong>{{ total_amount }}</strong></span>
+    </div>
+</div>
+
+<div class="highlight">
+    <h3>Important Reminders:</h3>
+    <ul>
+        <li>📱 <strong>Keep this confirmation handy</strong> - You'll need your booking reference</li>
+        <li>📍 <strong>Check the meeting point</strong> and arrive 15 minutes early</li>
+        <li>🆔 <strong>Bring valid ID</strong> - Some activities require identification</li>
+        <li>🌦️ <strong>Check the weather</strong> - Dress appropriately for outdoor activities</li>
+    </ul>
+</div>
+
+<div style="text-align: center;">
+    <a href="http://localhost:3000/bookings" class="btn">View Booking Details</a>
+</div>
+
+<h2>What's Next?</h2>
+<p>You'll receive a reminder email closer to your activity date with specific instructions and contact information for your activity provider.</p>
+
+<p>If you need to make any changes to your booking or have questions, please contact us as soon as possible.</p>
+
+<p>We hope you have an incredible experience!</p>
+
+<p>Safe travels,</p>
+<p>The FindTravelMate Team</p>
+
+<div style="margin-top: 30px; padding: 15px; background-color: #f0f9ff; border-radius: 6px; border-left: 4px solid #0ea5e9;">
+    <p style="margin: 0; font-size: 14px; color: #0c4a6e;">
+        <strong>Need help?</strong> Contact our support team at support@findtravelmate.com or visit our help center.
+    </p>
+</div>
+{% endblock %}

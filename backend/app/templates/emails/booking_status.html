@@ -1,0 +1,91 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Booking Update - {{ booking_reference }}{% endblock %}
+
+{% block content %}
+<h1>Booking Status Update</h1>
+
+<p>Hi {{ user_name }},</p>
+
+<p>We have an update regarding your booking:</p>
+
+<div class="booking-details">
+    <h3>Booking Information</h3>
+    <div class="detail-row">
+        <span class="detail-label">Booking Reference:</span>
+        <span class="detail-value"><strong>{{ booking_reference }}</strong></span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Activity:</span>
+        <span class="detail-value">{{ activity_title }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Status:</span>
+        <span class="detail-value">
+            {% if status == 'approved' %}
+                <span style="color: #059669; font-weight: bold;">✅ APPROVED</span>
+            {% elif status == 'rejected' %}
+                <span style="color: #dc2626; font-weight: bold;">❌ REJECTED</span>
+            {% elif status == 'cancelled' %}
+                <span style="color: #d97706; font-weight: bold;">🚫 CANCELLED</span>
+            {% elif status == 'completed' %}
+                <span style="color: #2563eb; font-weight: bold;">🎉 COMPLETED</span>
+            {% else %}
+                <span style="font-weight: bold;">{{ status.upper() }}</span>
+            {% endif %}
+        </span>
+    </div>
+</div>
+
+<div class="highlight">
+    <p><strong>{{ status_message }}</strong></p>
+    {% if message %}
+        <p><em>Message from the activity provider:</em></p>
+        <p>"{{ message }}"</p>
+    {% endif %}
+</div>
+
+{% if status == 'approved' %}
+    <h2>What's Next?</h2>
+    <p>Your booking has been approved! You'll receive additional details about your activity closer to the date, including:</p>
+    <ul>
+        <li>Exact meeting point and time</li>
+        <li>What to bring and dress code</li>
+        <li>Contact information for your guide/provider</li>
+        <li>Weather-dependent instructions (if applicable)</li>
+    </ul>
+{% elif status == 'rejected' %}
+    <h2>What's Next?</h2>
+    <p>We're sorry this booking didn't work out. Here are your options:</p>
+    <ul>
+        <li>Browse similar activities in the same location</li>
+        <li>Try booking for a different date or time</li>
+        <li>Contact our support team for alternative recommendations</li>
+    </ul>
+    <p>Any payments made will be refunded to your original payment method within 3-5 business days.</p>
+{% elif status == 'cancelled' %}
+    <h2>Refund Information</h2>
+    <p>Your booking has been cancelled. Any payments made will be refunded according to the cancellation policy:</p>
+    <ul>
+        <li>Full refund if cancelled more than 24 hours in advance</li>
+        <li>Partial refund may apply for shorter notice</li>
+        <li>Refunds are processed within 3-5 business days</li>
+    </ul>
+{% elif status == 'completed' %}
+    <h2>How Was Your Experience?</h2>
+    <p>We hope you had an amazing time! Your feedback helps other travelers and supports our activity providers.</p>
+{% endif %}
+
+<div style="text-align: center;">
+    {% if status == 'approved' or status == 'completed' %}
+        <a href="http://localhost:3000/bookings" class="btn">View Booking Details</a>
+    {% elif status == 'rejected' or status == 'cancelled' %}
+        <a href="http://localhost:3000/search" class="btn">Find Similar Activities</a>
+    {% endif %}
+</div>
+
+<p>If you have any questions about this update, please don't hesitate to contact our support team.</p>
+
+<p>Best regards,</p>
+<p>The FindTravelMate Team</p>
+{% endblock %}

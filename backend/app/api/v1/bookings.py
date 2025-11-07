@@ -1,11 +1,14 @@
 """Booking endpoints."""
 
+import logging
 from typing import List, Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, status, Body
 from sqlalchemy.orm import Session
 from sqlalchemy import and_, or_, func
 from datetime import datetime, date, timedelta
 from decimal import Decimal
+
+logger = logging.getLogger(__name__)
 
 from app.database import get_db
 from app.models import (
@@ -18,6 +21,7 @@ from app.schemas.booking import (
 )
 from app.schemas.common import PaginatedResponse, MessageResponse
 from app.api.deps import get_current_user, get_current_vendor, get_optional_current_user
+from app.services.email import EmailService
 
 router = APIRouter()
 
@@ -97,6 +101,25 @@ def create_booking(
     try:
         db.commit()
         db.refresh(db_booking)
+        
+        # Send booking confirmation email if instant confirmation
+        if activity.instant_confirmation and db_booking.customer_email:
+            try:
+                formatted_date = db_booking.booking_date.strftime("%B %d, %Y")
+                if db_booking.booking_time:
+                    formatted_date += f" at {db_booking.booking_time.strftime('%-I:%M %p')}"
+                
+                EmailService.send_booking_confirmation_email(
+                    user_email=db_booking.customer_email,
+                    user_name=db_booking.customer_name or "Guest",
+                    booking_reference=db_booking.booking_ref,
+                    activity_title=activity.title,
+                    booking_date=formatted_date,
+                    total_amount=f"€{db_booking.total_price:.2f}"
+                )
+            except Exception as e:
+                # Log email error but don't fail booking
+                logger.error(f"Failed to send booking confirmation email: {e}")
 
     except Exception as e:
         db.rollback()
@@ -378,6 +401,20 @@ def approve_booking(
     db.refresh(booking)
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    
+    # Send booking approval email
+    if booking.customer_email:
+        try:
+            EmailService.send_booking_status_email(
+                user_email=booking.customer_email,
+                user_name=booking.customer_name or "Guest",
+                booking_reference=booking.booking_ref,
+                activity_title=activity.title,
+                status="approved"
+            )
+        except Exception as e:
+            logger.error(f"Failed to send booking approval email: {e}")
+    
     return _prepare_booking_response(booking, activity, db)
 
 
@@ -421,6 +458,21 @@ def reject_booking(
     db.refresh(booking)
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    
+    # Send booking rejection email
+    if booking.customer_email:
+        try:
+            EmailService.send_booking_status_email(
+                user_email=booking.customer_email,
+                user_name=booking.customer_name or "Guest",
+                booking_reference=booking.booking_ref,
+                activity_title=activity.title,
+                status="rejected",
+                message=rejection_reason
+            )
+        except Exception as e:
+            logger.error(f"Failed to send booking rejection email: {e}")
+    
     return _prepare_booking_response(booking, activity, db)
 
 
@@ -456,6 +508,29 @@ def checkin_booking(
     db.refresh(booking)
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    
+    # Send booking completion and review request email
+    if booking.customer_email:
+        try:
+            # Send completion notification
+            EmailService.send_booking_status_email(
+                user_email=booking.customer_email,
+                user_name=booking.customer_name or "Guest",
+                booking_reference=booking.booking_ref,
+                activity_title=activity.title,
+                status="completed"
+            )
+            
+            # Send review request email
+            EmailService.send_review_request_email(
+                user_email=booking.customer_email,
+                user_name=booking.customer_name or "Guest",
+                activity_title=activity.title,
+                booking_reference=booking.booking_ref
+            )
+        except Exception as e:
+            logger.error(f"Failed to send booking completion/review emails: {e}")
+    
     return _prepare_booking_response(booking, activity, db)
 
 
@@ -505,6 +580,21 @@ def vendor_cancel_booking(
     db.refresh(booking)
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    
+    # Send booking cancellation email
+    if booking.customer_email:
+        try:
+            EmailService.send_booking_status_email(
+                user_email=booking.customer_email,
+                user_name=booking.customer_name or "Guest",
+                booking_reference=booking.booking_ref,
+                activity_title=activity.title,
+                status="cancelled",
+                message=reason
+            )
+        except Exception as e:
+            logger.error(f"Failed to send booking cancellation email: {e}")
+    
     return _prepare_booking_response(booking, activity, db)
 
 

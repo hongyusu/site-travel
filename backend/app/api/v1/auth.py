@@ -1,9 +1,12 @@
 """Authentication endpoints."""
 
+import logging
 from datetime import timedelta
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
+
+logger = logging.getLogger(__name__)
 
 from app.database import get_db
 from app.models.user import User, UserRole, Vendor
@@ -24,6 +27,7 @@ from app.core.security import (
 )
 from app.config import settings
 from app.api.deps import get_current_user, get_current_active_user
+from app.services.email import EmailService
 
 router = APIRouter()
 
@@ -67,8 +71,27 @@ def register(
         db.add(db_user)
         db.commit()
         db.refresh(db_user)
-    except IntegrityError:
+        
+        # Send welcome email
+        try:
+            EmailService.send_welcome_email(
+                user_email=db_user.email,
+                user_name=db_user.full_name
+            )
+        except Exception as e:
+            # Log email error but don't fail registration
+            logger.error(f"Failed to send welcome email to {db_user.email}: {e}")
+            
+    except IntegrityError as e:
         db.rollback()
+        logger.error(f"IntegrityError during user creation: {e}")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Could not create user"
+        )
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Unexpected error during user creation: {e}")
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail="Could not create user"
@@ -128,6 +151,18 @@ def register_vendor(
 
         db.commit()
         db.refresh(db_user)
+        
+        # Send vendor welcome email
+        try:
+            EmailService.send_vendor_welcome_email(
+                user_email=db_user.email,
+                user_name=db_user.full_name,
+                company_name=data.company_name
+            )
+        except Exception as e:
+            # Log email error but don't fail registration
+            logger.error(f"Failed to send vendor welcome email to {db_user.email}: {e}")
+            
     except IntegrityError:
         db.rollback()
         raise HTTPException(

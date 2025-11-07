@@ -1,0 +1,62 @@
+{% extends "base_layout.html" %}
+
+{% block title %}How was your experience? - {{ activity_title }}{% endblock %}
+
+{% block content %}
+<h1>How was your experience? ⭐</h1>
+
+<p>Hi {{ user_name }},</p>
+
+<p>We hope you had an amazing time with <strong>{{ activity_title }}</strong>!</p>
+
+<p>Your experience matters to us and to fellow travelers who are looking for their next adventure. By sharing your review, you help others discover great activities and support the activity providers who work hard to create memorable experiences.</p>
+
+<div class="booking-details">
+    <h3>Your Recent Activity</h3>
+    <div class="detail-row">
+        <span class="detail-label">Activity:</span>
+        <span class="detail-value">{{ activity_title }}</span>
+    </div>
+    <div class="detail-row">
+        <span class="detail-label">Booking Reference:</span>
+        <span class="detail-value">{{ booking_reference }}</span>
+    </div>
+</div>
+
+<div class="highlight">
+    <h3>Share Your Experience</h3>
+    <p>Help other travelers by sharing:</p>
+    <ul>
+        <li>⭐ <strong>Your overall rating</strong> - How would you rate this experience?</li>
+        <li>📝 <strong>What you loved</strong> - Highlights, favorite moments, or standout features</li>
+        <li>💡 <strong>Helpful tips</strong> - What should future travelers know?</li>
+        <li>📸 <strong>Photos (optional)</strong> - Show others what to expect</li>
+    </ul>
+</div>
+
+<div style="text-align: center;">
+    <a href="http://localhost:3000/bookings" class="btn">Write Your Review</a>
+</div>
+
+<h2>Why Reviews Matter</h2>
+<p>Your honest feedback:</p>
+<ul>
+    <li>🌟 Helps other travelers make informed decisions</li>
+    <li>🤝 Supports activity providers in improving their services</li>
+    <li>🏆 Contributes to building a trusted travel community</li>
+    <li>📈 Helps us recommend better experiences to you in the future</li>
+</ul>
+
+<p>Writing a review takes just a few minutes, but the impact lasts much longer. We truly appreciate you taking the time to share your experience!</p>
+
+<p>Thank you for choosing FindTravelMate for your adventure.</p>
+
+<p>Happy travels,</p>
+<p>The FindTravelMate Team</p>
+
+<div style="margin-top: 30px; padding: 15px; background-color: #f0fdf4; border-radius: 6px; border-left: 4px solid #22c55e;">
+    <p style="margin: 0; font-size: 14px; color: #166534;">
+        <strong>Tip:</strong> Great reviews often mention specific details about the guide, location, or unique aspects of the experience!
+    </p>
+</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base_layout.html" %}
+
+{% block title %}Welcome to {{ app_name }} - Vendor Account{% endblock %}
+
+{% block content %}
+<h1>Welcome to FindTravelMate, {{ user_name }}! 🚀</h1>
+
+<p>Congratulations! Your vendor account for <strong>{{ company_name }}</strong> has been successfully created.</p>
+
+<p>You're now part of our global network of activity providers, connecting with millions of travelers worldwide who are looking for authentic, memorable experiences.</p>
+
+<div class="highlight">
+    <h3>Getting Started as a Vendor:</h3>
+    <ul>
+        <li>📝 <strong>Create Your First Activity:</strong> List your experiences and reach travelers globally</li>
+        <li>📊 <strong>Manage Your Dashboard:</strong> Track bookings, revenue, and performance</li>
+        <li>💬 <strong>Engage with Customers:</strong> Respond to reviews and build your reputation</li>
+        <li>💰 <strong>Grow Your Business:</strong> Access analytics and insights to optimize your offerings</li>
+    </ul>
+</div>
+
+<div style="text-align: center;">
+    <a href="http://localhost:3000/vendor/dashboard" class="btn">Go to Vendor Dashboard</a>
+</div>
+
+<h2>Next Steps:</h2>
+<ol>
+    <li><strong>Complete Your Profile:</strong> Add company details, description, and logo</li>
+    <li><strong>List Your First Activity:</strong> Create detailed, attractive activity listings</li>
+    <li><strong>Set Up Pricing:</strong> Configure your pricing tiers and availability</li>
+    <li><strong>Go Live:</strong> Start accepting bookings from travelers worldwide</li>
+</ol>
+
+<p>Our vendor support team is here to help you succeed. If you have any questions about getting started, managing bookings, or optimizing your listings, don't hesitate to reach out.</p>
+
+<p>We're excited to see what amazing experiences you'll share with our travel community!</p>
+
+<p>Best regards,</p>
+<p>The FindTravelMate Vendor Team</p>
+{% endblock %}
