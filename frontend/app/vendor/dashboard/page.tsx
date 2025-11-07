@@ -11,7 +11,7 @@ import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function VendorDashboardPage() {
   const router = useRouter();
-  const { getTranslation, language } = useLanguage();
+  const { getTranslation, language, formatPrice } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [activities, setActivities] = useState<any[]>([]);
   const [bookings, setBookings] = useState<any[]>([]);
@@ -240,7 +240,7 @@ export default function VendorDashboardPage() {
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">{getTranslation('vendor.total_revenue')}</p>
-                <p className="text-3xl font-bold text-gray-900 mt-2">€{totalRevenue.toFixed(2)}</p>
+                <p className="text-3xl font-bold text-gray-900 mt-2">{formatPrice(totalRevenue)}</p>
               </div>
               <div className="w-12 h-12 bg-yellow-50 rounded-full flex items-center justify-center">
                 <DollarSign className="w-6 h-6 text-yellow-600" />
@@ -311,7 +311,7 @@ export default function VendorDashboardPage() {
                         </div>
                       </td>
                       <td className="px-6 py-4">
-                        <div className="text-sm text-gray-900">${activity.price_adult}</div>
+                        <div className="text-sm text-gray-900">{formatPrice(Number(activity.price_adult))}</div>
                       </td>
                       <td className="px-6 py-4">
                         <div className="text-sm text-gray-900">
@@ -456,7 +456,7 @@ export default function VendorDashboardPage() {
                         {new Date(booking.booking_date).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-4 text-sm text-gray-900">
-                        €{Number(booking.total_price || 0).toFixed(2)}
+                        {formatPrice(Number(booking.total_price || 0))}
                       </td>
                       <td className="px-6 py-4">
                         <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${

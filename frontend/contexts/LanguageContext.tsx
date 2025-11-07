@@ -8,13 +8,15 @@ export interface LanguageOption {
   code: Language
   name: string
   flag: string
+  locale: string
+  currency: string
 }
 
 export const languages: LanguageOption[] = [
-  { code: 'en', name: 'English', flag: '🇬🇧' },
-  { code: 'es', name: 'Español', flag: '🇪🇸' },
-  { code: 'zh', name: '中文', flag: '🇨🇳' },
-  { code: 'fr', name: 'Français', flag: '🇫🇷' },
+  { code: 'en', name: 'English', flag: '🇬🇧', locale: 'en-GB', currency: 'EUR' },
+  { code: 'es', name: 'Español', flag: '🇪🇸', locale: 'es-ES', currency: 'EUR' },
+  { code: 'zh', name: '中文', flag: '🇨🇳', locale: 'zh-CN', currency: 'EUR' },
+  { code: 'fr', name: 'Français', flag: '🇫🇷', locale: 'fr-FR', currency: 'EUR' },
 ]
 
 interface LanguageContextType {
@@ -26,6 +28,7 @@ interface LanguageContextType {
   getPricingTierName: (tierName: string) => string
   getCountryName: (countryName: string) => string
   getLanguageName: (languageName: string) => string
+  formatPrice: (price: number) => string
   languageOptions: LanguageOption[]
 }
 
@@ -2059,6 +2062,18 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     return translated || languageName // Fallback to original name if no translation
   }
 
+  const formatPrice = (price: number): string => {
+    const currentLanguage = languages.find(l => l.code === language) || languages[0]
+    const validPrice = Number(price) || 0
+    
+    return new Intl.NumberFormat(currentLanguage.locale, {
+      style: 'currency',
+      currency: currentLanguage.currency,
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 2,
+    }).format(validPrice)
+  }
+
   const value = {
     language,
     setLanguage,
@@ -2068,6 +2083,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     getPricingTierName,
     getCountryName,
     getLanguageName,
+    formatPrice,
     languageOptions: languages,
   }
 

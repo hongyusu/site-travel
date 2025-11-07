@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Calendar, Users, Clock, TrendingUp, Eye, Zap, Award } from 'lucide-react';
 import { ActivityDetailResponse } from '@/types';
-import { formatPrice } from '@/lib/utils';
 import { apiClient } from '@/lib/api';
 import TimeSlotsSelector from '@/components/activities/TimeSlotsSelector';
 import PricingTiersSelector from '@/components/activities/PricingTiersSelector';
@@ -17,7 +16,7 @@ interface BookingWidgetProps {
 
 export default function BookingWidget({ activity }: BookingWidgetProps) {
   const router = useRouter();
-  const { getTranslation, getPricingTierName } = useLanguage();
+  const { getTranslation, getPricingTierName, formatPrice } = useLanguage();
   const [bookingDate, setBookingDate] = useState(() => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);

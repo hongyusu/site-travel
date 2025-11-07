@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Star, Clock, Users, MapPin, Check, Heart } from 'lucide-react';
 import { Activity } from '@/types';
-import { formatPrice, formatDuration, getImageUrl } from '@/lib/utils';
+import { formatDuration, getImageUrl } from '@/lib/utils';
 import { apiClient } from '@/lib/api';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -14,7 +14,7 @@ interface ActivityCardProps {
 }
 
 export default function ActivityCard({ activity }: ActivityCardProps) {
-  const { getTranslation, getDestinationName } = useLanguage();
+  const { getTranslation, getDestinationName, formatPrice } = useLanguage();
   const [inWishlist, setInWishlist] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
