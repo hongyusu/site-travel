@@ -5,7 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { CheckCircle, ArrowLeft, Calendar, Users, MapPin, Clock } from 'lucide-react';
 import { apiClient } from '@/lib/api';
-import { formatPrice } from '@/lib/utils';
+import { useLocation } from '@/contexts/LocationContext';
 import OrderTimeline from '@/components/orders/OrderTimeline';
 import OrderStatusBadge from '@/components/orders/OrderStatusBadge';
 import Image from 'next/image';
@@ -44,6 +44,7 @@ interface Booking {
 function OrderConfirmationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { formatPrice } = useLocation();
   const bookingRef = searchParams.get('ref');
 
   const [booking, setBooking] = useState<Booking | null>(null);

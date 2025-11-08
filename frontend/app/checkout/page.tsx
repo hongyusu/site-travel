@@ -7,7 +7,8 @@ import Link from 'next/link';
 import { CreditCard, Shield, ArrowLeft, Info, Check } from 'lucide-react';
 import { CartItem } from '@/types';
 import { apiClient } from '@/lib/api';
-import { formatPrice, getImageUrl } from '@/lib/utils';
+import { getImageUrl } from '@/lib/utils';
+import { useLocation } from '@/contexts/LocationContext';
 import { toast } from 'react-hot-toast';
 
 interface TravelerInfo {
@@ -21,6 +22,7 @@ interface TravelerInfo {
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const { formatPrice } = useLocation();
   const [user, setUser] = useState<any>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);

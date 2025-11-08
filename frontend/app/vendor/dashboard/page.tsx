@@ -8,10 +8,12 @@ import { api, apiClient } from '@/lib/api';
 import BookingCalendar from '@/components/vendor/BookingCalendar';
 import BookingDetailsModal from '@/components/vendor/BookingDetailsModal';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocation } from '@/contexts/LocationContext';
 
 export default function VendorDashboardPage() {
   const router = useRouter();
-  const { getTranslation, language, formatPrice } = useLanguage();
+  const { getTranslation, language } = useLanguage();
+  const { formatPrice } = useLocation();
   const [user, setUser] = useState<any>(null);
   const [activities, setActivities] = useState<any[]>([]);
   const [bookings, setBookings] = useState<any[]>([]);

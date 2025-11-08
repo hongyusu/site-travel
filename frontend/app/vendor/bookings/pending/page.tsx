@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Calendar, Users, Mail, Phone, CheckCircle, XCircle, Clock } from 'lucide-react';
 import { apiClient } from '@/lib/api';
-import { formatPrice } from '@/lib/utils';
+import { useLocation } from '@/contexts/LocationContext';
 import OrderStatusBadge from '@/components/orders/OrderStatusBadge';
 import RejectBookingModal from '@/components/vendor/RejectBookingModal';
 import { toast } from 'react-hot-toast';
@@ -35,6 +35,7 @@ interface Booking {
 }
 
 export default function VendorPendingBookingsPage() {
+  const { formatPrice } = useLocation();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [rejectModal, setRejectModal] = useState<{ bookingId: number; bookingRef: string; activityTitle: string } | null>(null);

@@ -7,12 +7,14 @@ import Image from 'next/image';
 import { Calendar, MapPin, Users, Clock, CheckCircle, XCircle, Star } from 'lucide-react';
 import { Booking } from '@/types';
 import { apiClient } from '@/lib/api';
-import { formatPrice, getImageUrl } from '@/lib/utils';
+import { getImageUrl } from '@/lib/utils';
+import { useLocation } from '@/contexts/LocationContext';
 import ReviewForm from '@/components/reviews/ReviewForm';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function BookingsPage() {
   const { getTranslation } = useLanguage();
+  const { formatPrice } = useLocation();
   const searchParams = useSearchParams();
   const success = searchParams.get('success');
   const [bookings, setBookings] = useState<Booking[]>([]);

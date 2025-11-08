@@ -5,6 +5,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "react-hot-toast";
 import { LanguageProvider } from "@/contexts/LanguageContext";
+import { LocationProvider } from "@/contexts/LocationContext";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -32,12 +33,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LanguageProvider>
-          <Toaster position="top-right" />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </LanguageProvider>
+        <LocationProvider>
+          <LanguageProvider>
+            <Toaster position="top-right" />
+            <Header />
+            <main>{children}</main>
+            <Footer />
+          </LanguageProvider>
+        </LocationProvider>
       </body>
     </html>
   );

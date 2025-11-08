@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 import { ShoppingCart, User, Menu, X, Search } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { apiClient } from '@/lib/api';
-import LanguageSelector from '@/components/LanguageSelector';
+import PreferencesSelector from '@/components/PreferencesSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function Header() {
@@ -94,7 +94,8 @@ export default function Header() {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <LanguageSelector />
+            {/* Combined language and location selector */}
+            <PreferencesSelector />
             <Link href="/cart" className="relative p-2">
               <ShoppingCart className="w-6 h-6 text-gray-700" />
               {cartCount > 0 && (

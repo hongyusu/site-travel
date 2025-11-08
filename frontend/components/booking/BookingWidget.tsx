@@ -9,6 +9,7 @@ import TimeSlotsSelector from '@/components/activities/TimeSlotsSelector';
 import PricingTiersSelector from '@/components/activities/PricingTiersSelector';
 import AddOnsSelector from '@/components/activities/AddOnsSelector';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocation } from '@/contexts/LocationContext';
 
 interface BookingWidgetProps {
   activity: ActivityDetailResponse;
@@ -16,7 +17,8 @@ interface BookingWidgetProps {
 
 export default function BookingWidget({ activity }: BookingWidgetProps) {
   const router = useRouter();
-  const { getTranslation, getPricingTierName, formatPrice } = useLanguage();
+  const { getTranslation, getPricingTierName } = useLanguage();
+  const { formatPrice } = useLocation();
   const [bookingDate, setBookingDate] = useState(() => {
     const tomorrow = new Date();
     tomorrow.setDate(tomorrow.getDate() + 1);

@@ -2,15 +2,18 @@
 
 import { useState, useRef, useEffect } from 'react'
 import { useLanguage } from '@/contexts/LanguageContext'
+import { useLocation } from '@/contexts/LocationContext'
 import { ChevronDown } from 'lucide-react'
 
-export default function LanguageSelector() {
+export default function PreferencesSelector() {
   const { language, setLanguage, languageOptions } = useLanguage()
+  const { location, setLocation, locationOptions } = useLocation()
   const [isOpen, setIsOpen] = useState(false)
   const dropdownRef = useRef<HTMLDivElement>(null)
 
-  // Get current language details
+  // Get current language and location details
   const currentLanguage = languageOptions.find(l => l.code === language)
+  const currentLocation = locationOptions.find(l => l.code === location)
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -29,26 +32,40 @@ export default function LanguageSelector() {
     setIsOpen(false)
   }
 
+  const handleLocationChange = (code: string) => {
+    setLocation(code as any)
+    setIsOpen(false)
+  }
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-gray-700 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
-        aria-label="Select language"
+        aria-label="Select language and location preferences"
       >
         <span className="text-lg">{currentLanguage?.flag}</span>
         <span className="hidden sm:inline">{currentLanguage?.name}</span>
+        <span className="text-gray-400">|</span>
+        <span className="text-sm text-gray-600">
+          <span className="hidden sm:inline">{currentLocation?.name} </span>
+          ({currentLocation?.currency})
+        </span>
         <ChevronDown
           className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 z-50">
+        <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 z-50">
           <div className="py-1">
+            {/* Language Section */}
+            <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-100">
+              Language
+            </div>
             {languageOptions.map((option) => (
               <button
-                key={option.code}
+                key={`lang-${option.code}`}
                 onClick={() => handleLanguageChange(option.code)}
                 className={`flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors ${
                   option.code === language ? 'bg-gray-50 font-medium' : ''
@@ -57,6 +74,29 @@ export default function LanguageSelector() {
                 <span className="text-lg">{option.flag}</span>
                 <span>{option.name}</span>
                 {option.code === language && (
+                  <span className="ml-auto text-orange-600">✓</span>
+                )}
+              </button>
+            ))}
+
+            {/* Location Section */}
+            <div className="px-4 py-2 text-xs font-semibold text-gray-500 uppercase tracking-wider border-b border-gray-100 mt-2">
+              Location
+            </div>
+            {locationOptions.map((option) => (
+              <button
+                key={`loc-${option.code}`}
+                onClick={() => handleLocationChange(option.code)}
+                className={`flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition-colors ${
+                  option.code === location ? 'bg-gray-50 font-medium' : ''
+                }`}
+              >
+                <span className="text-lg">{option.flag}</span>
+                <div className="flex flex-col items-start">
+                  <span>{option.name}</span>
+                  <span className="text-xs text-gray-500">{option.currency}</span>
+                </div>
+                {option.code === location && (
                   <span className="ml-auto text-orange-600">✓</span>
                 )}
               </button>

@@ -7,10 +7,12 @@ import Link from 'next/link';
 import { Trash2, ShoppingCart } from 'lucide-react';
 import { CartItem } from '@/types';
 import { apiClient } from '@/lib/api';
-import { formatPrice, getImageUrl } from '@/lib/utils';
+import { getImageUrl } from '@/lib/utils';
+import { useLocation } from '@/contexts/LocationContext';
 
 export default function CartPage() {
   const router = useRouter();
+  const { formatPrice } = useLocation();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [removing, setRemoving] = useState<number | null>(null);

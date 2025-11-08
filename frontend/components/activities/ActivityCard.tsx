@@ -8,13 +8,15 @@ import { Activity } from '@/types';
 import { formatDuration, getImageUrl } from '@/lib/utils';
 import { apiClient } from '@/lib/api';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { useLocation } from '@/contexts/LocationContext';
 
 interface ActivityCardProps {
   activity: Activity;
 }
 
 export default function ActivityCard({ activity }: ActivityCardProps) {
-  const { getTranslation, getDestinationName, formatPrice } = useLanguage();
+  const { getTranslation, getDestinationName } = useLanguage();
+  const { formatPrice } = useLocation();
   const [inWishlist, setInWishlist] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);

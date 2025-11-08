@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Calendar, Users, ArrowRight, Filter } from 'lucide-react';
 import { apiClient } from '@/lib/api';
-import { formatPrice } from '@/lib/utils';
+import { useLocation } from '@/contexts/LocationContext';
 import OrderStatusBadge from '@/components/orders/OrderStatusBadge';
 import Image from 'next/image';
 
@@ -31,6 +31,7 @@ interface Booking {
 }
 
 export default function MyOrdersPage() {
+  const { formatPrice } = useLocation();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
