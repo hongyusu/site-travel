@@ -1,6 +1,9 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api/v1';
+// Different URLs for server-side (container) vs client-side (browser)
+const API_BASE_URL = typeof window !== 'undefined' 
+  ? 'http://localhost:8000/api/v1'  // Client-side: browser to host
+  : 'http://backend:8000/api/v1';  // Server-side: container to container
 
 export const api = axios.create({
   baseURL: API_BASE_URL,

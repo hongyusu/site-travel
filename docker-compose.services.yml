@@ -1,0 +1,72 @@
+# Docker Compose Services - Database and Redis only
+#
+# Usage:
+#   Start services:    docker compose -f docker-compose.services.yml up -d
+#   Stop services:     docker compose -f docker-compose.services.yml down
+#   View logs:         docker compose -f docker-compose.services.yml logs -f
+#
+# Database Restoration:
+#   1. Place backup file in ./backups/ directory
+#   2. Restore: docker exec -i findtravelmate_db psql -U postgres -d findtravelmate < backups/your_backup.sql
+#   3. Verify: docker exec findtravelmate_db psql -U postgres -d findtravelmate -c "SELECT count(*) FROM activities;"
+#
+# Backend Connection:
+#   Stop local PostgreSQL: brew services stop postgresql@14
+#   Export DATABASE_URL:   export DATABASE_URL="postgresql://postgres:password@localhost:5432/findtravelmate"
+#   Start backend:         cd backend && python -m uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+#
+# Database Auto-Initialization:
+#   The backend automatically initializes the database with sample data when it first connects
+#   This creates ~21 activities and all required tables/data for development
+#   If you need original backup data, restore it after backend initialization
+
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: findtravelmate_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: findtravelmate
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./backups:/backups # Mount backups directory for easy restoration
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 128M
+
+  redis:
+    image: redis:7-alpine
+    container_name: findtravelmate_redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    deploy:
+      resources:
+        limits:
+          memory: 64M
+        reservations:
+          memory: 32M
+
+
+volumes:
+  postgres_data:
+  redis_data:

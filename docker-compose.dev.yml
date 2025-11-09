@@ -1,154 +1,116 @@
-version: '3.8'
-
 # Development Docker Compose Configuration
-# Features:
-# - Hot reload for both frontend and backend
-# - Volume mounts for live code changes
-# - Debug ports exposed
-# - pgAdmin for database management
-# - Redis Commander for cache inspection
+# Full development setup with backend and frontend in Docker
+# 
+# Prerequisites:
+#   1. Start database services: docker compose -f docker-compose.services.yml up -d
+#   2. Start dev services: docker compose -f docker-compose.dev.yml up -d
+#
+# Access:
+#   Frontend: http://localhost:3000
+#   Backend: http://localhost:8000 (containerized)
+#   Database: localhost:5432 (from services)
+#   Redis: localhost:6379 (from services)
 
 services:
-  postgres:
-    image: postgres:15-alpine
-    container_name: findtravelmate_db_dev
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-dev_password_123}
-      POSTGRES_DB: findtravelmate
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_dev_data:/var/lib/postgresql/data
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
-    networks:
-      - app-network
-
-  redis:
-    image: redis:7-alpine
-    container_name: findtravelmate_redis_dev
-    restart: unless-stopped
-    ports:
-      - "6379:6379"
-    volumes:
-      - redis_dev_data:/data
-    command: redis-server --appendonly yes
-    healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
-      interval: 5s
-      timeout: 3s
-      retries: 5
-    networks:
-      - app-network
-
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile.dev
-      target: development
+      args:
+        - PYTHON_VERSION=3.12
     container_name: findtravelmate_backend_dev
-    restart: unless-stopped
-    ports:
-      - "8000:8000"
-      - "5678:5678"  # Python debugger port
+    restart: "no"  # Don't auto-restart in development
     environment:
-      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD:-dev_password_123}@postgres:5432/findtravelmate
-      SECRET_KEY: ${SECRET_KEY:-dev-secret-key-please-change-in-production}
-      ALGORITHM: HS256
-      ACCESS_TOKEN_EXPIRE_MINUTES: 30
-      REFRESH_TOKEN_EXPIRE_DAYS: 7
-      CORS_ORIGINS: '["http://localhost:3000","http://frontend:3000","http://localhost"]'
+      # Database connection - connect to external containers
+      DATABASE_URL: postgresql://postgres:password@host.docker.internal:5432/findtravelmate
+      DB_POOL_SIZE: 10
+      DB_MAX_OVERFLOW: 5
+      DB_POOL_TIMEOUT: 30
+      
+      # Development settings
       PYTHON_ENV: development
       LOG_LEVEL: DEBUG
+      AUTO_INIT_DB: false  # Database already initialized
+      
+      # Redis connection - connect to external container
+      REDIS_URL: redis://host.docker.internal:6379/0
+      
+      # Application
+      APP_NAME: FindTravelMate
+      
+      # Optional features for development
+      ENABLE_REGISTRATION: true
+      ENABLE_VENDOR_SIGNUP: true
+      ENABLE_REVIEWS: true
+      ENABLE_WISHLIST: true
     volumes:
-      # Mount source code for hot reload
-      - ./backend/app:/app/app:ro
-      - ./backend/requirements.txt:/app/requirements.txt:ro
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_healthy
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload --log-level debug
+      - ./backend:/app  # Mount source code for hot reload
+      - backend_logs:/app/logs
+    ports:
+      - "8000:8000"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Enable access to host services
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/activities/categories"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          memory: 512M
+        reservations:
+          memory: 256M
     networks:
-      - app-network
+      - dev-network
 
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile.dev
-      target: development
+      dockerfile: Dockerfile
+      target: development  # Use development stage from Dockerfile
+      args:
+        - NODE_VERSION=20
+        - NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
     container_name: findtravelmate_frontend_dev
-    restart: unless-stopped
-    ports:
-      - "3000:3000"
+    restart: "no"  # Don't auto-restart in development
     environment:
-      NEXT_PUBLIC_API_URL: http://localhost:8000/api
+      NEXT_PUBLIC_API_URL: http://localhost:8000/api/v1  # Browser connects to host
       NODE_ENV: development
-      WATCHPACK_POLLING: "true"  # Enable polling for file changes in Docker
+    user: "0:0"  # Run as root to avoid permission issues in development
     volumes:
-      # Mount source code for hot reload
-      - ./frontend/app:/app/app:ro
-      - ./frontend/components:/app/components:ro
-      - ./frontend/lib:/app/lib:ro
-      - ./frontend/types:/app/types:ro
-      - ./frontend/public:/app/public:ro
-      - ./frontend/tailwind.config.ts:/app/tailwind.config.ts:ro
-      - ./frontend/next.config.mjs:/app/next.config.mjs:ro
-      - ./frontend/postcss.config.mjs:/app/postcss.config.mjs:ro
-      - ./frontend/tsconfig.json:/app/tsconfig.json:ro
-      # Prevent overwriting node_modules
-      - /app/node_modules
-      - /app/.next
+      - ./frontend:/app  # Mount source code for hot reload
+      - /app/node_modules  # Preserve node_modules in container
+      - frontend_next_cache:/app/.next  # Use named volume for .next cache
+    ports:
+      - "3000:3000"  # Map to port 3000
     depends_on:
-      - backend
+      - backend  # Ensure backend starts first
     command: npm run dev
+    healthcheck:
+      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost:3000 || exit 1"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 60s
+    extra_hosts:
+      - "host.docker.internal:host-gateway"  # Allow container to access host services
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+        reservations:
+          memory: 512M
     networks:
-      - app-network
-
-  # Database admin interface
-  pgadmin:
-    image: dpage/pgadmin4:latest
-    container_name: findtravelmate_pgadmin_dev
-    restart: unless-stopped
-    ports:
-      - "5050:80"
-    environment:
-      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL:-admin@findtravelmate.local}
-      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin123}
-      PGADMIN_CONFIG_SERVER_MODE: 'False'
-      PGADMIN_CONFIG_MASTER_PASSWORD_REQUIRED: 'False'
-    volumes:
-      - pgadmin_dev_data:/var/lib/pgadmin
-    depends_on:
-      - postgres
-    networks:
-      - app-network
-
-  # Redis admin interface
-  redis-commander:
-    image: rediscommander/redis-commander:latest
-    container_name: findtravelmate_redis_commander_dev
-    restart: unless-stopped
-    ports:
-      - "8081:8081"
-    environment:
-      - REDIS_HOSTS=local:redis:6379
-    depends_on:
-      - redis
-    networks:
-      - app-network
+      - dev-network
 
 volumes:
-  postgres_dev_data:
-  redis_dev_data:
-  pgadmin_dev_data:
+  frontend_next_cache:
+    driver: local
+  backend_logs:
+    driver: local
 
 networks:
-  app-network:
+  dev-network:
     driver: bridge
