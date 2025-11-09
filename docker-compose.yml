@@ -23,8 +23,9 @@ services:
       POSTGRES_SHARED_BUFFERS: 256MB
       POSTGRES_EFFECTIVE_CACHE_SIZE: 1GB
       POSTGRES_MAX_CONNECTIONS: ${DB_POOL_SIZE:-100}
-    ports:
-      - "${POSTGRES_PORT:-5432}:5432"
+    # Remove direct port mapping in production for security
+    # ports:
+    #   - "${POSTGRES_PORT:-5432}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./backups:/backups
@@ -54,8 +55,9 @@ services:
     image: redis:7-alpine
     container_name: findtravelmate_redis
     restart: always
-    ports:
-      - "${REDIS_PORT:-6379}:6379"
+    # Remove direct port mapping in production for security
+    # ports:
+    #   - "${REDIS_PORT:-6379}:6379"
     volumes:
       - redis_data:/data
     command: >
@@ -95,8 +97,9 @@ services:
         - PYTHON_VERSION=3.12
     container_name: findtravelmate_backend
     restart: always
-    ports:
-      - "${BACKEND_PORT:-8000}:8000"
+    # Remove direct port mapping in production - nginx handles all routing
+    # ports:
+    #   - "${BACKEND_PORT:-8000}:8000"
     environment:
       # Database
       DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/findtravelmate
@@ -220,7 +223,7 @@ services:
       frontend:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost/health"]
+      test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 30s
       timeout: 5s
       retries: 3
