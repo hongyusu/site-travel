@@ -1,8 +1,6 @@
 # FindTravelMate - Docker Setup Guide
 
-> **Consolidates**: DOCKER-QUICKSTART.md and Docker sections from other guides
-
-This guide provides step-by-step instructions to run the FindTravelMate travel website using Docker containers.
+This guide provides streamlined, tested instructions for running FindTravelMate using Docker in both development and production environments.
 
 ## Prerequisites
 
@@ -10,239 +8,284 @@ This guide provides step-by-step instructions to run the FindTravelMate travel w
 - Docker Compose (included with Docker Desktop)
 - Git
 
-## Overview
+## Architecture Overview
 
-The FindTravelMate platform consists of:
-- **Backend**: FastAPI application (Python) - Container
-- **Frontend**: Next.js application (TypeScript/React) - Container  
-- **Database**: PostgreSQL - Container
-- **Redis**: Cache layer - Container
-- **Admin Tools**: pgAdmin and Redis Commander - Containers
+The FindTravelMate platform uses different Docker configurations for different environments:
 
-## Quick Start (Development Mode)
+### Development Environment (2-file approach)
 
-### 1. Clone and Navigate to Project
+- **`docker-compose.services.yml`**: Database (PostgreSQL) + Redis only
+- **`docker-compose.dev.yml`**: Backend + Frontend containers (connects to services)
+
+### Production Environment (1-file approach)  
+
+- **`docker-compose.yml`**: Complete stack with Nginx reverse proxy
+
+**Services:**
+
+- **Backend**: FastAPI application (Python)
+- **Frontend**: Next.js application (TypeScript/React)  
+- **Database**: PostgreSQL 15
+- **Redis**: Cache layer
+- **Nginx**: Reverse proxy (production only)
+
+## Development Setup
+
+### Quick Start (Proven Workflow)
+
 ```bash
+# 1. Clone and navigate to project
 git clone <repository-url>
 cd site-travel
-```
 
-### 2. Start All Services
-```bash
-# Start all services in development mode
+# 2. Start database services first
+docker-compose -f docker-compose.services.yml up -d
+
+# 3. Start development containers
 docker-compose -f docker-compose.dev.yml up -d
+
+# 4. Wait for services to be healthy (about 30 seconds)
+docker-compose -f docker-compose.dev.yml logs -f
 ```
 
-This will start:
-- PostgreSQL database on port 5432
-- Redis cache on port 6379
-- Backend API on port 8000
-- Frontend app on port 3000
-- pgAdmin on port 5050
-- Redis Commander on port 8081
+### Access Points
 
-### 3. Initialize Database
+- **Frontend**: <http://localhost:3000>
+- **Backend API**: <http://localhost:8000>
+- **API Documentation**: <http://localhost:8000/docs>
+- **Database**: localhost:5432 (postgres/password)
+- **Redis**: localhost:6379
+
+### Database Initialization
+
+The backend automatically initializes the database with sample data on first connection.
+
+- **Activities**: ~21 sample activities
+- **Users**: Admin, customer, and vendor accounts
+- **Categories**: 10 activity categories
+
+### Development Features
+
+- **Hot Reload**: Code changes automatically reload
+- **Debug Mode**: Detailed logging enabled
+- **Direct Access**: All services accessible on host ports
+
+## Production Setup
+
+### Quick Start (Single Command)
+
 ```bash
-# Wait for services to be healthy (about 30 seconds)
-docker-compose -f docker-compose.dev.yml logs backend
+# 1. Clone and navigate to project
+git clone <repository-url>
+cd site-travel
 
-# Initialize database with sample data
-docker-compose -f docker-compose.dev.yml exec backend python init_db.py
+# 2. Configure environment variables
+cp .env.production .env
+# Edit .env with your production values
+
+# 3. Deploy complete stack
+docker-compose up -d --build
+
+# 4. Check deployment status
+docker-compose ps
 ```
 
-### 4. Access the Application
-- **Website**: http://localhost:3000
-- **API Documentation**: http://localhost:8000/api/v1/docs
-- **Database Admin**: http://localhost:5050 (admin@findtravelmate.local / admin123)
-- **Redis Admin**: http://localhost:8081
+### Production Features
 
-## Manual Setup (Step by Step)
+- **Nginx Reverse Proxy**: All traffic routed through nginx (ports 80/443)
+- **Security**: No direct database/redis/backend port exposure
+- **Resource Limits**: CPU and memory limits configured
+- **Health Checks**: Automatic service health monitoring
+- **Logging**: Structured logging with rotation
+- **SSL Ready**: SSL certificate mounting supported
 
-### Step 1: Database Only Setup
+### Access Points (Production)
 
-If you want to run only the database in Docker and backend/frontend locally:
+- **Application**: <http://your-domain> (via nginx only)
+- **No Direct Access**: Database, Redis, Backend only accessible internally
+
+### Database Restoration (Production)
 
 ```bash
-# Start only PostgreSQL and Redis
-docker-compose up -d postgres redis
+# 1. Place backup file in ./backups/ directory
+cp your_backup.sql ./backups/
+
+# 2. Restore database
+docker-compose exec postgres psql -U postgres -d findtravelmate -f /backups/your_backup.sql
+
+# 3. Verify restoration
+docker-compose exec postgres psql -U postgres -d findtravelmate -c "SELECT count(*) FROM activities;"
 ```
 
-Wait for services to be healthy:
+## Service Management
+
+### Development Commands
+
 ```bash
-docker-compose logs postgres
-# Look for: "database system is ready to accept connections"
+# Start services only (database + redis)
+docker-compose -f docker-compose.services.yml up -d
+
+# Start development containers
+docker-compose -f docker-compose.dev.yml up -d
+
+# Stop development containers (keeps services running)
+docker-compose -f docker-compose.dev.yml down
+
+# Stop all development services
+docker-compose -f docker-compose.services.yml down
+docker-compose -f docker-compose.dev.yml down
+
+# View logs
+docker-compose -f docker-compose.dev.yml logs -f backend
+docker-compose -f docker-compose.services.yml logs -f postgres
+
+# Check service status
+docker-compose -f docker-compose.services.yml ps
+docker-compose -f docker-compose.dev.yml ps
 ```
 
-### Step 2: Update Docker Compose for FindTravelMate
-
-If using older docker compose files, they may reference old "getyourguide" names. Update the service names:
+### Production Commands
 
 ```bash
-# Create updated docker-compose file
-cp docker-compose.dev.yml docker-compose.findtravelmate.yml
-```
+# Deploy production stack
+docker-compose up -d --build
 
-Then manually update the database names in the new file to use "findtravelmate" instead of any legacy names.
+# Stop production stack
+docker-compose down
 
-### Step 3: Initialize Database with Sample Data
+# View production logs
+docker-compose logs -f nginx
+docker-compose logs -f backend
 
-```bash
-# Option A: If backend is running in Docker
-docker-compose exec backend python init_db.py
-
-# Option B: If backend is running locally
-cd backend
-python init_db.py
-```
-
-### Step 4: Verify Services
-
-```bash
-# Check all services are running
+# Check production status
 docker-compose ps
 
-# Check service logs
-docker-compose logs backend
-docker-compose logs frontend
-docker-compose logs postgres
+# Scale services (if needed)
+docker-compose up -d --scale backend=2
 ```
 
-## Production Deployment
+### Database Management
 
-### 1. Build Production Images
 ```bash
-# Build all production images
-docker-compose -f docker-compose.prod.yml build
-```
+# Development - Direct database access
+docker-compose -f docker-compose.services.yml exec postgres psql -U postgres -d findtravelmate
 
-### 2. Start Production Services
-```bash
-# Start in production mode
-docker-compose -f docker-compose.prod.yml up -d
-```
+# Production - Database access
+docker-compose exec postgres psql -U postgres -d findtravelmate
 
-### 3. Initialize Production Database
-```bash
-# Initialize database
-docker-compose -f docker-compose.prod.yml exec backend python init_db.py
+# Backup database
+docker-compose exec postgres pg_dump -U postgres findtravelmate > backup_$(date +%Y%m%d_%H%M%S).sql
+
+# Restore from backup
+docker-compose exec -T postgres psql -U postgres -d findtravelmate < your_backup.sql
 ```
 
 ## Environment Configuration
 
 ### Development Environment Variables
 
-Create `.env.dev` file in project root:
+Development uses default values from docker-compose files:
+
+- **Database**: postgres/password@localhost:5432
+- **Redis**: localhost:6379
+- **Backend**: Debug logging, auto-reload enabled
+- **Frontend**: Development mode with hot reload
+
+**Optional `.env.dev` file for customization:**
+
 ```env
-# Database
-POSTGRES_PASSWORD=dev_password_123
-POSTGRES_USER=postgres
-POSTGRES_DB=findtravelmate
-
-# Backend
-SECRET_KEY=dev-secret-key-please-change-in-production
-DATABASE_URL=postgresql://postgres:dev_password_123@postgres:5432/findtravelmate
-APP_NAME=FindTravelMate
-CORS_ORIGINS=["http://localhost:3000","http://frontend:3000"]
-
-# Frontend
+# Only needed if you want to override defaults
+POSTGRES_PASSWORD=custom_dev_password
 NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
-
-# Admin Tools
-PGADMIN_EMAIL=admin@findtravelmate.local
-PGADMIN_PASSWORD=admin123
+LOG_LEVEL=DEBUG
 ```
 
 ### Production Environment Variables
 
-Create `.env.prod` file in project root:
-```env
-# Database (Use strong passwords in production)
-POSTGRES_PASSWORD=your_strong_password_here
-POSTGRES_USER=postgres
-POSTGRES_DB=findtravelmate
+**Required `.env` file for production:**
 
-# Backend
-SECRET_KEY=your-very-long-secret-key-change-this-in-production-make-it-very-secure
-DATABASE_URL=postgresql://postgres:your_strong_password_here@postgres:5432/findtravelmate
-APP_NAME=FindTravelMate
+```env
+# Database (Use strong passwords)
+POSTGRES_PASSWORD=your_secure_production_password_here
+
+# Backend Security
+SECRET_KEY=your-very-long-secret-key-minimum-32-characters-change-this
 CORS_ORIGINS=["https://yourdomain.com"]
 
 # Frontend
-NEXT_PUBLIC_API_URL=https://api.yourdomain.com/api/v1
+NEXT_PUBLIC_API_URL=https://yourdomain.com/api/v1
+
+# Optional Performance Tuning
+DB_POOL_SIZE=20
+LOG_LEVEL=INFO
 ```
 
 ## Database Initialization
 
-The `init_db.py` script creates:
-- Database tables
+**Automatic Initialization:**
+The backend automatically initializes the database on first connection with:
+
+- All required database tables
 - Admin user: `admin@findtravelmate.com` / `admin123`
-- Customer user: `customer@example.com` / `customer123`
+- Customer user: `customer@example.com` / `customer123`  
 - 5 Vendor accounts: `vendor1-5@example.com` / `vendor123`
-- 10 destinations (cities)
-- 8 categories
-- 25+ sample activities
+- 21 sample activities across 10 destinations
+- 8 activity categories
 - Sample reviews and bookings
 
-### Manual Database Initialization
+**Manual Initialization (if needed):**
 
 ```bash
-# Method 1: Using Docker exec
+# Development environment
+docker-compose -f docker-compose.dev.yml exec backend python init_db.py
+
+# Production environment
 docker-compose exec backend python init_db.py
 
-# Method 2: Using Docker run (if containers aren't running)
-docker-compose run --rm backend python init_db.py
-
-# Method 3: Connect to database directly
+# Direct database access
 docker-compose exec postgres psql -U postgres -d findtravelmate
 ```
 
-## Service Management
+## Common Operations
 
-### Start Services
+### Viewing Logs
+
 ```bash
-# Development mode (with hot reload)
-docker-compose -f docker-compose.dev.yml up -d
+# Development - View all logs
+docker-compose -f docker-compose.dev.yml logs -f
 
-# Production mode
-docker-compose -f docker-compose.prod.yml up -d
+# Development - Specific service logs
+docker-compose -f docker-compose.services.yml logs postgres
+docker-compose -f docker-compose.dev.yml logs backend
 
-# Start specific services only
-docker-compose up -d postgres redis
-```
-
-### Stop Services
-```bash
-# Stop all services
-docker-compose down
-
-# Stop and remove volumes (WARNING: This deletes data)
-docker-compose down -v
-
-# Stop specific services
-docker-compose stop backend frontend
-```
-
-### View Logs
-```bash
-# View all logs
-docker-compose logs
-
-# Follow logs in real-time
+# Production - View all logs
 docker-compose logs -f
 
-# View specific service logs
+# Production - Specific service logs
+docker-compose logs nginx
 docker-compose logs backend
-docker-compose logs frontend
-docker-compose logs postgres
 ```
 
-### Restart Services
-```bash
-# Restart all services
-docker-compose restart
+### Service Health Checks
 
-# Restart specific service
+```bash
+# Check service status
+docker-compose ps
+
+# Health check details
+docker inspect <container_name> | grep -A 10 Health
+```
+
+### Restarting Services
+
+```bash
+# Development - Restart specific services
+docker-compose -f docker-compose.dev.yml restart backend
+docker-compose -f docker-compose.services.yml restart postgres
+
+# Production - Restart services
 docker-compose restart backend
+docker-compose restart nginx
 ```
 
 ## Troubleshooting
@@ -250,197 +293,289 @@ docker-compose restart backend
 ### Common Issues
 
 #### 1. Services Not Starting
+
 ```bash
-# Check service status
+# Check all service status
 docker-compose ps
 
-# View service logs for errors
-docker-compose logs backend
-docker-compose logs frontend
+# View logs for startup errors
+docker-compose logs <service_name>
 
-# Check Docker resources
-docker system df
-docker system prune  # Clean up unused resources
+# Clean up Docker resources
+docker system prune -f
 ```
 
-#### 2. Database Connection Issues
+#### 2. Database Connection Issues (Development)
+
 ```bash
-# Check if PostgreSQL is running
-docker-compose ps postgres
+# Ensure services are running first
+docker-compose -f docker-compose.services.yml ps
 
-# Test database connection
-docker-compose exec postgres pg_isready -U postgres
+# Test database connectivity
+docker-compose -f docker-compose.services.yml exec postgres pg_isready -U postgres
 
-# Connect to database manually
-docker-compose exec postgres psql -U postgres -d findtravelmate -c "\dt"
+# Check database tables
+docker-compose -f docker-compose.services.yml exec postgres psql -U postgres -d findtravelmate -c "\dt"
 ```
 
-#### 3. Frontend Cannot Connect to Backend
-**Cause**: Incorrect API URL configuration
-**Solution**: Verify environment variables:
+#### 3. Backend Cannot Connect to Database
+
+**Development**: Ensure `docker-compose.services.yml` is running first
+
 ```bash
+# Start services first
+docker-compose -f docker-compose.services.yml up -d
+# Then start development containers
+docker-compose -f docker-compose.dev.yml up -d
+```
+
+#### 4. Frontend Cannot Load
+
+**Check API connectivity:**
+
+```bash
+# Test backend health from host
+curl http://localhost:8000/api/v1/activities/categories
+
 # Check frontend environment
 docker-compose exec frontend env | grep NEXT_PUBLIC_API_URL
-
-# Should show: NEXT_PUBLIC_API_URL=http://localhost:8000/api/v1
 ```
 
-#### 4. Port Conflicts
-**Cause**: Ports already in use on host machine
-**Solutions**:
-```bash
-# Check which process is using port
-lsof -i :3000
-lsof -i :8000
-lsof -i :5432
+#### 5. Port Conflicts
 
-# Update docker-compose.yml to use different ports
-# Change "3000:3000" to "3001:3000" for frontend
-# Change "8000:8000" to "8001:8000" for backend
+```bash
+# Check what's using common ports
+lsof -i :3000  # Frontend
+lsof -i :8000  # Backend
+lsof -i :5432  # PostgreSQL
+lsof -i :6379  # Redis
+
+# Kill conflicting processes or change ports in docker-compose files
 ```
 
-#### 5. Build Failures
+#### 6. Production Nginx Issues
+
 ```bash
-# Clear Docker build cache
-docker builder prune
+# Check nginx configuration
+docker-compose exec nginx nginx -t
 
-# Rebuild without cache
-docker-compose build --no-cache
+# View nginx logs
+docker-compose logs nginx
 
-# Check Dockerfile syntax
-docker-compose config
-```
-
-#### 6. Volume Permission Issues
-```bash
-# Fix volume permissions (Linux/Mac)
-sudo chown -R $USER:$USER ./backend
-sudo chown -R $USER:$USER ./frontend
-
-# Reset volumes
-docker-compose down -v
-docker-compose up -d
+# Restart nginx
+docker-compose restart nginx
 ```
 
 ## Data Persistence
 
-### Database Data
-- **Location**: Docker volume `postgres_data` or `postgres_dev_data`
-- **Backup**: `docker-compose exec postgres pg_dump -U postgres findtravelmate > backup.sql`
-- **Restore**: `docker-compose exec -T postgres psql -U postgres findtravelmate < backup.sql`
+### Development Data
 
-### Redis Data
-- **Location**: Docker volume `redis_data` or `redis_dev_data`
-- **Backup**: `docker-compose exec redis redis-cli SAVE`
+- **Database**: Volume `postgres_data` (shared between service and dev containers)
+- **Redis**: Volume `redis_data`
+- **Frontend**: Volume `frontend_next_cache` (build cache)
+- **Backend**: Volume `backend_logs`
 
-### Logs
-- **Container logs**: `docker-compose logs > all_logs.txt`
-- **Application logs**: Stored in container `/app/logs/` directory
+### Production Data
+
+- **Database**: Volume `postgres_data` with backup directory mounted
+- **Redis**: Volume `redis_data`
+- **Nginx**: Volumes `nginx_logs` and `nginx_cache`
+- **Backend**: Volume `backend_logs`
+
+### Backup & Restore
+
+```bash
+# Create database backup
+docker-compose exec postgres pg_dump -U postgres findtravelmate > backup_$(date +%Y%m%d).sql
+
+# Restore from backup (production)
+cp backup.sql ./backups/
+docker-compose exec postgres psql -U postgres -d findtravelmate < /backups/backup.sql
+
+# Development restore
+docker-compose -f docker-compose.services.yml exec postgres psql -U postgres -d findtravelmate < /backups/backup.sql
+```
 
 ## Development Workflow
 
 ### 1. Start Development Environment
+
 ```bash
-# Start all services
+# Step 1: Start database services
+docker-compose -f docker-compose.services.yml up -d
+
+# Step 2: Wait for services to be healthy (30 seconds)
+docker-compose -f docker-compose.services.yml logs -f
+
+# Step 3: Start development containers
 docker-compose -f docker-compose.dev.yml up -d
 
-# Initialize database (first time only)
-docker-compose -f docker-compose.dev.yml exec backend python init_db.py
-
-# Check all services are healthy
+# Step 4: Check all services
 docker-compose -f docker-compose.dev.yml ps
 ```
 
-### 2. Code Changes
-- **Backend**: Code changes automatically reload (volume mounted)
-- **Frontend**: Code changes automatically reload (volume mounted)
-- **Database**: Changes persist in Docker volume
+### 2. Code Development
 
-### 3. Debugging
+- **Backend**: Hot reload enabled, logs via `docker-compose -f docker-compose.dev.yml logs -f backend`
+- **Frontend**: Hot reload enabled, accessible at <http://localhost:3000>
+- **Database**: Persistent data, accessible at localhost:5432
+
+### 3. Development Commands
+
 ```bash
-# View real-time logs
-docker-compose -f docker-compose.dev.yml logs -f backend
+# Backend debugging
+docker-compose -f docker-compose.dev.yml exec backend python -c "import app; print('Backend OK')"
 
-# Execute commands in containers
-docker-compose -f docker-compose.dev.yml exec backend python -c "print('Hello')"
+# Frontend debugging  
 docker-compose -f docker-compose.dev.yml exec frontend npm run lint
 
-# Access container shell
+# Database queries
+docker-compose -f docker-compose.services.yml exec postgres psql -U postgres -d findtravelmate -c "SELECT count(*) FROM activities;"
+
+# Container shell access
 docker-compose -f docker-compose.dev.yml exec backend bash
-docker-compose -f docker-compose.dev.yml exec frontend sh
 ```
 
-### 4. Database Management
-```bash
-# Access pgAdmin at http://localhost:5050
-# Username: admin@findtravelmate.local
-# Password: admin123
+### 4. Stopping Development Environment
 
-# Direct database access
-docker-compose -f docker-compose.dev.yml exec postgres psql -U postgres -d findtravelmate
+```bash
+# Stop development containers (keeps database running)
+docker-compose -f docker-compose.dev.yml down
+
+# Stop database services (when done for the day)
+docker-compose -f docker-compose.services.yml down
 ```
 
 ## Test Accounts
 
 ### Admin Account
+
 - Email: `admin@findtravelmate.com`
 - Password: `admin123`
-- Access: Admin dashboard at http://localhost:3000/admin
+- Access: Admin dashboard at <http://localhost:3000/admin>
 
 ### Customer Account
+
 - Email: `customer@example.com`
 - Password: `customer123`
 - Access: Customer features
 
 ### Vendor Accounts
+
 - Email: `vendor1@example.com` to `vendor5@example.com`
 - Password: `vendor123`
-- Access: Vendor dashboard at http://localhost:3000/vendor
+- Access: Vendor dashboard at <http://localhost:3000/vendor>
 
-## Performance Optimization
+## Resource Management
 
-### Resource Limits
-Add to docker-compose.yml:
-```yaml
-services:
-  backend:
-    deploy:
-      resources:
-        limits:
-          memory: 512M
-        reservations:
-          memory: 256M
-```
+### Development Resources
 
-### Health Checks
-All services include health checks:
+- **Database**: 256M limit, 128M reserved
+- **Redis**: 64M limit, 32M reserved  
+- **Backend**: 512M limit, 256M reserved
+- **Frontend**: 1G limit, 512M reserved
+
+### Production Resources
+
+- **Database**: 2G limit, 512M reserved
+- **Redis**: 768M limit, 256M reserved
+- **Backend**: 2G limit, 512M reserved
+- **Frontend**: 1G limit, 256M reserved
+- **Nginx**: 512M limit, 128M reserved
+
+### Health Monitoring
+
 ```bash
-# Check service health
+# Check service health status
 docker-compose ps
-# Look for "healthy" status
+
+# View resource usage
+docker stats
+
+# Service-specific health checks
+curl -f http://localhost:8000/api/v1/activities/categories  # Backend
+curl -f http://localhost:3000  # Frontend (dev)
+curl -f http://localhost     # Nginx (prod)
 ```
 
-## Security Considerations
+## Security Features
 
-### Development
-- Default passwords are used (change for production)
-- Services expose ports on localhost only
-- Debug mode enabled
+### Development Security
 
-### Production
-- Use strong, unique passwords
-- Configure proper CORS origins
-- Use HTTPS/TLS certificates
-- Limit exposed ports
-- Enable Docker security scanning
-- Regular security updates
+- **Database**: Default password (postgres/password)
+- **Exposed Ports**: All services accessible on localhost
+- **Debug Mode**: Enabled for development
+- **CORS**: Permissive for development
 
-## Next Steps
+### Production Security
 
-After successful Docker setup:
-1. Access the application at http://localhost:3000
-2. Explore the API documentation at http://localhost:8000/api/v1/docs
-3. Manage database via pgAdmin at http://localhost:5050
-4. Monitor Redis via Redis Commander at http://localhost:8081
-5. Test user registration and login flows
-6. Customize configuration for your deployment needs
+- **Port Isolation**: Only nginx (80/443) exposed externally
+- **Database**: No direct external access
+- **Backend**: No direct external access
+- **Redis**: No direct external access
+- **Resource Limits**: Enforced on all services
+- **Security Options**: `no-new-privileges` enabled
+- **Read-only**: Containers use read-only where possible
+
+### Production Security Checklist
+
+- [ ] Set strong `POSTGRES_PASSWORD` in `.env`
+- [ ] Set secure `SECRET_KEY` (minimum 32 characters)
+- [ ] Configure `CORS_ORIGINS` for your domain
+- [ ] Use HTTPS with SSL certificates
+- [ ] Regular security updates for base images
+- [ ] Monitor logs for suspicious activity
+
+## Quick Reference
+
+### Development Commands
+
+```bash
+# Start everything
+docker-compose -f docker-compose.services.yml up -d
+docker-compose -f docker-compose.dev.yml up -d
+
+# Stop everything
+docker-compose -f docker-compose.dev.yml down
+docker-compose -f docker-compose.services.yml down
+
+# View logs
+docker-compose -f docker-compose.dev.yml logs -f
+```
+
+### Production Commands
+
+```bash
+# Deploy
+docker-compose up -d --build
+
+# Stop
+docker-compose down
+
+# View logs
+docker-compose logs -f nginx
+```
+
+### Access Points
+
+**Development:**
+
+- Frontend: <http://localhost:3000>
+- Backend API: <http://localhost:8000>
+- API Docs: <http://localhost:8000/docs>
+- Database: localhost:5432 (postgres/password)
+
+**Production:**
+
+- Application: <http://your-domain> (via nginx)
+- Internal services: Not directly accessible
+
+### Test Accounts
+
+- **Admin**: <admin@findtravelmate.com> / admin123
+- **Customer**: <customer@example.com> / customer123
+- **Vendor**: <vendor1@example.com> / vendor123
+
+---
+
+*This guide reflects the tested, working configuration used in production deployments.*

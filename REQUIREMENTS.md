@@ -1,6 +1,7 @@
-# FindTravelMate Clone - Project Requirements Document
+# FindTravelMate - Project Requirements Document
 
 ## Table of Contents
+
 1. [Project Overview](#project-overview)
 2. [Feature Specifications](#feature-specifications)
 3. [Technical Architecture](#technical-architecture)
@@ -16,10 +17,8 @@
 
 ## Project Overview
 
-### Goal
-Build a complete replica of FindTravelMate.com - a marketplace for booking travel experiences, tours, and activities.
-
 ### Scope
+
 - **Full marketplace functionality**: Browse, search, book activities
 - **Multi-user system**: Customers, Vendors, Admins
 - **No payment processing initially**: Mock checkout (Stripe integration later)
@@ -28,6 +27,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 - **Desktop & Mobile responsive**: Match FindTravelMate's design
 
 ### Key Statistics (from FindTravelMate)
+
 - 150,000+ experiences
 - 12,000+ cities worldwide
 - 30,000+ experience partners (vendors)
@@ -40,6 +40,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 ### 1. Public Features (No Login Required)
 
 #### 1.1 Homepage
+
 - **Hero Section**
   - Background image with overlay
   - Tagline: "Travel memories you'll never forget"
@@ -53,6 +54,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 - **Trust Indicators**: "200M+ tickets sold", star ratings
 
 #### 1.2 Search & Browse Page (`/s/{destination}`)
+
 - **Search Bar**: Persistent at top with destination and date
 - **Results Header**: "1,234 things to do in {destination}"
 - **Sort Dropdown**: Recommended, Price (low/high), Rating, Duration
@@ -73,6 +75,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 - **Pagination**: Load more button
 
 #### 1.3 Activity Detail Page (`/activity/{id}`)
+
 - **Breadcrumbs**: Home > City > Category > Activity
 - **Title Section**: H1 title + quick stats
 - **Image Gallery**: Main image + thumbnails
@@ -93,6 +96,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 - **Similar Activities**: Bottom carousel
 
 #### 1.4 Destination Pages (`/destinations/{city}`)
+
 - City hero image
 - Top attractions
 - Categories specific to city
@@ -101,11 +105,13 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 ### 2. Customer Features (Login Required)
 
 #### 2.1 Authentication
+
 - **Register**: Email, password, full name
 - **Login**: Email + password
 - **Guest Checkout**: Optional for bookings
 
 #### 2.2 Booking Flow
+
 - **Cart** (`/cart`):
   - List of activities
   - Edit dates/participants
@@ -124,6 +130,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
   - Email confirmation
 
 #### 2.3 Account Dashboard (`/my-account`)
+
 - **My Bookings**: Upcoming & past
 - **Wishlist**: Saved activities
 - **Profile**: Edit personal info
@@ -132,11 +139,13 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 ### 3. Vendor Features (`/partner`)
 
 #### 3.1 Vendor Registration
+
 - Business information form
 - Verification (manual by admin)
 - Commission agreement
 
 #### 3.2 Vendor Dashboard
+
 - **Overview**:
   - Today's bookings
   - Revenue (mock)
@@ -168,11 +177,13 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 ### 4. Admin Features (`/admin`)
 
 #### 4.1 Dashboard
+
 - Platform statistics
 - Recent activity
 - Alerts/issues
 
 #### 4.2 Management
+
 - **Users**: View/edit customers and vendors
 - **Activities**: Approve/reject, featured selection
 - **Bookings**: View all, handle issues
@@ -181,6 +192,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 - **Destinations**: Manage cities
 
 #### 4.3 Settings
+
 - Platform configuration
 - Commission rates
 - Email templates
@@ -192,6 +204,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 ### Technology Stack
 
 #### Backend (Python/FastAPI)
+
 ```
 - FastAPI 0.104+
 - Python 3.11+
@@ -205,6 +218,7 @@ Build a complete replica of FindTravelMate.com - a marketplace for booking trave
 ```
 
 #### Frontend (Next.js/TypeScript)
+
 ```
 - Next.js 14+ (App Router)
 - TypeScript 5+
@@ -367,6 +381,7 @@ site-get-your-guide/
 ## Database Schema
 
 ### Users & Authentication
+
 ```sql
 -- Users table (customers, vendors, admins)
 CREATE TABLE users (
@@ -396,6 +411,7 @@ CREATE TABLE vendors (
 ```
 
 ### Activities & Content
+
 ```sql
 -- Categories
 CREATE TABLE categories (
@@ -506,6 +522,7 @@ CREATE TABLE meeting_points (
 ```
 
 ### Booking System
+
 ```sql
 -- Bookings
 CREATE TABLE bookings (
@@ -565,6 +582,7 @@ CREATE TABLE cart_items (
 ```
 
 ### Reviews & Ratings
+
 ```sql
 -- Reviews
 CREATE TABLE reviews (
@@ -592,6 +610,7 @@ CREATE TABLE review_images (
 ```
 
 ### Supporting Tables
+
 ```sql
 -- Wishlist
 CREATE TABLE wishlist (
@@ -625,12 +644,14 @@ CREATE TABLE settings (
 ## API Documentation
 
 ### Base URL
+
 ```
 Development: http://localhost:8000/api/v1
 Production: https://api.yourdomain.com/v1
 ```
 
 ### Authentication
+
 ```
 POST   /auth/register       - User registration
 POST   /auth/login          - User login
@@ -640,6 +661,7 @@ GET    /auth/me             - Get current user
 ```
 
 ### Activities
+
 ```
 GET    /activities          - List activities (with filters)
 GET    /activities/{id}     - Get activity details
@@ -651,6 +673,7 @@ POST   /activities/{id}/availability - Set availability (vendor)
 ```
 
 ### Search & Discovery
+
 ```
 GET    /search              - Search activities
 GET    /destinations        - List destinations
@@ -660,6 +683,7 @@ GET    /featured            - Get featured activities
 ```
 
 ### Bookings
+
 ```
 POST   /bookings            - Create booking
 GET    /bookings/{ref}      - Get booking details
@@ -671,6 +695,7 @@ PUT    /vendor/bookings/{id}/checkin - Check-in customer
 ```
 
 ### Reviews
+
 ```
 GET    /activities/{id}/reviews - Get activity reviews
 POST   /reviews             - Create review
@@ -679,6 +704,7 @@ DELETE /reviews/{id}        - Delete review
 ```
 
 ### Cart
+
 ```
 GET    /cart                - Get cart items
 POST   /cart/add            - Add to cart
@@ -688,6 +714,7 @@ DELETE /cart/clear          - Clear cart
 ```
 
 ### Vendor Portal
+
 ```
 GET    /vendor/dashboard    - Dashboard stats
 GET    /vendor/activities   - My activities
@@ -697,6 +724,7 @@ PUT    /vendor/profile      - Update vendor profile
 ```
 
 ### Admin
+
 ```
 GET    /admin/users         - List all users
 PUT    /admin/users/{id}    - Update user
@@ -710,6 +738,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 ### Response Format
+
 ```json
 {
   "success": true,
@@ -728,6 +757,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 ### Error Response
+
 ```json
 {
   "success": false,
@@ -749,6 +779,7 @@ GET    /admin/stats         - Platform statistics
 ### Design System
 
 #### Colors
+
 ```css
 :root {
   /* Primary Colors */
@@ -783,6 +814,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 #### Typography
+
 ```css
 /* Font Family */
 --font-primary: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
@@ -810,6 +842,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 #### Spacing
+
 ```css
 /* Spacing Scale */
 --space-xs: 4px;
@@ -822,6 +855,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 #### Breakpoints
+
 ```css
 /* Responsive Breakpoints */
 --screen-sm: 640px;   /* Mobile landscape */
@@ -834,6 +868,7 @@ GET    /admin/stats         - Platform statistics
 ### Component Specifications
 
 #### Activity Card
+
 ```
 - Dimensions: 100% width in grid
 - Image: 16:9 aspect ratio
@@ -847,6 +882,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 #### Search Filter Sidebar
+
 ```
 - Width: 280px desktop, full mobile
 - Sticky position on scroll
@@ -856,6 +892,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 #### Booking Widget
+
 ```
 - Width: 380px desktop
 - Sticky position: top 80px
@@ -867,6 +904,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 #### Navigation Header
+
 ```
 - Height: 64px
 - White background
@@ -881,6 +919,7 @@ GET    /admin/stats         - Platform statistics
 ## User Flows
 
 ### 1. Customer Booking Flow
+
 ```
 1. Homepage
    └─> Search destination
@@ -896,6 +935,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 ### 2. Vendor Activity Creation
+
 ```
 1. Vendor login
    └─> Dashboard
@@ -912,6 +952,7 @@ GET    /admin/stats         - Platform statistics
 ```
 
 ### 3. Search & Filter Flow
+
 ```
 1. Enter destination
    └─> View results
@@ -931,6 +972,7 @@ GET    /admin/stats         - Platform statistics
 ## Implementation Plan
 
 ### Phase 1: Backend Foundation (Day 1)
+
 - [ ] Project setup & configuration
 - [ ] Database schema creation
 - [ ] User authentication system
@@ -938,6 +980,7 @@ GET    /admin/stats         - Platform statistics
 - [ ] Search & filter logic
 
 ### Phase 2: Frontend Core (Day 2)
+
 - [ ] Next.js setup
 - [ ] Component library setup
 - [ ] Homepage
@@ -945,18 +988,21 @@ GET    /admin/stats         - Platform statistics
 - [ ] Activity detail page
 
 ### Phase 3: Booking System (Day 3)
+
 - [ ] Cart functionality
 - [ ] Checkout flow
 - [ ] Booking management
 - [ ] Email notifications (mock)
 
 ### Phase 4: Vendor Portal (Day 4)
+
 - [ ] Vendor registration
 - [ ] Activity management
 - [ ] Booking management
 - [ ] Basic analytics
 
 ### Phase 5: Admin & Polish (Day 5)
+
 - [ ] Admin dashboard
 - [ ] Content moderation
 - [ ] Demo data generation
@@ -967,6 +1013,7 @@ GET    /admin/stats         - Platform statistics
 ## Demo Data Strategy
 
 ### Cities (10 destinations)
+
 1. **Paris, France** - 200+ activities
 2. **London, UK** - 180+ activities
 3. **New York, USA** - 150+ activities
@@ -979,6 +1026,7 @@ GET    /admin/stats         - Platform statistics
 10. **Istanbul, Turkey** - 125+ activities
 
 ### Categories Distribution
+
 - **Tours & Sightseeing**: 30%
 - **Museums & Attractions**: 20%
 - **Day Trips**: 15%
@@ -988,12 +1036,14 @@ GET    /admin/stats         - Platform statistics
 - **Transportation**: 5%
 
 ### Price Ranges
+
 - Budget (€10-30): 25%
 - Mid-range (€30-100): 50%
 - Premium (€100-300): 20%
 - Luxury (€300+): 5%
 
 ### Sample Vendors (5)
+
 1. **City Explorer Tours** - Multi-city operator
 2. **Local Flavors** - Food experiences
 3. **Adventure Seekers** - Outdoor activities
@@ -1001,6 +1051,7 @@ GET    /admin/stats         - Platform statistics
 5. **VIP Experiences** - Luxury tours
 
 ### Reviews
+
 - Each activity: 10-50 reviews
 - Rating distribution: 4.0-5.0 (weighted toward 4.5+)
 - Mix of short and detailed reviews
@@ -1011,6 +1062,7 @@ GET    /admin/stats         - Platform statistics
 ## Success Criteria
 
 ### Functional Requirements ✓
+
 - [ ] Homepage with search functionality
 - [ ] Browse page with working filters
 - [ ] Activity detail pages with all sections
@@ -1022,6 +1074,7 @@ GET    /admin/stats         - Platform statistics
 - [ ] Responsive on mobile devices
 
 ### Visual Requirements ✓
+
 - [ ] Matches FindTravelMate color scheme
 - [ ] Similar layout and structure
 - [ ] Activity cards look authentic
@@ -1030,6 +1083,7 @@ GET    /admin/stats         - Platform statistics
 - [ ] Image galleries function
 
 ### Performance Requirements ✓
+
 - [ ] Page load < 3 seconds
 - [ ] Search results < 1 second
 - [ ] Smooth scrolling
@@ -1037,6 +1091,7 @@ GET    /admin/stats         - Platform statistics
 - [ ] No console errors
 
 ### Data Requirements ✓
+
 - [ ] 10+ destinations available
 - [ ] 100+ activities total
 - [ ] Multiple categories
@@ -1045,6 +1100,7 @@ GET    /admin/stats         - Platform statistics
 - [ ] Demo bookings
 
 ### User Experience ✓
+
 - [ ] Intuitive navigation
 - [ ] Clear CTAs
 - [ ] Error handling
@@ -1057,6 +1113,7 @@ GET    /admin/stats         - Platform statistics
 ## Notes & Considerations
 
 ### Future Enhancements (Post-MVP)
+
 1. **Payment Integration**: Stripe/PayPal
 2. **Email System**: SendGrid/AWS SES
 3. **SMS Notifications**: Twilio
@@ -1069,6 +1126,7 @@ GET    /admin/stats         - Platform statistics
 10. **Social Login**: Google/Facebook
 
 ### Security Considerations
+
 - JWT token expiration
 - Password hashing (bcrypt)
 - SQL injection prevention
@@ -1079,6 +1137,7 @@ GET    /admin/stats         - Platform statistics
 - File upload restrictions
 
 ### SEO Considerations
+
 - Meta tags for all pages
 - Sitemap generation
 - Structured data (JSON-LD)
@@ -1088,6 +1147,7 @@ GET    /admin/stats         - Platform statistics
 - Mobile responsiveness
 
 ### Deployment
+
 - Backend: Docker + AWS/DigitalOcean
 - Frontend: Vercel/Netlify
 - Database: PostgreSQL (managed)
@@ -1099,6 +1159,7 @@ GET    /admin/stats         - Platform statistics
 ## Contact & Support
 
 For questions about this project:
+
 - Documentation: This file (REQUIREMENTS.md)
 - Technical decisions: See Technical Architecture section
 - API details: See API Documentation section
