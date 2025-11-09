@@ -1,10 +1,13 @@
 # Production Docker Compose Configuration
 # Enhanced with:
 # - Resource limits for stability
-# - Improved health checks
+# - Improved health checks (curl-based)
 # - Logging configuration
 # - Security hardening
 # - Performance optimization
+# - Fixed port conflicts (frontend runs without direct port mapping)
+# - Nginx reverse proxy handles all routing
+# - Database backup volume mounted for restoration
 
 services:
   postgres:
@@ -165,8 +168,9 @@ services:
         - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1}
     container_name: findtravelmate_frontend
     restart: always
-    ports:
-      - "${FRONTEND_PORT:-3000}:3000"
+    # Remove direct port mapping - nginx handles all routing
+    # ports:
+    #   - "${FRONTEND_PORT:-3000}:3000"
     environment:
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8000/api/v1}
       NODE_ENV: production
@@ -216,11 +220,11 @@ services:
       frontend:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "wget --no-verbose --tries=1 --spider http://localhost/health || exit 1"]
+      test: ["CMD", "curl", "-f", "http://localhost/health"]
       interval: 30s
       timeout: 5s
       retries: 3
-      start_period: 30s
+      start_period: 60s
     networks:
       - app-network
     deploy:
