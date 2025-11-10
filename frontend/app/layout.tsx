@@ -21,6 +21,7 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "FindTravelMate - Tours, Activities & Skip-the-Line Tickets",
   description: "Book unforgettable tours and activities worldwide. Skip-the-line tickets, guided tours, and unique experiences at the best prices.",
+  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
 };
 
 export default function RootLayout({

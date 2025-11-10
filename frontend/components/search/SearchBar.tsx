@@ -46,7 +46,12 @@ export default function SearchBar({
             onChange={(e) => setQuery(e.target.value)}
             placeholder={placeholder}
             autoFocus={autoFocus}
-            className="flex-1 py-3 px-2 outline-none text-gray-700"
+            inputMode="search"
+            autoComplete="off"
+            autoCorrect="off"
+            autoCapitalize="none"
+            spellCheck="false"
+            className="flex-1 py-3 px-2 outline-none text-gray-700 text-base"
           />
         </div>
 
@@ -67,7 +72,7 @@ export default function SearchBar({
 
         <button
           type="submit"
-          className="bg-primary hover:bg-primary-600 text-white rounded-full p-3 ml-2 transition-colors"
+          className="bg-primary hover:bg-primary-600 text-white rounded-full p-3 ml-2 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
         >
           <Search className="w-6 h-6" />
         </button>

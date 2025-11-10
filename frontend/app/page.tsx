@@ -83,10 +83,10 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-br from-primary/60 to-orange-600/60"></div>
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
             {getTranslation('homepage.hero.title')}
           </h1>
-          <p className="text-xl md:text-2xl text-white mb-8 drop-shadow-md">
+          <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 drop-shadow-md">
             {getTranslation('homepage.hero.subtitle')}
           </p>
           <div className="max-w-3xl mx-auto">
@@ -127,7 +127,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                 {getTranslation('homepage.destinations.title')}
               </h2>
               <p className="text-gray-600">
@@ -164,7 +164,7 @@ export default function HomePage() {
       <section className="py-16 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
               {getTranslation('homepage.categories.title')}
             </h2>
             <p className="text-gray-600">
@@ -193,7 +193,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                 {getTranslation('homepage.activities.title')}
               </h2>
               <p className="text-gray-600">
@@ -227,7 +227,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                 {getTranslation('blog.homepage.title')}
               </h2>
               <p className="text-gray-600">
@@ -274,10 +274,10 @@ export default function HomePage() {
       {/* CTA Section */}
       <section className="bg-primary py-16">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
             {getTranslation('homepage.vendor.title')}
           </h2>
-          <p className="text-xl text-white mb-8 max-w-2xl mx-auto">
+          <p className="text-lg sm:text-xl text-white mb-8 max-w-2xl mx-auto">
             {getTranslation('homepage.vendor.subtitle')}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

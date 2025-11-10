@@ -75,7 +75,9 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
             src={getImageUrl(activity.primary_image?.url)}
             alt={activity.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover group-hover:scale-110 transition-transform duration-300"
+            loading="lazy"
           />
           
           {/* Top-left badges */}
@@ -172,7 +174,7 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
       <button
         onClick={toggleWishlist}
         disabled={isLoading}
-        className="absolute top-2 right-2 p-2 bg-white rounded-full shadow-md hover:shadow-lg transition-all z-20"
+        className="absolute top-2 right-2 p-3 min-h-[44px] min-w-[44px] bg-white rounded-full shadow-md hover:shadow-lg transition-all z-20 flex items-center justify-center"
         title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
       >
         <Heart

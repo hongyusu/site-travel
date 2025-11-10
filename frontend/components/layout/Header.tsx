@@ -96,7 +96,7 @@ export default function Header() {
           <div className="hidden md:flex items-center space-x-4">
             {/* Combined language and location selector */}
             <PreferencesSelector />
-            <Link href="/cart" className="relative p-2">
+            <Link href="/cart" className="relative p-3 min-h-[44px] min-w-[44px] flex items-center justify-center">
               <ShoppingCart className="w-6 h-6 text-gray-700" />
               {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
@@ -107,7 +107,7 @@ export default function Header() {
 
             {isLoggedIn ? (
               <div className="relative group">
-                <button className="flex items-center space-x-2 p-2">
+                <button className="flex items-center space-x-2 p-3 min-h-[44px] min-w-[44px] justify-center">
                   <User className="w-6 h-6 text-gray-700" />
                 </button>
                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
@@ -159,7 +159,7 @@ export default function Header() {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden p-2"
+            className="md:hidden p-3 min-h-[44px] min-w-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
