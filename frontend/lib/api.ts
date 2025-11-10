@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Different URLs for server-side (container) vs client-side (browser)
 const API_BASE_URL = typeof window !== 'undefined' 
-  ? 'http://localhost:8000/api/v1'  // Client-side: browser to host
+  ? `http://${typeof window !== 'undefined' ? window.location.hostname : 'localhost'}:8000/api/v1`  // Client-side: use current hostname
   : 'http://backend:8000/api/v1';  // Server-side: container to container
 
 export const api = axios.create({
