@@ -5,20 +5,14 @@ A full-stack travel activities marketplace built with FastAPI and Next.js. Custo
 ## Quick Start
 
 ```bash
-# 1. Build and start all services
-docker compose up -d --build
-
-# 2. Restore demo data (DB starts empty)
-docker exec -i findtravelmate_db psql -U postgres -d findtravelmate \
-  < backend/backups/backup_2026-04-14_expanded.sql
-
-# 3. Open http://localhost
+docker compose up -d --build    # Build and start all 5 services
 ```
 
-Or use the deploy script:
+Database auto-initializes with 70 activities, 30 categories, 35 destinations, and demo accounts on first startup.
+
+For remote servers, pass the IP so the frontend builds with the correct API URL:
 ```bash
-./deploy.sh                    # localhost
-./deploy.sh 123.45.67.89       # remote server (sets correct API URL)
+./deploy.sh 123.45.67.89
 ```
 
 ### Demo Accounts
@@ -30,9 +24,9 @@ Or use the deploy script:
 | Vendor   | vendor1@example.com          | vendor123    |
 
 **Access Points:**
-- Frontend: http://localhost:3000
-- API Docs: http://localhost:8000/api/v1/docs
-- Admin Panel: http://localhost:3000/admin/dashboard
+- Frontend: http://localhost
+- API Docs: http://localhost/docs
+- Admin Panel: http://localhost/admin/dashboard
 
 ## Tech Stack
 
@@ -111,7 +105,7 @@ site-travel/
 
 34 tables (including translation tables for 4 languages).
 
-**Current demo data:** 30 categories, 35 destinations, 70 activities, 12 vendors
+**Demo data:** 30 categories, 35 destinations, 70 activities, 12 vendors, 423 reviews, 210 time slots
 
 Key entities and relationships:
 - Users (customer/vendor/admin roles) -> Bookings, Reviews, Cart, Wishlist
@@ -150,7 +144,7 @@ docker exec findtravelmate_db pg_dump -U postgres -d findtravelmate \
   --clean --if-exists > backend/backups/backup_$(date +%F).sql
 
 docker exec -i findtravelmate_db psql -U postgres -d findtravelmate \
-  < backend/backups/backup_2026-04-14_expanded.sql
+  < backend/backups/backup_2026-04-14_polished.sql
 ```
 
 Services: PostgreSQL 15, Redis 7, FastAPI backend, Next.js frontend, Nginx reverse proxy.
