@@ -525,6 +525,35 @@ const translations: Record<Language, Record<string, string>> = {
     'vendor.access_denied': 'Access denied. Vendor account required.',
     'vendor.verify_failed': 'Failed to verify vendor account. Please try again.',
     'vendor.invalid_credentials': 'Invalid email or password',
+
+    // Cart page
+    'cart.empty': 'Your cart is empty',
+    'cart.browse_activities': 'Browse Activities',
+    'cart.title': 'Shopping Cart',
+    'cart.order_summary': 'Order Summary',
+    'cart.proceed_to_checkout': 'Proceed to Checkout',
+    'cart.continue_shopping': 'Continue Shopping',
+    'cart.secure_checkout': 'Secure Checkout',
+
+    // Checkout page
+    'checkout.back_to_cart': 'Back to Cart',
+    'checkout.title': 'Checkout',
+    'checkout.first_name': 'First Name *',
+    'checkout.last_name': 'Last Name *',
+    'checkout.email': 'Email Address *',
+    'checkout.phone': 'Phone Number *',
+    'checkout.payment_method': 'Payment Method',
+    'checkout.order_summary': 'Order Summary',
+    'checkout.validate_name': 'Please enter your full name',
+    'checkout.validate_email': 'Please enter your email address',
+    'checkout.validate_phone': 'Please enter your phone number',
+    'checkout.validate_terms': 'Please agree to the terms and conditions',
+    'checkout.booking_success': 'Booking completed successfully!',
+    'checkout.booking_error': 'Failed to complete booking. Please try again.',
+
+    // Header dashboard links
+    'nav.admin_dashboard': 'Admin Dashboard',
+    'nav.vendor_dashboard': 'Vendor Dashboard',
   },
   es: {
     // Navigation
@@ -1017,6 +1046,35 @@ const translations: Record<Language, Record<string, string>> = {
     'vendor.access_denied': 'Acceso denegado. Se requiere cuenta de proveedor.',
     'vendor.verify_failed': 'Error al verificar cuenta de proveedor. Por favor, inténtalo de nuevo.',
     'vendor.invalid_credentials': 'Email o contraseña inválidos',
+
+    // Cart page
+    'cart.empty': 'Tu carrito está vacío',
+    'cart.browse_activities': 'Explorar Actividades',
+    'cart.title': 'Carrito de Compras',
+    'cart.order_summary': 'Resumen del Pedido',
+    'cart.proceed_to_checkout': 'Proceder al Pago',
+    'cart.continue_shopping': 'Seguir Comprando',
+    'cart.secure_checkout': 'Pago Seguro',
+
+    // Checkout page
+    'checkout.back_to_cart': 'Volver al Carrito',
+    'checkout.title': 'Pago',
+    'checkout.first_name': 'Nombre *',
+    'checkout.last_name': 'Apellido *',
+    'checkout.email': 'Correo Electrónico *',
+    'checkout.phone': 'Número de Teléfono *',
+    'checkout.payment_method': 'Método de Pago',
+    'checkout.order_summary': 'Resumen del Pedido',
+    'checkout.validate_name': 'Por favor ingrese su nombre completo',
+    'checkout.validate_email': 'Por favor ingrese su correo electrónico',
+    'checkout.validate_phone': 'Por favor ingrese su número de teléfono',
+    'checkout.validate_terms': 'Por favor acepte los términos y condiciones',
+    'checkout.booking_success': '¡Reserva completada con éxito!',
+    'checkout.booking_error': 'Error al completar la reserva. Por favor intente de nuevo.',
+
+    // Header dashboard links
+    'nav.admin_dashboard': 'Panel de Administración',
+    'nav.vendor_dashboard': 'Panel de Proveedor',
   },
   zh: {
     // Navigation
@@ -1509,6 +1567,35 @@ const translations: Record<Language, Record<string, string>> = {
     'vendor.access_denied': '访问被拒绝。需要供应商账户。',
     'vendor.verify_failed': '验证供应商账户失败。请重试。',
     'vendor.invalid_credentials': '电子邮件或密码无效',
+
+    // Cart page
+    'cart.empty': '您的购物车是空的',
+    'cart.browse_activities': '浏览活动',
+    'cart.title': '购物车',
+    'cart.order_summary': '订单摘要',
+    'cart.proceed_to_checkout': '前往结账',
+    'cart.continue_shopping': '继续购物',
+    'cart.secure_checkout': '安全结账',
+
+    // Checkout page
+    'checkout.back_to_cart': '返回购物车',
+    'checkout.title': '结账',
+    'checkout.first_name': '名 *',
+    'checkout.last_name': '姓 *',
+    'checkout.email': '电子邮件地址 *',
+    'checkout.phone': '电话号码 *',
+    'checkout.payment_method': '支付方式',
+    'checkout.order_summary': '订单摘要',
+    'checkout.validate_name': '请输入您的全名',
+    'checkout.validate_email': '请输入您的电子邮件地址',
+    'checkout.validate_phone': '请输入您的电话号码',
+    'checkout.validate_terms': '请同意条款和条件',
+    'checkout.booking_success': '预订成功完成！',
+    'checkout.booking_error': '预订失败。请重试。',
+
+    // Header dashboard links
+    'nav.admin_dashboard': '管理员面板',
+    'nav.vendor_dashboard': '供应商面板',
   },
   fr: {
     // Navigation
@@ -2001,6 +2088,35 @@ const translations: Record<Language, Record<string, string>> = {
     'vendor.access_denied': 'Accès refusé. Compte fournisseur requis.',
     'vendor.verify_failed': 'Échec de la vérification du compte fournisseur. Veuillez réessayer.',
     'vendor.invalid_credentials': 'Email ou mot de passe invalide',
+
+    // Cart page
+    'cart.empty': 'Votre panier est vide',
+    'cart.browse_activities': 'Parcourir les Activités',
+    'cart.title': 'Panier',
+    'cart.order_summary': 'Récapitulatif de la Commande',
+    'cart.proceed_to_checkout': 'Passer à la Caisse',
+    'cart.continue_shopping': 'Continuer vos Achats',
+    'cart.secure_checkout': 'Paiement Sécurisé',
+
+    // Checkout page
+    'checkout.back_to_cart': 'Retour au Panier',
+    'checkout.title': 'Paiement',
+    'checkout.first_name': 'Prénom *',
+    'checkout.last_name': 'Nom *',
+    'checkout.email': 'Adresse Email *',
+    'checkout.phone': 'Numéro de Téléphone *',
+    'checkout.payment_method': 'Mode de Paiement',
+    'checkout.order_summary': 'Récapitulatif de la Commande',
+    'checkout.validate_name': 'Veuillez entrer votre nom complet',
+    'checkout.validate_email': 'Veuillez entrer votre adresse email',
+    'checkout.validate_phone': 'Veuillez entrer votre numéro de téléphone',
+    'checkout.validate_terms': 'Veuillez accepter les conditions générales',
+    'checkout.booking_success': 'Réservation effectuée avec succès !',
+    'checkout.booking_error': 'Échec de la réservation. Veuillez réessayer.',
+
+    // Header dashboard links
+    'nav.admin_dashboard': 'Tableau de Bord Admin',
+    'nav.vendor_dashboard': 'Tableau de Bord Partenaire',
   },
 }
 

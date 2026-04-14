@@ -347,15 +347,9 @@ def get_my_reviews(
 
 def _update_activity_rating(activity: Activity, db: Session):
     """Helper function to update activity average rating."""
-    # Calculate new average rating
     result = db.query(
-        func.avg(Review.rating).label("avg_rating"),
-        func.count(Review.id).label("total_reviews")
+        func.coalesce(func.avg(Review.rating), 0),
+        func.count(Review.id)
     ).filter(Review.activity_id == activity.id).first()
-
-    if result.avg_rating:
-        activity.average_rating = round(result.avg_rating, 1)
-        activity.total_reviews = result.total_reviews
-    else:
-        activity.average_rating = 0
-        activity.total_reviews = 0
+    activity.average_rating = round(float(result[0]), 1)
+    activity.total_reviews = result[1]

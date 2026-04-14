@@ -114,7 +114,7 @@ export default function Header() {
                   {userRole === 'admin' && (
                     <>
                       <Link href="/admin/dashboard" className="block px-4 py-2 text-sm text-purple-600 font-semibold hover:bg-gray-100">
-                        Admin Dashboard
+                        {getTranslation('nav.admin_dashboard')}
                       </Link>
                       <hr className="my-1" />
                     </>
@@ -122,7 +122,7 @@ export default function Header() {
                   {userRole === 'vendor' && (
                     <>
                       <Link href="/vendor/dashboard" className="block px-4 py-2 text-sm text-primary font-semibold hover:bg-gray-100">
-                        Vendor Dashboard
+                        {getTranslation('nav.vendor_dashboard')}
                       </Link>
                       <hr className="my-1" />
                     </>
@@ -186,12 +186,12 @@ export default function Header() {
                 <>
                   {userRole === 'admin' && (
                     <Link href="/admin/dashboard" className="text-purple-600 font-semibold hover:text-purple-700 transition-colors">
-                      Admin Dashboard
+                      {getTranslation('nav.admin_dashboard')}
                     </Link>
                   )}
                   {userRole === 'vendor' && (
                     <Link href="/vendor/dashboard" className="text-primary font-semibold hover:text-primary-600 transition-colors">
-                      Vendor Dashboard
+                      {getTranslation('nav.vendor_dashboard')}
                     </Link>
                   )}
                   <Link href="/my-account" className="text-gray-700 hover:text-primary transition-colors">

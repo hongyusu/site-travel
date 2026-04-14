@@ -40,7 +40,7 @@ const categoryIcons: Record<string, React.ComponentType<any>> = {
   'water-sports': Waves,
   'outdoor-adventures': Mountain,
   'food-drink': Wine,
-  'cruises-boat-tours': Ship,
+  'cruises-boat-tours': Anchor,
   'transfers-ground-transport': Car,
   'shows-performances': Theater,
   'adventure-nature': Target,
@@ -49,15 +49,12 @@ const categoryIcons: Record<string, React.ComponentType<any>> = {
   'tours': MapPin,
   'museums': Building,
   'day-trips': Bus,
-  'water-sports': Waves,
   'outdoor': Mountain,
-  'food-drink': Wine,
   'cruises': Ship,
   'transport': Car,
   'shows': Theater,
   'adventure': Target,
   'cultural': Palette,
-  'nature-wildlife': Trees,
   'photography': Camera,
   'nightlife-entertainment': Moon,
   'workshops-classes': BookOpen,
@@ -67,7 +64,6 @@ const categoryIcons: Record<string, React.ComponentType<any>> = {
   'sports-fitness': Dumbbell,
   'shopping': ShoppingBag,
   'hiking-walking': Footprints,
-  'cruises-boat-tours': Anchor
 };
 
 export default function CategoryCard({ category, count }: CategoryCardProps) {

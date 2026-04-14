@@ -13,7 +13,7 @@ logger = logging.getLogger(__name__)
 from app.database import get_db
 from app.models import (
     Booking, Activity, User, Vendor, Availability,
-    BookingStatus, ActivityImage
+    BookingStatus, ActivityImage, UserRole
 )
 from app.schemas.booking import (
     BookingCreate, BookingUpdate, BookingResponse,
@@ -170,6 +170,8 @@ def get_my_bookings(
     response_bookings = []
     for booking in bookings:
         activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+        if not activity:
+            continue
         response_bookings.append(_prepare_booking_response(booking, activity, db))
 
     return PaginatedResponse.create(
@@ -198,13 +200,18 @@ def get_booking(
 
     # Check permission (user can only see their own bookings unless admin)
     if current_user:
-        if booking.user_id != current_user.id and current_user.role != "admin":
+        if booking.user_id != current_user.id and current_user.role != UserRole.ADMIN:
             raise HTTPException(
                 status_code=status.HTTP_403_FORBIDDEN,
                 detail="Not authorized to view this booking"
             )
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity associated with this booking no longer exists"
+        )
     return _prepare_booking_response(booking, activity, db)
 
 
@@ -240,6 +247,11 @@ def cancel_booking(
 
     # Check cancellation policy
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity associated with this booking no longer exists"
+        )
     booking_datetime = datetime.combine(booking.booking_date, booking.booking_time or datetime.min.time())
     hours_until_activity = (booking_datetime - datetime.utcnow()).total_seconds() / 3600
 
@@ -357,6 +369,8 @@ def get_vendor_bookings(
     response_bookings = []
     for booking in bookings:
         activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
+        if not activity:
+            continue
         response_bookings.append(_prepare_booking_response(booking, activity, db))
 
     return PaginatedResponse.create(
@@ -401,7 +415,12 @@ def approve_booking(
     db.refresh(booking)
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
-    
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity associated with this booking no longer exists"
+        )
+
     # Send booking approval email
     if booking.customer_email:
         try:
@@ -458,7 +477,12 @@ def reject_booking(
     db.refresh(booking)
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
-    
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity associated with this booking no longer exists"
+        )
+
     # Send booking rejection email
     if booking.customer_email:
         try:
@@ -508,7 +532,12 @@ def checkin_booking(
     db.refresh(booking)
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
-    
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity associated with this booking no longer exists"
+        )
+
     # Send booking completion and review request email
     if booking.customer_email:
         try:
@@ -580,7 +609,12 @@ def vendor_cancel_booking(
     db.refresh(booking)
 
     activity = db.query(Activity).filter(Activity.id == booking.activity_id).first()
-    
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity associated with this booking no longer exists"
+        )
+
     # Send booking cancellation email
     if booking.customer_email:
         try:

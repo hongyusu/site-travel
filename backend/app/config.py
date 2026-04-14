@@ -52,7 +52,7 @@ class Settings(BaseSettings):
     DEFAULT_CURRENCY: str = "EUR"
 
     # Email
-    RESEND_API_KEY: str = "re_W314AQWC_AWo6mye59GD11pSfZ8533yG4"
+    RESEND_API_KEY: str = ""
     EMAIL_FROM: str = "onboarding@resend.dev"  # Use verified domain for testing
     EMAIL_FROM_NAME: str = "FindTravelMate"
     EMAIL_ENABLED: bool = True  # Enable for testing with verified email

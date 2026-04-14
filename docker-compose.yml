@@ -1,157 +1,71 @@
-# Production Docker Compose Configuration
-# Enhanced with:
-# - Resource limits for stability
-# - Improved health checks (curl-based)
-# - Logging configuration
-# - Security hardening
-# - Performance optimization
-# - Fixed port conflicts (frontend runs without direct port mapping)
-# - Nginx reverse proxy handles all routing
-# - Database backup volume mounted for restoration
-
 services:
   postgres:
     image: postgres:15-alpine
     container_name: findtravelmate_db
-    restart: always
+    restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PASSWORD: password
       POSTGRES_DB: findtravelmate
-      POSTGRES_INITDB_ARGS: "-E UTF8 --locale=en_US.UTF-8"
-      # Performance tuning
-      POSTGRES_SHARED_BUFFERS: 256MB
-      POSTGRES_EFFECTIVE_CACHE_SIZE: 1GB
-      POSTGRES_MAX_CONNECTIONS: ${DB_POOL_SIZE:-100}
-    # Remove direct port mapping in production for security
-    # ports:
-    #   - "${POSTGRES_PORT:-5432}:5432"
+    ports:
+      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
-      - ./backups:/backups
+      - ./backend/backups:/backups
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d findtravelmate"]
-      interval: 10s
+      interval: 5s
       timeout: 3s
-      retries: 5
-      start_period: 30s
+      retries: 10
+      start_period: 10s
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          memory: 3G
-        reservations:
-          memory: 256M
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
 
   redis:
     image: redis:7-alpine
     container_name: findtravelmate_redis
-    restart: always
-    # Remove direct port mapping in production for security
-    # ports:
-    #   - "${REDIS_PORT:-6379}:6379"
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 128mb --maxmemory-policy allkeys-lru
     volumes:
       - redis_data:/data
-    command: >
-      redis-server
-      --appendonly yes
-      --appendfsync everysec
-      --maxmemory 512mb
-      --maxmemory-policy allkeys-lru
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
-      interval: 10s
+      interval: 5s
       timeout: 3s
       retries: 5
-      start_period: 10s
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 128M
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "5m"
-        max-file: "3"
 
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
       target: production
-      args:
-        - PYTHON_VERSION=3.12
     container_name: findtravelmate_backend
-    restart: always
-    ports:
-      - "${BACKEND_PORT:-8000}:8000"
+    restart: unless-stopped
     environment:
-      # Database
-      DATABASE_URL: postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/findtravelmate
-      DB_POOL_SIZE: ${DB_POOL_SIZE:-20}
-      DB_MAX_OVERFLOW: ${DB_MAX_OVERFLOW:-10}
-      DB_POOL_TIMEOUT: ${DB_POOL_TIMEOUT:-30}
-
-      # Security
-      SECRET_KEY: ${SECRET_KEY}
-      ALGORITHM: ${ALGORITHM:-HS256}
-      ACCESS_TOKEN_EXPIRE_MINUTES: ${ACCESS_TOKEN_EXPIRE_MINUTES:-30}
-      REFRESH_TOKEN_EXPIRE_DAYS: ${REFRESH_TOKEN_EXPIRE_DAYS:-7}
-
-      # Application
-      PYTHON_ENV: production
-      LOG_LEVEL: ${LOG_LEVEL:-INFO}
-      AUTO_INIT_DB: ${AUTO_INIT_DB:-false}
-
-      # Redis
+      DATABASE_URL: postgresql://postgres:password@postgres:5432/findtravelmate
+      SECRET_KEY: demo-secret-key-not-for-production-use
+      ALGORITHM: HS256
       REDIS_URL: redis://redis:6379/0
-
-      # Optional features
-      ENABLE_REGISTRATION: ${ENABLE_REGISTRATION:-true}
-      ENABLE_VENDOR_SIGNUP: ${ENABLE_VENDOR_SIGNUP:-true}
-      ENABLE_REVIEWS: ${ENABLE_REVIEWS:-true}
-      ENABLE_WISHLIST: ${ENABLE_WISHLIST:-true}
+      CORS_ORIGINS: '["*"]'
     volumes:
-      - backend_logs:/app/logs
+      - ./backend/backups:/backups
+    ports:
+      - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/activities/categories"]
-      interval: 30s
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 10s
       timeout: 5s
-      retries: 3
-      start_period: 60s
+      retries: 5
+      start_period: 30s
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          memory: 3G
-        reservations:
-          memory: 256M
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "5"
-    security_opt:
-      - no-new-privileges:true
-    read_only: false
-    tmpfs:
-      - /tmp:size=100M
 
   frontend:
     build:
@@ -159,96 +73,43 @@ services:
       dockerfile: Dockerfile
       target: production
       args:
-        - NODE_VERSION=20
-        - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost/api}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost/api}
     container_name: findtravelmate_frontend
-    restart: always
-    # Remove direct port mapping - nginx handles all routing
-    # ports:
-    #   - "${FRONTEND_PORT:-3000}:3000"
+    restart: unless-stopped
     environment:
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost/api}
       NODE_ENV: production
     depends_on:
       backend:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:3000"]
-      interval: 30s
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://0.0.0.0:3000"]
+      interval: 10s
       timeout: 5s
-      retries: 3
-      start_period: 60s
+      retries: 5
+      start_period: 30s
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          memory: 2G
-        reservations:
-          memory: 128M
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "3"
-    security_opt:
-      - no-new-privileges:true
 
   nginx:
     image: nginx:1.25-alpine
     container_name: findtravelmate_nginx
-    restart: always
+    restart: unless-stopped
     ports:
       - "80:80"
-      - "443:443"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
-      - ./nginx/conf.d:/etc/nginx/conf.d:ro
-      - ./nginx/ssl:/etc/nginx/ssl:ro
-      - nginx_logs:/var/log/nginx
-      - nginx_cache:/var/cache/nginx
     depends_on:
       backend:
         condition: service_healthy
       frontend:
         condition: service_healthy
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 60s
     networks:
       - app-network
-    deploy:
-      resources:
-        limits:
-          memory: 1G
-        reservations:
-          memory: 64M
-    logging:
-      driver: "json-file"
-      options:
-        max-size: "10m"
-        max-file: "5"
-    security_opt:
-      - no-new-privileges:true
 
 volumes:
   postgres_data:
-    driver: local
   redis_data:
-    driver: local
-  backend_logs:
-    driver: local
-  nginx_logs:
-    driver: local
-  nginx_cache:
-    driver: local
 
 networks:
   app-network:
     driver: bridge
-    ipam:
-      config:
-        - subnet: 172.20.0.0/16

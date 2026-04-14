@@ -189,13 +189,13 @@ function OrderConfirmationContent() {
               <OrderTimeline
                 bookingStatus={booking.status}
                 createdAt={booking.created_at}
-                confirmedAt={booking.confirmed_at}
-                vendorApprovedAt={booking.vendor_approved_at}
-                vendorRejectedAt={booking.vendor_rejected_at}
-                cancelledAt={booking.cancelled_at}
-                completedAt={booking.completed_at}
+                confirmedAt={booking.confirmed_at ?? undefined}
+                vendorApprovedAt={booking.vendor_approved_at ?? undefined}
+                vendorRejectedAt={booking.vendor_rejected_at ?? undefined}
+                cancelledAt={booking.cancelled_at ?? undefined}
+                completedAt={booking.completed_at ?? undefined}
                 bookingDate={booking.booking_date}
-                rejectionReason={booking.rejection_reason}
+                rejectionReason={booking.rejection_reason ?? undefined}
               />
             </div>
 

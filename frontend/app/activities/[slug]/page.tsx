@@ -221,7 +221,7 @@ export default function ActivityDetailsPage() {
               <div className="flex flex-wrap gap-4">
                 <div className="flex items-center text-gray-600">
                   <Clock className="w-4 h-4 mr-1" />
-                  {Math.floor(activity.duration_minutes / 60)}h {activity.duration_minutes % 60}m
+                  {Math.floor((activity.duration_minutes ?? 0) / 60)}h {(activity.duration_minutes ?? 0) % 60}m
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Users className="w-4 h-4 mr-1" />

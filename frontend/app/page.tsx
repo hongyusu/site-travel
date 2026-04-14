@@ -27,7 +27,7 @@ export default function HomePage() {
       date: 'January 20, 2024',
       author: 'Sarah Mitchell',
       category: 'Destination Guides',
-      image: 'https://picsum.photos/seed/blog-rome/800/500',
+      image: 'https://loremflickr.com/800/500/travel,rome?lock=5001',
     },
     {
       title: 'How to Plan the Perfect Family Vacation',
@@ -35,7 +35,7 @@ export default function HomePage() {
       date: 'January 15, 2024',
       author: 'David Chen',
       category: 'Travel Tips',
-      image: 'https://picsum.photos/seed/blog-family/800/500',
+      image: 'https://loremflickr.com/800/500/travel,family?lock=5002',
     },
     {
       title: 'Best Time to Visit European Capitals',
@@ -43,7 +43,7 @@ export default function HomePage() {
       date: 'January 10, 2024',
       author: 'Emma Rodriguez',
       category: 'Travel Planning',
-      image: 'https://picsum.photos/seed/blog-europe/800/500',
+      image: 'https://loremflickr.com/800/500/travel,europe?lock=5003',
     },
   ];
 
@@ -55,16 +55,16 @@ export default function HomePage() {
     try {
       const [destinationsRes, activitiesRes, categoriesRes] = await Promise.all([
         apiClient.destinations.getFeatured(),
-        apiClient.activities.search({ bestseller: true, per_page: 8 }),
+        apiClient.activities.search({ bestseller: true, per_page: 16 }),
         apiClient.categories.list()
       ]);
 
-      setFeaturedDestinations(destinationsRes.data.slice(0, 6));
+      setFeaturedDestinations(destinationsRes.data.slice(0, 12));
       setPopularActivities(activitiesRes.data.data);
-      setCategories(categoriesRes.data.slice(0, 8));
-    } catch (error) {
+      setCategories(categoriesRes.data);
+    } catch (error: unknown) {
       console.error('Error fetching homepage data:', error);
-      console.error('Full error details:', error.response || error);
+      console.error('Full error details:', error instanceof Error ? error : error);
     } finally {
       setLoading(false);
     }
@@ -75,7 +75,7 @@ export default function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-br from-primary to-orange-600">
         <Image
-          src="https://picsum.photos/seed/hero-travel-partner/1920/600"
+          src="https://loremflickr.com/1920/600/travel,adventure?lock=5000"
           alt="Meet your travel partner"
           fill
           className="object-cover opacity-50"
@@ -172,10 +172,10 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {loading ? (
               <>
-                {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
+                {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => (
                   <div key={i} className="bg-white rounded-lg h-32 animate-pulse" />
                 ))}
               </>

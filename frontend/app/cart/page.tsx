@@ -9,10 +9,12 @@ import { CartItem } from '@/types';
 import { apiClient } from '@/lib/api';
 import { getImageUrl } from '@/lib/utils';
 import { useLocation } from '@/contexts/LocationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function CartPage() {
   const router = useRouter();
   const { formatPrice } = useLocation();
+  const { getTranslation } = useLanguage();
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [removing, setRemoving] = useState<number | null>(null);
@@ -110,12 +112,12 @@ export default function CartPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <ShoppingCart className="w-24 h-24 text-gray-300 mx-auto mb-4" />
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Your cart is empty</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">{getTranslation('cart.empty')}</h1>
           <p className="text-gray-600 mb-8">
             Looks like you haven't added any activities yet
           </p>
           <Link href="/search" className="btn-primary">
-            Browse Activities
+            {getTranslation('cart.browse_activities')}
           </Link>
         </div>
       </div>
@@ -125,7 +127,7 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">{getTranslation('cart.title')}</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Cart Items */}
@@ -235,7 +237,7 @@ export default function CartPage() {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow p-6 sticky top-24">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-bold mb-4">{getTranslation('cart.order_summary')}</h2>
 
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-gray-600">
@@ -258,14 +260,14 @@ export default function CartPage() {
                 onClick={handleCheckout}
                 className="btn-primary w-full mb-4"
               >
-                Proceed to Checkout
+                {getTranslation('cart.proceed_to_checkout')}
               </button>
 
               <Link
                 href="/search"
                 className="block text-center text-primary hover:text-primary-600"
               >
-                Continue Shopping
+                {getTranslation('cart.continue_shopping')}
               </Link>
 
               {/* Security Badge */}
@@ -274,7 +276,7 @@ export default function CartPage() {
                   <svg className="w-5 h-5 text-success mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                   </svg>
-                  Secure Checkout
+                  {getTranslation('cart.secure_checkout')}
                 </div>
                 <p className="text-xs">
                   Your payment information is encrypted and secure

@@ -290,34 +290,6 @@ export interface PaginatedResponse<T> {
   };
 }
 
-export interface ActivityHighlight {
-  id: number;
-  text: string;
-  order_index: number;
-}
-
-export interface ActivityInclude {
-  id: number;
-  item: string;
-  is_included: boolean;
-  order_index: number;
-}
-
-export interface ActivityFAQ {
-  id: number;
-  question: string;
-  answer: string;
-  order_index: number;
-}
-
-export interface MeetingPoint {
-  id: number;
-  address: string;
-  instructions?: string;
-  latitude: number;
-  longitude: number;
-}
-
 export interface ActivityDetailResponse extends Activity {
   description: string;
   max_group_size: number;

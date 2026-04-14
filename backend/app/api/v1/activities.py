@@ -486,28 +486,6 @@ def get_activity(
     return _get_activity_details(activity, db, language)
 
 
-@router.get("/slug/{slug}", response_model=ActivityDetailResponse)
-def get_activity_by_slug(
-    slug: str,
-    language: str = Query('en', regex="^(en|es|zh|fr)$", description="Language code"),
-    db: Session = Depends(get_db),
-    current_user = Depends(get_optional_current_user)
-):
-    """Get activity details by slug."""
-    activity = db.query(Activity).filter(
-        Activity.slug == slug,
-        Activity.is_active == True
-    ).first()
-
-    if not activity:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Activity not found"
-        )
-
-    return _get_activity_details(activity, db, language)
-
-
 @router.get("/{activity_id}/similar", response_model=List[ActivityResponse])
 def get_similar_activities(
     activity_id: int,

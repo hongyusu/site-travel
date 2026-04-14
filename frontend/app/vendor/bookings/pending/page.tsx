@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { Calendar, Users, Mail, Phone, CheckCircle, XCircle, Clock } from 'lucide-react';
-import { apiClient } from '@/lib/api';
+import { api } from '@/lib/api';
 import { useLocation } from '@/contexts/LocationContext';
 import OrderStatusBadge from '@/components/orders/OrderStatusBadge';
 import RejectBookingModal from '@/components/vendor/RejectBookingModal';
@@ -47,7 +47,7 @@ export default function VendorPendingBookingsPage() {
   const fetchPendingBookings = async () => {
     try {
       setLoading(true);
-      const response = await apiClient.get('/bookings/vendor/bookings', {
+      const response = await api.get('/bookings/vendor/bookings', {
         params: {
           status: 'pending_vendor_approval',
           per_page: 100
@@ -65,7 +65,7 @@ export default function VendorPendingBookingsPage() {
 
   const handleApprove = async (bookingId: number) => {
     try {
-      await apiClient.patch(`/bookings/vendor/${bookingId}/approve`);
+      await api.patch(`/bookings/vendor/${bookingId}/approve`);
       toast.success('Booking approved successfully');
       fetchPendingBookings();
     } catch (error) {
@@ -76,7 +76,7 @@ export default function VendorPendingBookingsPage() {
 
   const handleReject = async (bookingId: number, reason: string) => {
     try {
-      await apiClient.patch(`/bookings/vendor/${bookingId}/reject`, null, {
+      await api.patch(`/bookings/vendor/${bookingId}/reject`, null, {
         params: { rejection_reason: reason }
       });
       toast.success('Booking rejected');

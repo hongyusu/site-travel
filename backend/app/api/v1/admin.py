@@ -381,7 +381,7 @@ def list_all_bookings(
 
         result.append({
             "id": booking.id,
-            "booking_reference": booking.booking_reference,
+            "booking_reference": booking.booking_ref,
             "customer_name": user.full_name if user else None,
             "customer_email": user.email if user else None,
             "activity_title": activity.title if activity else None,
@@ -459,21 +459,15 @@ def admin_delete_review(
 
     # Update activity stats
     activity = db.query(Activity).filter(Activity.id == review.activity_id).first()
-    if activity:
-        remaining_reviews = db.query(Review).filter(
-            Review.activity_id == activity.id,
-            Review.id != review_id
-        ).all()
-
-        if remaining_reviews:
-            avg_rating = sum(r.rating for r in remaining_reviews) / len(remaining_reviews)
-            activity.average_rating = round(avg_rating, 1)
-            activity.total_reviews = len(remaining_reviews)
-        else:
-            activity.average_rating = 0
-            activity.total_reviews = 0
-
     db.delete(review)
+
+    if activity:
+        result = db.query(
+            func.coalesce(func.avg(Review.rating), 0),
+            func.count(Review.id)
+        ).filter(Review.activity_id == activity.id).first()
+        activity.average_rating = round(float(result[0]), 1)
+        activity.total_reviews = result[1]
     db.commit()
 
     return MessageResponse(message="Review deleted successfully")

@@ -9,6 +9,7 @@ import { CartItem } from '@/types';
 import { apiClient } from '@/lib/api';
 import { getImageUrl } from '@/lib/utils';
 import { useLocation } from '@/contexts/LocationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import { toast } from 'react-hot-toast';
 
 interface TravelerInfo {
@@ -23,6 +24,7 @@ interface TravelerInfo {
 export default function CheckoutPage() {
   const router = useRouter();
   const { formatPrice } = useLocation();
+  const { getTranslation } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -95,19 +97,19 @@ export default function CheckoutPage() {
 
   const validateForm = () => {
     if (!travelerInfo.firstName || !travelerInfo.lastName) {
-      toast.error('Please enter your full name');
+      toast.error(getTranslation('checkout.validate_name'));
       return false;
     }
     if (!travelerInfo.email) {
-      toast.error('Please enter your email address');
+      toast.error(getTranslation('checkout.validate_email'));
       return false;
     }
     if (!travelerInfo.phone) {
-      toast.error('Please enter your phone number');
+      toast.error(getTranslation('checkout.validate_phone'));
       return false;
     }
     if (!agreeToTerms) {
-      toast.error('Please agree to the terms and conditions');
+      toast.error(getTranslation('checkout.validate_terms'));
       return false;
     }
     return true;
@@ -141,7 +143,7 @@ export default function CheckoutPage() {
       const clearPromises = cartItems.map(item => apiClient.cart.remove(item.id));
       await Promise.all(clearPromises);
 
-      toast.success('Booking completed successfully!');
+      toast.success(getTranslation('checkout.booking_success'));
 
       // Redirect to order confirmation page with the first booking reference
       const firstBookingRef = bookingResponses[0]?.data?.booking_ref;
@@ -152,7 +154,7 @@ export default function CheckoutPage() {
       }
     } catch (error) {
       console.error('Error creating booking:', error);
-      toast.error('Failed to complete booking. Please try again.');
+      toast.error(getTranslation('checkout.booking_error'));
     } finally {
       setProcessing(false);
     }
@@ -187,9 +189,9 @@ export default function CheckoutPage() {
         <div className="mb-8">
           <Link href="/cart" className="inline-flex items-center text-gray-600 hover:text-gray-900 mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
-            Back to Cart
+            {getTranslation('checkout.back_to_cart')}
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Checkout</h1>
+          <h1 className="text-3xl font-bold text-gray-900">{getTranslation('checkout.title')}</h1>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -243,7 +245,7 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      First Name *
+                      {getTranslation('checkout.first_name')}
                     </label>
                     <input
                       type="text"
@@ -255,7 +257,7 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Last Name *
+                      {getTranslation('checkout.last_name')}
                     </label>
                     <input
                       type="text"
@@ -269,7 +271,7 @@ export default function CheckoutPage() {
 
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Email Address *
+                    {getTranslation('checkout.email')}
                   </label>
                   <input
                     type="email"
@@ -286,7 +288,7 @@ export default function CheckoutPage() {
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone Number *
+                      {getTranslation('checkout.phone')}
                     </label>
                     <input
                       type="tel"
@@ -351,7 +353,7 @@ export default function CheckoutPage() {
 
               {/* Payment Method */}
               <div className="bg-white rounded-lg shadow p-6 mb-6">
-                <h2 className="text-xl font-bold mb-4">Payment Method</h2>
+                <h2 className="text-xl font-bold mb-4">{getTranslation('checkout.payment_method')}</h2>
 
                 <div className="space-y-3">
                   <label className="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
@@ -423,7 +425,7 @@ export default function CheckoutPage() {
           {/* Order Summary Sidebar */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow p-6 sticky top-24">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-bold mb-4">{getTranslation('checkout.order_summary')}</h2>
 
               {/* Cart Items */}
               <div className="space-y-4 mb-6">
