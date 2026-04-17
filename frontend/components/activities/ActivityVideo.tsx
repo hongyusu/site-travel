@@ -22,7 +22,7 @@ export default function ActivityVideo({ videoUrl, title }: ActivityVideoProps) {
   return (
     <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
       <h2 className="text-2xl font-bold mb-4">Preview</h2>
-      <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden max-w-[80%]">
+      <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden">
         {showVideo ? (
           youtubeId ? (
             <iframe
