@@ -2,6 +2,14 @@
 
 A full-stack travel activities marketplace built with FastAPI and Next.js. Customers browse and book travel experiences, vendors manage activities, and admins moderate the platform.
 
+**Live Demo:** http://178.104.206.21:8083
+
+| Role     | Email                        | Password     |
+|----------|------------------------------|--------------|
+| Admin    | admin@findtravelmate.com     | admin123     |
+| Customer | customer@example.com         | customer123  |
+| Vendor   | vendor1@example.com          | vendor123    |
+
 ## Quick Start
 
 ```bash
