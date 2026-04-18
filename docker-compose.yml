@@ -1,14 +1,12 @@
 services:
   postgres:
     image: postgres:15-alpine
-    container_name: findtravelmate_db
+    container_name: travel_db
     restart: unless-stopped
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: findtravelmate
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
       - ./backend/backups:/backups
@@ -23,7 +21,7 @@ services:
 
   redis:
     image: redis:7-alpine
-    container_name: findtravelmate_redis
+    container_name: travel_redis
     restart: unless-stopped
     command: redis-server --appendonly yes --maxmemory 128mb --maxmemory-policy allkeys-lru
     volumes:
@@ -41,7 +39,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
       target: production
-    container_name: findtravelmate_backend
+    container_name: travel_backend
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://postgres:password@postgres:5432/findtravelmate
@@ -51,8 +49,6 @@ services:
       CORS_ORIGINS: '["*"]'
     volumes:
       - ./backend/backups:/backups
-    ports:
-      - "8000:8000"
     depends_on:
       postgres:
         condition: service_healthy
@@ -74,7 +70,7 @@ services:
       target: production
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost/api}
-    container_name: findtravelmate_frontend
+    container_name: travel_frontend
     restart: unless-stopped
     environment:
       NODE_ENV: production
@@ -92,10 +88,10 @@ services:
 
   nginx:
     image: nginx:1.25-alpine
-    container_name: findtravelmate_nginx
+    container_name: travel_nginx
     restart: unless-stopped
     ports:
-      - "80:80"
+      - "8083:80"
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
     depends_on:

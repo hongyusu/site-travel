@@ -1,0 +1,14 @@
+services:
+  postgres:
+    container_name: travel_db
+  redis:
+    container_name: travel_redis
+  backend:
+    container_name: travel_backend
+  frontend:
+    container_name: travel_frontend
+    build:
+      args:
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8083/api}
+  nginx:
+    container_name: travel_nginx
