@@ -156,18 +156,57 @@ Required in `.env`:
 - Images use picsum.photos seeded URLs (deterministic based on slug)
 - Translation tables follow pattern: `{entity}_translations` with `language` + `{entity}_id` columns
 
-## Deployment
+## Deployment & CD pipeline
 
-Single `docker-compose.yml` runs all 5 services. No dev/prod split.
+**Production target:** one VPS at static IP `178.104.206.21`, served at `http://178.104.206.21:8083`
+(nginx → frontend/backend). The repo is checked out at `/opt/sites/site-travel` and runs via
+`docker compose -f docker-compose.yml -f docker-compose.prod.yml` (the prod override sets the
+`travel_*` container names + `NEXT_PUBLIC_API_URL`). All 5 services are built **from source on the
+server** (no registry). No HTTPS/domain yet.
 
-```bash
-./deploy.sh                    # localhost
-./deploy.sh 123.45.67.89       # remote (passes NEXT_PUBLIC_API_URL as build arg)
+### Single source of truth = GitHub `main`
+- **Edit on the laptop only**, never on the server. The server is a *disposable checkout*.
+- Code, seed scripts, and **images** (`frontend/public/media/`, baked into the frontend image at
+  build) all live in git. Runtime DB rows do **not** (they live in the `travel_db` volume).
+
+### Deploy flow (laptop → GitHub → server)
 ```
+laptop:  edit → git commit → git push           # push via SSH alias (hongyusu account):
+                                                 #   git push git@github:hongyusu/site-travel.git main
+                                                 #   (default git@github.com auths as hongyu-cambri → no access)
+server:  ./deploy.sh   (or the manual sequence below)
+```
+Manual server deploy sequence (what `deploy.sh` should automate):
+```bash
+cd /opt/sites/site-travel
+docker exec travel_db pg_dump -U postgres --clean --if-exists findtravelmate > /root/travel_backup_$(date +%F_%H%M%S).sql  # 1. backup DB
+git fetch origin && git reset --hard origin/main                                                                          # 2. pull latest (server is disposable)
+docker compose -f docker-compose.yml -f docker-compose.prod.yml build && \
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d                                                      # 3. rebuild + recreate
+curl -sf http://localhost:8083/health                                                                                      # 4. verify
+```
+Notes:
+- The `travel_db` **volume persists across rebuilds** → DB data is safe; only code/images change.
+- Frontend API calls are **relative** (`window.location.origin/api/v1` in `lib/api.ts`), so the baked
+  `NEXT_PUBLIC_API_URL` does **not** affect browser→backend — it works on any host.
+- Server is **pull-only** (no GitHub push creds, by design — public repo pulls anonymously over HTTPS).
+- The repo's old `deploy.sh` is **stale** (references `findtravelmate_*` / port 80) — rewrite it to the
+  sequence above before relying on it.
 
-The deploy script `export`s `NEXT_PUBLIC_API_URL` which docker-compose.yml reads via `${NEXT_PUBLIC_API_URL:-http://localhost/api}`. This is baked into the Next.js build at image creation time — changing it requires a rebuild.
+### Adding/updating images
+Add files to `frontend/public/media/` **on the laptop** → commit → push → deploy. Never add images on
+the server (it can't push them back → they get orphaned and lost on the next `reset --hard`). The first
+`reset --hard` after this was set up converted the server's previously-untracked media to git-tracked.
 
-Nginx `/health` endpoint proxies to backend `/health` for real health checking.
+### Data
+- **Schema:** SQLAlchemy `create_all` on empty DB (entrypoint). Alembic dir exists but is unused —
+  only adopt it when schema changes against live user data.
+- **Seed/content:** idempotent scripts in `backend/` (e.g. `seed_china_tours.py`, skip-if-slug-exists)
+  + their JSON, committed to git. Run on demand: `docker exec travel_backend python /app/<script>.py`.
+- **Backups:** `pg_dump` before each deploy (above); recommend a nightly off-box cron. Do **not** commit
+  `.sql` dumps to git (8 are currently tracked and should be `git rm --cached`'d + gitignored).
+
+Nginx `/health` proxies to backend `/health` for real health checking.
 
 ## Known Limitations
 
