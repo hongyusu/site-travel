@@ -318,6 +318,7 @@ export interface SearchParams {
   destination_slug?: string;
   category_id?: number;
   category_slug?: string;
+  vendor_id?: number;
   min_price?: number;
   max_price?: number;
   min_duration?: number;
@@ -331,4 +332,10 @@ export interface SearchParams {
   sort_by?: 'recommended' | 'price_asc' | 'price_desc' | 'rating' | 'duration';
   page?: number;
   per_page?: number;
+}
+
+export interface Provider {
+  id: number;
+  company_name: string;
+  activity_count: number;
 }

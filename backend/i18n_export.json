@@ -1,0 +1,1327 @@
+{
+  "activities": [
+    {
+      "id": 12,
+      "slug": "shanghai-street-food-night-market-adventure",
+      "title": "Shanghai Street Food & Night Market Adventure",
+      "short_description": "Navigate Shanghai's vibrant night markets and discover authentic street food treasures",
+      "description": "Experience Shanghai after dark through its bustling night markets and street food scene. Follow local food guides through hidden alleys and popular markets, sampling everything from xiaolongbao to grilled squid. Learn about Shanghai's culinary history, meet local vendors, and discover foods you won't find in restaurants. This authentic food adventure reveals the real taste of Shanghai."
+    },
+    {
+      "id": 13,
+      "slug": "guilin-li-river-bamboo-rafting-countryside",
+      "title": "Guilin Li River Bamboo Rafting & Countryside",
+      "short_description": "Peaceful bamboo raft journey through Guilin's legendary karst landscapes and rural villages",
+      "description": "Float through one of China's most iconic landscapes on a traditional bamboo raft along the Li River. Witness the dramatic karst peaks that have inspired Chinese artists for centuries, visit traditional fishing villages, and experience rural Chinese life. Learn about local customs, try your hand at cormorant fishing, and enjoy a countryside lunch with a local family."
+    },
+    {
+      "id": 14,
+      "slug": "hangzhou-west-lake-cultural-heritage-walk",
+      "title": "Hangzhou West Lake Cultural Heritage Walk",
+      "short_description": "Discover the UNESCO World Heritage beauty of West Lake and its cultural significance",
+      "description": "Explore the poetic beauty of Hangzhou's West Lake, a UNESCO World Heritage site that has inspired poets and artists for over 1000 years. Walk along ancient causeways, visit historic temples and pagodas, and learn about the legends and literature associated with this legendary lake. Experience traditional Chinese garden design and understand why West Lake is considered paradise on earth."
+    },
+    {
+      "id": 15,
+      "slug": "xian-silk-road-history-muslim-quarter",
+      "title": "Xi'an Silk Road History & Muslim Quarter Experience",
+      "short_description": "Journey through Xi'an's Silk Road heritage and vibrant Muslim cultural quarter",
+      "description": "Discover Xi'an's role as the starting point of the ancient Silk Road through its historic Muslim Quarter. Explore the Great Mosque, sample Halal Chinese cuisine, learn about the cultural exchange between East and West, and understand how different cultures have shaped this ancient capital. Visit traditional crafts workshops and experience the multicultural heritage of the Silk Road."
+    },
+    {
+      "id": 18,
+      "slug": "danish-language-culture-immersion-copenhagen",
+      "title": "Danish Language & Culture Immersion Experience",
+      "short_description": "Intensive Danish language learning combined with deep cultural immersion in Copenhagen",
+      "description": "Experience total Danish language and cultural immersion through this comprehensive program in Copenhagen. Participate in intensive language classes with native speakers, live with local families, explore Danish cultural institutions, and practice your skills in real-world situations. Learn about hygge culture, Danish social values, and the Danish approach to happiness and community."
+    },
+    {
+      "id": 19,
+      "slug": "swedish-education-system-teaching-methods-study",
+      "title": "Swedish Education System & Teaching Methods Study Tour",
+      "short_description": "Explore Sweden's progressive education system and innovative teaching methodologies",
+      "description": "Discover the secrets behind Sweden's world-class education system through visits to schools, universities, and educational research centers in Stockholm. Observe classes in action, meet with teachers and education experts, learn about Swedish pedagogical approaches, and understand how Sweden creates inclusive, innovative learning environments that consistently rank among the world's best."
+    },
+    {
+      "id": 21,
+      "slug": "icelandic-geothermal-volcanic-landscape-adventure",
+      "title": "Icelandic Geothermal & Volcanic Landscape Adventure",
+      "short_description": "Explore Iceland's unique geothermal wonders and volcanic landscapes on this geological adventure",
+      "description": "Discover the raw power of Iceland's geological forces through visits to active geothermal areas, volcanic sites, and unique landscapes found nowhere else on Earth. Learn about plate tectonics, volcanic activity, and renewable geothermal energy while soaking in natural hot springs, walking on glaciers, and witnessing the Northern Lights. This adventure combines education with unforgettable natural experiences."
+    },
+    {
+      "id": 22,
+      "slug": "stockholm-modern-design-architecture-walking-tour",
+      "title": "Stockholm Modern Design & Architecture Walking Tour",
+      "short_description": "Discover Stockholm's cutting-edge design scene and architectural innovations",
+      "description": "Explore Stockholm's reputation as a global design capital through this comprehensive walking tour of the city's most innovative architecture and design districts. Visit renowned design studios, meet local designers, explore modern architectural marvels, and understand how Swedish design principles influence everything from furniture to urban planning. Experience the intersection of functionality, beauty, and sustainability in Swedish design."
+    },
+    {
+      "id": 23,
+      "slug": "barcelona-gothic-quarter-walking-tapas",
+      "title": "Barcelona Gothic Quarter Walking Tour & Tapas Tasting",
+      "short_description": "Discover Barcelona's medieval heart with hidden gems and authentic tapas tasting",
+      "description": "Wander through the labyrinthine streets of Barcelona's Gothic Quarter, where Roman ruins meet medieval architecture. Your knowledgeable guide reveals hidden courtyards, ancient temples, and stories spanning 2,000 years. The tour culminates with a tapas tasting at a local bodega, sampling traditional Catalan dishes paired with regional wines."
+    },
+    {
+      "id": 24,
+      "slug": "sagrada-familia-skip-line-tower-access",
+      "title": "Sagrada Familia Skip-the-Line Tour with Tower Access",
+      "short_description": "Priority access to Gaudi's masterpiece with tower ascent and expert guide",
+      "description": "Skip the notoriously long queues and step inside Gaudi's masterpiece with an expert art historian. Marvel at the forest-like interior columns, the kaleidoscopic stained glass windows, and ascend one of the iconic towers for panoramic city views. Learn about the 140-year construction saga and the innovative techniques Gaudi pioneered."
+    },
+    {
+      "id": 25,
+      "slug": "barcelona-sunset-sailing-cava",
+      "title": "Barcelona Sunset Sailing with Cava & Snacks",
+      "short_description": "Sail Barcelona's coast at golden hour with sparkling cava and views",
+      "description": "Set sail from Port Olympic aboard a sleek catamaran as the sun paints Barcelona's skyline in gold. Sip chilled cava and enjoy Mediterranean snacks while gliding past the W Hotel, Barceloneta Beach, and the port. Perfect for couples, friends, or anyone wanting a magical evening on the water."
+    },
+    {
+      "id": 26,
+      "slug": "catalan-cooking-masterclass-barcelona",
+      "title": "Catalan Cooking Masterclass in a Chef's Home Kitchen",
+      "short_description": "Market visit and hands-on Catalan cooking with a local chef",
+      "description": "Join a local chef in their private kitchen for an intimate cooking session. Visit La Boqueria market together to select the freshest seasonal ingredients, then return to prepare a full Catalan meal: pa amb tomaquet, seafood paella, and crema catalana. Enjoy your creations with wine and take home the recipes."
+    },
+    {
+      "id": 27,
+      "slug": "tower-of-london-crown-jewels-early-access",
+      "title": "Tower of London & Crown Jewels Early Access Tour",
+      "short_description": "Beat the crowds at the Tower of London with priority Crown Jewels viewing",
+      "description": "Enter the Tower of London before the general public and see the Crown Jewels without the crowds. Your expert Yeoman Warder-style guide brings 1,000 years of royal intrigue to life — from the imprisonment of Anne Boleyn to the mysterious disappearance of the Princes in the Tower. Includes the White Tower, Traitors' Gate, and the iconic ravens."
+    },
+    {
+      "id": 28,
+      "slug": "london-street-art-east-end-walk",
+      "title": "London Street Art & East End Culture Walk",
+      "short_description": "Discover Banksy, Stik, and London's vibrant street art scene",
+      "description": "Explore Shoreditch and Brick Lane through the lens of street art. Spot works by Banksy, Stik, and ROA while learning how this once-industrial neighborhood became London's creative epicenter. Visit hidden courtyards, independent galleries, and hear stories of the artists who transformed these streets into open-air museums."
+    },
+    {
+      "id": 29,
+      "slug": "thames-evening-cruise-dinner-jazz",
+      "title": "Thames River Evening Cruise with Dinner & Live Jazz",
+      "short_description": "Three-course dinner cruise past London's illuminated skyline with live jazz",
+      "description": "Glide past London's illuminated landmarks — the Houses of Parliament, the London Eye, Tower Bridge, and the Shard — while enjoying a three-course dinner with live jazz accompaniment. A sophisticated evening combining world-class cuisine, smooth music, and one of the most scenic river journeys in the world."
+    },
+    {
+      "id": 30,
+      "slug": "london-harry-potter-film-locations-tour",
+      "title": "Harry Potter Film Locations Walking Tour",
+      "short_description": "Visit real Harry Potter film locations across central London",
+      "description": "Step into the wizarding world with this magical walking tour through central London. Visit the real-life locations that inspired J.K. Rowling and were featured in the films: Leadenhall Market (Diagon Alley), the Millennium Bridge, King's Cross Platform 9¾, and more. Your guide shares behind-the-scenes film trivia throughout."
+    },
+    {
+      "id": 31,
+      "slug": "new-york-helicopter-tour-manhattan",
+      "title": "New York Helicopter Tour over Manhattan",
+      "short_description": "Iconic aerial views of Manhattan, Statue of Liberty, and Central Park",
+      "description": "Soar above the Manhattan skyline for breathtaking aerial views of the Statue of Liberty, Central Park, the Empire State Building, and the Brooklyn Bridge. This thrilling 30-minute helicopter flight offers unparalleled photo opportunities and a perspective of New York City that few ever experience."
+    },
+    {
+      "id": 32,
+      "slug": "brooklyn-food-culture-walking-tour",
+      "title": "Brooklyn Food & Culture Walking Tour",
+      "short_description": "Cross the Brooklyn Bridge and taste your way through Brooklyn's best bites",
+      "description": "Cross the iconic Brooklyn Bridge on foot and dive into DUMBO, Williamsburg, and Bushwick's thriving food scene. Sample artisanal pizza, craft chocolate, authentic dumplings, and small-batch coffee while learning about the immigrant communities that shaped Brooklyn's culinary identity. Includes 6+ tastings — come hungry!"
+    },
+    {
+      "id": 33,
+      "slug": "central-park-sunrise-yoga-meditation",
+      "title": "Central Park Sunrise Yoga & Meditation Session",
+      "short_description": "Morning yoga and meditation in Central Park with all equipment provided",
+      "description": "Start your morning with a revitalizing yoga flow in the heart of Central Park. As the city wakes up around you, find your center with guided meditation on the Great Lawn. Suitable for all levels, mats and props provided. Ends with herbal tea and a moment of gratitude amid nature."
+    },
+    {
+      "id": 34,
+      "slug": "bangkok-floating-market-temple-longtail-boat",
+      "title": "Bangkok Floating Market & Temple Tour by Longtail Boat",
+      "short_description": "Longtail boat through floating markets and Bangkok's grandest temples",
+      "description": "Cruise through Bangkok's iconic canals aboard a traditional longtail boat to the Damnoen Saduak Floating Market. Bargain for tropical fruits, taste pad thai cooked on a boat, and visit the stunning Wat Arun and Wat Pho temples. Experience the 'Venice of the East' as locals have for centuries."
+    },
+    {
+      "id": 35,
+      "slug": "bangkok-muay-thai-training-experience",
+      "title": "Thai Boxing (Muay Thai) Training Experience",
+      "short_description": "Train with a Muay Thai champion at an authentic Bangkok gym",
+      "description": "Train with a professional Muay Thai champion at an authentic Bangkok gym. Learn basic stances, punches, kicks, and combinations in a supportive environment. Suitable for complete beginners to intermediate level. Cool down with a coconut water and hear about the cultural significance of Thailand's national sport."
+    },
+    {
+      "id": 36,
+      "slug": "bangkok-night-food-tour-tuktuk",
+      "title": "Bangkok Night Food Tour by Tuk-Tuk",
+      "short_description": "Tuk-tuk adventure through Bangkok's best street food spots after dark",
+      "description": "Hop aboard a tuk-tuk and zoom through Bangkok's neon-lit streets to discover the city's legendary street food scene. Visit Chinatown's Yaowarat Road, hidden night markets, and roadside stalls that have served locals for generations. Taste 10+ dishes including mango sticky rice, boat noodles, and grilled satay."
+    },
+    {
+      "id": 37,
+      "slug": "istanbul-grand-bazaar-spice-market-tour",
+      "title": "Istanbul Grand Bazaar & Spice Market Guided Tour",
+      "short_description": "Expert-guided journey through Istanbul's legendary markets and flavors",
+      "description": "Navigate the legendary Grand Bazaar's 4,000+ shops with a local guide who knows its secrets. Learn the art of Turkish bargaining, discover hidden caravanserais, and sample Turkish delight and apple tea. Continue to the Spice Market for an aromatic exploration of saffron, sumac, and exotic blends."
+    },
+    {
+      "id": 38,
+      "slug": "istanbul-bosphorus-sunset-cruise-dinner",
+      "title": "Bosphorus Sunset Cruise with Turkish Dinner",
+      "short_description": "Sunset sail between two continents with Turkish feast and live music",
+      "description": "Sail the strait that divides Europe and Asia as the sun sets over Istanbul's minarets and palaces. Pass Dolmabahce Palace, the Maiden's Tower, and the Rumeli Fortress while enjoying a traditional Turkish dinner of mezze, kebabs, and baklava with live music and folk dancing onboard."
+    },
+    {
+      "id": 39,
+      "slug": "istanbul-turkish-hammam-spa-ritual",
+      "title": "Turkish Hammam & Spa Ritual Experience",
+      "short_description": "Traditional Turkish bath ritual in a historic 16th-century hammam",
+      "description": "Experience an authentic Turkish bath in a beautifully restored 16th-century hammam. The traditional ritual includes a steam room session, full-body scrub with a kese mitt, foam massage, and relaxation with Turkish tea. A centuries-old wellness tradition that leaves you deeply rejuvenated."
+    },
+    {
+      "id": 40,
+      "slug": "amsterdam-canal-cruise-rijksmuseum-combo",
+      "title": "Amsterdam Canal Cruise & Rijksmuseum Combo Tour",
+      "short_description": "Canal cruise through UNESCO waterways plus skip-the-line Rijksmuseum",
+      "description": "Start with a scenic cruise through Amsterdam's UNESCO-listed canal ring, learning about the Golden Age mansions and hidden churches. Then skip the line at the Rijksmuseum for a guided tour of Rembrandt's Night Watch, Vermeer's Milkmaid, and the museum's greatest treasures."
+    },
+    {
+      "id": 41,
+      "slug": "amsterdam-craft-beer-brewery-cycling-tour",
+      "title": "Amsterdam Craft Beer & Brewery Cycling Tour",
+      "short_description": "Cycle to Amsterdam's best craft breweries with guided tastings",
+      "description": "Cycle like a local through Amsterdam's charming neighborhoods while visiting three independent craft breweries. Sample 10+ Dutch craft beers, learn about the brewing process from passionate brewmasters, and discover why the Netherlands has become Europe's craft beer capital. Bike and tastings included."
+    },
+    {
+      "id": 42,
+      "slug": "amsterdam-anne-frank-jewish-heritage-tour",
+      "title": "Anne Frank & Jewish Heritage Quarter Walking Tour",
+      "short_description": "Moving walk through Amsterdam's Jewish Heritage Quarter and Anne Frank's world",
+      "description": "Walk in the footsteps of Anne Frank through Amsterdam's Jewish Heritage Quarter. Visit the Portuguese Synagogue, the Jewish Historical Museum, and Westerkerk. Your guide shares deeply personal stories of resistance, survival, and the vibrant Jewish community that shaped Amsterdam's identity."
+    },
+    {
+      "id": 43,
+      "slug": "bali-rice-terrace-waterfall-trek",
+      "title": "Bali Rice Terrace Trek & Waterfall Swimming Adventure",
+      "short_description": "Trek emerald rice terraces and swim at a secret jungle waterfall",
+      "description": "Trek through the iconic Tegallalang rice terraces, learning about the ancient subak irrigation system. Continue through lush jungle trails to a hidden waterfall for a refreshing swim. Enjoy a traditional Balinese lunch overlooking the terraces. An unforgettable immersion in Bali's natural beauty."
+    },
+    {
+      "id": 44,
+      "slug": "bali-mount-batur-sunrise-hot-springs",
+      "title": "Bali Sunrise at Mount Batur with Hot Springs",
+      "short_description": "Volcanic summit sunrise with breakfast and natural hot springs recovery",
+      "description": "Begin the pre-dawn trek up Mount Batur, an active volcano, arriving at the summit for a spectacular sunrise above the clouds. Watch the sky transform as Lake Batur and Mount Agung emerge in the golden light. Descend to natural volcanic hot springs for a soothing soak. Breakfast included at the summit."
+    },
+    {
+      "id": 45,
+      "slug": "bali-cooking-class-traditional-village",
+      "title": "Balinese Cooking Class in a Traditional Village",
+      "short_description": "Market-to-table Balinese cooking in a family village compound",
+      "description": "Visit a local market to shop for exotic ingredients, then travel to a family compound in a traditional village. Learn to prepare 7 Balinese dishes from scratch using a wood-fired kitchen: satay lilit, lawar, nasi goreng, and more. Eat your creations in a tropical garden setting."
+    },
+    {
+      "id": 46,
+      "slug": "kyoto-tea-ceremony-zen-garden-tour",
+      "title": "Kyoto Traditional Tea Ceremony & Zen Garden Tour",
+      "short_description": "Authentic tea ceremony in a historic townhouse plus Zen garden visits",
+      "description": "Experience the art of Japanese tea ceremony (chado) in a 200-year-old machiya townhouse. A tea master guides you through each graceful movement while explaining the Zen philosophy behind this ancient ritual. Then visit Ryoanji's famous rock garden and the golden pavilion of Kinkaku-ji."
+    },
+    {
+      "id": 47,
+      "slug": "kyoto-arashiyama-bamboo-cycling-tour",
+      "title": "Arashiyama Bamboo Grove & Monkey Park Cycling Tour",
+      "short_description": "Cycle to the magical Bamboo Grove, monkey park, and riverside temples",
+      "description": "Cycle through Kyoto's scenic western district to the ethereal Arashiyama Bamboo Grove. Continue to Iwatayama Monkey Park where wild macaques roam freely with panoramic city views. Cross the iconic Togetsukyo Bridge and visit the serene Tenryu-ji Temple. Lunch at a riverside noodle shop."
+    },
+    {
+      "id": 48,
+      "slug": "kyoto-geisha-district-night-walk-sake",
+      "title": "Kyoto Geisha District Night Walk & Sake Tasting",
+      "short_description": "Lantern-lit walk through Gion's geisha district with premium sake tasting",
+      "description": "Stroll through Gion, Kyoto's atmospheric geisha district, as lanterns illuminate the wooden machiya houses. Your guide explains the secretive world of geisha and maiko while you explore hidden alleyways. End at a traditional sake bar for a curated tasting of five premium sakes paired with small plates."
+    },
+    {
+      "id": 49,
+      "slug": "dubai-desert-safari-dune-bashing-bbq",
+      "title": "Desert Safari with Dune Bashing, Camel Ride & BBQ Dinner",
+      "short_description": "Ultimate desert adventure with dune bashing, sunset camels, and starlit BBQ",
+      "description": "Experience the thrill of dune bashing in a 4x4 across the Arabian desert, then slow down with a camel ride at sunset. At a Bedouin-style camp, try sandboarding, get henna art, and watch belly dancing under the stars. Feast on a lavish BBQ dinner with grilled meats, Arabic mezze, and shisha."
+    },
+    {
+      "id": 50,
+      "slug": "dubai-burj-khalifa-top-fountain-show",
+      "title": "Burj Khalifa At the Top & Dubai Fountain Show",
+      "short_description": "Sunset at the top of the world's tallest building plus fountain show",
+      "description": "Ascend the world's tallest building to the 124th and 125th floor observation decks for jaw-dropping 360-degree views of Dubai's skyline, coastline, and desert beyond. Time your visit for sunset and descend to watch the spectacular Dubai Fountain show choreographed to music on Burj Khalifa Lake."
+    },
+    {
+      "id": 51,
+      "slug": "dubai-marina-luxury-yacht-brunch",
+      "title": "Dubai Marina Luxury Yacht Cruise with Brunch",
+      "short_description": "Private yacht brunch cruising past Palm Jumeirah and Dubai Marina",
+      "description": "Cruise Dubai Marina and Palm Jumeirah aboard a private luxury yacht. Sip champagne and enjoy a gourmet brunch spread while passing Atlantis The Palm, Bluewaters Island, and the marina's iconic skyscrapers. Swim stops included at secluded spots along the coast."
+    },
+    {
+      "id": 52,
+      "slug": "lisbon-tram-28-alfama-walking-tour",
+      "title": "Lisbon Tram 28 Route & Alfama District Walking Tour",
+      "short_description": "Iconic tram ride and walk through Lisbon's oldest and most charming district",
+      "description": "Ride the iconic yellow Tram 28 through Lisbon's steepest hills, then explore the Alfama district on foot. Discover Fado music venues, ancient Moorish architecture, and viewpoints offering sweeping views over the Tagus River. Your guide shares tales of explorers, earthquakes, and the revolution of 1974."
+    },
+    {
+      "id": 53,
+      "slug": "lisbon-sintra-palaces-cabo-da-roca-daytrip",
+      "title": "Sintra Palaces & Cabo da Roca Day Trip from Lisbon",
+      "short_description": "Fairytale palaces, mysterious wells, and Europe's western edge",
+      "description": "Escape to the fairytale world of Sintra's UNESCO palaces. Visit the colorful Pena Palace perched on a hilltop, explore the mysterious Quinta da Regaleira with its initiatic well, and drive to Cabo da Roca — the westernmost point of mainland Europe. Includes local pastry tasting."
+    },
+    {
+      "id": 54,
+      "slug": "lisbon-pasteis-de-nata-baking-workshop",
+      "title": "Lisbon Pastéis de Nata Baking Workshop",
+      "short_description": "Learn to bake Portugal's iconic custard tarts from a master pastry chef",
+      "description": "Master Portugal's most beloved pastry in this hands-on workshop. A local pastry chef teaches you the secrets of crispy puff pastry and silky custard filling. Bake your own batch of pastéis de nata and learn why the original recipe from Belém remains a closely guarded secret since 1837."
+    },
+    {
+      "id": 55,
+      "slug": "prague-castle-old-town-astronomical-clock",
+      "title": "Prague Castle & Old Town Astronomical Clock Tour",
+      "short_description": "Full Prague experience: castle complex, Charles Bridge, and medieval Old Town",
+      "description": "Explore the world's largest ancient castle complex with its Gothic cathedral, royal palace, and Golden Lane. Cross the Charles Bridge adorned with baroque statues and reach Old Town Square to witness the 600-year-old Astronomical Clock in action. A comprehensive journey through Bohemian history."
+    },
+    {
+      "id": 56,
+      "slug": "prague-underground-medieval-cellars-beer",
+      "title": "Prague Underground: Medieval Cellars & Beer Tasting",
+      "short_description": "Explore secret medieval tunnels beneath Prague with Czech beer tasting",
+      "description": "Descend beneath Prague's streets into a network of medieval cellars and tunnels most tourists never see. Learn about the hidden history below the city while visiting three underground venues. Finish with a Czech beer tasting in a 14th-century cellar bar, sampling pilsners, dark lagers, and local craft brews."
+    },
+    {
+      "id": 57,
+      "slug": "cape-town-table-mountain-cape-peninsula",
+      "title": "Table Mountain Hike & Cape Peninsula Scenic Drive",
+      "short_description": "Summit Table Mountain and drive to the Cape of Good Hope with penguins",
+      "description": "Hike the Platteklip Gorge route up Table Mountain for panoramic views from the flat summit. After descending by cable car, drive the spectacular Cape Peninsula past Chapman's Peak, visit the penguin colony at Boulders Beach, and reach the Cape of Good Hope — where two oceans meet."
+    },
+    {
+      "id": 58,
+      "slug": "cape-town-winelands-tastings-lunch",
+      "title": "Cape Winelands Full-Day Tour with Tastings & Lunch",
+      "short_description": "Three estate tastings in Stellenbosch and Franschhoek with vineyard lunch",
+      "description": "Visit three award-winning wine estates in Stellenbosch and Franschhoek, South Africa's premier wine regions. Sample Pinotage, Chenin Blanc, and blends unique to the Cape while learning about the 350-year winemaking tradition. Includes a gourmet lunch at a vineyard restaurant with mountain views."
+    },
+    {
+      "id": 59,
+      "slug": "dubrovnik-city-walls-game-of-thrones",
+      "title": "Dubrovnik City Walls Walk & Game of Thrones Tour",
+      "short_description": "Medieval walls circuit and Game of Thrones filming locations tour",
+      "description": "Walk the complete circuit of Dubrovnik's medieval city walls — a 2km path offering stunning Adriatic views. Then explore the filming locations of Game of Thrones with a guide who brings King's Landing to life: the Walk of Shame steps, the Red Keep, and Blackwater Bay."
+    },
+    {
+      "id": 60,
+      "slug": "dubrovnik-sea-kayaking-lokrum-snorkeling",
+      "title": "Dubrovnik Sea Kayaking & Lokrum Island Snorkeling",
+      "short_description": "Kayak along the medieval walls and snorkel at pristine Lokrum Island",
+      "description": "Paddle along Dubrovnik's dramatic city walls from the sea, exploring hidden caves and pristine beaches inaccessible by land. Cross to Lokrum Island for snorkeling in crystal-clear Adriatic waters and explore the island's botanical garden and medieval monastery ruins."
+    },
+    {
+      "id": 61,
+      "slug": "vienna-classical-concert-schonbrunn-orangery",
+      "title": "Vienna Classical Concert at Schönbrunn Palace Orangery",
+      "short_description": "Mozart and Strauss in the palace where Mozart once performed",
+      "description": "Attend an evening of Mozart and Strauss performed by the Schönbrunn Palace Orchestra in the stunning Orangery, where Mozart himself once performed. The intimate Baroque hall provides extraordinary acoustics. Optional upgrade includes a pre-concert dinner in a palace-adjacent restaurant."
+    },
+    {
+      "id": 62,
+      "slug": "vienna-coffee-house-pastry-walking-tour",
+      "title": "Viennese Coffee House Culture & Pastry Walking Tour",
+      "short_description": "UNESCO coffee culture tour with Sachertorte, strudel, and stories",
+      "description": "Discover why Vienna's coffee house culture is UNESCO-listed on this delicious walking tour. Visit three legendary cafés, each with distinct character and history. Sample Sachertorte, Apfelstrudel, and Melange coffee while your guide shares stories of the writers, artists, and revolutionaries who shaped their culture here."
+    },
+    {
+      "id": 63,
+      "slug": "marrakech-medina-souks-guided-discovery",
+      "title": "Marrakech Medina & Souks Guided Discovery Tour",
+      "short_description": "Local-guided exploration of Marrakech's souks, palaces, and hidden gems",
+      "description": "Navigate the mesmerizing labyrinth of Marrakech's medina with a born-and-raised local guide. Explore the vibrant souks of spices, leather, and metalwork, visit the serene Bahia Palace, and discover the hidden Ben Youssef Madrasa. Learn to negotiate like a local and taste freshly squeezed orange juice in Jemaa el-Fna."
+    },
+    {
+      "id": 64,
+      "slug": "marrakech-atlas-mountains-berber-village-trek",
+      "title": "Atlas Mountains Day Trek & Berber Village Lunch",
+      "short_description": "Mountain trek to a Berber village with traditional tagine lunch",
+      "description": "Escape the city heat with a day trek in the Atlas Mountains. Hike through walnut groves and terraced fields to a traditional Berber village, where a local family welcomes you for a home-cooked tagine lunch with mint tea. Stunning mountain scenery and authentic cultural exchange."
+    },
+    {
+      "id": 65,
+      "slug": "sydney-harbour-bridge-climb-twilight",
+      "title": "Sydney Harbour Bridge Climb at Twilight",
+      "short_description": "Climb the Harbour Bridge at sunset for 360-degree city panoramas",
+      "description": "Climb to the summit of the Sydney Harbour Bridge at twilight for the ultimate panoramic view as the city transforms from day to night. Watch the sunset paint the Opera House and harbour gold, then see the city lights switch on below you. An adrenaline-pumping bucket-list experience."
+    },
+    {
+      "id": 66,
+      "slug": "sydney-bondi-to-coogee-coastal-walk-brunch",
+      "title": "Sydney Coastal Walk: Bondi to Coogee with Brunch",
+      "short_description": "Iconic coastal walk past cliffs, ocean pools, and beaches with beachside brunch",
+      "description": "Walk the famous 6km Bondi to Coogee coastal trail, one of the world's most scenic urban walks. Pass dramatic sandstone cliffs, ocean pools, Aboriginal rock carvings, and pristine beaches. Start with brunch at a Bondi café and learn about the coastal ecology and local surf culture."
+    },
+    {
+      "id": 67,
+      "slug": "queenstown-bungee-jump-kawarau-bridge",
+      "title": "Queenstown Bungee Jump at Kawarau Bridge",
+      "short_description": "Leap from the world's first bungee site above a turquoise gorge",
+      "description": "Take the plunge at the world's original commercial bungee jump site — the iconic Kawarau Bridge, 43 meters above the turquoise Kawarau River. Professional jump masters guide you through every step. Optional water touch and tandem jumps available. Free photo and video package included."
+    },
+    {
+      "id": 68,
+      "slug": "havana-classic-car-tour-salsa-lesson",
+      "title": "Havana Classic Car Tour & Salsa Dancing Lesson",
+      "short_description": "1950s convertible cruise through Havana with private salsa lesson",
+      "description": "Cruise through Havana in a meticulously restored 1950s American convertible. Visit the Malecón, Capitolio, Plaza de la Revolución, and colorful Old Havana. Then step into a local dance studio for a private salsa lesson with a professional Cuban dancer. Mojitos included."
+    },
+    {
+      "id": 69,
+      "slug": "paris-photography-tour-iconic-hidden-gems",
+      "title": "Paris Photography Tour: Iconic Spots & Hidden Gems",
+      "short_description": "Professional photographer-led tour of Paris's most photogenic spots",
+      "description": "Capture Paris through the lens with a professional photographer as your guide. Visit both iconic landmarks and secret spots only photographers know — hidden courtyards, cobblestone passages, and rooftop viewpoints. Get personalized tips on composition, lighting, and editing. All camera types welcome."
+    },
+    {
+      "id": 70,
+      "slug": "rome-underground-catacombs-aqueducts-tour",
+      "title": "Rome Underground: Catacombs & Ancient Aqueducts Tour",
+      "short_description": "Explore ancient catacombs and secret aqueducts beneath the Eternal City",
+      "description": "Descend beneath Rome to explore the mysterious catacombs of San Callisto, where early Christians buried their dead in miles of underground tunnels. Continue to a section of ancient Roman aqueduct normally closed to the public. A haunting, fascinating journey through Rome's hidden layers."
+    },
+    {
+      "id": 71,
+      "slug": "tokyo-tsukiji-market-food-tour-sushi-making",
+      "title": "Tokyo Tsukiji Outer Market Food Tour & Sushi Making",
+      "short_description": "Tsukiji market grazing plus hands-on sushi-making with a local chef",
+      "description": "Explore Tokyo's legendary Tsukiji Outer Market with a local foodie guide. Sample tamagoyaki, fresh sashimi, wagyu skewers, and Japanese street snacks. Then head to a nearby kitchen for a hands-on sushi-making class where you learn to prepare nigiri and maki rolls like a Tokyo sushi chef."
+    }
+  ],
+  "highlights": [
+    "Active geothermal areas and hot springs",
+    "All entrance fees and tastings included",
+    "Ancient causeway walks and scenic viewpoints",
+    "Authentic Halal Chinese cuisine sampling",
+    "Countryside lunch with local family",
+    "Cultural immersion with local families",
+    "Cultural workshops and traditional activities",
+    "Design shopping districts and showrooms",
+    "Educational policy and system design workshops",
+    "Educational technology and digital learning insights",
+    "Environmental policy and climate action seminars",
+    "Expert local guide with deep knowledge",
+    "Free cancellation up to 24 hours before",
+    "Geological phenomena and plate tectonics insights",
+    "Glacier walking and ice cave experiences",
+    "Hands-on workshops in renewable energy technology",
+    "Historic Muslim Quarter and Great Mosque exploration",
+    "Historic temples and pagodas visits",
+    "Inclusive education and student welfare systems",
+    "Intensive Danish language classes with native speakers",
+    "Learn Shanghai food history and culture",
+    "Learn Swedish pedagogical methods and philosophy",
+    "Learn about hygge and Danish lifestyle",
+    "Learn about rural Chinese customs and traditions",
+    "Meet education experts and innovative teachers",
+    "Meet local designers and architects",
+    "Meet local vendors and food artisans",
+    "Meet professors and researchers in sustainability",
+    "Modern architecture and urban design exploration",
+    "Multicultural heritage understanding",
+    "Navigate like a local with insider tips",
+    "Northern Lights viewing (seasonal)",
+    "Photo opportunities at iconic viewpoints",
+    "Poetry and literature associated with West Lake",
+    "Practice language skills in real situations",
+    "Renewable energy facility visits",
+    "Sample 15+ different local street foods",
+    "Silk Road history and cultural exchange insights",
+    "Small group experience (max 1 people)",
+    "Small group experience (max 10 people)",
+    "Small group experience (max 12 people)",
+    "Small group experience (max 14 people)",
+    "Small group experience (max 15 people)",
+    "Small group experience (max 18 people)",
+    "Small group experience (max 20 people)",
+    "Small group experience (max 30 people)",
+    "Small group experience (max 4 people)",
+    "Small group experience (max 40 people)",
+    "Small group experience (max 50 people)",
+    "Small group experience (max 6 people)",
+    "Small group experience (max 8 people)",
+    "Street food tour through bustling bazaars",
+    "Student exchange program information sessions",
+    "Stunning karst mountain scenery and photo opportunities",
+    "Sustainable urban planning examples",
+    "Swedish design philosophy and principles",
+    "Tea plantation visit and Dragon Well tea tasting",
+    "Traditional Chinese garden design insights",
+    "Traditional bamboo raft experience on Li River",
+    "Traditional craft workshops and demonstrations",
+    "Try traditional cormorant fishing techniques",
+    "UNESCO World Heritage West Lake exploration",
+    "Unique access to hidden or exclusive locations",
+    "University of Oslo campus tour and facilities",
+    "Vegetarian and dietary options available",
+    "Visit 4-5 different night markets and food streets",
+    "Visit Danish cultural institutions and museums",
+    "Visit Swedish schools and observe classes",
+    "Visit authentic fishing villages",
+    "Visit renowned Swedish design studios",
+    "Visit to green technology laboratories",
+    "Volcanic landscape exploration and education"
+  ],
+  "includes": [
+    "Additional food purchases",
+    "Additional meals",
+    "Alcoholic beverages",
+    "All entrance fees and tickets",
+    "All food tastings and samples",
+    "Architectural landmark visits",
+    "Arctic clothing and gear",
+    "Audio guide equipment",
+    "Aurora guarantee (return trip if no sighting)",
+    "Bamboo raft experience",
+    "Campus tour",
+    "Countryside village visit",
+    "Cultural activities and games",
+    "Cultural stories and legends",
+    "Cultural workshop materials",
+    "Danish cultural insights",
+    "Danish language instruction",
+    "Design museum insights",
+    "Design philosophy discussions",
+    "Design purchases",
+    "Educational expert guide",
+    "Educational methodology presentations",
+    "Educational system lectures",
+    "Expert Northern Lights guide",
+    "Expert cultural guide",
+    "Food safety guidance",
+    "Geological education",
+    "Geological expert guide",
+    "Geothermal site visits",
+    "Gratuities (optional)",
+    "Group photo",
+    "Group photos at scenic spots",
+    "Hands-on cultural activities",
+    "Historical site visits",
+    "Historical storytelling",
+    "Hot beverages and snacks",
+    "Hot spring experience",
+    "Hotel pickup (selected areas)",
+    "Interior design showcases",
+    "Language learning materials",
+    "Life jackets and safety equipment",
+    "Local food expert guide",
+    "Local food tastings",
+    "Local interaction opportunities",
+    "Lunch",
+    "Meals and accommodation",
+    "Meals and beverages",
+    "Meals and snacks",
+    "Modern design district tour",
+    "Museum entrance fees",
+    "Muslim Quarter walking tour",
+    "Networking opportunities",
+    "Night market exploration",
+    "Personal camera equipment",
+    "Personal expenses",
+    "Personal expenses and souvenirs",
+    "Personal meals",
+    "Personal purchases",
+    "Professional English-speaking guide",
+    "Professional architecture guide",
+    "Professional history guide",
+    "Professional photography guidance",
+    "Professional raft guide",
+    "Refreshments",
+    "Research materials and reports",
+    "Round-trip transportation",
+    "Safety equipment",
+    "Scenic Li River journey",
+    "School visits and observations",
+    "Sessions with students and professors",
+    "Silk Road museum visit",
+    "Small group size guarantee",
+    "Souvenir purchases",
+    "Souvenir shopping",
+    "Street food history and culture",
+    "Study materials package",
+    "Tastings or refreshments as described",
+    "Tea and refreshments",
+    "Tea ceremony experience",
+    "Teacher and student interactions",
+    "Temple entrance fees",
+    "Terracotta Army Museum entrance tickets",
+    "Traditional Danish refreshments",
+    "Traditional Sami dinner",
+    "Traditional art demonstrations",
+    "Traditional fishing demonstration",
+    "Traditional handicraft demonstrations",
+    "Traditional tea house experience",
+    "Transportation between schools",
+    "Transportation costs",
+    "Transportation expenses",
+    "Transportation to rafting point",
+    "Travel insurance",
+    "Volcanic landscape exploration",
+    "West Lake scenic walk"
+  ],
+  "faqs": [
+    {
+      "question": "Are there any cultural sensitivities to be aware of?",
+      "answer": "We'll provide cultural guidance for visiting the Muslim Quarter, including appropriate behavior in religious areas and respectful interaction with locals."
+    },
+    {
+      "question": "Are there any prerequisites for this program?",
+      "answer": "No special prerequisites are required, but interest in sustainability or academic research will make the experience more meaningful."
+    },
+    {
+      "question": "Can meetings with students from specific fields be arranged?",
+      "answer": "Yes, we can arrange meetings with students in your area of interest if requested in advance."
+    },
+    {
+      "question": "Can we participate in classes?",
+      "answer": "Depending on school arrangements, you may observe classes and participate in some educational activities with students and teachers."
+    },
+    {
+      "question": "How close can we get to volcanic activity?",
+      "answer": "We visit safe viewing areas of active geothermal sites and dormant volcanic formations. All locations are assessed for safety by our expert guides."
+    },
+    {
+      "question": "How cold does it get?",
+      "answer": "Temperatures can drop to -20°C. We provide all necessary arctic gear."
+    },
+    {
+      "question": "How long does it take to visit the Terracotta Army?",
+      "answer": "The complete visit takes approximately 3-4 hours, including all three pits and museum exhibitions."
+    },
+    {
+      "question": "How long is the bamboo rafting experience?",
+      "answer": "The rafting journey lasts approximately 2-3 hours, covering the most scenic sections of the Li River with karst mountain landscapes."
+    },
+    {
+      "question": "How many different foods will we try?",
+      "answer": "You'll sample 8-10 different street food specialties including xiaolongbao, jianbing, scallion pancakes, and seasonal local favorites."
+    },
+    {
+      "question": "How much walking is involved?",
+      "answer": "The tour covers about 4-5 kilometers over 3 hours with regular stops. Most walking is on flat city streets with some stairs in buildings."
+    },
+    {
+      "question": "How much walking is involved?",
+      "answer": "The walk is moderate, about 3-4 kilometers at a leisurely pace with frequent stops. Most paths are flat and well-maintained."
+    },
+    {
+      "question": "Is bamboo rafting safe?",
+      "answer": "Yes, bamboo rafting is very safe. All rafts are inspected regularly, life jackets are provided, and experienced guides accompany each raft."
+    },
+    {
+      "question": "Is photography allowed in temples?",
+      "answer": "Photography rules vary by location. Most areas allow photos, but some sacred spaces may restrict them. Your guide will inform you at each location."
+    },
+    {
+      "question": "Is photography allowed?",
+      "answer": "Photography is allowed in most areas, but please don't use flash. Some special exhibition areas may prohibit photos."
+    },
+    {
+      "question": "Is the street food safe to eat?",
+      "answer": "Yes, we only visit vendors with high standards and good reputations. Our guide will provide food safety tips and choose the best options."
+    },
+    {
+      "question": "Is this activity suitable for children?",
+      "answer": "Yes, children are welcome. Child pricing applies for ages 4-12. Under 4 is free."
+    },
+    {
+      "question": "Is this experience suitable for beginners?",
+      "answer": "Yes, no special geological knowledge is required. Our expert guides explain everything from basics to advanced concepts in an accessible way."
+    },
+    {
+      "question": "Is this suitable for children?",
+      "answer": "Recommended for ages 8+ due to late night timing and cold weather conditions."
+    },
+    {
+      "question": "Is this suitable for non-educators?",
+      "answer": "Yes, while designed for educators, the tour is valuable for anyone interested in progressive education, child development, or Nordic social systems."
+    },
+    {
+      "question": "What Danish cultural aspects will we learn?",
+      "answer": "You'll learn about hygge philosophy, Danish social customs, work-life balance culture, and practical etiquette for interacting with Danes."
+    },
+    {
+      "question": "What architectural styles will we explore?",
+      "answer": "We'll see Swedish modernism, functionalism, contemporary Scandinavian design, and innovative sustainable architecture from the 20th and 21st centuries."
+    },
+    {
+      "question": "What aspects of Silk Road history will we explore?",
+      "answer": "We'll cover Xi'an's role as the eastern terminus of the Silk Road, trade routes, cultural exchange, and the city's multicultural heritage."
+    },
+    {
+      "question": "What cultural sites will we visit?",
+      "answer": "We'll visit key West Lake landmarks including Leifeng Pagoda, Su Causeway, and Lingyin Temple, each with rich cultural significance."
+    },
+    {
+      "question": "What food will we taste in the Muslim Quarter?",
+      "answer": "You'll try traditional Hui Muslim cuisine including roujiamo (Chinese hamburger), yangrou paomo (bread and mutton soup), and local sweets."
+    },
+    {
+      "question": "What happens if it rains?",
+      "answer": "The activity runs in light rain. In case of severe weather, we offer a full reschedule or refund."
+    },
+    {
+      "question": "What if I have dietary restrictions?",
+      "answer": "Please inform us of any allergies or dietary needs in advance. We can accommodate most restrictions with alternative tastings."
+    },
+    {
+      "question": "What if we don't see the Northern Lights?",
+      "answer": "We offer a return trip within 48 hours if no aurora is visible due to weather."
+    },
+    {
+      "question": "What is the cancellation policy?",
+      "answer": "Free cancellation up to 24 hours before the start time for a full refund."
+    },
+    {
+      "question": "What kind of study materials will we receive?",
+      "answer": "You'll receive a comprehensive materials package about Norwegian sustainability programs, including statistics, policy documents and research reports."
+    },
+    {
+      "question": "What legends will we learn about?",
+      "answer": "You'll hear famous stories like the Legend of the White Snake and other traditional tales that have shaped West Lake's cultural identity."
+    },
+    {
+      "question": "What level of Danish will be taught?",
+      "answer": "We focus on practical conversational Danish for travelers, including greetings, ordering food, asking directions, and basic social interactions."
+    },
+    {
+      "question": "What should I bring?",
+      "answer": "Bring sun protection, waterproof bags for electronics, comfortable clothing, and non-slip shoes. Camera for capturing the stunning scenery!"
+    },
+    {
+      "question": "What should I wear for this adventure?",
+      "answer": "Warm, waterproof clothing and sturdy hiking boots are essential. We'll provide detailed packing recommendations based on current conditions."
+    },
+    {
+      "question": "What teaching methods will we observe?",
+      "answer": "You'll see progressive Swedish education including collaborative learning, student-centered approaches, critical thinking development, and innovative assessment methods."
+    },
+    {
+      "question": "What traditional arts will we experience?",
+      "answer": "Activities include calligraphy, paper cutting, traditional painting, and seal carving. All skill levels are welcome with expert instruction."
+    },
+    {
+      "question": "What's the best time to visit?",
+      "answer": "Mornings 9-10 AM or afternoons 2-3 PM have fewer crowds, better photo opportunities and viewing."
+    },
+    {
+      "question": "Which temples will we visit?",
+      "answer": "We visit ancient temples including the Temple of Heaven and Lama Temple, each showcasing different aspects of Chinese religious and architectural traditions."
+    },
+    {
+      "question": "Will we interact with local Danes?",
+      "answer": "Yes, the experience includes structured conversations with native speakers in casual settings like cafes or community centers."
+    },
+    {
+      "question": "Will we visit design studios?",
+      "answer": "Yes, the tour includes visits to active design studios and showrooms where you can see contemporary Swedish design in development."
+    }
+  ],
+  "timelines": [
+    {
+      "title": "Afternoon Exploration",
+      "description": "Continue with afternoon activities and deeper immersion"
+    },
+    {
+      "title": "Break & Refreshments",
+      "description": "Rest stop with local refreshments included"
+    },
+    {
+      "title": "Cultural Highlight",
+      "description": "Special cultural experience unique to this tour"
+    },
+    {
+      "title": "Cultural Immersion",
+      "description": "Deep dive into local culture and traditions"
+    },
+    {
+      "title": "Exploration & Discovery",
+      "description": "Free time to explore and capture photos"
+    },
+    {
+      "title": "Farewell",
+      "description": "Return to starting point with final thoughts and tips"
+    },
+    {
+      "title": "Final Experience",
+      "description": "Conclude with the culminating activity or visit"
+    },
+    {
+      "title": "First Stop",
+      "description": "Begin with the highlight attraction of the experience"
+    },
+    {
+      "title": "Journey Begins",
+      "description": "Travel to main location with background information"
+    },
+    {
+      "title": "Journey to First Location",
+      "description": "Travel to the first destination with background context"
+    },
+    {
+      "title": "Lunch Break",
+      "description": "Enjoy a traditional local meal at a carefully selected venue"
+    },
+    {
+      "title": "Main Experience",
+      "description": "Core activity with hands-on participation"
+    },
+    {
+      "title": "Main Experience",
+      "description": "Dive into the core activity with expert guidance"
+    },
+    {
+      "title": "Meet & Greet",
+      "description": "Meet your guide and fellow participants, brief introduction"
+    },
+    {
+      "title": "Meet & Greet",
+      "description": "Arrive at meeting point, introductions and day overview"
+    },
+    {
+      "title": "Morning Activity",
+      "description": "Main morning experience with hands-on participation"
+    },
+    {
+      "title": "Return Journey",
+      "description": "Head back to the starting point with time for questions"
+    },
+    {
+      "title": "Second Stop",
+      "description": "Continue to the next key location with guided commentary"
+    },
+    {
+      "title": "Welcome & Introduction",
+      "description": "Meet your guide, get oriented, and receive safety briefing"
+    },
+    {
+      "title": "Welcome & Orientation",
+      "description": "Meet your guide at the meeting point and overview of the day"
+    },
+    {
+      "title": "Wrap-up",
+      "description": "Final discussions, photos, and return journey"
+    },
+    {
+      "title": "Wrap-up & Farewell",
+      "description": "Final Q&A, recommendations, and group photo"
+    }
+  ],
+  "meeting_points": [
+    {
+      "address": "Central Meeting Point, Amsterdam",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Amsterdam"
+    },
+    {
+      "address": "Central Meeting Point, Bali",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Bali"
+    },
+    {
+      "address": "Central Meeting Point, Bangkok",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Bangkok"
+    },
+    {
+      "address": "Central Meeting Point, Barcelona",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Barcelona"
+    },
+    {
+      "address": "Central Meeting Point, Beijing",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Bergen",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Cape Town",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Cape Town"
+    },
+    {
+      "address": "Central Meeting Point, Chengdu",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Copenhagen",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Dubai",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Dubai"
+    },
+    {
+      "address": "Central Meeting Point, Dubrovnik",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Dubrovnik"
+    },
+    {
+      "address": "Central Meeting Point, Guangzhou",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Guilin",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Hangzhou",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Havana",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Havana"
+    },
+    {
+      "address": "Central Meeting Point, Helsinki",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Istanbul",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Istanbul"
+    },
+    {
+      "address": "Central Meeting Point, Kyoto",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Kyoto"
+    },
+    {
+      "address": "Central Meeting Point, Lisbon",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Lisbon"
+    },
+    {
+      "address": "Central Meeting Point, London",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in London"
+    },
+    {
+      "address": "Central Meeting Point, Marrakech",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Marrakech"
+    },
+    {
+      "address": "Central Meeting Point, New York",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in New York"
+    },
+    {
+      "address": "Central Meeting Point, Oslo",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Paris",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Paris"
+    },
+    {
+      "address": "Central Meeting Point, Prague",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Prague"
+    },
+    {
+      "address": "Central Meeting Point, Queenstown",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Queenstown"
+    },
+    {
+      "address": "Central Meeting Point, Reykjavik",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Rome",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Rome"
+    },
+    {
+      "address": "Central Meeting Point, Shanghai",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Stockholm",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Sydney",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Sydney"
+    },
+    {
+      "address": "Central Meeting Point, Tokyo",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Tokyo"
+    },
+    {
+      "address": "Central Meeting Point, Vienna",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Vienna"
+    },
+    {
+      "address": "Central Meeting Point, Xian",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Central Meeting Point, Zhangjiajie",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area"
+    },
+    {
+      "address": "Meeting Point for Copenhagen Design Academy & Danish Design Philosophy Workshop, Copenhagen",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center"
+    },
+    {
+      "address": "Meeting Point for Great Wall of China Private Day Tour with Lunch, Beijing",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center"
+    },
+    {
+      "address": "Meeting Point for Northern Lights Chase & Arctic Culture Experience, Oslo",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center"
+    },
+    {
+      "address": "Meeting Point for Shanghai Food Tour: Local Street Food and Hidden Gems, Shanghai",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center"
+    },
+    {
+      "address": "Meeting Point for Stockholm University Campus & Swedish Education System Study Tour, Stockholm",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center"
+    },
+    {
+      "address": "Meeting Point for Xi'an Terracotta Army Discovery Tour with Ancient History, Xi'an",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center"
+    }
+  ],
+  "categories": [
+    {
+      "id": 11,
+      "name": "Water Sports"
+    },
+    {
+      "id": 12,
+      "name": "Wellness & Spa"
+    },
+    {
+      "id": 13,
+      "name": "Photography Tours"
+    },
+    {
+      "id": 14,
+      "name": "Nightlife & Entertainment"
+    },
+    {
+      "id": 15,
+      "name": "Cooking Classes"
+    },
+    {
+      "id": 16,
+      "name": "Wine & Spirits"
+    },
+    {
+      "id": 17,
+      "name": "Cycling & Biking"
+    },
+    {
+      "id": 18,
+      "name": "Art & Workshops"
+    },
+    {
+      "id": 19,
+      "name": "Sailing & Cruises"
+    },
+    {
+      "id": 20,
+      "name": "Winter Sports"
+    },
+    {
+      "id": 21,
+      "name": "Yoga & Meditation"
+    },
+    {
+      "id": 22,
+      "name": "Architecture Tours"
+    },
+    {
+      "id": 23,
+      "name": "Music & Concerts"
+    },
+    {
+      "id": 24,
+      "name": "Helicopter & Aerial"
+    },
+    {
+      "id": 25,
+      "name": "Train Journeys"
+    },
+    {
+      "id": 26,
+      "name": "Farm & Countryside"
+    },
+    {
+      "id": 27,
+      "name": "Scuba Diving"
+    },
+    {
+      "id": 28,
+      "name": "Street Art Tours"
+    },
+    {
+      "id": 29,
+      "name": "Sunset Experiences"
+    },
+    {
+      "id": 30,
+      "name": "Underground & Caves"
+    }
+  ],
+  "destinations": [
+    {
+      "id": 1,
+      "name": "Beijing"
+    },
+    {
+      "id": 3,
+      "name": "Xi'an"
+    },
+    {
+      "id": 4,
+      "name": "Guilin"
+    },
+    {
+      "id": 5,
+      "name": "Chengdu"
+    },
+    {
+      "id": 7,
+      "name": "Stockholm"
+    },
+    {
+      "id": 8,
+      "name": "Copenhagen"
+    },
+    {
+      "id": 9,
+      "name": "Oslo"
+    },
+    {
+      "id": 10,
+      "name": "Helsinki"
+    },
+    {
+      "id": 11,
+      "name": "Reykjavik"
+    },
+    {
+      "id": 12,
+      "name": "Bergen"
+    },
+    {
+      "id": 13,
+      "name": "Paris"
+    },
+    {
+      "id": 14,
+      "name": "Rome"
+    },
+    {
+      "id": 15,
+      "name": "Tokyo"
+    },
+    {
+      "id": 18,
+      "name": "Guangzhou"
+    },
+    {
+      "id": 19,
+      "name": "Zhangjiajie"
+    },
+    {
+      "id": 20,
+      "name": "Barcelona"
+    },
+    {
+      "id": 21,
+      "name": "London"
+    },
+    {
+      "id": 22,
+      "name": "New York"
+    },
+    {
+      "id": 23,
+      "name": "Bangkok"
+    },
+    {
+      "id": 24,
+      "name": "Istanbul"
+    },
+    {
+      "id": 25,
+      "name": "Dubai"
+    },
+    {
+      "id": 26,
+      "name": "Sydney"
+    },
+    {
+      "id": 27,
+      "name": "Lisbon"
+    },
+    {
+      "id": 28,
+      "name": "Amsterdam"
+    },
+    {
+      "id": 29,
+      "name": "Prague"
+    },
+    {
+      "id": 30,
+      "name": "Marrakech"
+    },
+    {
+      "id": 31,
+      "name": "Bali"
+    },
+    {
+      "id": 32,
+      "name": "Kyoto"
+    },
+    {
+      "id": 33,
+      "name": "Cape Town"
+    },
+    {
+      "id": 34,
+      "name": "Dubrovnik"
+    },
+    {
+      "id": 35,
+      "name": "Vienna"
+    },
+    {
+      "id": 36,
+      "name": "Havana"
+    },
+    {
+      "id": 37,
+      "name": "Queenstown"
+    }
+  ]
+}

@@ -12,7 +12,7 @@ export default function TimelineSection({ timelines }: TimelineSectionProps) {
   if (!timelines || timelines.length === 0) return null;
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+    <div className="bg-paper rounded-lg shadow-sm p-6 mb-6">
       <h2 className="text-2xl font-bold mb-6">What to Expect</h2>
 
       <div className="space-y-6">

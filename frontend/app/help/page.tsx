@@ -41,7 +41,7 @@ export default function HelpPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-ink py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Help Center</h1>
           <p className="text-xl text-white/90 mb-8 max-w-3xl">
@@ -73,7 +73,7 @@ export default function HelpPage() {
                 <Link
                   key={index}
                   href="#"
-                  className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow"
+                  className="bg-paper rounded-lg shadow p-6 hover:shadow-lg transition-shadow"
                 >
                   <Icon className="w-10 h-10 text-primary mb-3" />
                   <h3 className="text-xl font-bold text-gray-900 mb-2">{category.title}</h3>
@@ -88,7 +88,7 @@ export default function HelpPage() {
         </div>
 
         {/* Popular Questions */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <div className="bg-paper rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Popular Questions</h2>
           <div className="space-y-4">
             {popularQuestions.map((question, index) => (
@@ -109,7 +109,7 @@ export default function HelpPage() {
 
         {/* Contact Options */}
         <div className="grid md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-lg shadow p-6 text-center">
+          <div className="bg-paper rounded-lg shadow p-6 text-center">
             <Mail className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-bold text-gray-900 mb-2">Email Support</h3>
             <p className="text-gray-600 mb-4">
@@ -120,7 +120,7 @@ export default function HelpPage() {
             </a>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6 text-center">
+          <div className="bg-paper rounded-lg shadow p-6 text-center">
             <MessageCircle className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-bold text-gray-900 mb-2">Live Chat</h3>
             <p className="text-gray-600 mb-4">
@@ -131,7 +131,7 @@ export default function HelpPage() {
             </button>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6 text-center">
+          <div className="bg-paper rounded-lg shadow p-6 text-center">
             <HelpCircle className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-bold text-gray-900 mb-2">FAQ</h3>
             <p className="text-gray-600 mb-4">

@@ -123,7 +123,7 @@ function OrderConfirmationContent() {
     <div className="min-h-screen bg-gray-50 py-12">
       <div className="max-w-4xl mx-auto px-4">
         {/* Success Header */}
-        <div className="bg-white rounded-lg shadow-sm p-8 mb-6 text-center">
+        <div className="bg-paper rounded-lg shadow-sm p-8 mb-6 text-center">
           <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
             <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
@@ -142,7 +142,7 @@ function OrderConfirmationContent() {
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-6">
             {/* Activity Details */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-paper rounded-lg shadow-sm p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-4">Activity Details</h2>
               <div className="flex gap-4">
                 {booking.activity.primary_image && (
@@ -184,7 +184,7 @@ function OrderConfirmationContent() {
             </div>
 
             {/* Order Timeline */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-paper rounded-lg shadow-sm p-6">
               <h2 className="text-xl font-semibold text-gray-900 mb-6">Order Status</h2>
               <OrderTimeline
                 bookingStatus={booking.status}
@@ -201,7 +201,7 @@ function OrderConfirmationContent() {
 
             {/* Special Requirements */}
             {booking.special_requirements && (
-              <div className="bg-white rounded-lg shadow-sm p-6">
+              <div className="bg-paper rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-3">Special Requirements</h2>
                 <p className="text-gray-700">{booking.special_requirements}</p>
               </div>
@@ -211,7 +211,7 @@ function OrderConfirmationContent() {
           {/* Sidebar */}
           <div className="space-y-6">
             {/* Booking Summary */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-paper rounded-lg shadow-sm p-6">
               <h3 className="font-semibold text-gray-900 mb-4">Booking Summary</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
@@ -236,7 +236,7 @@ function OrderConfirmationContent() {
             </div>
 
             {/* Contact Information */}
-            <div className="bg-white rounded-lg shadow-sm p-6">
+            <div className="bg-paper rounded-lg shadow-sm p-6">
               <h3 className="font-semibold text-gray-900 mb-4">Contact Information</h3>
               <div className="space-y-2 text-sm text-gray-600">
                 <div>

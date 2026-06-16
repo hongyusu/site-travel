@@ -95,7 +95,7 @@ export default function MyAccountPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Sidebar */}
           <aside className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-paper rounded-lg shadow p-6">
               <div className="text-center mb-6">
                 <div className="w-24 h-24 bg-primary rounded-full flex items-center justify-center text-white text-3xl font-bold mx-auto mb-4">
                   {user?.full_name?.[0]?.toUpperCase() || 'U'}
@@ -140,7 +140,7 @@ export default function MyAccountPage() {
 
           {/* Main Content */}
           <main className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-paper rounded-lg shadow p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-2xl font-bold text-gray-900">{getTranslation('account.profile_information')}</h2>
                 {!editing && (
@@ -256,15 +256,15 @@ export default function MyAccountPage() {
 
             {/* Account Statistics */}
             <div className="grid grid-cols-3 gap-4 mt-6">
-              <div className="bg-white rounded-lg shadow p-6 text-center">
+              <div className="bg-paper rounded-lg shadow p-6 text-center">
                 <div className="text-3xl font-bold text-primary mb-2">{stats.total_bookings}</div>
                 <div className="text-sm text-gray-600">{getTranslation('account.total_bookings')}</div>
               </div>
-              <div className="bg-white rounded-lg shadow p-6 text-center">
+              <div className="bg-paper rounded-lg shadow p-6 text-center">
                 <div className="text-3xl font-bold text-primary mb-2">{stats.wishlist_items}</div>
                 <div className="text-sm text-gray-600">{getTranslation('account.wishlist_items')}</div>
               </div>
-              <div className="bg-white rounded-lg shadow p-6 text-center">
+              <div className="bg-paper rounded-lg shadow p-6 text-center">
                 <div className="text-3xl font-bold text-primary mb-2">{stats.reviews}</div>
                 <div className="text-sm text-gray-600">{getTranslation('account.reviews')}</div>
               </div>

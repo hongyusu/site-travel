@@ -129,7 +129,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
   const minDate = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="bg-white rounded-lg shadow-lg p-6 sticky top-24">
+    <div className="bg-paper rounded-lg shadow-lg p-6 sticky top-24">
       {/* Social Proof Indicators */}
       {(viewingCount > 0 || spotsLeft < 10) && (
         <div className="mb-4 space-y-2">

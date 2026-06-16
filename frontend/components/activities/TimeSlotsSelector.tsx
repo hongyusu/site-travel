@@ -46,7 +46,7 @@ export default function TimeSlotsSelector({
                   isSelected
                     ? "border-blue-600 bg-blue-50"
                     : slot.is_available
-                    ? "border-gray-200 hover:border-blue-300 bg-white"
+                    ? "border-gray-200 hover:border-blue-300 bg-paper"
                     : "border-gray-100 bg-gray-50 cursor-not-allowed"
                 }
               `}

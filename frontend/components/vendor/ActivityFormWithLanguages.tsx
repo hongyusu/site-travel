@@ -512,7 +512,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       )}
 
       {/* Language Support Information */}
-      <div className="mb-8 p-6 bg-white rounded-lg shadow-sm border">
+      <div className="mb-8 p-6 bg-paper rounded-lg shadow-sm border">
         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
           <Languages className="w-5 h-5" />
           Supported Languages
@@ -524,7 +524,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
           {languages.map((lang) => (
             <div
               key={lang.code}
-              className="px-4 py-2 rounded-lg border-2 border-primary bg-primary text-white"
+              className="px-4 py-2 rounded-lg border-2 border-primary bg-primary text-ink"
             >
               <span className="mr-2">{lang.flag}</span>
               {lang.name}
@@ -535,7 +535,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       </div>
 
       {/* Language Tabs for Translatable Content */}
-      <div className="mb-8 p-6 bg-white rounded-lg shadow-sm border">
+      <div className="mb-8 p-6 bg-paper rounded-lg shadow-sm border">
         <h3 className="text-lg font-semibold mb-4">Content by Language</h3>
         
         {/* Global Translation Notice */}
@@ -851,7 +851,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       </div>
 
       {/* Non-translatable Fields (Base Data) */}
-      <div className="mb-8 p-6 bg-white rounded-lg shadow-sm border">
+      <div className="mb-8 p-6 bg-paper rounded-lg shadow-sm border">
         <h3 className="text-lg font-semibold mb-4">Pricing & Details</h3>
         <p className="text-sm text-gray-600 mb-4">
           These settings apply to all languages.
@@ -1281,7 +1281,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
       </div>
 
       {/* Meeting Point Details */}
-      <div className="mb-8 p-6 bg-white rounded-lg shadow-sm border">
+      <div className="mb-8 p-6 bg-paper rounded-lg shadow-sm border">
         <h3 className="text-lg font-semibold mb-4">Meeting Point</h3>
         <p className="text-sm text-gray-600 mb-4">
           Provide detailed information about where participants should meet.
@@ -1409,7 +1409,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
         <button
           type="submit"
           disabled={saving}
-          className="px-6 py-2 bg-primary text-white rounded-lg hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          className="px-6 py-2 bg-primary text-ink rounded-lg hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
         >
           <Save className="w-4 h-4" />
           {saving ? 'Saving...' : mode === 'create' ? 'Create Activity' : 'Update Activity'}

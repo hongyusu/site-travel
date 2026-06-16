@@ -102,7 +102,7 @@ export default function AddOnsSelector({
                   key={addOn.id}
                   className={`
                     p-4 rounded-lg border-2 transition-all
-                    ${isSelected ? "border-blue-600 bg-blue-50" : "border-gray-200 bg-white"}
+                    ${isSelected ? "border-blue-600 bg-blue-50" : "border-gray-200 bg-paper"}
                   `}
                 >
                   <div className="flex justify-between items-start">

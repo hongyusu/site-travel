@@ -40,7 +40,7 @@ export default function RejectBookingModal({
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-lg max-w-lg w-full p-6"
+        className="bg-paper rounded-lg max-w-lg w-full p-6"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}

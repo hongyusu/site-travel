@@ -128,7 +128,7 @@ export default function BookingCalendar({ bookings, onBookingClick }: BookingCal
           <div
             key={currentDay.toString()}
             className={`min-h-[120px] border rounded-lg p-2 ${
-              isCurrentMonth ? 'bg-white' : 'bg-gray-50'
+              isCurrentMonth ? 'bg-paper' : 'bg-gray-50'
             } ${isTodayDate ? 'ring-2 ring-primary' : ''}`}
           >
             <div className={`text-sm font-medium mb-1 ${
@@ -173,7 +173,7 @@ export default function BookingCalendar({ bookings, onBookingClick }: BookingCal
   };
 
   return (
-    <div className="bg-white rounded-lg shadow p-6">
+    <div className="bg-paper rounded-lg shadow p-6">
       {renderHeader()}
       {renderDaysOfWeek()}
       {renderCells()}

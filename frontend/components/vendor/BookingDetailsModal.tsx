@@ -74,9 +74,9 @@ export default function BookingDetailsModal({ booking, onClose }: BookingDetails
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-paper rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
-        <div className="sticky top-0 bg-white border-b px-6 py-4 flex justify-between items-start">
+        <div className="sticky top-0 bg-paper border-b px-6 py-4 flex justify-between items-start">
           <div>
             <h2 className="text-2xl font-bold text-gray-900">Booking Details</h2>
             <p className="text-sm text-gray-500 mt-1">Ref: {booking.booking_ref}</p>

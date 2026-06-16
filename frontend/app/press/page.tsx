@@ -23,7 +23,7 @@ export default function PressPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-ink py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Press & Media</h1>
           <p className="text-xl text-white/90 max-w-3xl">
@@ -34,7 +34,7 @@ export default function PressPage() {
 
       <div className="container mx-auto px-4 py-12">
         {/* Contact */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <div className="bg-paper rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Media Contact</h2>
 
           <div className="grid md:grid-cols-2 gap-8">
@@ -67,7 +67,7 @@ export default function PressPage() {
         </div>
 
         {/* Press Releases */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <div className="bg-paper rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Recent Press Releases</h2>
 
           <div className="space-y-6">
@@ -89,7 +89,7 @@ export default function PressPage() {
         </div>
 
         {/* Fast Facts */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <div className="bg-paper rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Fast Facts</h2>
 
           <div className="grid md:grid-cols-2 gap-6">
@@ -113,7 +113,7 @@ export default function PressPage() {
         </div>
 
         {/* Media Coverage */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <div className="bg-paper rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">In the News</h2>
           <p className="text-gray-600 mb-6">
             FindTravelMate has been featured in leading travel and technology publications worldwide

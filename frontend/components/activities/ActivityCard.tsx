@@ -76,7 +76,7 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
             alt={activity.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover group-hover:scale-110 transition-transform duration-300"
+            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-luxe"
             loading="lazy"
           />
           
@@ -101,14 +101,14 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
         <div className="p-4">
           {/* Destination */}
           {activity.destinations && activity.destinations.length > 0 && (
-            <div className="flex items-center text-gray-500 text-sm mb-1">
+            <div className="flex items-center text-gray-500 text-xs uppercase tracking-[0.12em] mb-1.5">
               <MapPin className="w-3 h-3 mr-1" />
               <span>{getDestinationName(activity.destinations[0].slug, activity.destinations[0].name)}</span>
             </div>
           )}
 
           {/* Title */}
-          <h3 className="font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors">
+          <h3 className="font-serif text-lg leading-snug text-gray-900 mb-2 line-clamp-2 group-hover:text-primary transition-colors duration-300">
             {activity.title || <span className="text-gray-400 italic">Translation not available</span>}
           </h3>
 
@@ -161,7 +161,7 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
           <div className="flex items-baseline justify-between mt-auto">
             <div>
               <span className="text-sm text-gray-500">{getTranslation('booking.from')}</span>
-              <p className="text-xl font-bold text-gray-900">
+              <p className="font-serif text-2xl text-primary">
                 {formatPrice(activity.price_adult)}
               </p>
               <span className="text-sm text-gray-500">{getTranslation('booking.per_person')}</span>
@@ -174,7 +174,7 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
       <button
         onClick={toggleWishlist}
         disabled={isLoading}
-        className="absolute top-2 right-2 p-3 min-h-[44px] min-w-[44px] bg-white rounded-full shadow-md hover:shadow-lg transition-all z-20 flex items-center justify-center"
+        className="absolute top-2 right-2 p-3 min-h-[44px] min-w-[44px] bg-ink/60 backdrop-blur-sm rounded-full hover:bg-ink/80 transition-all z-20 flex items-center justify-center"
         title={inWishlist ? 'Remove from wishlist' : 'Add to wishlist'}
       >
         <Heart

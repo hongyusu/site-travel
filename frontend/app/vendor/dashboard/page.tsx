@@ -181,7 +181,7 @@ export default function VendorDashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow">
+      <div className="bg-paper shadow">
         <div className="container mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
             <div>
@@ -202,7 +202,7 @@ export default function VendorDashboardPage() {
       <div className="container mx-auto px-4 py-8">
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">{getTranslation('vendor.total_activities')}</p>
@@ -214,7 +214,7 @@ export default function VendorDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">{getTranslation('vendor.active_activities')}</p>
@@ -226,7 +226,7 @@ export default function VendorDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">{getTranslation('vendor.total_bookings')}</p>
@@ -238,7 +238,7 @@ export default function VendorDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">{getTranslation('vendor.total_revenue')}</p>
@@ -252,7 +252,7 @@ export default function VendorDashboardPage() {
         </div>
 
         {/* Activities Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-paper rounded-lg shadow overflow-hidden">
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">{getTranslation('vendor.your_activities')}</h2>
           </div>
@@ -299,7 +299,7 @@ export default function VendorDashboardPage() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-paper divide-y divide-gray-200">
                   {activities.map(activity => (
                     <tr key={activity.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4">
@@ -370,7 +370,7 @@ export default function VendorDashboardPage() {
         </div>
 
         {/* Recent Bookings */}
-        <div className="bg-white rounded-lg shadow overflow-hidden mt-8">
+        <div className="bg-paper rounded-lg shadow overflow-hidden mt-8">
           <div className="p-6 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-xl font-bold text-gray-900">{getTranslation('vendor.recent_bookings')}</h2>
             <div className="flex gap-2">
@@ -378,7 +378,7 @@ export default function VendorDashboardPage() {
                 onClick={() => setViewMode('list')}
                 className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
                   viewMode === 'list'
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-ink'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -389,7 +389,7 @@ export default function VendorDashboardPage() {
                 onClick={() => setViewMode('calendar')}
                 className={`px-4 py-2 rounded-lg flex items-center gap-2 transition-colors ${
                   viewMode === 'calendar'
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-ink'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -438,7 +438,7 @@ export default function VendorDashboardPage() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-paper divide-y divide-gray-200">
                   {bookings.slice(0, 10).map(booking => (
                     <tr
                       key={booking.id}

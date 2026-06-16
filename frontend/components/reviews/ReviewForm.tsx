@@ -120,7 +120,7 @@ export default function ReviewForm({
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+      <div className="bg-paper rounded-lg shadow-xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b">
           <h2 className="text-2xl font-bold text-gray-900">Write a Review</h2>
@@ -198,7 +198,7 @@ export default function ReviewForm({
             <button
               type="submit"
               disabled={loading}
-              className="flex-1 px-6 py-3 bg-primary text-white rounded-lg font-medium hover:bg-primary-600 transition-colors disabled:opacity-50"
+              className="flex-1 px-6 py-3 bg-primary text-ink rounded-lg font-medium hover:bg-primary-600 transition-colors disabled:opacity-50"
             >
               {loading ? 'Submitting...' : 'Submit Review'}
             </button>

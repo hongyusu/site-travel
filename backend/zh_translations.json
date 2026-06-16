@@ -1,0 +1,2098 @@
+{
+  "activities": [
+    {
+      "id": 12,
+      "title_zh": "上海街头美食与夜市探险之旅",
+      "short_zh": "穿梭上海热闹夜市，发掘地道街头美食的宝藏",
+      "desc_zh": "夜幕降临，跟随我们一同领略上海夜市与街头小吃的繁华魅力。在本地美食向导的带领下，穿梭于隐秘巷弄与人气市集之间，从小笼包到炭烤鱿鱼，一路尽情品尝。深入了解上海的饮食文化历史，结识当地摊主，发现那些餐厅里吃不到的地道美味。这场原汁原味的美食探险，将带你尝到真正的上海味道。"
+    },
+    {
+      "id": 13,
+      "title_zh": "桂林漓江竹筏漂流与乡村风情之旅",
+      "short_zh": "乘竹筏悠然漂流，穿越桂林传奇喀斯特山水与乡村古村落",
+      "desc_zh": "乘坐传统竹筏沿漓江顺流而下，徜徉于中国最具标志性的山水画卷之中。欣赏数百年来令无数中国艺术家魂牵梦绕的喀斯特奇峰，造访传统渔村，体验质朴的中国乡村生活。了解当地民俗风情，亲手尝试鸬鹚捕鱼，并与当地人家共享一顿地道的乡村午餐。"
+    },
+    {
+      "id": 14,
+      "title_zh": "杭州西湖文化遗产漫步之旅",
+      "short_zh": "探寻世界遗产西湖之美，感受其深厚的文化底蕴",
+      "desc_zh": "漫步杭州西湖，领略这处联合国教科文组织世界遗产的诗意之美。千百年来，这里始终是文人墨客灵感的源泉。沿古老堤岸信步而行，造访历史悠久的寺庙与宝塔，聆听与这片传奇湖泊相关的传说与文学典故。在此感受中国传统园林的造园之道，体会西湖何以被誉为人间天堂。"
+    },
+    {
+      "id": 15,
+      "title_zh": "西安丝绸之路历史与回民街文化体验之旅",
+      "short_zh": "追寻西安的丝路遗产，畅游充满活力的回民文化街区",
+      "desc_zh": "走进历史悠久的回民街，探寻西安作为古丝绸之路起点的辉煌往事。游览西安清真大寺，品尝清真中式美食，了解东西方文明的交流融汇，感受多元文化如何塑造了这座千年古都。参观传统手工艺作坊，亲身体验丝绸之路的多元文化遗产。"
+    },
+    {
+      "id": 18,
+      "title_zh": "丹麦语言与文化沉浸式体验",
+      "short_zh": "在哥本哈根开启丹麦语强化学习与深度文化沉浸之旅",
+      "desc_zh": "通过哥本哈根这一全方位项目，体验丹麦语言与文化的全情沉浸。在母语者的指导下参加强化语言课程，入住当地家庭，探访丹麦文化机构，并在真实场景中实践所学。深入了解 hygge（惬意）文化、丹麦的社会价值观，以及丹麦人对幸福与社群生活的独特理解。"
+    },
+    {
+      "id": 19,
+      "title_zh": "瑞典教育体系与教学方法考察之旅",
+      "short_zh": "探索瑞典先进的教育体系与创新的教学理念",
+      "desc_zh": "在斯德哥尔摩走访学校、大学及教育研究中心，揭开瑞典世界一流教育体系背后的奥秘。实地观摩课堂教学，与教师及教育专家交流，了解瑞典的教学法理念，洞悉瑞典如何打造包容、创新的学习环境，使其教育水平始终位居世界前列。"
+    },
+    {
+      "id": 21,
+      "title_zh": "冰岛地热与火山地貌探险之旅",
+      "short_zh": "踏上地质探险之旅，探索冰岛独特的地热奇观与火山地貌",
+      "desc_zh": "走访活跃的地热区、火山遗址以及全球独一无二的奇特地貌，感受冰岛地质力量的原始震撼。在浸泡天然温泉、徒步冰川、欣赏北极光的同时，了解板块构造、火山活动与可再生地热能源的相关知识。这场探险将寓教于乐，带来难忘的自然体验。"
+    },
+    {
+      "id": 22,
+      "title_zh": "斯德哥尔摩现代设计与建筑徒步之旅",
+      "short_zh": "探索斯德哥尔摩前沿的设计风潮与建筑创新",
+      "desc_zh": "斯德哥尔摩享有全球设计之都的美誉。在这趟内容丰富的徒步之旅中，深入城中最具创意的建筑与设计街区。参观知名设计工作室，与本地设计师交流，欣赏现代建筑杰作，了解瑞典设计理念如何渗透到从家具到城市规划的方方面面。在此感受瑞典设计中实用、美观与可持续的完美交融。"
+    },
+    {
+      "id": 23,
+      "title_zh": "巴塞罗那哥特区徒步之旅与塔帕斯品鉴",
+      "short_zh": "走进巴塞罗那的中世纪核心，发现隐秘角落，品味地道塔帕斯",
+      "desc_zh": "漫步于巴塞罗那哥特区错综复杂的街巷，这里罗马遗迹与中世纪建筑交相辉映。博学的向导将带你探寻隐秘的庭院、古老的神庙，讲述跨越两千年的传奇故事。旅程在一家当地小酒馆的塔帕斯品鉴中圆满收尾，搭配地方佳酿，尽享传统加泰罗尼亚美食。"
+    },
+    {
+      "id": 24,
+      "title_zh": "圣家堂免排队登塔导览之旅",
+      "short_zh": "优先入场，登塔俯瞰，在专业向导带领下领略高迪杰作",
+      "desc_zh": "跳过出了名的漫长排队，在艺术史专家的陪同下走进高迪的旷世杰作。惊叹于宛如森林般的内部立柱、绚丽多彩的彩绘玻璃窗，并登上一座标志性尖塔，将城市全景尽收眼底。深入了解这座教堂长达 140 年的建造历程，以及高迪所开创的种种革新工艺。"
+    },
+    {
+      "id": 25,
+      "title_zh": "巴塞罗那日落帆船之旅，畅享卡瓦气泡酒与精致小食",
+      "short_zh": "在金色黄昏时分扬帆巴塞罗那海岸，品味卡瓦气泡酒，尽收绝美风光",
+      "desc_zh": "从奥林匹克港启航，乘坐时尚双体帆船出海，看夕阳将巴塞罗那的天际线染成金黄。一边畅饮冰镇卡瓦气泡酒、品尝地中海风味小食，一边悠然驶过 W 酒店、巴塞罗内塔海滩与港湾。无论是情侣、好友，还是任何向往海上浪漫夜晚的旅人，都不容错过。"
+    },
+    {
+      "id": 26,
+      "title_zh": "加泰罗尼亚烹饪大师课：走进主厨私房厨房",
+      "short_zh": "随当地主厨逛市场、亲手烹制地道加泰罗尼亚美食",
+      "desc_zh": "走进当地主厨的私人厨房，享受一场亲密的烹饪时光。一同前往博克利亚市场（La Boqueria）挑选最新鲜的时令食材，再回到厨房烹制一桌完整的加泰罗尼亚大餐：番茄面包、海鲜大锅饭，以及加泰罗尼亚焦糖布丁。佐以美酒品尝您的得意之作，还可将食谱带回家。"
+    },
+    {
+      "id": 27,
+      "title_zh": "伦敦塔与王冠珠宝早间优先入场之旅",
+      "short_zh": "抢在人潮之前游览伦敦塔，优先观赏王冠珠宝",
+      "desc_zh": "赶在公众开放前步入伦敦塔，避开人潮静赏王冠珠宝。专业的禁卫军式向导将带您重温千年皇室风云——从安妮·博林的囚禁，到塔中王子神秘失踪的悬案。行程涵盖白塔、叛徒门以及标志性的渡鸦。"
+    },
+    {
+      "id": 28,
+      "title_zh": "伦敦街头艺术与东区文化漫步之旅",
+      "short_zh": "探寻班克西、Stik 等大师之作，感受伦敦活力四射的街头艺术",
+      "desc_zh": "透过街头艺术的视角，漫游肖尔迪奇（Shoreditch）与红砖巷（Brick Lane）。寻觅班克西（Banksy）、Stik 与 ROA 的作品，了解这片昔日的工业区如何蜕变为伦敦的创意核心。探访隐秘庭院与独立画廊，聆听那些将街道化为露天美术馆的艺术家故事。"
+    },
+    {
+      "id": 29,
+      "title_zh": "泰晤士河晚间游船：三道式晚宴与现场爵士乐",
+      "short_zh": "乘船饱览伦敦璀璨夜景，享三道式晚宴与现场爵士乐",
+      "desc_zh": "在现场爵士乐的悠扬伴奏中享用三道式晚宴，悠然驶过灯火璀璨的伦敦地标——国会大厦、伦敦眼、塔桥与碎片大厦。这是一个格调十足的夜晚，将世界级美食、舒缓乐声与全球最迷人的河上旅程融为一体。"
+    },
+    {
+      "id": 30,
+      "title_zh": "哈利·波特电影取景地漫步之旅",
+      "short_zh": "走访伦敦市中心各处真实的哈利·波特电影取景地",
+      "desc_zh": "踏上这场奇妙的伦敦市中心漫步之旅，步入魔法世界。探访那些启发 J.K.罗琳并曾在电影中出现的真实场景：利德贺市场（对角巷）、千禧桥、国王十字车站九又四分之三站台等。一路上，向导还会为您揭秘幕后的电影趣闻。"
+    },
+    {
+      "id": 31,
+      "title_zh": "纽约直升机之旅：俯瞰曼哈顿",
+      "short_zh": "从空中饱览曼哈顿、自由女神像与中央公园的标志性美景",
+      "desc_zh": "翱翔于曼哈顿天际线之上，俯瞰自由女神像、中央公园、帝国大厦与布鲁克林大桥的壮丽景致。这趟激动人心的 30 分钟直升机飞行带来无与伦比的拍摄良机，让您从极少有人体验过的视角领略纽约。"
+    },
+    {
+      "id": 32,
+      "title_zh": "布鲁克林美食与文化漫步之旅",
+      "short_zh": "步行跨越布鲁克林大桥，一路品味布鲁克林的地道美味",
+      "desc_zh": "徒步跨越标志性的布鲁克林大桥，深入 DUMBO、威廉斯堡与布什维克蓬勃发展的美食天地。品尝手工披萨、精酿巧克力、地道饺子与小批量烘焙咖啡，同时了解塑造布鲁克林饮食文化的移民社群。含 6 种以上美食品尝——请空腹前来！"
+    },
+    {
+      "id": 33,
+      "title_zh": "中央公园日出瑜伽与冥想课程",
+      "short_zh": "在中央公园开启晨间瑜伽与冥想，全套器具均已备齐",
+      "desc_zh": "在中央公园的中心地带，以一段焕发活力的瑜伽流开启清晨。当城市在四周渐渐苏醒，在大草坪上随引导冥想，回归内心的平静。课程适合各级别学员，瑜伽垫与辅具均已备齐。最后以一杯花草茶收尾，于自然之中静享感恩时刻。"
+    },
+    {
+      "id": 34,
+      "title_zh": "曼谷水上市场与寺庙长尾船之旅",
+      "short_zh": "乘长尾船穿梭水上市场，游览曼谷最宏伟的寺庙",
+      "desc_zh": "乘坐传统长尾船穿行于曼谷标志性的水道，前往丹嫩沙多水上市场。在此与小贩讨价还价选购热带水果、品尝船上现做的泰式炒河粉，再游览美轮美奂的郑王庙（Wat Arun）与卧佛寺（Wat Pho）。如当地人千百年来一般，亲身感受这座“东方威尼斯”的独特魅力。"
+    },
+    {
+      "id": 35,
+      "title_zh": "泰拳搏击训练体验",
+      "short_zh": "在曼谷一家原汁原味的拳馆，跟随泰拳冠军学习训练",
+      "desc_zh": "在曼谷一家地道的拳馆里，跟随职业泰拳冠军亲身训练。在轻松友好的氛围中学习基础站姿、拳法、腿法以及组合动作，从零基础到中级水平都能轻松上手。训练结束后，畅饮一杯清凉椰子水，听教练讲述这项泰国国技背后的文化底蕴。"
+    },
+    {
+      "id": 36,
+      "title_zh": "曼谷嘟嘟车夜间美食之旅",
+      "short_zh": "乘嘟嘟车穿梭曼谷，夜探城中最地道的街头美食",
+      "desc_zh": "跳上一辆嘟嘟车，在霓虹闪烁的曼谷街头疾驰而过，探寻这座城市享誉世界的街头美食。前往唐人街耀华力路、隐秘的夜市，以及世代为本地人服务的路边小摊。品尝 10 道以上特色美味，包括芒果糯米饭、船面和炭烤沙嗲。"
+    },
+    {
+      "id": 37,
+      "title_zh": "伊斯坦布尔大巴扎与香料市场导览之旅",
+      "short_zh": "在专业向导带领下，畅游伊斯坦布尔传奇市集，品味地道风味",
+      "desc_zh": "在熟知其中门道的本地向导带领下，穿行于传奇大巴扎逾 4000 间店铺之间。学习土耳其讨价还价的艺术，探访隐秘的古驿站商旅客栈，品尝土耳其软糖与苹果茶。随后继续前往香料市场，开启一场围绕藏红花、漆树粉与各色异域香料的芬芳之旅。"
+    },
+    {
+      "id": 38,
+      "title_zh": "博斯普鲁斯海峡日落巡游与土耳其晚宴",
+      "short_zh": "横跨欧亚两洲的日落航行，享土耳其盛宴与现场表演",
+      "desc_zh": "当夕阳沉落于伊斯坦布尔的尖塔与宫殿之间，乘船航行于分隔欧亚两洲的海峡之上。途经多尔玛巴赫切宫、少女塔与鲁梅利城堡，同时品尝由前菜拼盘、烤肉与巴克拉瓦组成的传统土耳其晚宴，船上更有现场音乐与民族舞蹈助兴。"
+    },
+    {
+      "id": 39,
+      "title_zh": "土耳其浴与水疗仪式体验",
+      "short_zh": "在 16 世纪历史浴场，体验传统土耳其浴仪式",
+      "desc_zh": "在一座精心修复的 16 世纪土耳其浴场中，体验地道的土耳其浴。传统仪式包括蒸汽房浴、用搓澡手套进行的全身去角质、泡沫按摩，以及佐以土耳其红茶的放松时光。这一传承数百年的养生传统，将让您身心彻底焕发活力。"
+    },
+    {
+      "id": 40,
+      "title_zh": "阿姆斯特丹运河巡游与国立博物馆联票之旅",
+      "short_zh": "畅游联合国教科文组织遗产运河，并免排队参观国立博物馆",
+      "desc_zh": "首先乘船畅游被列入联合国教科文组织世界遗产名录的阿姆斯特丹运河环带，了解黄金时代的豪宅与隐秘教堂的故事。随后免排队进入国立博物馆，在导览下欣赏伦勃朗的《夜巡》、维米尔的《倒牛奶的女仆》以及馆中众多稀世珍藏。"
+    },
+    {
+      "id": 41,
+      "title_zh": "阿姆斯特丹精酿啤酒与酒厂骑行之旅",
+      "short_zh": "骑行探访阿姆斯特丹顶尖精酿酒厂，享专人品鉴讲解",
+      "desc_zh": "像当地人一样骑行穿梭于阿姆斯特丹迷人的街区，探访三家独立精酿啤酒厂。品尝 10 款以上荷兰精酿啤酒，听充满热情的酿酒师讲解酿造工艺，了解荷兰为何能成为欧洲精酿啤酒之都。骑行单车与品鉴均已包含在内。"
+    },
+    {
+      "id": 42,
+      "title_zh": "安妮·弗兰克与犹太遗产区徒步之旅",
+      "short_zh": "走进安妮·弗兰克的世界，感人徒步探访阿姆斯特丹犹太遗产区",
+      "desc_zh": "循着安妮·弗兰克的足迹，徒步穿行于阿姆斯特丹的犹太遗产区。参观葡萄牙犹太会堂、犹太历史博物馆与西教堂。向导将与您分享一段段深刻动人的故事，讲述抗争、幸存，以及那个塑造了阿姆斯特丹城市身份的充满活力的犹太社区。"
+    },
+    {
+      "id": 43,
+      "title_zh": "巴厘岛梯田徒步与瀑布畅游探险",
+      "short_zh": "徒步翡翠梯田，在隐秘丛林瀑布中畅快戏水",
+      "desc_zh": "徒步穿越标志性的德格拉朗梯田，了解古老的「苏巴克」灌溉系统。沿着郁郁葱葱的丛林小径继续前行，抵达一处隐秘瀑布，纵情畅游消暑。随后在俯瞰梯田的景致中享用一顿地道的巴厘岛午餐。这是一场令人难忘的巴厘岛自然之美沉浸之旅。"
+    },
+    {
+      "id": 44,
+      "title_zh": "巴厘岛巴图尔火山日出与温泉之旅",
+      "short_zh": "登顶火山观日出，享早餐并在天然温泉中放松身心",
+      "desc_zh": "于黎明前启程，徒步攀登活火山巴图尔火山，于山顶迎接云海之上的壮丽日出。当金色晨光洒下，静观天空变幻，巴图尔湖与阿贡火山在光芒中渐渐浮现。下山后，前往天然火山温泉舒缓泡浴。山顶早餐已包含在内。"
+    },
+    {
+      "id": 45,
+      "title_zh": "传统村落巴厘岛烹饪课",
+      "short_zh": "在乡村家庭院落里，体验从市集到餐桌的巴厘岛烹饪",
+      "desc_zh": "先到当地市集采购各式异域食材，再前往传统村落里的一户家庭院落。在柴火灶台前，从头学做 7 道巴厘岛美味：香茅烤肉串（satay lilit）、巴厘传统凉拌菜（lawar）、印尼炒饭（nasi goreng）等等。最后在热带花园里享用亲手烹制的佳肴。"
+    },
+    {
+      "id": 46,
+      "title_zh": "京都传统茶道与禅意庭园之旅",
+      "short_zh": "在百年町屋中体验正宗茶道，并探访禅意庭园",
+      "desc_zh": "在一座有 200 年历史的京都町屋中，体验日本茶道（茶道，chado）的艺术。茶道大师将引领您领略每一个优雅的动作，并讲解这一古老仪式背后的禅宗哲学。随后探访龙安寺著名的枯山水石庭，以及金阁寺的金色楼阁。"
+    },
+    {
+      "id": 47,
+      "title_zh": "岚山竹林与猴子公园骑行之旅",
+      "short_zh": "骑行前往梦幻竹林、猴子公园与河畔古刹",
+      "desc_zh": "骑行穿越京都风景如画的西郊，前往如梦似幻的岚山竹林。继续前行至岚山猴子公园，野生猕猴在此自由活动，您还可俯瞰全城美景。跨过标志性的渡月桥，并参观静谧的天龙寺。午餐安排在河畔的一家面馆。"
+    },
+    {
+      "id": 48,
+      "title_zh": "京都艺伎区夜游与清酒品鉴",
+      "short_zh": "在灯笼映照的祇园艺伎区漫步，品鉴顶级清酒",
+      "desc_zh": "漫步京都氛围十足的艺伎区祇园，灯笼点亮一座座木造町屋。向导将为您揭开艺伎与舞伎的神秘世界，带您探寻隐秘的小巷。最后在一家传统清酒吧，品鉴五款精选顶级清酒，并搭配精致小食。"
+    },
+    {
+      "id": 49,
+      "title_zh": "沙漠探险：冲沙、骑骆驼与烧烤晚餐",
+      "short_zh": "终极沙漠探险，含冲沙、日落骑骆驼与星空下烧烤",
+      "desc_zh": "乘坐四驱越野车在阿拉伯沙漠中体验冲沙的刺激，随后在夕阳下悠然骑乘骆驼。在贝都因风格的营地里，您可以体验滑沙、绘制海娜彩绘，并在星空下欣赏肚皮舞表演。尽情享用丰盛的烧烤晚餐，包括烤肉、阿拉伯前菜拼盘（mezze）以及水烟。"
+    },
+    {
+      "id": 50,
+      "title_zh": "哈利法塔登顶与迪拜喷泉表演",
+      "short_zh": "在世界第一高楼欣赏日落，并观赏喷泉表演",
+      "desc_zh": "登上世界第一高楼，来到第 124 层与第 125 层观景台，将迪拜天际线、海岸线乃至远方的沙漠 360 度尽收眼底。不妨将行程安排在日落时分，随后下楼欣赏壮观的迪拜喷泉表演——它在哈利法塔人工湖上随音乐编排起舞。"
+    },
+    {
+      "id": 51,
+      "title_zh": "迪拜码头豪华游艇早午餐巡游",
+      "short_zh": "私人游艇早午餐，巡游朱美拉棕榈岛与迪拜码头",
+      "desc_zh": "乘坐私人豪华游艇，畅游迪拜码头与朱美拉棕榈岛。一边品着香槟、享用精致的早午餐，一边经过亚特兰蒂斯棕榈岛酒店、蓝水岛以及码头标志性的摩天大楼群。途中还安排在沿岸僻静处停靠，供您下水畅游。"
+    },
+    {
+      "id": 52,
+      "title_zh": "里斯本 28 路电车与阿尔法玛老城区漫步",
+      "short_zh": "搭乘标志性电车，漫步里斯本最古老、最迷人的街区",
+      "desc_zh": "搭乘标志性的黄色 28 路电车，穿行里斯本最陡峭的山坡，随后徒步探索阿尔法玛街区。寻访法朵（Fado）音乐演出场所、古老的摩尔式建筑，以及可俯瞰塔霍河壮阔景致的观景点。向导将为您讲述航海家、地震以及 1974 年革命的故事。"
+    },
+    {
+      "id": 53,
+      "title_zh": "里斯本出发：辛特拉宫殿与罗卡角一日游",
+      "short_zh": "童话宫殿、神秘水井，以及欧洲大陆的最西端",
+      "desc_zh": "前往辛特拉，逃入这片被列入联合国教科文组织名录的童话宫殿世界。参观矗立山巅、色彩缤纷的佩纳宫，探索藏有启蒙水井的神秘雷加莱拉庄园（Quinta da Regaleira），再驱车前往罗卡角——欧洲大陆的最西端。行程包含当地糕点品尝。"
+    },
+    {
+      "id": 54,
+      "title_zh": "里斯本葡式蛋挞烘焙工作坊",
+      "short_zh": "向糕点大师学做葡萄牙标志性的奶油蛋挞",
+      "desc_zh": "在这场亲手实践的工作坊中，掌握葡萄牙最受欢迎的糕点。当地糕点大师将传授酥脆千层酥皮与丝滑奶油馅的秘诀。您将亲手烤制一炉葡式蛋挞，并了解为何那份源自贝伦（Belém）的原始配方自 1837 年起便一直是被严守的秘密。"
+    },
+    {
+      "id": 55,
+      "title_zh": "布拉格城堡与老城天文钟之旅",
+      "short_zh": "布拉格全景体验：城堡建筑群、查理大桥与中世纪老城",
+      "desc_zh": "走进全球最大的古代城堡建筑群，欣赏哥特式大教堂、皇家宫殿与黄金巷。漫步装点着巴洛克雕像的查理大桥，来到老城广场，亲眼见证拥有 600 年历史的天文钟准点报时。这是一段全面深入波西米亚历史的精彩旅程。"
+    },
+    {
+      "id": 56,
+      "title_zh": "布拉格地下世界：中世纪酒窖与啤酒品鉴",
+      "short_zh": "探秘布拉格地下的中世纪秘密隧道，畅享捷克啤酒品鉴",
+      "desc_zh": "深入布拉格街道之下，探索绝大多数游客无缘得见的中世纪酒窖与隧道网络。在游览三处地下场所的过程中，了解这座城市鲜为人知的地下历史。最后在一间 14 世纪的地窖酒吧畅饮捷克啤酒，品尝皮尔森啤酒、黑色拉格以及当地精酿。"
+    },
+    {
+      "id": 57,
+      "title_zh": "桌山徒步与开普半岛风景自驾游",
+      "short_zh": "登顶桌山，自驾前往好望角，邂逅可爱的企鹅",
+      "desc_zh": "沿着普拉特克利夫峡谷（Platteklip Gorge）路线徒步登上桌山，在平坦的山顶饱览壮丽全景。乘缆车下山后，自驾穿越绝美的开普半岛，途经查普曼峰（Chapman's Peak），探访博尔德斯海滩（Boulders Beach）的企鹅栖息地，最终抵达两大洋交汇之处——好望角。"
+    },
+    {
+      "id": 58,
+      "title_zh": "开普酒乡全日游：品酒与午餐",
+      "short_zh": "畅游斯泰伦博斯与弗朗斯胡克三大酒庄，享用葡萄园午餐",
+      "desc_zh": "走进南非顶尖的两大葡萄酒产区——斯泰伦博斯（Stellenbosch）与弗朗斯胡克（Franschhoek），探访三座屡获殊荣的酒庄。在了解这里 350 年酿酒传统的同时，品鉴皮诺塔吉（Pinotage）、白诗南（Chenin Blanc）以及开普独有的混酿佳酿。行程还包含在坐拥山景的葡萄园餐厅享用一顿精致午餐。"
+    },
+    {
+      "id": 59,
+      "title_zh": "杜布罗夫尼克古城墙漫步与《权力的游戏》主题游",
+      "short_zh": "环绕中世纪城墙，探访《权力的游戏》取景地",
+      "desc_zh": "沿着杜布罗夫尼克的中世纪古城墙完整环行一周——这条全长 2 公里的步道沿途尽是壮美的亚得里亚海风光。随后跟随向导探访《权力的游戏》取景地，让“君临城”跃然眼前：赎罪之路的台阶、红堡以及黑水湾。"
+    },
+    {
+      "id": 60,
+      "title_zh": "杜布罗夫尼克海上皮划艇与洛克鲁姆岛浮潜",
+      "short_zh": "沿中世纪城墙划行皮划艇，在纯净的洛克鲁姆岛浮潜",
+      "desc_zh": "从海上划着皮划艇沿杜布罗夫尼克气势恢宏的古城墙前行，探访陆路无法抵达的隐秘洞穴与纯净海滩。横渡前往洛克鲁姆岛（Lokrum），在清澈见底的亚得里亚海中浮潜，并探索岛上的植物园与中世纪修道院遗迹。"
+    },
+    {
+      "id": 61,
+      "title_zh": "维也纳美泉宫橘园古典音乐会",
+      "short_zh": "在莫扎特曾登台演出的宫殿里聆听莫扎特与施特劳斯",
+      "desc_zh": "在美泉宫（Schönbrunn）富丽堂皇的橘园里，欣赏美泉宫宫廷乐团演绎的莫扎特与施特劳斯之夜——这里正是莫扎特本人曾登台献艺之地。雅致的巴洛克大厅拥有非凡的音响效果。可选升级套餐，于音乐会前在毗邻宫殿的餐厅享用晚宴。"
+    },
+    {
+      "id": 62,
+      "title_zh": "维也纳咖啡馆文化与糕点漫步之旅",
+      "short_zh": "探寻列入联合国教科文组织名录的咖啡文化，品味萨赫蛋糕、苹果卷与背后的故事",
+      "desc_zh": "在这趟美味的漫步之旅中，探寻维也纳咖啡馆文化为何被列入联合国教科文组织名录。走访三家各具特色、底蕴深厚的传奇咖啡馆，品尝萨赫蛋糕（Sachertorte）、苹果卷（Apfelstrudel）与维也纳混合咖啡（Melange）。向导将为你讲述那些塑造了这里咖啡文化的作家、艺术家与革命者的故事。"
+    },
+    {
+      "id": 63,
+      "title_zh": "马拉喀什麦地那与露天集市向导探秘之旅",
+      "short_zh": "在本地向导带领下探索马拉喀什的露天集市、宫殿与隐秘瑰宝",
+      "desc_zh": "跟随土生土长的本地向导，穿行于马拉喀什麦地那（老城区）令人着迷的迷宫般街巷。探访琳琅满目的香料、皮革与金属工艺集市，参观静谧的巴伊亚宫（Bahia Palace），发掘隐于其间的本·优素福神学院（Ben Youssef Madrasa）。学会像本地人一样讨价还价，并在德吉玛广场（Jemaa el-Fna）品尝一杯鲜榨橙汁。"
+    },
+    {
+      "id": 64,
+      "title_zh": "阿特拉斯山脉一日徒步与柏柏尔村庄午餐",
+      "short_zh": "徒步登山探访柏柏尔村庄，享用传统塔吉锅午餐",
+      "desc_zh": "在阿特拉斯山脉（Atlas Mountains）的一日徒步中远离都市的炎热。穿越核桃林与梯田，抵达一座传统的柏柏尔（Berber）村庄，当地家庭将盛情款待你品尝一顿家常塔吉锅（tagine）午餐，并奉上薄荷茶。沿途尽享壮丽的山间风光与原汁原味的文化交流。"
+    },
+    {
+      "id": 65,
+      "title_zh": "黄昏时分攀登悉尼海港大桥",
+      "short_zh": "日落时分登顶海港大桥，尽览 360 度城市全景",
+      "desc_zh": "在黄昏时分攀登至悉尼海港大桥的顶端，将这座城市由昼入夜的绝美变幻尽收眼底。看夕阳为悉尼歌剧院和海港披上一层金辉，再俯瞰脚下万家灯火次第亮起。这是一段令人肾上腺素飙升的人生必体验之旅。"
+    },
+    {
+      "id": 66,
+      "title_zh": "悉尼海岸漫步：邦迪到库吉，附早午餐",
+      "short_zh": "经典海岸步道，途经峭壁、海蚀泳池与沙滩，附海滨早午餐",
+      "desc_zh": "漫步全长 6 公里的邦迪至库吉海岸步道，这是全球最壮丽的城市海岸步道之一。沿途经过气势磅礴的砂岩峭壁、天然海蚀泳池、原住民岩刻以及一片片洁净的海滩。行程从邦迪一家咖啡馆的早午餐开始，并带您了解当地的海岸生态与冲浪文化。"
+    },
+    {
+      "id": 67,
+      "title_zh": "皇后镇卡瓦劳大桥蹦极",
+      "short_zh": "从全球首个蹦极点纵身跃下，俯冲向碧绿峡谷",
+      "desc_zh": "在全球首个商业蹦极发源地——标志性的卡瓦劳大桥纵身一跃，从碧绿的卡瓦劳河上方 43 米高处俯冲而下。专业蹦极教练全程指导每一个步骤。可选触水跳跃及双人蹦极。免费赠送照片与视频套餐。"
+    },
+    {
+      "id": 68,
+      "title_zh": "哈瓦那古董车之旅与萨尔萨舞课",
+      "short_zh": "乘 1950 年代敞篷老爷车畅游哈瓦那，并享私人萨尔萨舞课",
+      "desc_zh": "乘坐一辆精心修复的 1950 年代美式敞篷老爷车，畅游哈瓦那。游览马莱孔海滨大道、国会大厦、革命广场以及色彩斑斓的哈瓦那老城。随后走进当地舞蹈工作室，跟随专业古巴舞者上一堂私人萨尔萨舞课程。莫吉托饮品已包含在内。"
+    },
+    {
+      "id": 69,
+      "title_zh": "巴黎摄影之旅：经典地标与隐秘角落",
+      "short_zh": "由专业摄影师带领，探访巴黎最上镜的拍摄地",
+      "desc_zh": "在专业摄影师的引领下，用镜头捕捉巴黎之美。既游览标志性地标，也探访唯有摄影师才知晓的私藏角落——隐秘的庭院、铺着鹅卵石的小巷以及屋顶观景台。获得关于构图、用光与后期修图的个性化指导。欢迎携带任意类型的相机参加。"
+    },
+    {
+      "id": 70,
+      "title_zh": "罗马地下世界：地下墓穴与古罗马水道之旅",
+      "short_zh": "探秘永恒之城地下的古老墓穴与隐秘水道",
+      "desc_zh": "深入罗马地下，探索神秘的圣卡利斯托地下墓穴，早期基督徒便在这绵延数英里的地下隧道中安葬逝者。随后前往一段平日不对公众开放的古罗马水道。这是一段令人心生敬畏、引人入胜的旅程，带您穿越罗马隐秘的层层历史。"
+    },
+    {
+      "id": 71,
+      "title_zh": "东京筑地外市场美食之旅与寿司制作",
+      "short_zh": "畅吃筑地市场美食，并跟随当地主厨亲手制作寿司",
+      "desc_zh": "在当地美食向导的带领下，探访东京传奇的筑地外市场。品尝玉子烧、新鲜刺身、和牛串以及各式日式街头小吃。随后前往附近的厨房参加寿司制作体验课，学习像东京寿司师傅一样制作握寿司与寿司卷。"
+    }
+  ],
+  "highlights": [
+    {
+      "en": "Active geothermal areas and hot springs",
+      "zh": "探访活跃的地热区域与天然温泉"
+    },
+    {
+      "en": "All entrance fees and tastings included",
+      "zh": "包含全部门票与品尝体验"
+    },
+    {
+      "en": "Ancient causeway walks and scenic viewpoints",
+      "zh": "漫步古堤，饱览绝美观景点"
+    },
+    {
+      "en": "Authentic Halal Chinese cuisine sampling",
+      "zh": "品尝地道清真中华美食"
+    },
+    {
+      "en": "Countryside lunch with local family",
+      "zh": "在当地人家中享用乡村午餐"
+    },
+    {
+      "en": "Cultural immersion with local families",
+      "zh": "入住当地家庭，沉浸式体验文化"
+    },
+    {
+      "en": "Cultural workshops and traditional activities",
+      "zh": "参与文化工作坊与传统活动"
+    },
+    {
+      "en": "Design shopping districts and showrooms",
+      "zh": "逛设计购物街区与品牌展厅"
+    },
+    {
+      "en": "Educational policy and system design workshops",
+      "zh": "参加教育政策与体制设计工作坊"
+    },
+    {
+      "en": "Educational technology and digital learning insights",
+      "zh": "深入了解教育科技与数字化学习"
+    },
+    {
+      "en": "Environmental policy and climate action seminars",
+      "zh": "参加环境政策与气候行动研讨会"
+    },
+    {
+      "en": "Expert local guide with deep knowledge",
+      "zh": "资深本地向导，见解独到"
+    },
+    {
+      "en": "Free cancellation up to 24 hours before",
+      "zh": "开始前 24 小时可免费取消"
+    },
+    {
+      "en": "Geological phenomena and plate tectonics insights",
+      "zh": "了解地质奇观与板块构造知识"
+    },
+    {
+      "en": "Glacier walking and ice cave experiences",
+      "zh": "体验冰川徒步与冰洞探险"
+    },
+    {
+      "en": "Hands-on workshops in renewable energy technology",
+      "zh": "亲手参与可再生能源技术工作坊"
+    },
+    {
+      "en": "Historic Muslim Quarter and Great Mosque exploration",
+      "zh": "探访历史悠久的回民街与大清真寺"
+    },
+    {
+      "en": "Historic temples and pagodas visits",
+      "zh": "参观历史古刹与古塔"
+    },
+    {
+      "en": "Inclusive education and student welfare systems",
+      "zh": "了解全纳教育与学生福利体系"
+    },
+    {
+      "en": "Intensive Danish language classes with native speakers",
+      "zh": "由母语者授课的丹麦语强化课程"
+    },
+    {
+      "en": "Learn Shanghai food history and culture",
+      "zh": "了解上海美食的历史与文化"
+    },
+    {
+      "en": "Learn Swedish pedagogical methods and philosophy",
+      "zh": "学习瑞典的教学方法与教育理念"
+    },
+    {
+      "en": "Learn about hygge and Danish lifestyle",
+      "zh": "感受丹麦 hygge 文化与生活方式"
+    },
+    {
+      "en": "Learn about rural Chinese customs and traditions",
+      "zh": "了解中国乡村的风俗与传统"
+    },
+    {
+      "en": "Meet education experts and innovative teachers",
+      "zh": "与教育专家及创新型教师面对面交流"
+    },
+    {
+      "en": "Meet local designers and architects",
+      "zh": "结识本地设计师与建筑师"
+    },
+    {
+      "en": "Meet local vendors and food artisans",
+      "zh": "结识本地摊主与美食匠人"
+    },
+    {
+      "en": "Meet professors and researchers in sustainability",
+      "zh": "与可持续发展领域的教授和研究者交流"
+    },
+    {
+      "en": "Modern architecture and urban design exploration",
+      "zh": "探索现代建筑与城市设计"
+    },
+    {
+      "en": "Multicultural heritage understanding",
+      "zh": "感悟多元文化交融的传承"
+    },
+    {
+      "en": "Navigate like a local with insider tips",
+      "zh": "掌握本地人的独家窍门，畅游无忧"
+    },
+    {
+      "en": "Northern Lights viewing (seasonal)",
+      "zh": "观赏北极光（视季节而定）"
+    },
+    {
+      "en": "Photo opportunities at iconic viewpoints",
+      "zh": "在标志性观景点尽情拍照"
+    },
+    {
+      "en": "Poetry and literature associated with West Lake",
+      "zh": "品读与西湖相关的诗词与文学"
+    },
+    {
+      "en": "Practice language skills in real situations",
+      "zh": "在真实情境中练习语言技能"
+    },
+    {
+      "en": "Renewable energy facility visits",
+      "zh": "参观可再生能源设施"
+    },
+    {
+      "en": "Sample 15+ different local street foods",
+      "zh": "品尝 15 种以上当地街头小吃"
+    },
+    {
+      "en": "Silk Road history and cultural exchange insights",
+      "zh": "领略丝绸之路的历史与文化交流"
+    },
+    {
+      "en": "Small group experience (max 1 people)",
+      "zh": "小团体验（最多 1 人）"
+    },
+    {
+      "en": "Small group experience (max 10 people)",
+      "zh": "小团体验（最多 10 人）"
+    },
+    {
+      "en": "Small group experience (max 12 people)",
+      "zh": "小团体验（最多 12 人）"
+    },
+    {
+      "en": "Small group experience (max 14 people)",
+      "zh": "小团体验（最多 14 人）"
+    },
+    {
+      "en": "Small group experience (max 15 people)",
+      "zh": "小团体验（最多 15 人）"
+    },
+    {
+      "en": "Small group experience (max 18 people)",
+      "zh": "小团体验（最多 18 人）"
+    },
+    {
+      "en": "Small group experience (max 20 people)",
+      "zh": "小团体验（最多 20 人）"
+    },
+    {
+      "en": "Small group experience (max 30 people)",
+      "zh": "小团体验（最多 30 人）"
+    },
+    {
+      "en": "Small group experience (max 4 people)",
+      "zh": "小团体验（最多 4 人）"
+    },
+    {
+      "en": "Small group experience (max 40 people)",
+      "zh": "小团体验（最多 40 人）"
+    },
+    {
+      "en": "Small group experience (max 50 people)",
+      "zh": "小团体验（最多 50 人）"
+    },
+    {
+      "en": "Small group experience (max 6 people)",
+      "zh": "小团体验（最多 6 人）"
+    },
+    {
+      "en": "Small group experience (max 8 people)",
+      "zh": "小团体验（最多 8 人）"
+    },
+    {
+      "en": "Street food tour through bustling bazaars",
+      "zh": "穿行热闹集市的街头美食之旅"
+    },
+    {
+      "en": "Student exchange program information sessions",
+      "zh": "参加学生交换项目说明会"
+    },
+    {
+      "en": "Stunning karst mountain scenery and photo opportunities",
+      "zh": "饱览壮丽喀斯特山水，畅拍美景"
+    },
+    {
+      "en": "Sustainable urban planning examples",
+      "zh": "实地参观可持续城市规划范例"
+    },
+    {
+      "en": "Swedish design philosophy and principles",
+      "zh": "领略瑞典设计理念与原则"
+    },
+    {
+      "en": "Tea plantation visit and Dragon Well tea tasting",
+      "zh": "参观茶园并品鉴龙井茶"
+    },
+    {
+      "en": "Traditional Chinese garden design insights",
+      "zh": "领略中国古典园林的造园艺术"
+    },
+    {
+      "en": "Traditional bamboo raft experience on Li River",
+      "zh": "在漓江上体验传统竹筏漂流"
+    },
+    {
+      "en": "Traditional craft workshops and demonstrations",
+      "zh": "参与传统手工艺工作坊与现场演示"
+    },
+    {
+      "en": "Try traditional cormorant fishing techniques",
+      "zh": "尝试传统的鸬鹚捕鱼技艺"
+    },
+    {
+      "en": "UNESCO World Heritage West Lake exploration",
+      "zh": "探访世界文化遗产——西湖"
+    },
+    {
+      "en": "Unique access to hidden or exclusive locations",
+      "zh": "独家探访隐秘或专属地点"
+    },
+    {
+      "en": "University of Oslo campus tour and facilities",
+      "zh": "游览奥斯陆大学校园及各类设施"
+    },
+    {
+      "en": "Vegetarian and dietary options available",
+      "zh": "提供素食及其他特殊饮食选择"
+    },
+    {
+      "en": "Visit 4-5 different night markets and food streets",
+      "zh": "逛 4 至 5 个不同的夜市与美食街"
+    },
+    {
+      "en": "Visit Danish cultural institutions and museums",
+      "zh": "参观丹麦文化机构与博物馆"
+    },
+    {
+      "en": "Visit Swedish schools and observe classes",
+      "zh": "走进瑞典学校，观摩课堂教学"
+    },
+    {
+      "en": "Visit authentic fishing villages",
+      "zh": "走访原汁原味的渔村"
+    },
+    {
+      "en": "Visit renowned Swedish design studios",
+      "zh": "参观知名瑞典设计工作室"
+    },
+    {
+      "en": "Visit to green technology laboratories",
+      "zh": "参观绿色科技实验室"
+    },
+    {
+      "en": "Volcanic landscape exploration and education",
+      "zh": "探索火山地貌并学习相关知识"
+    }
+  ],
+  "includes": [
+    {
+      "en": "Additional food purchases",
+      "zh": "额外的餐饮消费"
+    },
+    {
+      "en": "Additional meals",
+      "zh": "额外餐食"
+    },
+    {
+      "en": "Alcoholic beverages",
+      "zh": "酒精饮品"
+    },
+    {
+      "en": "All entrance fees and tickets",
+      "zh": "全部门票及入场费"
+    },
+    {
+      "en": "All food tastings and samples",
+      "zh": "全部美食品鉴与试吃"
+    },
+    {
+      "en": "Architectural landmark visits",
+      "zh": "地标建筑游览"
+    },
+    {
+      "en": "Arctic clothing and gear",
+      "zh": "极地保暖衣物与装备"
+    },
+    {
+      "en": "Audio guide equipment",
+      "zh": "语音导览设备"
+    },
+    {
+      "en": "Aurora guarantee (return trip if no sighting)",
+      "zh": "极光保障（未见极光可免费再次出行）"
+    },
+    {
+      "en": "Bamboo raft experience",
+      "zh": "竹筏漂流体验"
+    },
+    {
+      "en": "Campus tour",
+      "zh": "校园参观"
+    },
+    {
+      "en": "Countryside village visit",
+      "zh": "乡村村落探访"
+    },
+    {
+      "en": "Cultural activities and games",
+      "zh": "文化活动与互动游戏"
+    },
+    {
+      "en": "Cultural stories and legends",
+      "zh": "文化故事与传说讲解"
+    },
+    {
+      "en": "Cultural workshop materials",
+      "zh": "文化工作坊材料"
+    },
+    {
+      "en": "Danish cultural insights",
+      "zh": "丹麦文化深度解读"
+    },
+    {
+      "en": "Danish language instruction",
+      "zh": "丹麦语教学"
+    },
+    {
+      "en": "Design museum insights",
+      "zh": "设计博物馆深度讲解"
+    },
+    {
+      "en": "Design philosophy discussions",
+      "zh": "设计理念探讨"
+    },
+    {
+      "en": "Design purchases",
+      "zh": "设计品购物消费"
+    },
+    {
+      "en": "Educational expert guide",
+      "zh": "教育领域专家向导"
+    },
+    {
+      "en": "Educational methodology presentations",
+      "zh": "教学方法专题讲解"
+    },
+    {
+      "en": "Educational system lectures",
+      "zh": "教育体系讲座"
+    },
+    {
+      "en": "Expert Northern Lights guide",
+      "zh": "专业极光向导"
+    },
+    {
+      "en": "Expert cultural guide",
+      "zh": "资深文化向导"
+    },
+    {
+      "en": "Food safety guidance",
+      "zh": "饮食安全贴士"
+    },
+    {
+      "en": "Geological education",
+      "zh": "地质知识讲解"
+    },
+    {
+      "en": "Geological expert guide",
+      "zh": "地质专家向导"
+    },
+    {
+      "en": "Geothermal site visits",
+      "zh": "地热景点游览"
+    },
+    {
+      "en": "Gratuities (optional)",
+      "zh": "小费（自愿）"
+    },
+    {
+      "en": "Group photo",
+      "zh": "集体合影"
+    },
+    {
+      "en": "Group photos at scenic spots",
+      "zh": "在观景点拍摄集体合影"
+    },
+    {
+      "en": "Hands-on cultural activities",
+      "zh": "亲手参与的文化体验活动"
+    },
+    {
+      "en": "Historical site visits",
+      "zh": "历史古迹游览"
+    },
+    {
+      "en": "Historical storytelling",
+      "zh": "历史故事讲述"
+    },
+    {
+      "en": "Hot beverages and snacks",
+      "zh": "热饮与小食"
+    },
+    {
+      "en": "Hot spring experience",
+      "zh": "温泉体验"
+    },
+    {
+      "en": "Hotel pickup (selected areas)",
+      "zh": "酒店接送（指定区域）"
+    },
+    {
+      "en": "Interior design showcases",
+      "zh": "室内设计展示参观"
+    },
+    {
+      "en": "Language learning materials",
+      "zh": "语言学习材料"
+    },
+    {
+      "en": "Life jackets and safety equipment",
+      "zh": "救生衣及安全装备"
+    },
+    {
+      "en": "Local food expert guide",
+      "zh": "本地美食专家向导"
+    },
+    {
+      "en": "Local food tastings",
+      "zh": "地道美食品鉴"
+    },
+    {
+      "en": "Local interaction opportunities",
+      "zh": "与当地人互动的机会"
+    },
+    {
+      "en": "Lunch",
+      "zh": "午餐"
+    },
+    {
+      "en": "Meals and accommodation",
+      "zh": "餐食与住宿"
+    },
+    {
+      "en": "Meals and beverages",
+      "zh": "餐食与饮品"
+    },
+    {
+      "en": "Meals and snacks",
+      "zh": "餐食与小食"
+    },
+    {
+      "en": "Modern design district tour",
+      "zh": "现代设计街区游览"
+    },
+    {
+      "en": "Museum entrance fees",
+      "zh": "博物馆门票"
+    },
+    {
+      "en": "Muslim Quarter walking tour",
+      "zh": "回民街徒步导览"
+    },
+    {
+      "en": "Networking opportunities",
+      "zh": "交流人脉的机会"
+    },
+    {
+      "en": "Night market exploration",
+      "zh": "夜市探索"
+    },
+    {
+      "en": "Personal camera equipment",
+      "zh": "个人摄影器材"
+    },
+    {
+      "en": "Personal expenses",
+      "zh": "个人消费"
+    },
+    {
+      "en": "Personal expenses and souvenirs",
+      "zh": "个人消费及纪念品"
+    },
+    {
+      "en": "Personal meals",
+      "zh": "个人餐饮"
+    },
+    {
+      "en": "Personal purchases",
+      "zh": "个人购物消费"
+    },
+    {
+      "en": "Professional English-speaking guide",
+      "zh": "专业英语向导"
+    },
+    {
+      "en": "Professional architecture guide",
+      "zh": "专业建筑向导"
+    },
+    {
+      "en": "Professional history guide",
+      "zh": "专业历史向导"
+    },
+    {
+      "en": "Professional photography guidance",
+      "zh": "专业摄影指导"
+    },
+    {
+      "en": "Professional raft guide",
+      "zh": "专业竹筏向导"
+    },
+    {
+      "en": "Refreshments",
+      "zh": "茶点饮品"
+    },
+    {
+      "en": "Research materials and reports",
+      "zh": "研究资料与报告"
+    },
+    {
+      "en": "Round-trip transportation",
+      "zh": "往返交通"
+    },
+    {
+      "en": "Safety equipment",
+      "zh": "安全装备"
+    },
+    {
+      "en": "Scenic Li River journey",
+      "zh": "漓江风光之旅"
+    },
+    {
+      "en": "School visits and observations",
+      "zh": "学校参观与课堂观摩"
+    },
+    {
+      "en": "Sessions with students and professors",
+      "zh": "与学生及教授的交流会"
+    },
+    {
+      "en": "Silk Road museum visit",
+      "zh": "丝绸之路博物馆参观"
+    },
+    {
+      "en": "Small group size guarantee",
+      "zh": "小型团队人数保障"
+    },
+    {
+      "en": "Souvenir purchases",
+      "zh": "纪念品消费"
+    },
+    {
+      "en": "Souvenir shopping",
+      "zh": "纪念品购物"
+    },
+    {
+      "en": "Street food history and culture",
+      "zh": "街头美食的历史与文化讲解"
+    },
+    {
+      "en": "Study materials package",
+      "zh": "学习资料包"
+    },
+    {
+      "en": "Tastings or refreshments as described",
+      "zh": "行程所述的品鉴或茶点"
+    },
+    {
+      "en": "Tea and refreshments",
+      "zh": "茶水与茶点"
+    },
+    {
+      "en": "Tea ceremony experience",
+      "zh": "茶道体验"
+    },
+    {
+      "en": "Teacher and student interactions",
+      "zh": "师生互动交流"
+    },
+    {
+      "en": "Temple entrance fees",
+      "zh": "寺庙门票"
+    },
+    {
+      "en": "Terracotta Army Museum entrance tickets",
+      "zh": "兵马俑博物馆门票"
+    },
+    {
+      "en": "Traditional Danish refreshments",
+      "zh": "传统丹麦茶点"
+    },
+    {
+      "en": "Traditional Sami dinner",
+      "zh": "传统萨米风味晚餐"
+    },
+    {
+      "en": "Traditional art demonstrations",
+      "zh": "传统艺术现场展示"
+    },
+    {
+      "en": "Traditional fishing demonstration",
+      "zh": "传统捕鱼技艺展示"
+    },
+    {
+      "en": "Traditional handicraft demonstrations",
+      "zh": "传统手工艺现场展示"
+    },
+    {
+      "en": "Traditional tea house experience",
+      "zh": "传统茶馆体验"
+    },
+    {
+      "en": "Transportation between schools",
+      "zh": "校际间交通"
+    },
+    {
+      "en": "Transportation costs",
+      "zh": "交通费用"
+    },
+    {
+      "en": "Transportation expenses",
+      "zh": "交通开销"
+    },
+    {
+      "en": "Transportation to rafting point",
+      "zh": "前往漂流起点的交通"
+    },
+    {
+      "en": "Travel insurance",
+      "zh": "旅行保险"
+    },
+    {
+      "en": "Volcanic landscape exploration",
+      "zh": "火山地貌探索"
+    },
+    {
+      "en": "West Lake scenic walk",
+      "zh": "西湖风光漫步"
+    }
+  ],
+  "faqs": [
+    {
+      "question": "Are there any cultural sensitivities to be aware of?",
+      "answer": "We'll provide cultural guidance for visiting the Muslim Quarter, including appropriate behavior in religious areas and respectful interaction with locals.",
+      "question_zh": "有哪些需要注意的文化禁忌吗？",
+      "answer_zh": "我们会为您游览回民街提供文化指引，包括在宗教场所的得体举止，以及与当地居民友好相处的礼仪。"
+    },
+    {
+      "question": "Are there any prerequisites for this program?",
+      "answer": "No special prerequisites are required, but interest in sustainability or academic research will make the experience more meaningful.",
+      "question_zh": "参加这个项目有什么前提条件吗？",
+      "answer_zh": "无需任何特殊条件即可参加，但若您对可持续发展或学术研究感兴趣，体验将更具收获。"
+    },
+    {
+      "question": "Can meetings with students from specific fields be arranged?",
+      "answer": "Yes, we can arrange meetings with students in your area of interest if requested in advance.",
+      "question_zh": "可以安排与特定专业领域的学生会面吗？",
+      "answer_zh": "可以，只要您提前提出需求，我们便能安排您与所感兴趣领域的学生交流会面。"
+    },
+    {
+      "question": "Can we participate in classes?",
+      "answer": "Depending on school arrangements, you may observe classes and participate in some educational activities with students and teachers.",
+      "question_zh": "我们可以参与课堂吗？",
+      "answer_zh": "视学校安排而定，您可以旁听课程，并与师生一同参与部分教学活动。"
+    },
+    {
+      "question": "How close can we get to volcanic activity?",
+      "answer": "We visit safe viewing areas of active geothermal sites and dormant volcanic formations. All locations are assessed for safety by our expert guides.",
+      "question_zh": "我们能离火山活动有多近？",
+      "answer_zh": "我们会前往活跃地热区和休眠火山地貌的安全观景点。所有地点均经由我们的专业向导评估，确保安全无虞。"
+    },
+    {
+      "question": "How cold does it get?",
+      "answer": "Temperatures can drop to -20°C. We provide all necessary arctic gear.",
+      "question_zh": "天气会有多冷？",
+      "answer_zh": "气温最低可降至 -20°C。我们将为您提供全套必备的极地保暖装备。"
+    },
+    {
+      "question": "How long does it take to visit the Terracotta Army?",
+      "answer": "The complete visit takes approximately 3-4 hours, including all three pits and museum exhibitions.",
+      "question_zh": "参观兵马俑需要多长时间？",
+      "answer_zh": "完整参观约需 3-4 小时，涵盖三个俑坑以及博物馆的全部展陈。"
+    },
+    {
+      "question": "How long is the bamboo rafting experience?",
+      "answer": "The rafting journey lasts approximately 2-3 hours, covering the most scenic sections of the Li River with karst mountain landscapes.",
+      "question_zh": "竹筏漂流体验有多长时间？",
+      "answer_zh": "漂流之旅约持续 2-3 小时，沿途饱览漓江最精华的喀斯特山水风光。"
+    },
+    {
+      "question": "How many different foods will we try?",
+      "answer": "You'll sample 8-10 different street food specialties including xiaolongbao, jianbing, scallion pancakes, and seasonal local favorites.",
+      "question_zh": "我们能品尝到多少种不同的美食？",
+      "answer_zh": "您将品尝 8-10 种风味各异的街头特色小吃，包括小笼包、煎饼、葱油饼以及当季的本地人气美味。"
+    },
+    {
+      "question": "How much walking is involved?",
+      "answer": "The tour covers about 4-5 kilometers over 3 hours with regular stops. Most walking is on flat city streets with some stairs in buildings.",
+      "question_zh": "行程中需要步行多少路程？",
+      "answer_zh": "行程约 3 小时、步行 4-5 公里，途中设有定时休息。大部分路段为平坦的城市街道，仅在部分建筑内会遇到楼梯。"
+    },
+    {
+      "question": "How much walking is involved?",
+      "answer": "The walk is moderate, about 3-4 kilometers at a leisurely pace with frequent stops. Most paths are flat and well-maintained.",
+      "question_zh": "行程中需要步行多少路程？",
+      "answer_zh": "步行强度适中，全程约 3-4 公里，节奏轻松悠闲，途中频繁停留休息。大部分路面平坦且维护良好。"
+    },
+    {
+      "question": "Is bamboo rafting safe?",
+      "answer": "Yes, bamboo rafting is very safe. All rafts are inspected regularly, life jackets are provided, and experienced guides accompany each raft.",
+      "question_zh": "竹筏漂流安全吗？",
+      "answer_zh": "非常安全。所有竹筏都会定期检修，全程配备救生衣，每艘竹筏均有经验丰富的向导随行。"
+    },
+    {
+      "question": "Is photography allowed in temples?",
+      "answer": "Photography rules vary by location. Most areas allow photos, but some sacred spaces may restrict them. Your guide will inform you at each location.",
+      "question_zh": "寺庙内可以拍照吗？",
+      "answer_zh": "各处的拍照规定有所不同。大部分区域允许拍摄，但部分神圣场所可能会有限制。向导会在每个地点为您逐一说明。"
+    },
+    {
+      "question": "Is photography allowed?",
+      "answer": "Photography is allowed in most areas, but please don't use flash. Some special exhibition areas may prohibit photos.",
+      "question_zh": "现场可以拍照吗？",
+      "answer_zh": "大部分区域允许拍照，但请勿使用闪光灯。部分特别展区可能禁止拍摄。"
+    },
+    {
+      "question": "Is the street food safe to eat?",
+      "answer": "Yes, we only visit vendors with high standards and good reputations. Our guide will provide food safety tips and choose the best options.",
+      "question_zh": "街头小吃吃起来安全吗？",
+      "answer_zh": "安全放心。我们只光顾标准严格、口碑良好的摊位。向导会为您提供饮食安全贴士，并精选最优之选。"
+    },
+    {
+      "question": "Is this activity suitable for children?",
+      "answer": "Yes, children are welcome. Child pricing applies for ages 4-12. Under 4 is free.",
+      "question_zh": "这项活动适合儿童参加吗？",
+      "answer_zh": "适合，我们欢迎儿童参加。4-12 岁适用儿童票价，4 岁以下免费。"
+    },
+    {
+      "question": "Is this experience suitable for beginners?",
+      "answer": "Yes, no special geological knowledge is required. Our expert guides explain everything from basics to advanced concepts in an accessible way.",
+      "question_zh": "这项体验适合新手参加吗？",
+      "answer_zh": "适合，无需任何地质学专业知识。我们的专业向导会用通俗易懂的方式，从基础到进阶概念为您娓娓道来。"
+    },
+    {
+      "question": "Is this suitable for children?",
+      "answer": "Recommended for ages 8+ due to late night timing and cold weather conditions.",
+      "question_zh": "这项活动适合儿童参加吗？",
+      "answer_zh": "由于活动时间较晚且天气寒冷，建议 8 岁以上人士参加。"
+    },
+    {
+      "question": "Is this suitable for non-educators?",
+      "answer": "Yes, while designed for educators, the tour is valuable for anyone interested in progressive education, child development, or Nordic social systems.",
+      "question_zh": "非教育从业者也适合参加吗？",
+      "answer_zh": "适合。本行程虽专为教育工作者设计，但对任何关注前沿教育、儿童发展或北欧社会体系的人士同样极具价值。"
+    },
+    {
+      "question": "What Danish cultural aspects will we learn?",
+      "answer": "You'll learn about hygge philosophy, Danish social customs, work-life balance culture, and practical etiquette for interacting with Danes.",
+      "question_zh": "我们将了解丹麦文化的哪些方面？",
+      "answer_zh": "您将深入了解 hygge（舒适惬意）生活哲学、丹麦社会风俗、工作与生活平衡的文化理念，以及与丹麦人交往时的实用礼仪。"
+    },
+    {
+      "question": "What architectural styles will we explore?",
+      "answer": "We'll see Swedish modernism, functionalism, contemporary Scandinavian design, and innovative sustainable architecture from the 20th and 21st centuries.",
+      "question_zh": "我们将探索哪些建筑风格？",
+      "answer_zh": "您将领略瑞典现代主义、功能主义、当代斯堪的纳维亚设计，以及 20 至 21 世纪富有创新精神的可持续建筑。"
+    },
+    {
+      "question": "What aspects of Silk Road history will we explore?",
+      "answer": "We'll cover Xi'an's role as the eastern terminus of the Silk Road, trade routes, cultural exchange, and the city's multicultural heritage.",
+      "question_zh": "我们将探索丝绸之路历史的哪些方面？",
+      "answer_zh": "行程将涵盖西安作为丝绸之路东端起点的历史地位、古老的商贸路线、东西方文化交流，以及这座城市多元交融的文化遗产。"
+    },
+    {
+      "question": "What cultural sites will we visit?",
+      "answer": "We'll visit key West Lake landmarks including Leifeng Pagoda, Su Causeway, and Lingyin Temple, each with rich cultural significance.",
+      "question_zh": "我们将游览哪些文化景点？",
+      "answer_zh": "您将游览西湖的标志性名胜，包括雷峰塔、苏堤和灵隐寺，每一处都蕴含着深厚的文化底蕴。"
+    },
+    {
+      "question": "What food will we taste in the Muslim Quarter?",
+      "answer": "You'll try traditional Hui Muslim cuisine including roujiamo (Chinese hamburger), yangrou paomo (bread and mutton soup), and local sweets.",
+      "question_zh": "在回民街我们能品尝到哪些美食？",
+      "answer_zh": "您将品尝地道的回族传统美食，包括肉夹馍（中式汉堡）、羊肉泡馍（掰碎的馍配羊肉汤）以及各式本地甜点。"
+    },
+    {
+      "question": "What happens if it rains?",
+      "answer": "The activity runs in light rain. In case of severe weather, we offer a full reschedule or refund.",
+      "question_zh": "如果下雨怎么办？",
+      "answer_zh": "小雨天气活动照常进行。若遇恶劣天气，我们将为您提供免费改期或全额退款。"
+    },
+    {
+      "question": "What if I have dietary restrictions?",
+      "answer": "Please inform us of any allergies or dietary needs in advance. We can accommodate most restrictions with alternative tastings.",
+      "question_zh": "如果我有饮食方面的禁忌怎么办？",
+      "answer_zh": "请提前告知我们任何过敏或特殊饮食需求。对于大多数限制，我们都能提供替代的品尝选项加以满足。"
+    },
+    {
+      "question": "What if we don't see the Northern Lights?",
+      "answer": "We offer a return trip within 48 hours if no aurora is visible due to weather.",
+      "question_zh": "如果我们没看到极光怎么办？",
+      "answer_zh": "若因天气原因未能观赏到极光，我们将为您提供 48 小时内的免费再次出行机会。"
+    },
+    {
+      "question": "What is the cancellation policy?",
+      "answer": "Free cancellation up to 24 hours before the start time for a full refund.",
+      "question_zh": "取消政策是怎样的？",
+      "answer_zh": "活动开始前 24 小时及以上可免费取消，并获全额退款。"
+    },
+    {
+      "question": "What kind of study materials will we receive?",
+      "answer": "You'll receive a comprehensive materials package about Norwegian sustainability programs, including statistics, policy documents and research reports.",
+      "question_zh": "我们将获得哪些学习资料？",
+      "answer_zh": "您将获得一套关于挪威可持续发展项目的完整资料包，内含统计数据、政策文件及研究报告。"
+    },
+    {
+      "question": "What legends will we learn about?",
+      "answer": "You'll hear famous stories like the Legend of the White Snake and other traditional tales that have shaped West Lake's cultural identity.",
+      "question_zh": "我们将听到哪些传说故事？",
+      "answer_zh": "您将聆听《白蛇传》等脍炙人口的故事，以及其他塑造了西湖文化底蕴的民间传说。"
+    },
+    {
+      "question": "What level of Danish will be taught?",
+      "answer": "We focus on practical conversational Danish for travelers, including greetings, ordering food, asking directions, and basic social interactions.",
+      "question_zh": "课程将教授什么程度的丹麦语？",
+      "answer_zh": "我们专注于为旅行者打造的实用丹麦语口语，涵盖问候致意、点餐、问路以及日常社交基础对话。"
+    },
+    {
+      "question": "What should I bring?",
+      "answer": "Bring sun protection, waterproof bags for electronics, comfortable clothing, and non-slip shoes. Camera for capturing the stunning scenery!",
+      "question_zh": "我应该携带什么物品？",
+      "answer_zh": "请携带防晒用品、电子设备防水袋、舒适的衣物和防滑鞋。别忘了带上相机，记录下令人惊艳的美景！"
+    },
+    {
+      "question": "What should I wear for this adventure?",
+      "answer": "Warm, waterproof clothing and sturdy hiking boots are essential. We'll provide detailed packing recommendations based on current conditions.",
+      "question_zh": "参加这次探险我该如何着装？",
+      "answer_zh": "保暖防水的衣物和结实的登山靴必不可少。我们会根据当下的实际状况，为您提供详尽的行装建议。"
+    },
+    {
+      "question": "What teaching methods will we observe?",
+      "answer": "You'll see progressive Swedish education including collaborative learning, student-centered approaches, critical thinking development, and innovative assessment methods.",
+      "question_zh": "我们将观摩哪些教学方法？",
+      "answer_zh": "您将领略瑞典前沿的教育理念，包括协作式学习、以学生为中心的教学方式、批判性思维培养，以及创新的评估方法。"
+    },
+    {
+      "question": "What traditional arts will we experience?",
+      "answer": "Activities include calligraphy, paper cutting, traditional painting, and seal carving. All skill levels are welcome with expert instruction.",
+      "question_zh": "我们将体验哪些传统艺术？",
+      "answer_zh": "活动涵盖书法、剪纸、国画和篆刻。无论您是何种水平，都将有专业老师悉心指导，欢迎参与。"
+    },
+    {
+      "question": "What's the best time to visit?",
+      "answer": "Mornings 9-10 AM or afternoons 2-3 PM have fewer crowds, better photo opportunities and viewing.",
+      "question_zh": "什么时段游览最佳？",
+      "answer_zh": "上午 9 至 10 点或下午 2 至 3 点人流较少，更适合拍照取景，观赏体验也更佳。"
+    },
+    {
+      "question": "Which temples will we visit?",
+      "answer": "We visit ancient temples including the Temple of Heaven and Lama Temple, each showcasing different aspects of Chinese religious and architectural traditions.",
+      "question_zh": "我们将游览哪些寺庙？",
+      "answer_zh": "您将游览天坛、雍和宫等古老的寺庙建筑，每一处都从不同角度展现了中国的宗教与建筑传统。"
+    },
+    {
+      "question": "Will we interact with local Danes?",
+      "answer": "Yes, the experience includes structured conversations with native speakers in casual settings like cafes or community centers.",
+      "question_zh": "我们会与当地的丹麦人互动吗？",
+      "answer_zh": "会的，体验中安排了与母语者的对话环节，在咖啡馆或社区中心等轻松的场景中进行交流。"
+    },
+    {
+      "question": "Will we visit design studios?",
+      "answer": "Yes, the tour includes visits to active design studios and showrooms where you can see contemporary Swedish design in development.",
+      "question_zh": "我们会参观设计工作室吗？",
+      "answer_zh": "会的，行程包含参观正在运营的设计工作室和展厅，让您亲眼见证当代瑞典设计的诞生过程。"
+    }
+  ],
+  "timelines": [
+    {
+      "title": "Afternoon Exploration",
+      "description": "Continue with afternoon activities and deeper immersion",
+      "title_zh": "午后探索",
+      "description_zh": "继续下午的精彩行程，深度沉浸其中"
+    },
+    {
+      "title": "Break & Refreshments",
+      "description": "Rest stop with local refreshments included",
+      "title_zh": "歇脚与茶点",
+      "description_zh": "稍作休憩，享用当地特色茶点（已含）"
+    },
+    {
+      "title": "Cultural Highlight",
+      "description": "Special cultural experience unique to this tour",
+      "title_zh": "文化亮点",
+      "description_zh": "本次行程独有的特色文化体验"
+    },
+    {
+      "title": "Cultural Immersion",
+      "description": "Deep dive into local culture and traditions",
+      "title_zh": "文化沉浸",
+      "description_zh": "深入体验当地文化与传统风情"
+    },
+    {
+      "title": "Exploration & Discovery",
+      "description": "Free time to explore and capture photos",
+      "title_zh": "自由探索",
+      "description_zh": "自由活动时间，尽情探索、拍照留念"
+    },
+    {
+      "title": "Farewell",
+      "description": "Return to starting point with final thoughts and tips",
+      "title_zh": "温馨道别",
+      "description_zh": "返回出发地，分享心得感悟与实用贴士"
+    },
+    {
+      "title": "Final Experience",
+      "description": "Conclude with the culminating activity or visit",
+      "title_zh": "压轴体验",
+      "description_zh": "以最精彩的活动或景点收尾，为行程画上圆满句号"
+    },
+    {
+      "title": "First Stop",
+      "description": "Begin with the highlight attraction of the experience",
+      "title_zh": "首站",
+      "description_zh": "从本次体验的招牌景点开启精彩旅程"
+    },
+    {
+      "title": "Journey Begins",
+      "description": "Travel to main location with background information",
+      "title_zh": "启程出发",
+      "description_zh": "前往主要目的地，途中了解背景介绍"
+    },
+    {
+      "title": "Journey to First Location",
+      "description": "Travel to the first destination with background context",
+      "title_zh": "前往首个目的地",
+      "description_zh": "出发前往第一站，途中聆听背景讲解"
+    },
+    {
+      "title": "Lunch Break",
+      "description": "Enjoy a traditional local meal at a carefully selected venue",
+      "title_zh": "午餐时光",
+      "description_zh": "在精心甄选的餐厅，品尝地道的当地传统美食"
+    },
+    {
+      "title": "Main Experience",
+      "description": "Core activity with hands-on participation",
+      "title_zh": "核心体验",
+      "description_zh": "亲身参与的核心活动，乐在其中"
+    },
+    {
+      "title": "Main Experience",
+      "description": "Dive into the core activity with expert guidance",
+      "title_zh": "核心体验",
+      "description_zh": "在专业向导带领下，深入体验核心活动"
+    },
+    {
+      "title": "Meet & Greet",
+      "description": "Meet your guide and fellow participants, brief introduction",
+      "title_zh": "见面集合",
+      "description_zh": "与向导及同行伙伴相识，进行简短介绍"
+    },
+    {
+      "title": "Meet & Greet",
+      "description": "Arrive at meeting point, introductions and day overview",
+      "title_zh": "见面集合",
+      "description_zh": "抵达集合地点，相互介绍并了解当日行程概览"
+    },
+    {
+      "title": "Morning Activity",
+      "description": "Main morning experience with hands-on participation",
+      "title_zh": "上午活动",
+      "description_zh": "上午的主要体验项目，亲身参与其中"
+    },
+    {
+      "title": "Return Journey",
+      "description": "Head back to the starting point with time for questions",
+      "title_zh": "返程",
+      "description_zh": "返回出发地，途中可自由提问交流"
+    },
+    {
+      "title": "Second Stop",
+      "description": "Continue to the next key location with guided commentary",
+      "title_zh": "第二站",
+      "description_zh": "前往下一处重要景点，全程配有讲解"
+    },
+    {
+      "title": "Welcome & Introduction",
+      "description": "Meet your guide, get oriented, and receive safety briefing",
+      "title_zh": "欢迎与介绍",
+      "description_zh": "与向导见面，熟悉行程安排，并听取安全须知"
+    },
+    {
+      "title": "Welcome & Orientation",
+      "description": "Meet your guide at the meeting point and overview of the day",
+      "title_zh": "欢迎与行程概览",
+      "description_zh": "在集合地点与向导见面，了解当日行程安排"
+    },
+    {
+      "title": "Wrap-up",
+      "description": "Final discussions, photos, and return journey",
+      "title_zh": "行程收尾",
+      "description_zh": "最后的交流分享、合影留念，随后踏上返程"
+    },
+    {
+      "title": "Wrap-up & Farewell",
+      "description": "Final Q&A, recommendations, and group photo",
+      "title_zh": "收尾与道别",
+      "description_zh": "最后的答疑解惑、推荐分享与集体合影"
+    }
+  ],
+  "meeting_points": [
+    {
+      "address": "Central Meeting Point, Amsterdam",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Amsterdam",
+      "address_zh": "阿姆斯特丹中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻阿姆斯特丹主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Bali",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Bali",
+      "address_zh": "巴厘岛中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻巴厘岛主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Bangkok",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Bangkok",
+      "address_zh": "曼谷中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻曼谷主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Barcelona",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Barcelona",
+      "address_zh": "巴塞罗那中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻巴塞罗那主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Beijing",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "北京中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Bergen",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "卑尔根中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Cape Town",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Cape Town",
+      "address_zh": "开普敦中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻开普敦主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Chengdu",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "成都中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Copenhagen",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "哥本哈根中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Dubai",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Dubai",
+      "address_zh": "迪拜中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻迪拜主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Dubrovnik",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Dubrovnik",
+      "address_zh": "杜布罗夫尼克中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻杜布罗夫尼克主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Guangzhou",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "广州中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Guilin",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "桂林中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Hangzhou",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "杭州中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Havana",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Havana",
+      "address_zh": "哈瓦那中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻哈瓦那主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Helsinki",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "赫尔辛基中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Istanbul",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Istanbul",
+      "address_zh": "伊斯坦布尔中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻伊斯坦布尔主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Kyoto",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Kyoto",
+      "address_zh": "京都中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻京都主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Lisbon",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Lisbon",
+      "address_zh": "里斯本中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻里斯本主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, London",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in London",
+      "address_zh": "伦敦中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻伦敦主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Marrakech",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Marrakech",
+      "address_zh": "马拉喀什中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻马拉喀什主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, New York",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in New York",
+      "address_zh": "纽约中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻纽约主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Oslo",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "奥斯陆中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Paris",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Paris",
+      "address_zh": "巴黎中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻巴黎主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Prague",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Prague",
+      "address_zh": "布拉格中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻布拉格主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Queenstown",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Queenstown",
+      "address_zh": "皇后镇中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻皇后镇主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Reykjavik",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "雷克雅未克中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Rome",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Rome",
+      "address_zh": "罗马中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻罗马主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Shanghai",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "上海中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Stockholm",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "斯德哥尔摩中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Sydney",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Sydney",
+      "address_zh": "悉尼中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻悉尼主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Tokyo",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Tokyo",
+      "address_zh": "东京中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻东京主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Vienna",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main tourist area in Vienna",
+      "address_zh": "维也纳中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻维也纳主要旅游区"
+    },
+    {
+      "address": "Central Meeting Point, Xian",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "西安中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Central Meeting Point, Zhangjiajie",
+      "instructions": "Look for guide with company banner. Arrive 15 minutes early.",
+      "parking_info": "Street parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near main shopping district and hotel area",
+      "address_zh": "张家界中央集合点",
+      "instructions_zh": "请寻找手持公司横幅的向导，并提前 15 分钟到达。",
+      "parking_info_zh": "附近设有路边停车位",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻主要购物区和酒店区"
+    },
+    {
+      "address": "Meeting Point for Copenhagen Design Academy & Danish Design Philosophy Workshop, Copenhagen",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center",
+      "address_zh": "哥本哈根设计学院与丹麦设计哲学工作坊集合点，哥本哈根",
+      "instructions_zh": "请在正门附近寻找手持公司标牌的向导。",
+      "parking_info_zh": "附近设有公共停车场",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻中央广场和游客信息中心"
+    },
+    {
+      "address": "Meeting Point for Great Wall of China Private Day Tour with Lunch, Beijing",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center",
+      "address_zh": "中国长城私人一日游（含午餐）集合点，北京",
+      "instructions_zh": "请在正门附近寻找手持公司标牌的向导。",
+      "parking_info_zh": "附近设有公共停车场",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻中央广场和游客信息中心"
+    },
+    {
+      "address": "Meeting Point for Northern Lights Chase & Arctic Culture Experience, Oslo",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center",
+      "address_zh": "追寻北极光与北极文化体验集合点，奥斯陆",
+      "instructions_zh": "请在正门附近寻找手持公司标牌的向导。",
+      "parking_info_zh": "附近设有公共停车场",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻中央广场和游客信息中心"
+    },
+    {
+      "address": "Meeting Point for Shanghai Food Tour: Local Street Food and Hidden Gems, Shanghai",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center",
+      "address_zh": "上海美食之旅：本地街头小吃与隐藏美味集合点，上海",
+      "instructions_zh": "请在正门附近寻找手持公司标牌的向导。",
+      "parking_info_zh": "附近设有公共停车场",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻中央广场和游客信息中心"
+    },
+    {
+      "address": "Meeting Point for Stockholm University Campus & Swedish Education System Study Tour, Stockholm",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center",
+      "address_zh": "斯德哥尔摩大学校园与瑞典教育体系考察之旅集合点，斯德哥尔摩",
+      "instructions_zh": "请在正门附近寻找手持公司标牌的向导。",
+      "parking_info_zh": "附近设有公共停车场",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻中央广场和游客信息中心"
+    },
+    {
+      "address": "Meeting Point for Xi'an Terracotta Army Discovery Tour with Ancient History, Xi'an",
+      "instructions": "Look for guide with company sign near main entrance",
+      "parking_info": "Public parking available nearby",
+      "public_transport_info": "Accessible by metro and bus",
+      "nearby_landmarks": "Near central square and tourist information center",
+      "address_zh": "西安兵马俑探秘与古代历史之旅集合点，西安",
+      "instructions_zh": "请在正门附近寻找手持公司标牌的向导。",
+      "parking_info_zh": "附近设有公共停车场",
+      "public_transport_info_zh": "可乘坐地铁和公交车前往",
+      "nearby_landmarks_zh": "毗邻中央广场和游客信息中心"
+    }
+  ],
+  "categories": [
+    {
+      "en": "Water Sports",
+      "zh": "水上运动"
+    },
+    {
+      "en": "Wellness & Spa",
+      "zh": "养生与水疗"
+    },
+    {
+      "en": "Photography Tours",
+      "zh": "摄影之旅"
+    },
+    {
+      "en": "Nightlife & Entertainment",
+      "zh": "夜生活与娱乐"
+    },
+    {
+      "en": "Cooking Classes",
+      "zh": "烹饪课堂"
+    },
+    {
+      "en": "Wine & Spirits",
+      "zh": "美酒与烈酒"
+    },
+    {
+      "en": "Cycling & Biking",
+      "zh": "骑行探索"
+    },
+    {
+      "en": "Art & Workshops",
+      "zh": "艺术与手作工坊"
+    },
+    {
+      "en": "Sailing & Cruises",
+      "zh": "扬帆与游船"
+    },
+    {
+      "en": "Winter Sports",
+      "zh": "冬季运动"
+    },
+    {
+      "en": "Yoga & Meditation",
+      "zh": "瑜伽与冥想"
+    },
+    {
+      "en": "Architecture Tours",
+      "zh": "建筑之旅"
+    },
+    {
+      "en": "Music & Concerts",
+      "zh": "音乐与现场演出"
+    },
+    {
+      "en": "Helicopter & Aerial",
+      "zh": "直升机空中观光"
+    },
+    {
+      "en": "Train Journeys",
+      "zh": "火车之旅"
+    },
+    {
+      "en": "Farm & Countryside",
+      "zh": "田园乡村体验"
+    },
+    {
+      "en": "Scuba Diving",
+      "zh": "深潜探秘"
+    },
+    {
+      "en": "Street Art Tours",
+      "zh": "街头艺术之旅"
+    },
+    {
+      "en": "Sunset Experiences",
+      "zh": "日落时光体验"
+    },
+    {
+      "en": "Underground & Caves",
+      "zh": "地下世界与溶洞探险"
+    }
+  ],
+  "destinations": [
+    {
+      "en": "Beijing",
+      "zh": "北京"
+    },
+    {
+      "en": "Xi'an",
+      "zh": "西安"
+    },
+    {
+      "en": "Guilin",
+      "zh": "桂林"
+    },
+    {
+      "en": "Chengdu",
+      "zh": "成都"
+    },
+    {
+      "en": "Stockholm",
+      "zh": "斯德哥尔摩"
+    },
+    {
+      "en": "Copenhagen",
+      "zh": "哥本哈根"
+    },
+    {
+      "en": "Oslo",
+      "zh": "奥斯陆"
+    },
+    {
+      "en": "Helsinki",
+      "zh": "赫尔辛基"
+    },
+    {
+      "en": "Reykjavik",
+      "zh": "雷克雅未克"
+    },
+    {
+      "en": "Bergen",
+      "zh": "卑尔根"
+    },
+    {
+      "en": "Paris",
+      "zh": "巴黎"
+    },
+    {
+      "en": "Rome",
+      "zh": "罗马"
+    },
+    {
+      "en": "Tokyo",
+      "zh": "东京"
+    },
+    {
+      "en": "Guangzhou",
+      "zh": "广州"
+    },
+    {
+      "en": "Zhangjiajie",
+      "zh": "张家界"
+    },
+    {
+      "en": "Barcelona",
+      "zh": "巴塞罗那"
+    },
+    {
+      "en": "London",
+      "zh": "伦敦"
+    },
+    {
+      "en": "New York",
+      "zh": "纽约"
+    },
+    {
+      "en": "Bangkok",
+      "zh": "曼谷"
+    },
+    {
+      "en": "Istanbul",
+      "zh": "伊斯坦布尔"
+    },
+    {
+      "en": "Dubai",
+      "zh": "迪拜"
+    },
+    {
+      "en": "Sydney",
+      "zh": "悉尼"
+    },
+    {
+      "en": "Lisbon",
+      "zh": "里斯本"
+    },
+    {
+      "en": "Amsterdam",
+      "zh": "阿姆斯特丹"
+    },
+    {
+      "en": "Prague",
+      "zh": "布拉格"
+    },
+    {
+      "en": "Marrakech",
+      "zh": "马拉喀什"
+    },
+    {
+      "en": "Bali",
+      "zh": "巴厘岛"
+    },
+    {
+      "en": "Kyoto",
+      "zh": "京都"
+    },
+    {
+      "en": "Cape Town",
+      "zh": "开普敦"
+    },
+    {
+      "en": "Dubrovnik",
+      "zh": "杜布罗夫尼克"
+    },
+    {
+      "en": "Vienna",
+      "zh": "维也纳"
+    },
+    {
+      "en": "Havana",
+      "zh": "哈瓦那"
+    },
+    {
+      "en": "Queenstown",
+      "zh": "皇后镇"
+    }
+  ]
+}

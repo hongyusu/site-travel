@@ -132,7 +132,7 @@ export default function VendorPendingBookingsPage() {
         </div>
 
         {/* Stats */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+        <div className="bg-paper rounded-lg shadow-sm p-6 mb-6">
           <div className="flex items-center gap-3">
             <div className="inline-flex items-center justify-center w-12 h-12 bg-blue-100 rounded-full">
               <Clock className="w-6 h-6 text-blue-600" />
@@ -146,7 +146,7 @@ export default function VendorPendingBookingsPage() {
 
         {/* Bookings List */}
         {bookings.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm p-12 text-center">
+          <div className="bg-paper rounded-lg shadow-sm p-12 text-center">
             <div className="text-gray-400 text-5xl mb-4">✓</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">All caught up!</h3>
             <p className="text-gray-600">You don't have any pending bookings at the moment.</p>
@@ -156,7 +156,7 @@ export default function VendorPendingBookingsPage() {
             {bookings.map((booking) => (
               <div
                 key={booking.id}
-                className="bg-white rounded-lg shadow-sm p-6"
+                className="bg-paper rounded-lg shadow-sm p-6"
               >
                 <div className="flex gap-6">
                   {/* Activity Image */}

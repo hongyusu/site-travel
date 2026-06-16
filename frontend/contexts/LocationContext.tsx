@@ -34,7 +34,7 @@ interface LocationContextType {
 const LocationContext = createContext<LocationContextType | undefined>(undefined)
 
 export function LocationProvider({ children }: { children: ReactNode }) {
-  const [location, setLocationState] = useState<Location>('eu') // Default to EU
+  const [location, setLocationState] = useState<Location>('cn') // Default to China
 
   // Load location from localStorage on mount
   useEffect(() => {

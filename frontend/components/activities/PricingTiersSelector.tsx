@@ -38,7 +38,7 @@ export default function PricingTiersSelector({
     if (name.includes("vip") || name.includes("luxury")) {
       return {
         border: isSelected ? "border-purple-600" : "border-purple-200 hover:border-purple-400",
-        bg: isSelected ? "bg-purple-50" : "bg-white",
+        bg: isSelected ? "bg-purple-50" : "bg-paper",
         icon: "text-purple-600",
         badge: "bg-purple-600",
       };
@@ -46,14 +46,14 @@ export default function PricingTiersSelector({
     if (name.includes("premium") || name.includes("deluxe")) {
       return {
         border: isSelected ? "border-amber-600" : "border-amber-200 hover:border-amber-400",
-        bg: isSelected ? "bg-amber-50" : "bg-white",
+        bg: isSelected ? "bg-amber-50" : "bg-paper",
         icon: "text-amber-600",
         badge: "bg-amber-600",
       };
     }
     return {
       border: isSelected ? "border-blue-600" : "border-gray-200 hover:border-blue-300",
-      bg: isSelected ? "bg-blue-50" : "bg-white",
+      bg: isSelected ? "bg-blue-50" : "bg-paper",
       icon: "text-blue-600",
       badge: "bg-blue-600",
     };

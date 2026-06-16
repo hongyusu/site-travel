@@ -10,13 +10,15 @@ interface FilterSidebarProps {
   onFilterChange: (filters: SearchParams) => void;
   categories?: Array<{ id: number; name: string; slug: string }>;
   destinations?: Array<{ id: number; name: string; slug: string }>;
+  providers?: Array<{ id: number; company_name: string; activity_count: number }>;
 }
 
 export default function FilterSidebar({
   filters,
   onFilterChange,
   categories = [],
-  destinations = []
+  destinations = [],
+  providers = []
 }: FilterSidebarProps) {
   const [localFilters, setLocalFilters] = useState<SearchParams>(filters);
   const { getTranslation } = useLanguage();
@@ -65,6 +67,12 @@ export default function FilterSidebar({
     onFilterChange(updated);
   };
 
+  const handleProviderChange = (id: string) => {
+    const updated = { ...localFilters, vendor_id: id ? parseInt(id) : undefined };
+    setLocalFilters(updated);
+    onFilterChange(updated);
+  };
+
   const clearFilters = () => {
     const cleared: SearchParams = { q: localFilters.q };
     setLocalFilters(cleared);
@@ -74,7 +82,7 @@ export default function FilterSidebar({
   const hasActiveFilters = Object.keys(localFilters).length > (localFilters.q ? 1 : 0);
 
   return (
-    <div className="bg-white rounded-lg shadow p-6 space-y-6">
+    <div className="bg-paper rounded-lg shadow p-6 space-y-6">
       {/* Header */}
       <div className="flex justify-between items-center">
         <h3 className="font-semibold text-lg">{getTranslation('filter.title')}</h3>
@@ -121,6 +129,25 @@ export default function FilterSidebar({
             {destinations.map((dest) => (
               <option key={dest.id} value={dest.slug}>
                 {dest.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
+      {/* Provider Filter */}
+      {providers.length > 0 && (
+        <div className="border-t pt-4">
+          <h4 className="font-medium mb-3">{getTranslation('filter.provider')}</h4>
+          <select
+            value={localFilters.vendor_id || ''}
+            onChange={(e) => handleProviderChange(e.target.value)}
+            className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent min-h-[44px] text-base"
+          >
+            <option value="">{getTranslation('filter.all_providers')}</option>
+            {providers.map((p) => (
+              <option key={p.id} value={p.id}>
+                {p.company_name} ({p.activity_count})
               </option>
             ))}
           </select>

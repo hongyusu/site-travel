@@ -73,7 +73,7 @@ export default function RegisterPage() {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-md w-full">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-paper rounded-lg shadow-lg p-8">
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold text-gray-900 mb-2">Create an account</h1>
@@ -189,7 +189,7 @@ export default function RegisterPage() {
               <div className="w-full border-t border-gray-300" />
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">or</span>
+              <span className="px-2 bg-paper text-gray-500">or</span>
             </div>
           </div>
 

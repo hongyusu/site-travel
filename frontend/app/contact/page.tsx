@@ -28,7 +28,7 @@ export default function ContactPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-ink py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
           <p className="text-xl text-white/90 max-w-3xl">
@@ -41,7 +41,7 @@ export default function ContactPage() {
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="bg-white rounded-lg shadow-lg p-8">
+            <div className="bg-paper rounded-lg shadow-lg p-8">
               <h2 className="text-3xl font-bold text-gray-900 mb-6">Send us a Message</h2>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -119,7 +119,7 @@ export default function ContactPage() {
           {/* Contact Info */}
           <div className="space-y-6">
             {/* Email */}
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-paper rounded-lg shadow p-6">
               <Mail className="w-10 h-10 text-primary mb-3" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Email</h3>
               <p className="text-gray-600 mb-2">General Inquiries:</p>
@@ -133,7 +133,7 @@ export default function ContactPage() {
             </div>
 
             {/* Phone */}
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-paper rounded-lg shadow p-6">
               <Phone className="w-10 h-10 text-primary mb-3" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Phone</h3>
               <p className="text-gray-700 mb-2">US: +1 (555) 123-4567</p>
@@ -142,7 +142,7 @@ export default function ContactPage() {
             </div>
 
             {/* Office */}
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-paper rounded-lg shadow p-6">
               <MapPin className="w-10 h-10 text-primary mb-3" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Office</h3>
               <p className="text-gray-700">
@@ -153,7 +153,7 @@ export default function ContactPage() {
             </div>
 
             {/* Hours */}
-            <div className="bg-white rounded-lg shadow p-6">
+            <div className="bg-paper rounded-lg shadow p-6">
               <Clock className="w-10 h-10 text-primary mb-3" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Support Hours</h3>
               <p className="text-gray-700 mb-1">Monday - Friday: 9am - 6pm PST</p>

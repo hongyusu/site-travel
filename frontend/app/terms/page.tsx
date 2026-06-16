@@ -2,7 +2,7 @@ export default function TermsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-ink py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Terms of Service</h1>
           <p className="text-xl text-white/90">Last updated: January 2024</p>
@@ -10,7 +10,7 @@ export default function TermsPage() {
       </div>
 
       <div className="container mx-auto px-4 py-12 max-w-4xl">
-        <div className="bg-white rounded-lg shadow-lg p-8">
+        <div className="bg-paper rounded-lg shadow-lg p-8">
           <div className="prose max-w-none">
             <section className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>

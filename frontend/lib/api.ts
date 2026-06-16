@@ -103,6 +103,7 @@ export const endpoints = {
   searchActivities: '/activities/search',
   categories: '/activities/categories',
   destinations: '/activities/destinations',
+  providers: '/activities/providers',
   activityDetail: (id: number) => `/activities/${id}`,
   activityBySlug: (slug: string) => `/activities/slug/${slug}`,
   similarActivities: (id: number) => `/activities/${id}/similar`,
@@ -174,6 +175,11 @@ export const apiClient = {
   categories: {
     list: () =>
       api.get(endpoints.categories),
+  },
+
+  providers: {
+    list: () =>
+      api.get(endpoints.providers),
   },
 
   destinations: {

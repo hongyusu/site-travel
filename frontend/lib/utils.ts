@@ -16,8 +16,15 @@ export function formatPrice(price: number, currency = 'EUR') {
 }
 
 export function formatDuration(minutes: number) {
-  if (minutes < 60) {
-    return `${minutes} min`;
+  if (!minutes || minutes < 60) {
+    return `${minutes || 0} min`;
+  }
+  // Multi-day experiences (e.g. 3-day tours): show days rather than "72 hours".
+  if (minutes >= 1440) {
+    const days = Math.floor(minutes / 1440);
+    const leftoverHours = Math.floor((minutes % 1440) / 60);
+    const dayLabel = days === 1 ? '1 day' : `${days} days`;
+    return leftoverHours > 0 ? `${dayLabel} ${leftoverHours}h` : dayLabel;
   }
   const hours = Math.floor(minutes / 60);
   const mins = minutes % 60;
@@ -44,7 +51,8 @@ export function formatShortDate(date: string | Date) {
 
 export function getImageUrl(url: string | null | undefined): string {
   if (!url) return '/placeholder.jpg';
-  if (url.startsWith('http')) return url;
+  // Absolute URLs and same-origin root-relative paths (e.g. self-hosted /media/...) pass through.
+  if (url.startsWith('http') || url.startsWith('/')) return url;
   return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000'}${url}`;
 }
 

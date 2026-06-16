@@ -200,7 +200,7 @@ export default function CheckoutPage() {
             <form onSubmit={handleSubmit}>
               {/* Login/Guest Option */}
               {!user && (
-                <div className="bg-white rounded-lg shadow p-6 mb-6">
+                <div className="bg-paper rounded-lg shadow p-6 mb-6">
                   <h2 className="text-xl font-bold mb-4">Account</h2>
                   <div className="space-y-3">
                     <label className="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
@@ -239,7 +239,7 @@ export default function CheckoutPage() {
               )}
 
               {/* Traveler Information */}
-              <div className="bg-white rounded-lg shadow p-6 mb-6">
+              <div className="bg-paper rounded-lg shadow p-6 mb-6">
                 <h2 className="text-xl font-bold mb-4">Traveler Information</h2>
 
                 <div className="grid grid-cols-2 gap-4 mb-4">
@@ -352,7 +352,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Payment Method */}
-              <div className="bg-white rounded-lg shadow p-6 mb-6">
+              <div className="bg-paper rounded-lg shadow p-6 mb-6">
                 <h2 className="text-xl font-bold mb-4">{getTranslation('checkout.payment_method')}</h2>
 
                 <div className="space-y-3">
@@ -398,7 +398,7 @@ export default function CheckoutPage() {
               </div>
 
               {/* Terms and Conditions */}
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-paper rounded-lg shadow p-6">
                 <label className="flex items-start cursor-pointer">
                   <input
                     type="checkbox"
@@ -424,7 +424,7 @@ export default function CheckoutPage() {
 
           {/* Order Summary Sidebar */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow p-6 sticky top-24">
+            <div className="bg-paper rounded-lg shadow p-6 sticky top-24">
               <h2 className="text-xl font-bold mb-4">{getTranslation('checkout.order_summary')}</h2>
 
               {/* Cart Items */}

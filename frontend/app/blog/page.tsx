@@ -55,7 +55,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-ink py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">{getTranslation('blog.title')}</h1>
           <p className="text-xl text-white/90 max-w-3xl">
@@ -66,14 +66,14 @@ export default function BlogPage() {
 
       <div className="container mx-auto px-4 py-12">
         {/* Categories */}
-        <div className="bg-white rounded-lg shadow p-4 mb-8">
+        <div className="bg-paper rounded-lg shadow p-4 mb-8">
           <div className="flex flex-wrap gap-3">
             {categories.map((category, index) => (
               <button
                 key={index}
                 className={`px-4 py-2 rounded-full transition-colors ${
                   index === 0
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-ink'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -84,7 +84,7 @@ export default function BlogPage() {
         </div>
 
         {/* Featured Post */}
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-12">
+        <div className="bg-paper rounded-lg shadow-lg overflow-hidden mb-12">
           <div className="grid md:grid-cols-2 gap-0">
             <div className="relative h-64 md:h-auto">
               <Image
@@ -116,7 +116,7 @@ export default function BlogPage() {
         {/* Blog Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {posts.slice(1).map((post, index) => (
-            <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+            <div key={index} className="bg-paper rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
               <div className="relative h-48">
                 <Image
                   src={post.image}

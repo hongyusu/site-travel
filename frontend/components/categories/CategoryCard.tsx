@@ -71,7 +71,7 @@ export default function CategoryCard({ category, count }: CategoryCardProps) {
 
   return (
     <Link href={`/search?category=${category.slug}`}>
-      <div className="category-card bg-white rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer text-center group">
+      <div className="category-card bg-paper rounded-lg p-6 hover:shadow-lg transition-shadow cursor-pointer text-center group">
         <div className="text-primary mb-3 flex justify-center group-hover:scale-110 transition-transform">
           <IconComponent size={32} />
         </div>

@@ -5,7 +5,7 @@ export default function AffiliatePage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero */}
-      <div className="bg-primary text-white py-16">
+      <div className="bg-primary text-ink py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Affiliate Program</h1>
           <p className="text-xl text-white/90 max-w-3xl">
@@ -17,7 +17,7 @@ export default function AffiliatePage() {
       <div className="container mx-auto px-4 py-12">
         {/* Benefits */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
-          <div className="bg-white rounded-lg shadow p-6 text-center">
+          <div className="bg-paper rounded-lg shadow p-6 text-center">
             <DollarSign className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-bold text-gray-900 mb-2">Competitive Commission</h3>
             <p className="text-gray-600">
@@ -25,7 +25,7 @@ export default function AffiliatePage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6 text-center">
+          <div className="bg-paper rounded-lg shadow p-6 text-center">
             <TrendingUp className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-bold text-gray-900 mb-2">Growing Inventory</h3>
             <p className="text-gray-600">
@@ -33,7 +33,7 @@ export default function AffiliatePage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6 text-center">
+          <div className="bg-paper rounded-lg shadow p-6 text-center">
             <Users className="w-12 h-12 text-primary mx-auto mb-4" />
             <h3 className="text-xl font-bold text-gray-900 mb-2">Dedicated Support</h3>
             <p className="text-gray-600">
@@ -43,12 +43,12 @@ export default function AffiliatePage() {
         </div>
 
         {/* How It Works */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <div className="bg-paper rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6 text-center">How It Works</h2>
 
           <div className="grid md:grid-cols-4 gap-6">
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-primary text-ink rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 1
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Sign Up</h3>
@@ -58,7 +58,7 @@ export default function AffiliatePage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-primary text-ink rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 2
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Get Your Links</h3>
@@ -68,7 +68,7 @@ export default function AffiliatePage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-primary text-ink rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 3
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Promote</h3>
@@ -78,7 +78,7 @@ export default function AffiliatePage() {
             </div>
 
             <div className="text-center">
-              <div className="w-16 h-16 bg-primary text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+              <div className="w-16 h-16 bg-primary text-ink rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
                 4
               </div>
               <h3 className="font-bold text-gray-900 mb-2">Earn Commission</h3>
@@ -90,7 +90,7 @@ export default function AffiliatePage() {
         </div>
 
         {/* Commission Structure */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <div className="bg-paper rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">Commission Structure</h2>
 
           <div className="overflow-x-auto">
@@ -124,7 +124,7 @@ export default function AffiliatePage() {
         </div>
 
         {/* Features */}
-        <div className="bg-white rounded-lg shadow-lg p-8 mb-12">
+        <div className="bg-paper rounded-lg shadow-lg p-8 mb-12">
           <h2 className="text-3xl font-bold text-gray-900 mb-6">What You Get</h2>
 
           <div className="grid md:grid-cols-2 gap-6">

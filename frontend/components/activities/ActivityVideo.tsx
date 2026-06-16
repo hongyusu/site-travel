@@ -20,7 +20,7 @@ export default function ActivityVideo({ videoUrl, title }: ActivityVideoProps) {
   const youtubeId = getYouTubeId(videoUrl);
 
   return (
-    <div className="bg-white rounded-lg shadow-sm p-6 mb-6">
+    <div className="bg-paper rounded-lg shadow-sm p-6 mb-6">
       <h2 className="text-2xl font-bold mb-4">Preview</h2>
       <div className="relative aspect-video bg-gray-100 rounded-lg overflow-hidden">
         {showVideo ? (
@@ -42,7 +42,7 @@ export default function ActivityVideo({ videoUrl, title }: ActivityVideoProps) {
             onClick={() => setShowVideo(true)}
             className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-40 hover:bg-opacity-50 transition-all group"
           >
-            <div className="bg-white rounded-full p-4 group-hover:scale-110 transition-transform">
+            <div className="bg-paper rounded-full p-4 group-hover:scale-110 transition-transform">
               <Play className="w-12 h-12 text-primary fill-primary" />
             </div>
           </button>

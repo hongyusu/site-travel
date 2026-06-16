@@ -186,6 +186,8 @@ const translations: Record<Language, Record<string, string>> = {
     'filter.clear_all': 'Clear all',
     'filter.all_categories': 'All categories',
     'filter.all_destinations': 'All destinations',
+    'filter.provider': 'Provider',
+    'filter.all_providers': 'All providers',
     'filter.price_range': 'Price Range (€)',
     'filter.price.min': 'Min',
     'filter.price.max': 'Max',
@@ -707,6 +709,8 @@ const translations: Record<Language, Record<string, string>> = {
     'filter.clear_all': 'Limpiar todo',
     'filter.all_categories': 'Todas las categorías',
     'filter.all_destinations': 'Todos los destinos',
+    'filter.provider': 'Proveedor',
+    'filter.all_providers': 'Todos los proveedores',
     'filter.price_range': 'Rango de Precio (€)',
     'filter.price.min': 'Mín',
     'filter.price.max': 'Máx',
@@ -1228,6 +1232,8 @@ const translations: Record<Language, Record<string, string>> = {
     'filter.clear_all': '清除全部',
     'filter.all_categories': '所有分类',
     'filter.all_destinations': '所有目的地',
+    'filter.provider': '供应商',
+    'filter.all_providers': '所有供应商',
     'filter.price_range': '价格范围 (€)',
     'filter.price.min': '最低',
     'filter.price.max': '最高',
@@ -1749,6 +1755,8 @@ const translations: Record<Language, Record<string, string>> = {
     'filter.clear_all': 'Tout effacer',
     'filter.all_categories': 'Toutes les catégories',
     'filter.all_destinations': 'Toutes les destinations',
+    'filter.provider': 'Prestataire',
+    'filter.all_providers': 'Tous les prestataires',
     'filter.price_range': 'Gamme de Prix (€)',
     'filter.price.min': 'Min',
     'filter.price.max': 'Max',
@@ -2121,7 +2129,7 @@ const translations: Record<Language, Record<string, string>> = {
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('en')
+  const [language, setLanguageState] = useState<Language>('zh')
 
   // Load language from localStorage on mount
   useEffect(() => {

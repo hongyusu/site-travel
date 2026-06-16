@@ -101,7 +101,7 @@ export default function DestinationDetailPage() {
       {/* Content */}
       <div className="container mx-auto px-4 py-12">
         {/* Stats */}
-        <div className="bg-white rounded-lg shadow p-6 mb-8">
+        <div className="bg-paper rounded-lg shadow p-6 mb-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
             <div>
               <div className="text-3xl font-bold text-primary mb-2">
@@ -139,7 +139,7 @@ export default function DestinationDetailPage() {
           </div>
 
           {activities.length === 0 ? (
-            <div className="bg-white rounded-lg shadow p-12 text-center">
+            <div className="bg-paper rounded-lg shadow p-12 text-center">
               <p className="text-gray-600 mb-4">
                 No activities available for this destination yet.
               </p>
@@ -167,7 +167,7 @@ export default function DestinationDetailPage() {
                   <a
                     key={categoryName}
                     href={`/search?destination=${slug}&category=${categoryName.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="bg-white rounded-lg shadow p-4 text-center hover:shadow-lg transition-shadow"
+                    className="bg-paper rounded-lg shadow p-4 text-center hover:shadow-lg transition-shadow"
                   >
                     <div className="font-medium text-gray-900">{categoryName}</div>
                   </a>

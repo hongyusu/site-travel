@@ -71,23 +71,25 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200 sticky top-0 z-50">
+    <header className="bg-ink/90 backdrop-blur-md border-b border-cream/[0.08] sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-primary">FindTravelMate</span>
+            <span className="font-serif text-2xl text-cream tracking-wide">
+              FindTravel<span className="text-primary">Mate</span>
+            </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link href="/search" className="text-gray-700 hover:text-primary transition-colors">
+          <nav className="hidden md:flex items-center space-x-8">
+            <Link href="/search" className="text-xs uppercase tracking-[0.15em] text-gray-700 hover:text-primary transition-colors duration-300">
               {getTranslation('nav.activities')}
             </Link>
-            <Link href="/destinations" className="text-gray-700 hover:text-primary transition-colors">
+            <Link href="/destinations" className="text-xs uppercase tracking-[0.15em] text-gray-700 hover:text-primary transition-colors duration-300">
               {getTranslation('nav.destinations')}
             </Link>
-            <Link href="/blog" className="text-gray-700 hover:text-primary transition-colors">
+            <Link href="/blog" className="text-xs uppercase tracking-[0.15em] text-gray-700 hover:text-primary transition-colors duration-300">
               {getTranslation('nav.blog')}
             </Link>
           </nav>
@@ -99,7 +101,7 @@ export default function Header() {
             <Link href="/cart" className="relative p-3 min-h-[44px] min-w-[44px] flex items-center justify-center">
               <ShoppingCart className="w-6 h-6 text-gray-700" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-primary text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-primary text-ink text-xs rounded-full w-5 h-5 flex items-center justify-center">
                   {cartCount}
                 </span>
               )}
@@ -110,7 +112,7 @@ export default function Header() {
                 <button className="flex items-center space-x-2 p-3 min-h-[44px] min-w-[44px] justify-center">
                   <User className="w-6 h-6 text-gray-700" />
                 </button>
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <div className="absolute right-0 mt-2 w-48 bg-paper border border-cream/[0.08] rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                   {userRole === 'admin' && (
                     <>
                       <Link href="/admin/dashboard" className="block px-4 py-2 text-sm text-purple-600 font-semibold hover:bg-gray-100">

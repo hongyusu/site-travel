@@ -72,7 +72,7 @@ export default function WishlistPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow">
+      <div className="bg-paper shadow">
         <div className="container mx-auto px-4 py-8">
           <div className="flex items-center space-x-3">
             <Heart className="w-8 h-8 text-red-500 fill-current" />
@@ -89,7 +89,7 @@ export default function WishlistPage() {
       {/* Content */}
       <div className="container mx-auto px-4 py-8">
         {activities.length === 0 ? (
-          <div className="bg-white rounded-lg shadow p-12 text-center">
+          <div className="bg-paper rounded-lg shadow p-12 text-center">
             <Heart className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-gray-900 mb-2">{getTranslation('wishlist.empty_title')}</h2>
             <p className="text-gray-600 mb-6">

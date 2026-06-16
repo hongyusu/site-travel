@@ -229,7 +229,7 @@ export default function ActivityForm({ activityId, mode }: ActivityFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="max-w-4xl mx-auto py-8 px-4">
-      <div className="bg-white rounded-lg shadow p-8">
+      <div className="bg-paper rounded-lg shadow p-8">
         <h1 className="text-3xl font-bold text-gray-900 mb-8">
           {mode === 'create' ? 'Create New Activity' : 'Edit Activity'}
         </h1>

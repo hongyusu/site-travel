@@ -80,7 +80,7 @@ export default function AdminDashboardPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow">
+      <div className="bg-paper shadow">
         <div className="container mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
             <div>
@@ -94,7 +94,7 @@ export default function AdminDashboardPage() {
       <div className="container mx-auto px-4 py-8">
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Activities</p>
@@ -109,7 +109,7 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Bookings</p>
@@ -122,7 +122,7 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Total Revenue</p>
@@ -137,7 +137,7 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Active Vendors</p>
@@ -150,7 +150,7 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Platform Growth</p>
@@ -163,7 +163,7 @@ export default function AdminDashboardPage() {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <div className="bg-paper rounded-lg shadow p-6">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm text-gray-600">Pending Approvals</p>
@@ -178,7 +178,7 @@ export default function AdminDashboardPage() {
         </div>
 
         {/* Recent Activities */}
-        <div className="bg-white rounded-lg shadow overflow-hidden mb-8">
+        <div className="bg-paper rounded-lg shadow overflow-hidden mb-8">
           <div className="p-6 border-b border-gray-200">
             <h2 className="text-xl font-bold text-gray-900">Recent Activities</h2>
           </div>
@@ -212,7 +212,7 @@ export default function AdminDashboardPage() {
                     </th>
                   </tr>
                 </thead>
-                <tbody className="bg-white divide-y divide-gray-200">
+                <tbody className="bg-paper divide-y divide-gray-200">
                   {recentActivities.map(activity => (
                     <tr key={activity.id} className="hover:bg-gray-50">
                       <td className="px-6 py-4 text-sm font-medium text-gray-900">
@@ -251,31 +251,31 @@ export default function AdminDashboardPage() {
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <Link href="/admin/users" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+          <Link href="/admin/users" className="bg-paper rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">User Management</h3>
             <p className="text-gray-600 mb-4">Manage users and admin accounts</p>
             <button className="btn-primary w-full">Manage Users</button>
           </Link>
 
-          <Link href="/admin/vendors" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+          <Link href="/admin/vendors" className="bg-paper rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Vendor Management</h3>
             <p className="text-gray-600 mb-4">Verify and manage vendor accounts</p>
             <button className="btn-primary w-full">Manage Vendors</button>
           </Link>
 
-          <Link href="/admin/activities" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+          <Link href="/admin/activities" className="bg-paper rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Activity Moderation</h3>
             <p className="text-gray-600 mb-4">Review and moderate activities</p>
             <button className="btn-primary w-full">Review Activities</button>
           </Link>
 
-          <Link href="/admin/bookings" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+          <Link href="/admin/bookings" className="bg-paper rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Bookings Management</h3>
             <p className="text-gray-600 mb-4">View and manage all bookings</p>
             <button className="btn-primary w-full">View Bookings</button>
           </Link>
 
-          <Link href="/admin/reviews" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
+          <Link href="/admin/reviews" className="bg-paper rounded-lg shadow p-6 hover:shadow-lg transition-shadow">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">Reviews Moderation</h3>
             <p className="text-gray-600 mb-4">Moderate customer reviews</p>
             <button className="btn-primary w-full">Moderate Reviews</button>

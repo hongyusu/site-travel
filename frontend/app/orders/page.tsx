@@ -120,7 +120,7 @@ export default function MyOrdersPage() {
         </div>
 
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow-sm p-4 mb-6">
+        <div className="bg-paper rounded-lg shadow-sm p-4 mb-6">
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-2">
               <Filter className="w-5 h-5 text-gray-600" />
@@ -133,7 +133,7 @@ export default function MyOrdersPage() {
                 onClick={() => setFilter('all')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   filter === 'all'
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-ink'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -143,7 +143,7 @@ export default function MyOrdersPage() {
                 onClick={() => setFilter('upcoming')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   filter === 'upcoming'
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-ink'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -153,7 +153,7 @@ export default function MyOrdersPage() {
                 onClick={() => setFilter('past')}
                 className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                   filter === 'past'
-                    ? 'bg-primary text-white'
+                    ? 'bg-primary text-ink'
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
@@ -179,7 +179,7 @@ export default function MyOrdersPage() {
 
         {/* Bookings List */}
         {filteredBookings.length === 0 ? (
-          <div className="bg-white rounded-lg shadow-sm p-12 text-center">
+          <div className="bg-paper rounded-lg shadow-sm p-12 text-center">
             <div className="text-gray-400 text-5xl mb-4">📭</div>
             <h3 className="text-xl font-semibold text-gray-900 mb-2">No bookings found</h3>
             <p className="text-gray-600 mb-6">
@@ -199,7 +199,7 @@ export default function MyOrdersPage() {
               <Link
                 key={booking.id}
                 href={`/order-confirmation?ref=${booking.booking_ref}`}
-                className="block bg-white rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
+                className="block bg-paper rounded-lg shadow-sm p-6 hover:shadow-md transition-shadow"
               >
                 <div className="flex gap-6">
                   {/* Activity Image */}

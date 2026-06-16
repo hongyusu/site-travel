@@ -70,7 +70,7 @@ export default function AdminUsersPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow">
+      <div className="bg-paper shadow">
         <div className="container mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -88,7 +88,7 @@ export default function AdminUsersPage() {
 
       <div className="container mx-auto px-4 py-8">
         {/* Filters */}
-        <div className="bg-white rounded-lg shadow p-6 mb-6">
+        <div className="bg-paper rounded-lg shadow p-6 mb-6">
           <div className="flex items-center space-x-4">
             <label className="text-sm font-medium text-gray-700">Filter by role:</label>
             <select
@@ -108,7 +108,7 @@ export default function AdminUsersPage() {
         </div>
 
         {/* Users Table */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-paper rounded-lg shadow overflow-hidden">
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold text-gray-900 flex items-center">
@@ -145,7 +145,7 @@ export default function AdminUsersPage() {
                       </th>
                     </tr>
                   </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
+                  <tbody className="bg-paper divide-y divide-gray-200">
                     {users.map(user => (
                       <tr key={user.id} className="hover:bg-gray-50">
                         <td className="px-6 py-4">

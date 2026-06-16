@@ -5,7 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import ActivityCard from '@/components/activities/ActivityCard';
 import FilterSidebar from '@/components/search/FilterSidebar';
 import SearchBar from '@/components/search/SearchBar';
-import { Activity, SearchParams, PaginatedResponse, Category, Destination } from '@/types';
+import { Activity, SearchParams, PaginatedResponse, Category, Destination, Provider } from '@/types';
 import { apiClient } from '@/lib/api';
 import { SlidersHorizontal } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
@@ -21,6 +21,7 @@ export default function SearchPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
   const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [providers, setProviders] = useState<Provider[]>([]);
 
   // Parse URL params to SearchParams
   const getFiltersFromURL = (): SearchParams => {
@@ -29,6 +30,7 @@ export default function SearchPage() {
     if (searchParams.get('q')) filters.q = searchParams.get('q')!;
     if (searchParams.get('category')) filters.category_slug = searchParams.get('category')!;
     if (searchParams.get('category_slug')) filters.category_slug = searchParams.get('category_slug')!;
+    if (searchParams.get('vendor_id')) filters.vendor_id = parseInt(searchParams.get('vendor_id')!);
     if (searchParams.get('destination')) filters.destination_slug = searchParams.get('destination')!;
     if (searchParams.get('destination_slug')) filters.destination_slug = searchParams.get('destination_slug')!;
     if (searchParams.get('min_price')) filters.min_price = parseFloat(searchParams.get('min_price')!);
@@ -85,12 +87,14 @@ export default function SearchPage() {
 
   const fetchMetadata = async () => {
     try {
-      const [categoriesRes, destinationsRes] = await Promise.all([
+      const [categoriesRes, destinationsRes, providersRes] = await Promise.all([
         apiClient.categories.list(),
-        apiClient.destinations.list()
+        apiClient.destinations.list(),
+        apiClient.providers.list()
       ]);
       setCategories(categoriesRes.data);
       setDestinations(destinationsRes.data);
+      setProviders(providersRes.data);
     } catch (error) {
       console.error('Error fetching metadata:', error);
     }
@@ -151,7 +155,7 @@ export default function SearchPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Search Bar */}
-      <div className="bg-white border-b">
+      <div className="bg-paper border-b">
         <div className="container mx-auto px-4 py-6">
           <SearchBar
             placeholder={getTranslation('search.placeholder')}
@@ -180,6 +184,7 @@ export default function SearchPage() {
               onFilterChange={handleFilterChange}
               categories={categories}
               destinations={destinations}
+              providers={providers}
             />
           </aside>
 
@@ -216,7 +221,7 @@ export default function SearchPage() {
             {loading && (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {[1, 2, 3, 4, 5, 6].map(i => (
-                  <div key={i} className="bg-white rounded-lg h-96 shadow animate-pulse" />
+                  <div key={i} className="bg-paper rounded-lg h-96 shadow animate-pulse" />
                 ))}
               </div>
             )}
@@ -236,7 +241,7 @@ export default function SearchPage() {
                     <button
                       onClick={handleLoadMore}
                       disabled={loadingMore}
-                      className="px-8 py-3 bg-primary text-white font-medium rounded-full hover:bg-primary-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
+                      className="px-8 py-3 bg-primary text-ink font-medium rounded-full hover:bg-primary-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
                     >
                       {loadingMore ? (
                         <>

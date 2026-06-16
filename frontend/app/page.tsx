@@ -73,20 +73,20 @@ export default function HomePage() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[600px] flex items-center justify-center bg-gradient-to-br from-primary to-orange-600">
+      <section className="relative h-[70vh] min-h-[600px] flex items-center justify-center bg-ink overflow-hidden">
         <Image
           src="https://loremflickr.com/1920/600/travel,adventure?lock=5000"
           alt="Meet your travel partner"
           fill
-          className="object-cover opacity-50"
+          className="object-cover opacity-60"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/60 to-orange-600/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-ink/50"></div>
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 drop-shadow-lg">
+          <h1 className="font-serif font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-cream mb-5 drop-shadow-lg">
             {getTranslation('homepage.hero.title')}
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl text-white mb-8 drop-shadow-md">
+          <p className="text-base sm:text-lg md:text-xl font-light text-cream/80 tracking-wide mb-10 drop-shadow-md">
             {getTranslation('homepage.hero.subtitle')}
           </p>
           <div className="max-w-3xl mx-auto">
@@ -176,7 +176,7 @@ export default function HomePage() {
             {loading ? (
               <>
                 {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map(i => (
-                  <div key={i} className="bg-white rounded-lg h-32 animate-pulse" />
+                  <div key={i} className="bg-paper rounded-lg h-32 animate-pulse" />
                 ))}
               </>
             ) : (
@@ -210,7 +210,7 @@ export default function HomePage() {
             {loading ? (
               <>
                 {[1, 2, 3, 4, 5, 6, 7, 8].map(i => (
-                  <div key={i} className="bg-white rounded-lg h-96 shadow animate-pulse" />
+                  <div key={i} className="bg-paper rounded-lg h-96 shadow animate-pulse" />
                 ))}
               </>
             ) : (
@@ -242,7 +242,7 @@ export default function HomePage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {featuredBlogPosts.map((post, index) => (
-              <div key={index} className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
+              <div key={index} className="bg-paper rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
                 <div className="relative h-48">
                   <Image
                     src={post.image}

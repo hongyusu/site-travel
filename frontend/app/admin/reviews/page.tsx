@@ -85,7 +85,7 @@ export default function AdminReviewsPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow">
+      <div className="bg-paper shadow">
         <div className="container mx-auto px-4 py-6">
           <div className="flex justify-between items-center">
             <div className="flex items-center">
@@ -103,7 +103,7 @@ export default function AdminReviewsPage() {
 
       <div className="container mx-auto px-4 py-8">
         {/* Reviews List */}
-        <div className="bg-white rounded-lg shadow overflow-hidden">
+        <div className="bg-paper rounded-lg shadow overflow-hidden">
           <div className="p-6 border-b border-gray-200">
             <div className="flex items-center justify-between">
               <h2 className="text-xl font-bold text-gray-900 flex items-center">

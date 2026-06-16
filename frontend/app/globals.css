@@ -13,10 +13,16 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-  color: #1a2b49;
-  background: #ffffff;
+  font-family: var(--font-dm-sans), -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Helvetica, Arial, sans-serif;
+  color: #f5f2ed;
+  background: #0d0d0d;
   min-height: 100vh;
+}
+
+::selection {
+  background: #c4a35a;
+  color: #0d0d0d;
 }
 
 /* Custom scrollbar */
@@ -26,34 +32,62 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
+  background: #0d0d0d;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #888;
+  background: #2b2924;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #c4a35a;
+}
+
+@layer base {
+  html {
+    color-scheme: dark;
+  }
+
+  input,
+  select,
+  textarea {
+    @apply bg-ink text-cream;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(245, 242, 237, 0.35);
+  }
+
+  h1,
+  h2 {
+    font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0.02em;
+  }
+
+  h3 {
+    font-family: var(--font-cormorant), 'Cormorant Garamond', Georgia, serif;
+    letter-spacing: 0.01em;
+  }
 }
 
 /* Custom components */
 @layer components {
   .btn-primary {
-    @apply bg-primary hover:bg-primary-600 text-white font-medium py-3 px-6 rounded-full transition-colors duration-200 min-h-[44px] min-w-[44px];
+    @apply bg-primary hover:bg-primary-400 text-ink font-medium uppercase tracking-[0.12em] text-sm py-3 px-8 rounded-none transition-all duration-300 ease-luxe min-h-[44px] min-w-[44px];
   }
 
   .btn-secondary {
-    @apply bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-full border border-gray-300 transition-colors duration-200 min-h-[44px] min-w-[44px];
+    @apply bg-transparent hover:bg-transparent text-cream hover:text-primary font-medium uppercase tracking-[0.12em] text-sm py-3 px-8 rounded-none border border-cream/20 hover:border-primary transition-all duration-300 ease-luxe min-h-[44px] min-w-[44px];
   }
 
   .activity-card {
-    @apply bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 cursor-pointer;
+    @apply bg-paper rounded-sm overflow-hidden border border-cream/[0.06] hover:border-cream/[0.15] transition-all duration-300 ease-luxe cursor-pointer;
   }
 
   .badge {
-    @apply inline-flex items-center px-2 py-1 text-xs font-medium rounded;
+    @apply inline-flex items-center px-2 py-1 text-xs font-medium tracking-wide rounded;
   }
 
   .badge-success {
@@ -65,21 +99,21 @@ body {
   }
 
   .input-field {
-    @apply w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all min-h-[44px] text-base;
+    @apply w-full px-4 py-2 bg-ink border border-cream/15 rounded-none text-cream placeholder:text-cream/35 focus:ring-1 focus:ring-primary focus:border-primary outline-none transition-all min-h-[44px] text-base;
   }
-  
+
   /* Mobile-specific touch optimizations */
   @media (max-width: 768px) {
     * {
-      -webkit-tap-highlight-color: rgba(252, 101, 0, 0.2);
+      -webkit-tap-highlight-color: rgba(196, 163, 90, 0.2);
       -webkit-touch-callout: none;
     }
-    
+
     button, [role="button"], input[type="submit"], input[type="button"] {
       -webkit-appearance: none;
       touch-action: manipulation;
     }
-    
+
     /* Improve mobile scrolling */
     body {
       -webkit-overflow-scrolling: touch;

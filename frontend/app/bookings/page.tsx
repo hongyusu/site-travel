@@ -92,7 +92,7 @@ export default function BookingsPage() {
   if (success && bookings.length === 0) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
-        <div className="bg-white rounded-lg shadow-lg p-8 max-w-md text-center">
+        <div className="bg-paper rounded-lg shadow-lg p-8 max-w-md text-center">
           <CheckCircle className="w-16 h-16 text-success mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
             {getTranslation('bookings.booking_confirmed')}
@@ -126,7 +126,7 @@ export default function BookingsPage() {
         <h1 className="text-3xl font-bold text-gray-900 mb-8">{getTranslation('bookings.title')}</h1>
 
         {bookings.length === 0 ? (
-          <div className="bg-white rounded-lg shadow p-12 text-center">
+          <div className="bg-paper rounded-lg shadow p-12 text-center">
             <Calendar className="w-16 h-16 text-gray-300 mx-auto mb-4" />
             <h2 className="text-xl font-semibold text-gray-900 mb-2">
               {getTranslation('bookings.no_bookings_yet')}
@@ -141,7 +141,7 @@ export default function BookingsPage() {
         ) : (
           <div className="space-y-6">
             {bookings.map((booking) => (
-              <div key={booking.id} className="bg-white rounded-lg shadow overflow-hidden">
+              <div key={booking.id} className="bg-paper rounded-lg shadow overflow-hidden">
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div>

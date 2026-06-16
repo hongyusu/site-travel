@@ -14,6 +14,7 @@ import TimelineSection from '@/components/activities/TimelineSection';
 import ActivityBadges from '@/components/activities/ActivityBadges';
 import ActivityVideo from '@/components/activities/ActivityVideo';
 import TranslationNotAvailable from '@/components/TranslationNotAvailable';
+import { formatDuration } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Star, Clock, Users, Globe, Check, X, MapPin,
@@ -221,7 +222,7 @@ export default function ActivityDetailsPage() {
               <div className="flex flex-wrap gap-4">
                 <div className="flex items-center text-gray-600">
                   <Clock className="w-4 h-4 mr-1" />
-                  {Math.floor((activity.duration_minutes ?? 0) / 60)}h {(activity.duration_minutes ?? 0) % 60}m
+                  {formatDuration(activity.duration_minutes ?? 0)}
                 </div>
                 <div className="flex items-center text-gray-600">
                   <Users className="w-4 h-4 mr-1" />
@@ -350,7 +351,7 @@ export default function ActivityDetailsPage() {
             {activity.meeting_point && (
               <div>
                 <h3 className="text-xl font-semibold mb-4">{getTranslation('activity.meeting_point')}</h3>
-                <div className="bg-white rounded-lg p-4 border border-gray-200">
+                <div className="bg-paper rounded-lg p-4 border border-gray-200">
                   <div className="flex items-start mb-2">
                     <MapPin className="w-5 h-5 text-primary mr-2 flex-shrink-0 mt-0.5" />
                     <div>
@@ -418,7 +419,7 @@ export default function ActivityDetailsPage() {
               {activity.faqs && activity.faqs.length > 0 ? (
                 <div className="space-y-3">
                   {activity.faqs.map((faq, index) => (
-                    <div key={index} className="bg-white rounded-lg border border-gray-200">
+                    <div key={index} className="bg-paper rounded-lg border border-gray-200">
                       <button
                         onClick={() => toggleFAQ(index)}
                         className="w-full px-4 py-3 text-left flex items-center justify-between hover:bg-gray-50"
@@ -446,7 +447,7 @@ export default function ActivityDetailsPage() {
             </div>
 
             {/* Vendor Info */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
+            <div className="bg-paper rounded-lg p-6 border border-gray-200">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-xl font-semibold">{getTranslation('activity.provider')}</h3>
                 {activity.vendor.is_verified && (

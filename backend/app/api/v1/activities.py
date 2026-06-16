@@ -12,7 +12,8 @@ from app.models import (
     ActivityCategory, ActivityDestination, ActivityHighlight,
     ActivityInclude, ActivityFAQ, MeetingPoint, Vendor,
     ActivityTimeline, ActivityTimeSlot, ActivityPricingTier,
-    ActivityAddOn, MeetingPointPhoto
+    ActivityAddOn, MeetingPointPhoto, ActivityTranslation,
+    DestinationTranslation, CategoryTranslation
 )
 from app.schemas.activity import (
     ActivityResponse, ActivityDetailResponse, ActivitySearchParams,
@@ -103,6 +104,27 @@ def get_destination_by_slug(
     return destination
 
 
+@router.get("/providers")
+def get_providers(db: Session = Depends(get_db)):
+    """List providers (vendors) that have at least one active activity, with counts."""
+    rows = (
+        db.query(
+            Vendor.id,
+            Vendor.company_name,
+            func.count(Activity.id).label("activity_count"),
+        )
+        .join(Activity, Activity.vendor_id == Vendor.id)
+        .filter(Activity.is_active == True)
+        .group_by(Vendor.id, Vendor.company_name)
+        .order_by(Vendor.company_name)
+        .all()
+    )
+    return [
+        {"id": r.id, "company_name": r.company_name, "activity_count": r.activity_count}
+        for r in rows
+    ]
+
+
 @router.get("/search", response_model=PaginatedResponse[ActivityResponse])
 def search_activities(
     q: Optional[str] = Query(None, description="Search query"),
@@ -110,6 +132,7 @@ def search_activities(
     destination_slug: Optional[str] = Query(None, description="Destination slug"),
     category_id: Optional[int] = Query(None, description="Category ID"),
     category_slug: Optional[str] = Query(None, description="Category slug"),
+    vendor_id: Optional[int] = Query(None, description="Provider / vendor ID"),
     min_price: Optional[Decimal] = Query(None, ge=0, description="Minimum price"),
     max_price: Optional[Decimal] = Query(None, ge=0, description="Maximum price"),
     min_duration: Optional[int] = Query(None, ge=0, description="Min duration in minutes"),
@@ -158,12 +181,50 @@ def search_activities(
             if category_slug:
                 query = query.filter(Category.slug == category_slug)
 
-    # Text search
-    if q:
+    # Text search — match English columns, any-language translated content
+    # (zh/es/fr), and the destination & category names, so queries like
+    # "桂林"/"Guilin", "Beijing", "Museums", "美食" work regardless of UI language.
+    if q and q.strip():
+        # Escape LIKE wildcards so % and _ in the query are treated literally.
+        safe_q = q.strip().replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+        pattern = f"%{safe_q}%"
+        esc = "\\"
+
+        def il(col):
+            return col.ilike(pattern, escape=esc)
+
+        translated_ids = db.query(ActivityTranslation.activity_id).filter(
+            or_(
+                il(ActivityTranslation.title),
+                il(ActivityTranslation.short_description),
+                il(ActivityTranslation.description),
+            )
+        )
+        destination_ids = (
+            db.query(ActivityDestination.activity_id)
+            .join(Destination, Destination.id == ActivityDestination.destination_id)
+            .outerjoin(
+                DestinationTranslation,
+                DestinationTranslation.destination_id == Destination.id,
+            )
+            .filter(or_(il(Destination.name), il(DestinationTranslation.name)))
+        )
+        category_ids = (
+            db.query(ActivityCategory.activity_id)
+            .join(Category, Category.id == ActivityCategory.category_id)
+            .outerjoin(
+                CategoryTranslation,
+                CategoryTranslation.category_id == Category.id,
+            )
+            .filter(or_(il(Category.name), il(CategoryTranslation.name)))
+        )
         search_filter = or_(
-            Activity.title.ilike(f"%{q}%"),
-            Activity.description.ilike(f"%{q}%"),
-            Activity.short_description.ilike(f"%{q}%")
+            il(Activity.title),
+            il(Activity.description),
+            il(Activity.short_description),
+            Activity.id.in_(translated_ids),
+            Activity.id.in_(destination_ids),
+            Activity.id.in_(category_ids),
         )
         query = query.filter(search_filter)
 
@@ -203,6 +264,10 @@ def search_activities(
 
     if bestseller is not None:
         query = query.filter(Activity.is_bestseller == bestseller)
+
+    # Provider / vendor filter
+    if vendor_id is not None:
+        query = query.filter(Activity.vendor_id == vendor_id)
 
     # Vendor filter
     if vendor_only and current_user:

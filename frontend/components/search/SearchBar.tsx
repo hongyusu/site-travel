@@ -37,7 +37,7 @@ export default function SearchBar({
 
   return (
     <form onSubmit={handleSearch} className={`search-bar ${className}`}>
-      <div className="bg-white rounded-full shadow-lg flex items-center p-2">
+      <div className="bg-paper rounded-full shadow-lg flex items-center p-2">
         <div className="flex-1 flex items-center">
           <MapPin className="w-5 h-5 text-gray-400 ml-4 mr-2" />
           <input
@@ -72,7 +72,7 @@ export default function SearchBar({
 
         <button
           type="submit"
-          className="bg-primary hover:bg-primary-600 text-white rounded-full p-3 ml-2 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+          className="bg-primary hover:bg-primary-600 text-ink rounded-full p-3 ml-2 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
         >
           <Search className="w-6 h-6" />
         </button>
