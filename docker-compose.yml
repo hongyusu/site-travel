@@ -43,10 +43,12 @@ services:
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://postgres:password@postgres:5432/findtravelmate
-      SECRET_KEY: demo-secret-key-not-for-production-use
+      # SECRET_KEY must be set in .env on each host (never committed). Required.
+      SECRET_KEY: ${SECRET_KEY:?SECRET_KEY must be set in .env}
       ALGORITHM: HS256
+      DEBUG: "False"
       REDIS_URL: redis://redis:6379/0
-      CORS_ORIGINS: '["*"]'
+      CORS_ORIGINS: '["https://travel.finuo.fi","http://178.104.206.21:8083","http://localhost:3000"]'
     volumes:
       - ./backend/backups:/backups
     depends_on:

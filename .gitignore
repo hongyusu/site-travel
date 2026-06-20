@@ -64,3 +64,9 @@ htmlcov/
 # Build
 *.pyc
 ocrbot.pem
+
+# DB dumps (recovery artifacts — keep off git, store off-box)
+backend/backups/*.sql
+backups/*.sql
+backend/update_*.sql
+*.sql.gz

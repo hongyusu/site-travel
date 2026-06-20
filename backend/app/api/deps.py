@@ -54,9 +54,12 @@ def get_current_user(
 
     user = db.query(User).filter(User.id == int(token_data.sub)).first()
     if not user:
+        # 401 (not 404) so clients treat a deleted/invalid subject as an auth
+        # failure and trigger refresh / re-login instead of a hard error.
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="User not found"
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Could not validate credentials",
+            headers={"WWW-Authenticate": "Bearer"},
         )
 
     if not user.is_active:
@@ -112,10 +115,13 @@ def get_current_vendor(
             detail="Not enough permissions"
         )
 
-    if current_user.role == UserRole.VENDOR and not current_user.vendor_profile:
+    # Vendor-scoped endpoints dereference vendor_profile downstream. Admins have
+    # no vendor_profile, so require it for ANY caller of this dependency — returns
+    # a clean 403 instead of a 500 AttributeError. Admins use the admin API.
+    if not current_user.vendor_profile:
         raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Vendor profile not found"
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Vendor profile required for this endpoint"
         )
 
     return current_user

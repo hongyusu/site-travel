@@ -32,8 +32,12 @@ class Settings(BaseSettings):
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
     REFRESH_TOKEN_EXPIRE_DAYS: int = 7
 
-    # CORS - Allow all origins for now
-    CORS_ORIGINS: List[str] = ["*"]
+    # CORS - explicit allow-list (never "*" with credentials). Override via env.
+    CORS_ORIGINS: List[str] = [
+        "https://travel.finuo.fi",
+        "http://178.104.206.21:8083",
+        "http://localhost:3000",
+    ]
 
     # File Upload
     MAX_UPLOAD_SIZE: int = 5242880  # 5MB
