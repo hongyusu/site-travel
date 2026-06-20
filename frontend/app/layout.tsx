@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "react-hot-toast";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 import { LocationProvider } from "@/contexts/LocationContext";
+
+// Google Analytics 4 — id baked at build via NEXT_PUBLIC_GA_ID. No-op if unset.
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
@@ -34,6 +38,20 @@ export default function RootLayout({
       <body
         className={`${dmSans.variable} ${cormorant.variable} antialiased`}
       >
+        {GA_ID && (
+          <>
+            <Script
+              src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              strategy="afterInteractive"
+            />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', '${GA_ID}');`}
+            </Script>
+          </>
+        )}
         <LocationProvider>
           <LanguageProvider>
             <Toaster position="top-right" />

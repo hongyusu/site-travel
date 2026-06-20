@@ -10,5 +10,6 @@ services:
     build:
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8083/api}
+        NEXT_PUBLIC_GA_ID: ${NEXT_PUBLIC_GA_ID:-G-TPTK4RZE3D}
   nginx:
     container_name: travel_nginx

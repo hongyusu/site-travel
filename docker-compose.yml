@@ -72,6 +72,7 @@ services:
       target: production
       args:
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost/api}
+        NEXT_PUBLIC_GA_ID: ${NEXT_PUBLIC_GA_ID:-G-TPTK4RZE3D}
     container_name: travel_frontend
     restart: unless-stopped
     environment:
