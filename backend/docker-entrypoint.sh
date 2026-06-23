@@ -83,6 +83,12 @@ initialize_database() {
         print_info "Applying FinuoTravel migration..."
         python migrate_finuo.py || print_warn "migrate_finuo.py reported issues (continuing)."
     fi
+
+    # Step 4: Seed zh translations for pricing tiers + add-ons (idempotent).
+    if [ -f "seed_zh_tiers_addons.py" ]; then
+        print_info "Seeding zh tier/add-on translations..."
+        python seed_zh_tiers_addons.py || print_warn "seed_zh_tiers_addons.py reported issues (continuing)."
+    fi
 }
 
 main() {
