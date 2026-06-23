@@ -77,7 +77,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center">
             <span className="font-serif text-2xl text-cream tracking-wide">
-              FindTravel<span className="text-primary">Mate</span>
+              Finuo<span className="text-primary">Travel</span>
             </span>
           </Link>
 
