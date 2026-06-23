@@ -82,6 +82,11 @@ export default function ActivityCard({ activity }: ActivityCardProps) {
           
           {/* Top-left badges */}
           <div className="absolute top-2 left-2 flex flex-col gap-2">
+            {activity.is_available === false ? (
+              <span className="badge bg-red-100 text-red-800">{getTranslation('badge.unavailable')}</span>
+            ) : activity.is_available === true && (
+              <span className="badge bg-green-100 text-green-800">{getTranslation('badge.available')}</span>
+            )}
             {activity.is_bestseller && (
               <span className="badge badge-primary">{getTranslation('badge.bestseller')}</span>
             )}

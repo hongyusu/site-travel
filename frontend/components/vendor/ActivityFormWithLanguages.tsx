@@ -64,6 +64,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
     languages: ['English'], // Available guide languages
     is_bestseller: false,
     is_skip_the_line: false,
+    is_available: true,
     category_ids: [] as number[],
     destination_ids: [] as number[],
     // Pricing variations
@@ -237,6 +238,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
           languages: englishData.languages || ['English'],
           is_bestseller: englishData.is_bestseller,
           is_skip_the_line: englishData.is_skip_the_line,
+          is_available: englishData.is_available ?? true,
           category_ids: englishData.categories?.map((c: any) => c.id) || [],
           destination_ids: englishData.destinations?.map((d: any) => d.id) || [],
           // Pricing variations
@@ -1049,6 +1051,7 @@ export default function ActivityFormWithLanguages({ activityId, mode }: Activity
           <h4 className="font-medium mb-3">Features</h4>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
             {[
+              { key: 'is_available', label: 'Available for Booking' },
               { key: 'instant_confirmation', label: 'Instant Confirmation' },
               { key: 'has_mobile_ticket', label: 'Mobile Ticket' },
               { key: 'has_best_price_guarantee', label: 'Best Price Guarantee' },

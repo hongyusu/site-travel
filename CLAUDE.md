@@ -1,4 +1,4 @@
-# FindTravelMate
+# FinuoTravel
 
 ## Overview
 
@@ -121,7 +121,7 @@ Roles: `CUSTOMER`, `VENDOR`, `ADMIN`. Booking statuses: `PENDING`, `PENDING_VEND
 
 | Role     | Email                        | Password     |
 |----------|------------------------------|--------------|
-| Admin    | admin@findtravelmate.com     | admin123     |
+| Admin    | admin@finuo.fi     | admin123     |
 | Customer | customer@example.com         | customer123  |
 | Vendor   | vendor1@example.com          | vendor123    |
 

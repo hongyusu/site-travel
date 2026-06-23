@@ -92,6 +92,7 @@ export interface Activity {
   is_bestseller: boolean;
   is_skip_the_line: boolean;
   is_active?: boolean;
+  is_available?: boolean;
   average_rating: number;
   total_reviews: number;
   total_bookings: number;

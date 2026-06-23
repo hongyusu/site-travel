@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Database Initialization Script for FindTravelMate
+Database Initialization Script for FinuoTravel
 
 Initializes a brand new database from a backup file.
 Based on successful AWS deployment experience (November 2025).
@@ -208,7 +208,7 @@ def initialize_database(backup_file_path):
 
 
 if __name__ == "__main__":
-    print("🚀 FindTravelMate Database Initialization")
+    print("🚀 FinuoTravel Database Initialization")
     print("=" * 45)
     
     if len(sys.argv) == 2 and sys.argv[1] == "--list":

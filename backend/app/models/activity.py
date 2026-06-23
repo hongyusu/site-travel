@@ -1,6 +1,6 @@
 """Activity related models."""
 
-from sqlalchemy import Column, Integer, String, Boolean, DECIMAL, ForeignKey, DateTime, Text, ARRAY, Float
+from sqlalchemy import Column, Integer, String, Boolean, DECIMAL, ForeignKey, DateTime, Text, ARRAY, Float, text
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
@@ -68,6 +68,8 @@ class Activity(Base):
     is_bestseller = Column(Boolean, default=False)
     is_skip_the_line = Column(Boolean, default=False)
     is_active = Column(Boolean, default=True)
+    # Provider-set availability tag shown to end users (distinct from is_active listing flag)
+    is_available = Column(Boolean, default=True, server_default=text("true"), nullable=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 

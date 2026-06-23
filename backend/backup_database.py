@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Database Backup Script for FindTravelMate
+Database Backup Script for FinuoTravel
 
 Creates a complete PostgreSQL database backup with all data.
 Usage: python backup_database.py
@@ -101,6 +101,6 @@ def create_backup():
 
 
 if __name__ == "__main__":
-    print("🚀 FindTravelMate Database Backup")
+    print("🚀 FinuoTravel Database Backup")
     print("=" * 40)
     create_backup()

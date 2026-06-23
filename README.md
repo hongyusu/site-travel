@@ -1,4 +1,4 @@
-# FindTravelMate
+# FinuoTravel
 
 A full-stack travel-activities marketplace (Viator/GetYourGuide-style) built with FastAPI and Next.js. Customers browse and book travel experiences, vendors manage activities, and admins moderate the platform.
 
@@ -9,7 +9,7 @@ A full-stack travel-activities marketplace (Viator/GetYourGuide-style) built wit
 ### Demo accounts
 | Role     | Email                        | Password     |
 |----------|------------------------------|--------------|
-| Admin    | admin@findtravelmate.com     | admin123     |
+| Admin    | admin@finuo.fi     | admin123     |
 | Customer | customer@example.com         | customer123  |
 | Vendor   | vendor1@example.com          | vendor123    |
 

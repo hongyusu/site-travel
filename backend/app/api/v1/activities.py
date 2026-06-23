@@ -349,6 +349,7 @@ def search_activities(
             "is_bestseller": activity.is_bestseller,
             "is_skip_the_line": activity.is_skip_the_line,
             "is_active": activity.is_active,
+            "is_available": activity.is_available,
             "free_cancellation_hours": activity.free_cancellation_hours,
             "languages": activity.languages,
             "primary_image": primary_image,
@@ -482,6 +483,7 @@ def _get_activity_details(activity: Activity, db: Session, language: str = 'en')
         "is_bestseller": activity.is_bestseller,
         "is_skip_the_line": activity.is_skip_the_line,
         "is_active": activity.is_active,
+        "is_available": activity.is_available,
         "primary_image": primary_image,
         "images": images,
         "categories": categories,
@@ -620,6 +622,7 @@ def get_similar_activities(
             "is_bestseller": act.is_bestseller,
             "is_skip_the_line": act.is_skip_the_line,
             "is_active": act.is_active,
+            "is_available": act.is_available,
             "free_cancellation_hours": act.free_cancellation_hours,
             "languages": act.languages,
             "primary_image": primary_image,
@@ -663,6 +666,7 @@ def create_activity(
         is_bestseller=activity_data.is_bestseller,
         is_skip_the_line=activity_data.is_skip_the_line,
         is_active=True,
+        is_available=activity_data.is_available,
         # New enhanced fields
         has_multiple_tiers=activity_data.has_multiple_tiers,
         discount_percentage=activity_data.discount_percentage,
@@ -946,6 +950,43 @@ def toggle_activity_status(
 
     # Toggle the status
     activity.is_active = not activity.is_active
+    db.commit()
+    db.refresh(activity)
+
+    return _get_activity_details(activity, db)
+
+
+@router.patch("/{activity_id}/toggle-availability", response_model=ActivityDetailResponse)
+def toggle_activity_availability(
+    activity_id: int,
+    db: Session = Depends(get_db),
+    current_vendor = Depends(get_current_vendor)
+):
+    """Toggle activity available/unavailable tag (vendor only)."""
+    # Get vendor record from user
+    vendor = db.query(Vendor).filter(Vendor.user_id == current_vendor.id).first()
+    if not vendor:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Vendor profile not found"
+        )
+
+    activity = db.query(Activity).filter(Activity.id == activity_id).first()
+
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity not found"
+        )
+
+    if activity.vendor_id != vendor.id:
+        raise HTTPException(
+            status_code=status.HTTP_403_FORBIDDEN,
+            detail="Not authorized to modify this activity"
+        )
+
+    # Toggle the availability tag
+    activity.is_available = not activity.is_available
     db.commit()
     db.refresh(activity)
 

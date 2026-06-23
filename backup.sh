@@ -21,7 +21,8 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-PROJECT_NAME="findtravelmate"
+# Container-name prefix (compose container_name is travel_db); the database itself is "findtravelmate".
+PROJECT_NAME="travel"
 DB_CONTAINER="${PROJECT_NAME}_db"
 BACKUP_DIR="./backups"
 BACKUP_RETENTION_DAYS="${BACKUP_RETENTION_DAYS:-7}"

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# FindTravelMate AWS Deployment Script
+# FinuoTravel AWS Deployment Script
 # Based on successful deployment experience (November 2025)
 # 
 # This script automates the deployment workflow that was manually tested:
@@ -26,7 +26,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 print_header() {
-    echo -e "${BLUE}🚀 FindTravelMate AWS Deployment${NC}"
+    echo -e "${BLUE}🚀 FinuoTravel AWS Deployment${NC}"
     echo "=================================="
 }
 
@@ -191,7 +191,7 @@ verify_deployment() {
         fi
         
         echo '🔍 Testing frontend...'
-        if curl -s http://localhost:3000 | grep -q 'FindTravelMate'; then
+        if curl -s http://localhost:3000 | grep -q 'FinuoTravel'; then
             echo '✅ Frontend is responding'
         else
             echo '❌ Frontend is not responding'
@@ -209,7 +209,7 @@ verify_deployment() {
         exit 1
     fi
     
-    if curl -s "http://$AWS_HOST:3000" | grep -q 'FindTravelMate'; then
+    if curl -s "http://$AWS_HOST:3000" | grep -q 'FinuoTravel'; then
         print_success "Frontend accessible externally"
     else
         print_error "Frontend not accessible externally"
@@ -238,7 +238,7 @@ show_summary() {
     echo ""
     echo "👤 Demo accounts:"
     echo "   Customer: customer@example.com / customer123"
-    echo "   Admin: admin@findtravelmate.com / admin123"
+    echo "   Admin: admin@finuo.fi / admin123"
     echo "   Vendor: vendor1@example.com / vendor123"
     echo ""
     echo "🔧 Management commands:"
@@ -253,7 +253,7 @@ main() {
     if [ "$1" = "--help" ] || [ "$1" = "-h" ]; then
         echo "Usage: $0 [--dry-run]"
         echo ""
-        echo "This script automates the FindTravelMate AWS deployment process:"
+        echo "This script automates the FinuoTravel AWS deployment process:"
         echo "1. Creates a backup of the local database"
         echo "2. Transfers the backup to AWS server"
         echo "3. Restores the database on AWS"

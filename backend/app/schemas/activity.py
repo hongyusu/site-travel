@@ -163,6 +163,7 @@ class ActivityBase(BaseModel):
     languages: List[str] = []
     is_bestseller: bool = False
     is_skip_the_line: bool = False
+    is_available: bool = True
 
     # New fields
     has_multiple_tiers: bool = False
@@ -216,7 +217,8 @@ class ActivityUpdate(BaseModel):
     is_bestseller: Optional[bool] = None
     is_skip_the_line: Optional[bool] = None
     is_active: Optional[bool] = None
-    
+    is_available: Optional[bool] = None
+
     # Category and destination relationships
     category_ids: Optional[List[int]] = None
     destination_ids: Optional[List[int]] = None
@@ -269,6 +271,7 @@ class ActivityResponse(BaseModel):
     is_bestseller: bool
     is_skip_the_line: bool
     is_active: bool = True
+    is_available: bool = True
     free_cancellation_hours: int
     languages: List[str]
     primary_image: Optional[ActivityImageResponse] = None

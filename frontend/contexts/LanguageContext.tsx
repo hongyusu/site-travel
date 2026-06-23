@@ -79,7 +79,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.newsletter_desc': 'Get travel tips and inspiration delivered to your inbox.',
     'footer.subscribe': 'Subscribe',
     'footer.your_email': 'Your email',
-    'footer.copyright': '© 2024 FindTravelMate. All rights reserved.',
+    'footer.copyright': '© 2024 FinuoTravel. All rights reserved.',
     'page.terms': 'Terms of Service',
     'page.cookies': 'Cookie Policy',
 
@@ -205,6 +205,8 @@ const translations: Record<Language, Record<string, string>> = {
     'badge.skip_the_line': 'Skip the line',
     'badge.free_cancellation': 'Free cancellation',
     'badge.instant_confirmation': 'Instant confirmation',
+    'badge.available': 'Available',
+    'badge.unavailable': 'Unavailable',
 
     // Activity detail sections
     'activity.overview': 'Overview',
@@ -346,7 +348,7 @@ const translations: Record<Language, Record<string, string>> = {
     'about.title': 'About Us',
     'about.hero_subtitle': 'Connecting travelers with unforgettable experiences worldwide',
     'about.mission_title': 'Our Mission',
-    'about.mission_p1': 'At FindTravelMate, we believe that travel is more than just visiting new places—it\'s about creating meaningful connections, discovering authentic experiences, and making memories that last a lifetime.',
+    'about.mission_p1': 'At FinuoTravel, we believe that travel is more than just visiting new places—it\'s about creating meaningful connections, discovering authentic experiences, and making memories that last a lifetime.',
     'about.mission_p2': 'We partner with local experts and activity providers worldwide to bring you the best tours, activities, and experiences. Whether you\'re seeking adventure, culture, relaxation, or something completely unique, we\'re here to help you find your perfect travel partner.',
     'about.value_community': 'Community',
     'about.value_community_desc': 'Building connections between travelers and local experts',
@@ -357,7 +359,7 @@ const translations: Record<Language, Record<string, string>> = {
     'about.value_passion': 'Passion',
     'about.value_passion_desc': 'Driven by love for travel and discovery',
     'about.story_title': 'Our Story',
-    'about.story_p1': 'Founded in 2020, FindTravelMate was born from a simple idea: every traveler deserves to connect with authentic local experiences. Our founders, passionate travelers themselves, saw the gap between tourists and the incredible people who truly know their destinations.',
+    'about.story_p1': 'Founded in 2020, FinuoTravel was born from a simple idea: every traveler deserves to connect with authentic local experiences. Our founders, passionate travelers themselves, saw the gap between tourists and the incredible people who truly know their destinations.',
     'about.story_p2': 'Today, we\'ve grown into a global platform connecting millions of travelers with thousands of verified vendors across hundreds of destinations. But our mission remains the same—to make every journey extraordinary.',
     'about.stat_activities': 'Activities',
     'about.stat_destinations': 'Destinations',
@@ -602,7 +604,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.newsletter_desc': 'Recibe consejos de viaje e inspiración en tu bandeja de entrada.',
     'footer.subscribe': 'Suscribirse',
     'footer.your_email': 'Tu email',
-    'footer.copyright': '© 2024 FindTravelMate. Todos los derechos reservados.',
+    'footer.copyright': '© 2024 FinuoTravel. Todos los derechos reservados.',
     'page.terms': 'Términos de Servicio',
     'page.cookies': 'Política de Cookies',
 
@@ -728,6 +730,8 @@ const translations: Record<Language, Record<string, string>> = {
     'badge.skip_the_line': 'Saltar la cola',
     'badge.free_cancellation': 'Cancelación gratuita',
     'badge.instant_confirmation': 'Confirmación instantánea',
+    'badge.available': 'Disponible',
+    'badge.unavailable': 'No disponible',
 
     // Activity detail sections
     'activity.overview': 'Descripción',
@@ -869,7 +873,7 @@ const translations: Record<Language, Record<string, string>> = {
     'about.title': 'Quiénes Somos',
     'about.hero_subtitle': 'Conectando viajeros con experiencias inolvidables en todo el mundo',
     'about.mission_title': 'Nuestra Misión',
-    'about.mission_p1': 'En FindTravelMate, creemos que viajar es más que solo visitar lugares nuevos—se trata de crear conexiones significativas, descubrir experiencias auténticas y crear recuerdos que duren toda la vida.',
+    'about.mission_p1': 'En FinuoTravel, creemos que viajar es más que solo visitar lugares nuevos—se trata de crear conexiones significativas, descubrir experiencias auténticas y crear recuerdos que duren toda la vida.',
     'about.mission_p2': 'Nos asociamos con expertos locales y proveedores de actividades en todo el mundo para ofrecerte los mejores tours, actividades y experiencias. Ya sea que busques aventura, cultura, relajación o algo completamente único, estamos aquí para ayudarte a encontrar tu compañero de viaje perfecto.',
     'about.value_community': 'Comunidad',
     'about.value_community_desc': 'Construyendo conexiones entre viajeros y expertos locales',
@@ -880,7 +884,7 @@ const translations: Record<Language, Record<string, string>> = {
     'about.value_passion': 'Pasión',
     'about.value_passion_desc': 'Impulsados por el amor al viaje y el descubrimiento',
     'about.story_title': 'Nuestra Historia',
-    'about.story_p1': 'Fundada en 2020, FindTravelMate nació de una idea simple: todo viajero merece conectarse con experiencias locales auténticas. Nuestros fundadores, viajeros apasionados ellos mismos, vieron la brecha entre los turistas y las personas increíbles que realmente conocen sus destinos.',
+    'about.story_p1': 'Fundada en 2020, FinuoTravel nació de una idea simple: todo viajero merece conectarse con experiencias locales auténticas. Nuestros fundadores, viajeros apasionados ellos mismos, vieron la brecha entre los turistas y las personas increíbles que realmente conocen sus destinos.',
     'about.story_p2': 'Hoy, hemos crecido hasta convertirnos en una plataforma global que conecta millones de viajeros con miles de proveedores verificados en cientos de destinos. Pero nuestra misión sigue siendo la misma: hacer que cada viaje sea extraordinario.',
     'about.stat_activities': 'Actividades',
     'about.stat_destinations': 'Destinos',
@@ -1125,7 +1129,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.newsletter_desc': '获取旅行贴士和灵感，直送您的邮箱。',
     'footer.subscribe': '订阅',
     'footer.your_email': '您的邮箱',
-    'footer.copyright': '© 2024 FindTravelMate. 版权所有。',
+    'footer.copyright': '© 2024 FinuoTravel. 版权所有。',
     'page.terms': '服务条款',
     'page.cookies': 'Cookie政策',
 
@@ -1251,6 +1255,8 @@ const translations: Record<Language, Record<string, string>> = {
     'badge.skip_the_line': '免排队',
     'badge.free_cancellation': '免费取消',
     'badge.instant_confirmation': '即时确认',
+    'badge.available': '可预订',
+    'badge.unavailable': '暂不可预订',
 
     // Activity detail sections
     'activity.overview': '概览',
@@ -1392,7 +1398,7 @@ const translations: Record<Language, Record<string, string>> = {
     'about.title': '关于我们',
     'about.hero_subtitle': '连接旅行者与全球难忘体验',
     'about.mission_title': '我们的使命',
-    'about.mission_p1': '在FindTravelMate，我们相信旅行不仅仅是参观新地方——它是关于建立有意义的联系，发现真实的体验，创造一生的回忆。',
+    'about.mission_p1': '在FinuoTravel，我们相信旅行不仅仅是参观新地方——它是关于建立有意义的联系，发现真实的体验，创造一生的回忆。',
     'about.mission_p2': '我们与全球的当地专家和活动提供商合作，为您带来最好的游览、活动和体验。无论您寻求冒险、文化、放松还是完全独特的东西，我们都在这里帮助您找到完美的旅行伙伴。',
     'about.value_community': '社区',
     'about.value_community_desc': '在旅行者和当地专家之间建立联系',
@@ -1403,7 +1409,7 @@ const translations: Record<Language, Record<string, string>> = {
     'about.value_passion': '热情',
     'about.value_passion_desc': '由对旅行和发现的热爱驱动',
     'about.story_title': '我们的故事',
-    'about.story_p1': 'FindTravelMate成立于2020年，源于一个简单的想法：每个旅行者都应该与真实的当地体验建立联系。我们的创始人本身就是充满激情的旅行者，他们看到了游客与真正了解目的地的优秀人士之间的差距。',
+    'about.story_p1': 'FinuoTravel成立于2020年，源于一个简单的想法：每个旅行者都应该与真实的当地体验建立联系。我们的创始人本身就是充满激情的旅行者，他们看到了游客与真正了解目的地的优秀人士之间的差距。',
     'about.story_p2': '今天，我们已经发展成为一个全球平台，连接数百万旅行者与数千个经过验证的供应商，覆盖数百个目的地。但我们的使命保持不变——让每次旅程都变得非凡。',
     'about.stat_activities': '活动',
     'about.stat_destinations': '目的地',
@@ -1648,7 +1654,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.newsletter_desc': 'Recevez des conseils de voyage et de l\'inspiration dans votre boîte de réception.',
     'footer.subscribe': 'S\'abonner',
     'footer.your_email': 'Votre email',
-    'footer.copyright': '© 2024 FindTravelMate. Tous droits réservés.',
+    'footer.copyright': '© 2024 FinuoTravel. Tous droits réservés.',
     'page.terms': 'Conditions d\'utilisation',
     'page.cookies': 'Politique des cookies',
 
@@ -1774,6 +1780,8 @@ const translations: Record<Language, Record<string, string>> = {
     'badge.skip_the_line': 'Coupe-file',
     'badge.free_cancellation': 'Annulation gratuite',
     'badge.instant_confirmation': 'Confirmation instantanée',
+    'badge.available': 'Disponible',
+    'badge.unavailable': 'Indisponible',
 
     // Activity detail sections
     'activity.overview': 'Aperçu',
@@ -1915,7 +1923,7 @@ const translations: Record<Language, Record<string, string>> = {
     'about.title': 'À propos de nous',
     'about.hero_subtitle': 'Connecter les voyageurs à des expériences inoubliables dans le monde entier',
     'about.mission_title': 'Notre Mission',
-    'about.mission_p1': 'Chez FindTravelMate, nous croyons que voyager, c\'est plus que simplement visiter de nouveaux endroits—c\'est créer des connexions significatives, découvrir des expériences authentiques et créer des souvenirs qui durent toute une vie.',
+    'about.mission_p1': 'Chez FinuoTravel, nous croyons que voyager, c\'est plus que simplement visiter de nouveaux endroits—c\'est créer des connexions significatives, découvrir des expériences authentiques et créer des souvenirs qui durent toute une vie.',
     'about.mission_p2': 'Nous nous associons avec des experts locaux et des prestataires d\'activités du monde entier pour vous offrir les meilleurs circuits, activités et expériences. Que vous recherchiez l\'aventure, la culture, la détente ou quelque chose de complètement unique, nous sommes là pour vous aider à trouver votre partenaire de voyage parfait.',
     'about.value_community': 'Communauté',
     'about.value_community_desc': 'Créer des liens entre voyageurs et experts locaux',
@@ -1926,7 +1934,7 @@ const translations: Record<Language, Record<string, string>> = {
     'about.value_passion': 'Passion',
     'about.value_passion_desc': 'Animés par l\'amour du voyage et de la découverte',
     'about.story_title': 'Notre Histoire',
-    'about.story_p1': 'Fondée en 2020, FindTravelMate est née d\'une idée simple : chaque voyageur mérite de se connecter à des expériences locales authentiques. Nos fondateurs, eux-mêmes voyageurs passionnés, ont vu le fossé entre les touristes et les personnes incroyables qui connaissent vraiment leurs destinations.',
+    'about.story_p1': 'Fondée en 2020, FinuoTravel est née d\'une idée simple : chaque voyageur mérite de se connecter à des expériences locales authentiques. Nos fondateurs, eux-mêmes voyageurs passionnés, ont vu le fossé entre les touristes et les personnes incroyables qui connaissent vraiment leurs destinations.',
     'about.story_p2': 'Aujourd\'hui, nous sommes devenus une plateforme mondiale connectant des millions de voyageurs avec des milliers de fournisseurs vérifiés dans des centaines de destinations. Mais notre mission reste la même—rendre chaque voyage extraordinaire.',
     'about.stat_activities': 'Activités',
     'about.stat_destinations': 'Destinations',

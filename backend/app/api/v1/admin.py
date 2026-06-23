@@ -288,6 +288,7 @@ def list_all_activities(
             "categories": category_names,
             "price_adult": float(activity.price_adult),
             "is_active": activity.is_active,
+            "is_available": activity.is_available,
             "average_rating": float(activity.average_rating) if activity.average_rating else None,
             "total_reviews": activity.total_reviews,
             "total_bookings": booking_count,
@@ -328,6 +329,34 @@ def admin_toggle_activity_status(
             "is_active": activity.is_active
         },
         "message": f"Activity {'activated' if activity.is_active else 'deactivated'}"
+    }
+
+
+@router.patch("/activities/{activity_id}/toggle-availability")
+def admin_toggle_activity_availability(
+    activity_id: int,
+    db: Session = Depends(get_db),
+    current_admin: User = Depends(get_current_admin)
+):
+    """Admin toggle activity available/unavailable tag."""
+    activity = db.query(Activity).filter(Activity.id == activity_id).first()
+
+    if not activity:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Activity not found"
+        )
+
+    activity.is_available = not activity.is_available
+    db.commit()
+
+    return {
+        "success": True,
+        "data": {
+            "id": activity.id,
+            "is_available": activity.is_available
+        },
+        "message": f"Activity marked {'available' if activity.is_available else 'unavailable'}"
     }
 
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-# FindTravelMate - Single command deploy
+# FinuoTravel - Single command deploy
 # Usage:
 #   ./deploy.sh                    # Deploy on localhost
 #   ./deploy.sh 123.45.67.89       # Deploy with server IP (sets NEXT_PUBLIC_API_URL)
@@ -13,7 +13,7 @@ NC='\033[0m'
 SERVER_IP="${1:-localhost}"
 API_URL="http://${SERVER_IP}/api"
 
-echo "=== FindTravelMate Deploy ==="
+echo "=== FinuoTravel Deploy ==="
 echo "Server: ${SERVER_IP}"
 echo "API URL: ${API_URL}"
 echo ""
@@ -36,16 +36,16 @@ for i in $(seq 1 30); do
         echo "  Admin:     http://${SERVER_IP}/admin/dashboard"
         echo ""
         echo "  Demo accounts:"
-        echo "    Admin:    admin@findtravelmate.com / admin123"
+        echo "    Admin:    admin@finuo.fi / admin123"
         echo "    Customer: customer@example.com / customer123"
         echo "    Vendor:   vendor1@example.com / vendor123"
         echo ""
 
         # Check if DB has data
-        ACTIVITY_COUNT=$(docker exec findtravelmate_db psql -U postgres -d findtravelmate -tAc "SELECT count(*) FROM activities;" 2>/dev/null || echo "0")
+        ACTIVITY_COUNT=$(docker exec travel_db psql -U postgres -d findtravelmate -tAc "SELECT count(*) FROM activities;" 2>/dev/null || echo "0")
         if [ "$ACTIVITY_COUNT" -eq "0" ] 2>/dev/null; then
             echo -e "${RED}Database is empty!${NC} Restore demo data with:"
-            echo "  docker exec -i findtravelmate_db psql -U postgres -d findtravelmate < backend/backups/backup_2026-04-14_expanded.sql"
+            echo "  docker exec -i travel_db psql -U postgres -d findtravelmate < backend/backups/backup_2026-04-14_expanded.sql"
         else
             echo "  Database: ${ACTIVITY_COUNT} activities loaded"
         fi

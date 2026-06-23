@@ -170,6 +170,8 @@ export const apiClient = {
       api.delete(`/activities/${id}`),
     toggleStatus: (id: number) =>
       api.patch(`/activities/${id}/toggle-status`),
+    toggleAvailability: (id: number) =>
+      api.patch(`/activities/${id}/toggle-availability`),
   },
 
   categories: {
@@ -267,6 +269,8 @@ export const apiClient = {
       api.get('/admin/activities', { params }),
     toggleActivityStatus: (activityId: number) =>
       api.patch(`/admin/activities/${activityId}/toggle-status`),
+    toggleActivityAvailability: (activityId: number) =>
+      api.patch(`/admin/activities/${activityId}/toggle-availability`),
     deleteActivity: (activityId: number) =>
       api.delete(`/admin/activities/${activityId}`),
 

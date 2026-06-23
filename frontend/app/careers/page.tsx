@@ -175,7 +175,7 @@ export default function CareersPage() {
           <p className="text-xl mb-6">
             {getTranslation('careers.cta_subtitle')}
           </p>
-          <a href="mailto:careers@findtravelmate.com" className="btn-secondary inline-block">
+          <a href="mailto:careers@finuo.fi" className="btn-secondary inline-block">
             {getTranslation('careers.get_in_touch')}
           </a>
         </div>

@@ -75,11 +75,19 @@ initialize_database() {
     else
         print_warn "No backup file found at $BACKUP_FILE — database has schema but no demo data."
     fi
+
+    # Step 3: Apply FinuoTravel migration (adds activities.is_available, rebrands
+    # leftover @findtravelmate.com emails, seeds availability if a Finuo vendor exists).
+    # Guarded so a non-zero exit cannot crash the container under `set -e`.
+    if [ -f "migrate_finuo.py" ]; then
+        print_info "Applying FinuoTravel migration..."
+        python migrate_finuo.py || print_warn "migrate_finuo.py reported issues (continuing)."
+    fi
 }
 
 main() {
     print_info "========================================"
-    print_info "  FindTravelMate Backend Entrypoint"
+    print_info "  FinuoTravel Backend Entrypoint"
     print_info "========================================"
 
     # Validate required env vars

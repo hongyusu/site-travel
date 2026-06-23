@@ -15,7 +15,7 @@ export default function PrivacyPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Introduction</h2>
               <p className="text-gray-700 mb-4">
-                FindTravelMate ("we," "our," or "us") is committed to protecting your privacy. This Privacy
+                FinuoTravel ("we," "our," or "us") is committed to protecting your privacy. This Privacy
                 Policy explains how we collect, use, disclose, and safeguard your information when you use our platform.
               </p>
             </section>
@@ -89,7 +89,7 @@ export default function PrivacyPage() {
                 <li>Withdraw consent at any time</li>
               </ul>
               <p className="text-gray-700 mt-4">
-                To exercise these rights, please contact us at privacy@findtravelmate.com
+                To exercise these rights, please contact us at privacy@finuo.fi
               </p>
             </section>
 
@@ -123,7 +123,7 @@ export default function PrivacyPage() {
                 If you have questions about this Privacy Policy, please contact us at:
               </p>
               <p className="text-gray-700">
-                Email: privacy@findtravelmate.com<br />
+                Email: privacy@finuo.fi<br />
                 Address: 123 Market Street, San Francisco, CA 94103
               </p>
             </section>

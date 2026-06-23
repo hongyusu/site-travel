@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Quick verification script to check current status of FindTravelMate platform
+Quick verification script to check current status of FinuoTravel platform
 """
 
 import os
@@ -18,7 +18,7 @@ def count_files(pattern):
     return len(list(Path('.').glob(pattern)))
 
 def main():
-    print("FindTravelMate - Platform Status Verification")
+    print("FinuoTravel - Platform Status Verification")
     print("=" * 50)
     print(f"Run Date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
     print()

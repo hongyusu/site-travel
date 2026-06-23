@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Database Restoration Script for FindTravelMate
+Database Restoration Script for FinuoTravel
 
 Restores a PostgreSQL database backup to the target database.
 Based on the successful AWS deployment experience (November 2025).
@@ -281,14 +281,14 @@ def restore_database_main(backup_file_path, aws_mode=False):
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Restore FindTravelMate database from backup')
+    parser = argparse.ArgumentParser(description='Restore FinuoTravel database from backup')
     parser.add_argument('backup_file', nargs='?', help='Backup file to restore')
     parser.add_argument('--list', action='store_true', help='List available backup files')
     parser.add_argument('--aws', action='store_true', help='AWS deployment mode (provides AWS-specific guidance)')
     
     args = parser.parse_args()
     
-    print("🚀 FindTravelMate Database Restoration")
+    print("🚀 FinuoTravel Database Restoration")
     print("=" * 45)
     
     if args.list:

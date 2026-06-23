@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Plus, Edit, Trash2, Eye, TrendingUp, Calendar, DollarSign, ToggleLeft, ToggleRight, List, CalendarDays } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, TrendingUp, Calendar, DollarSign, ToggleLeft, ToggleRight, List, CalendarDays, CheckCircle, XCircle } from 'lucide-react';
 import { api, apiClient } from '@/lib/api';
 import BookingCalendar from '@/components/vendor/BookingCalendar';
 import BookingDetailsModal from '@/components/vendor/BookingDetailsModal';
@@ -116,6 +116,18 @@ export default function VendorDashboardPage() {
       ));
     } catch (error) {
       console.error('Error toggling activity status:', error);
+      alert(getTranslation('vendor.toggle_failed'));
+    }
+  };
+
+  const handleToggleAvailability = async (id: number) => {
+    try {
+      const response = await apiClient.activities.toggleAvailability(id);
+      setActivities(activities.map(a =>
+        a.id === id ? { ...a, is_available: response.data.is_available } : a
+      ));
+    } catch (error) {
+      console.error('Error toggling activity availability:', error);
       alert(getTranslation('vendor.toggle_failed'));
     }
   };
@@ -344,6 +356,13 @@ export default function VendorDashboardPage() {
                             title={activity.is_active ? 'Deactivate' : 'Activate'}
                           >
                             {activity.is_active ? <ToggleRight className="w-5 h-5" /> : <ToggleLeft className="w-5 h-5" />}
+                          </button>
+                          <button
+                            onClick={() => handleToggleAvailability(activity.id)}
+                            className={activity.is_available ? 'text-green-600 hover:text-green-900' : 'text-red-600 hover:text-red-900'}
+                            title={activity.is_available ? 'Mark unavailable' : 'Mark available'}
+                          >
+                            {activity.is_available ? <CheckCircle className="w-5 h-5" /> : <XCircle className="w-5 h-5" />}
                           </button>
                           <Link
                             href={`/vendor/activities/${activity.id}/edit`}

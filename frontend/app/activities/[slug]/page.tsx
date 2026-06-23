@@ -177,6 +177,15 @@ export default function ActivityDetailsPage() {
 
                   {/* Badges */}
                   <div className="flex flex-wrap gap-2">
+                    {activity.is_available === false ? (
+                      <span className="badge bg-red-100 text-red-800 font-semibold">
+                        {getTranslation('badge.unavailable')}
+                      </span>
+                    ) : activity.is_available === true && (
+                      <span className="badge bg-green-100 text-green-800 font-semibold">
+                        {getTranslation('badge.available')}
+                      </span>
+                    )}
                     {activity.is_bestseller && (
                       <span className="badge bg-orange-100 text-orange-800 font-semibold">
                         <Award className="w-3 h-3 mr-1" />

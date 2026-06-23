@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { Package, ToggleLeft, ToggleRight, Trash2, ArrowLeft } from 'lucide-react';
+import { Package, ToggleLeft, ToggleRight, Trash2, ArrowLeft, CheckCircle, XCircle } from 'lucide-react';
 import { apiClient } from '@/lib/api';
 
 export default function AdminActivitiesPage() {
@@ -53,6 +53,18 @@ export default function AdminActivitiesPage() {
     } catch (error) {
       console.error('Error toggling activity status:', error);
       alert('Failed to toggle activity status');
+    }
+  };
+
+  const handleToggleAvailability = async (activityId: number) => {
+    try {
+      const response = await apiClient.admin.toggleActivityAvailability(activityId);
+      setActivities(activities.map(a =>
+        a.id === activityId ? { ...a, is_available: response.data.data.is_available } : a
+      ));
+    } catch (error) {
+      console.error('Error toggling activity availability:', error);
+      alert('Failed to toggle activity availability');
     }
   };
 
@@ -163,6 +175,9 @@ export default function AdminActivitiesPage() {
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Status
                       </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Availability
+                      </th>
                       <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Actions
                       </th>
@@ -202,6 +217,15 @@ export default function AdminActivitiesPage() {
                             {activity.is_active ? 'Active' : 'Inactive'}
                           </span>
                         </td>
+                        <td className="px-6 py-4">
+                          <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                            activity.is_available
+                              ? 'bg-green-100 text-green-800'
+                              : 'bg-red-100 text-red-800'
+                          }`}>
+                            {activity.is_available ? 'Available' : 'Unavailable'}
+                          </span>
+                        </td>
                         <td className="px-6 py-4 text-right">
                           <div className="flex justify-end space-x-2">
                             <button
@@ -210,6 +234,13 @@ export default function AdminActivitiesPage() {
                               title={activity.is_active ? 'Deactivate' : 'Activate'}
                             >
                               {activity.is_active ? <ToggleRight className="w-5 h-5" /> : <ToggleLeft className="w-5 h-5" />}
+                            </button>
+                            <button
+                              onClick={() => handleToggleAvailability(activity.id)}
+                              className={activity.is_available ? 'text-green-600 hover:text-green-900' : 'text-red-600 hover:text-red-900'}
+                              title={activity.is_available ? 'Mark unavailable' : 'Mark available'}
+                            >
+                              {activity.is_available ? <CheckCircle className="w-5 h-5" /> : <XCircle className="w-5 h-5" />}
                             </button>
                             <button
                               onClick={() => handleDelete(activity.id)}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Deployment Verification Script for FindTravelMate
+Deployment Verification Script for FinuoTravel
 
 Verifies that both local and AWS deployments are working correctly.
 Based on the successful deployment experience (November 2025).
@@ -136,7 +136,7 @@ def test_frontend(base_url, description):
     
     try:
         response = requests.get(base_url, timeout=10)
-        if response.status_code == 200 and 'FindTravelMate' in response.text:
+        if response.status_code == 200 and 'FinuoTravel' in response.text:
             print_success(f"{description} frontend is accessible")
             return True
         else:
@@ -273,7 +273,7 @@ def compare_deployments():
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Verify FindTravelMate deployment')
+    parser = argparse.ArgumentParser(description='Verify FinuoTravel deployment')
     parser.add_argument('--local', action='store_true', help='Verify local deployment')
     parser.add_argument('--aws', action='store_true', help='Verify AWS deployment')
     parser.add_argument('--compare', action='store_true', help='Compare local vs AWS')
