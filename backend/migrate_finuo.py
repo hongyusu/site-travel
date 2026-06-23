@@ -96,7 +96,7 @@ def main() -> None:
             print(f"  {r.company_name:<45} {r.available}/{r.total} available")
 
         admin = conn.execute(
-            text("SELECT email FROM users WHERE role = 'admin' ORDER BY id")
+            text("SELECT email FROM users WHERE CAST(role AS TEXT) ILIKE 'admin' ORDER BY id")
         ).fetchall()
         print("\nAdmin account email(s):")
         for a in admin:
