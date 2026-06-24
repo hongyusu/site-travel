@@ -1392,8 +1392,8 @@
   ],
   "title_en": "France-Switzerland-Italy 8-Day Tour: Paris to Rome One-Way Deep Route",
   "title_zh": "法瑞意8天跟团游：巴黎至罗马单程深度路线",
-  "short_en": "8-day Paris-to-Rome escorted journey through all four Swiss language regions and Italy's Renaissance cities, with flights, rail, 4-star city hotels and taxes all included.",
-  "short_zh": "8天巴黎至罗马单程跟团游，纵贯瑞士四大语区与意大利文艺复兴名城，机票、火车、市区四星酒店及税费全含。",
+  "short_en": "8-day Paris-to-Rome escorted journey through all four Swiss language regions and Italy's Renaissance cities, with intercity rail, 4-star city hotels and taxes all included.",
+  "short_zh": "8天巴黎至罗马单程跟团游，纵贯瑞士四大语区与意大利文艺复兴名城，城际火车、市区四星酒店及税费全含。",
   "desc_en": "This 8-day one-way escorted tour runs deep from Paris to Rome, cutting coach mileage by entering and exiting at two different cities. From Lake Geneva and the Jungfrau region to Lucerne, Zurich, Milan, Venice, Florence, the Cinque Terre, Pisa and the medieval hill towns of Siena and Pienza, you traverse all four Swiss language regions and tour one Italian city a day. Hand-picked city-centre 4-star hotels keep sightseeing efficient, and all taxes are included with no hidden fees.",
   "desc_zh": "这条8天单程跟团线路从巴黎一路深度玩到罗马，两点进出大幅缩短大巴行车里程。行程从日内瓦湖与少女峰地区，延伸至卢塞恩、苏黎世、米兰、威尼斯、佛罗伦萨、五渔村、比萨，以及锡耶纳与皮恩扎等中世纪山城，纵贯瑞士四大语区，并在意大利每天游览一座城市。精选市中心四星酒店提升游览效率，各项税费全含、绝无隐藏费用。",
   "highlights": [
@@ -1426,14 +1426,14 @@
     "zh": "景观列车游五渔村悬崖渔村、比萨斜塔与锡耶纳古城"
    },
    {
-    "en": "Brand promise: flights & rail included, city-centre 4-star hotels, one-way deep route, no forced shopping, all-inclusive pricing",
-    "zh": "品牌承诺：机票火车全含、市中心四星酒店、单程深度路线、无强制购物、税费全含一价全包"
+    "en": "Brand promise: intercity rail included, city-centre 4-star hotels, one-way deep route, no forced shopping, all-inclusive pricing",
+    "zh": "品牌承诺：城际火车全含、市中心四星酒店、单程深度路线、无强制购物、税费全含一价全包"
    }
   ],
   "includes": [
    {
-    "en": "Round-trip international flights and intercity rail as scheduled",
-    "zh": "往返国际机票及行程内城际火车"
+    "en": "Intercity rail as scheduled (e.g. the Cinque Terre scenic train)",
+    "zh": "行程内城际火车（如五渔村景观列车）"
    },
    {
     "en": "City-centre 4-star hotels (or equivalent) throughout",
@@ -1465,6 +1465,10 @@
    }
   ],
   "excludes": [
+   {
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
+   },
    {
     "en": "Visa fees and travel insurance",
     "zh": "签证费及旅游保险"
@@ -2038,8 +2042,8 @@
   ],
   "title_en": "France, Switzerland & Italy 10-Day Group Tour (Paris to Rome)",
   "title_zh": "法瑞意10天跟团游（巴黎-罗马单程深度路线）",
-  "short_en": "A 10-day one-way journey from Paris to Rome through the Louvre, Swiss lakes and the Italian Renaissance, with flights, rail and 4-star hotels included.",
-  "short_zh": "10天单程深度游，从巴黎一路畅游到罗马，跨越卢浮宫、瑞士湖光山色与意大利文艺复兴名城，含机票、火车及四星酒店。",
+  "short_en": "A 10-day one-way journey from Paris to Rome through the Louvre, Swiss lakes and the Italian Renaissance, travelling by coach and scenic rail with 4-star hotels included.",
+  "short_zh": "10天单程深度游，从巴黎一路畅游到罗马，跨越卢浮宫、瑞士湖光山色与意大利文艺复兴名城，全程大巴与景观火车，含四星酒店。",
   "desc_en": "This 10-day one-way tour traces a deep route from Paris across the Swiss lakes and Alps and down through Italy's great art cities to Rome, minimising coach mileage so you spend more time sightseeing and less time driving. You begin with two days in Paris (Louvre, Versailles, Seine cruise), cross Switzerland's four language regions via Geneva, Interlaken, Lucerne and Zurich, then explore a different Italian city each day: Milan, Venice, Florence, the Cinque Terre, Pisa, Siena and the Val d'Orcia. A French national-museum lecturer gives in-depth commentary on royal history and the Impressionists, and pricing is fully inclusive with no hidden fees.",
   "desc_zh": "10天单程深度行程，从巴黎出发横穿瑞士湖区与阿尔卑斯山脉，再纵贯意大利艺术名城直抵罗马，单程设计大幅降低大巴行车里程，让您把时间留给游览而非赶路。行程先在巴黎深度两日（卢浮宫、凡尔赛宫、塞纳河游船），随后贯穿瑞士四大语区——日内瓦、因特拉肯、卢塞恩、苏黎世，进入意大利后每天一座城市：米兰、威尼斯、佛罗伦萨、五渔村、比萨、锡耶纳与奥尔恰山谷。由法兰西国家博物馆讲解师深度讲解皇室正史与印象派名作，各项税费一价全含，绝无隐藏费用。",
   "highlights": [
@@ -2064,7 +2068,7 @@
     "zh": "意大利每天一城：米兰、威尼斯、佛罗伦萨、比萨、锡耶纳"
    },
    {
-    "en": "Scenic train along the Ligurian coast to the cliffside Cinque Verre fishing villages",
+    "en": "Scenic train along the Ligurian coast to the cliffside Cinque Terre fishing villages",
     "zh": "乘景观列车沿利古里亚海岸游览悬崖渔村五渔村"
    },
    {
@@ -2072,8 +2076,8 @@
     "zh": "托斯卡纳奥尔恰山谷与中世纪古城皮恩扎，伴您抵达罗马"
    },
    {
-    "en": "Flights & intercity rail included, city-centre 4-star hotels, all taxes, no forced shopping",
-    "zh": "含机票与城际火车、市中心四星酒店、税费全含、绝无强制购物"
+    "en": "Intercity rail and coach transfers included, city-centre 4-star hotels, all taxes, no forced shopping",
+    "zh": "含城际火车与大巴交通、市中心四星酒店、税费全含、绝无强制购物"
    }
   ],
   "includes": [
@@ -2090,8 +2094,8 @@
     "zh": "全程持证中文导游兼司机"
    },
    {
-    "en": "Intercity transport including flights and rail as per itinerary",
-    "zh": "行程内城际交通，含机票及火车"
+    "en": "Intercity transport by coach and rail as per itinerary",
+    "zh": "行程内城际交通，含大巴及火车"
    },
    {
     "en": "French national-museum lecturer for the in-depth Louvre commentary",
@@ -2108,7 +2112,7 @@
   ],
   "excludes": [
    {
-    "en": "International flights to/from Europe",
+    "en": "International round-trip flights to/from Europe",
     "zh": "往返欧洲的国际机票"
    },
    {
@@ -3274,8 +3278,8 @@
     "zh": "文艺复兴之都佛罗伦萨与意大利艺术名城"
    },
    {
-    "en": "One-way deep route with no backtracking; round-trip flights and intercity rail included",
-    "zh": "单程深度路线不走回头路，含往返机票与城际列车"
+    "en": "One-way deep route with no backtracking, travelling by private coach with scenic rail segments included",
+    "zh": "单程深度路线不走回头路，全程专属大巴并含沿途观光列车段"
    },
    {
     "en": "All-inclusive pricing, city-centre 4-star hotels plus two 5-star stays, no forced shopping",
@@ -3314,8 +3318,12 @@
   ],
   "excludes": [
    {
-    "en": "International flights and personal passport fees",
-    "zh": "国际机票及个人护照费用"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
+   },
+   {
+    "en": "Personal passport fees",
+    "zh": "个人护照费用"
    },
    {
     "en": "Tourist/visa fees for the countries on the itinerary",
@@ -5048,8 +5056,8 @@
   ],
   "title_en": "France-Italy-Switzerland 11-Day Small-Group Tour (Rome to Paris)",
   "title_zh": "法意瑞11天小团游（罗马出发，巴黎结束）",
-  "short_en": "An 11-day one-way journey from Rome to Paris through Italy's Renaissance cities, the Swiss Alps and Jungfrau, French wine country and Paris - flights, scenic rail and attractions all included.",
-  "short_zh": "11天单程深度游，从罗马一路畅游至巴黎，遍览意大利文艺复兴名城、瑞士阿尔卑斯少女峰、法国勃艮第酒乡与巴黎，机票、观光列车与景点门票一价全含。",
+  "short_en": "An 11-day one-way journey from Rome to Paris through Italy's Renaissance cities, the Swiss Alps and Jungfrau, French wine country and Paris - scenic rail and attractions all included.",
+  "short_zh": "11天单程深度游，从罗马一路畅游至巴黎，遍览意大利文艺复兴名城、瑞士阿尔卑斯少女峰、法国勃艮第酒乡与巴黎，观光列车与景点门票一价全含。",
   "desc_en": "This 11-day small-group tour traces a single deep route from Rome to Paris across three countries, never doubling back. In Italy you explore Eternal-City Rome, Renaissance Florence, the cliff-side Cinque Terre, romantic Venice and fashionable Milan; in Switzerland you ride the GoldenPass scenic train through Lucerne and Interlaken and ascend the Jungfrau to the Sphinx observatory; in France you visit fairytale Colmar, a Burgundy chateau and vineyard, Versailles, the Seine and the Louvre. Highlights include two nights at a five-star Tuscan spa hotel, a Burgundy castle stay, the GoldenPass railway, the Jungfrau cable-car pass and a wine-estate tasting - all bundled into one all-inclusive price.",
   "desc_zh": "11天精品小团沿罗马至巴黎的单程深度路线，横跨意大利、瑞士、法国三国，全程不走回头路。意大利段游览永恒之城罗马、文艺复兴发源地佛罗伦萨、悬崖上的五渔村、浪漫水城威尼斯与时尚之都米兰；瑞士段乘坐金色山口观光列车穿越卢塞恩与因特拉肯，登顶少女峰斯芬克斯观景台；法国段探访童话小镇科尔马、勃艮第古堡与酒庄、凡尔赛宫、塞纳河与卢浮宫。行程亮点包括托斯卡纳五星SPA酒店连住两晚、勃艮第中世纪古堡酒店、金色山口列车、少女峰缆车套票及酒庄品酒，全部一价全含。",
   "highlights": [
@@ -5078,8 +5086,8 @@
     "zh": "凡尔赛宫、塞纳河游船与卢浮宫，含官方导览门票"
    },
    {
-    "en": "Round-trip flights and intercity scenic rail included; central 4-star (and 5-star Tuscan) hotels",
-    "zh": "含往返机票与城际观光列车；市中心四星酒店（含托斯卡纳五星）"
+    "en": "Intercity scenic rail included; central 4-star (and 5-star Tuscan) hotels",
+    "zh": "含城际观光列车；市中心四星酒店（含托斯卡纳五星）"
    },
    {
     "en": "All attractions included, no forced shopping, one-way deep route, all-inclusive pricing",
@@ -5118,8 +5126,12 @@
   ],
   "excludes": [
    {
-    "en": "International flights and personal passport fees",
-    "zh": "国际段机票及个人护照费用"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
+   },
+   {
+    "en": "Personal passport fees",
+    "zh": "个人护照费用"
    },
    {
     "en": "Tourist/Schengen visa fees for the countries visited",
@@ -5629,7 +5641,7 @@
     "day": 4,
     "title_en": "Milan → Venice",
     "title_zh": "米兰 → 威尼斯",
-    "description_en": "See Milan's Sforza Castle (exterior), the landmark Duomo (exterior) and the elegant Galleria Vittorio Emanuele II shopping arcade, then travel on to Venice in the afternoon. Overnight at the Venice voco / Hilton Garden Inn, or a similar 4-star hotel.",
+    "description_en": "See Milan's Sforza Castle (exterior), the landmark Duomo (exterior) and the elegant Galleria Vittorio Emanuele II shopping arcade, then travel on to Venice in the afternoon. Overnight at the Venice voco or Hilton Ambassador, or a similar 4-star hotel.",
     "description_zh": "上午参观米兰斯福尔扎古堡（外观）、地标米兰大教堂（外观）与华丽的埃马努埃莱二世拱廊，下午出发前往威尼斯。夜宿威尼斯洲际voco或希尔顿大使或同等4星级酒店。",
     "image_url": "/media/girafe/28/03.jpg"
    },
@@ -8452,8 +8464,8 @@
   ],
   "title_en": "France, Italy & Switzerland 10-Day One-Way Tour (Rome to Paris)",
   "title_zh": "法意瑞10天跟团游（罗马至巴黎单程深度线）",
-  "short_en": "A 10-day one-way escorted journey from Rome to Paris through Tuscany, the Italian lakes, the Swiss Alps and the French capital — flights, rail and 4-star hotels all included.",
-  "short_zh": "10天单程跟团之旅，从罗马一路深玩至巴黎，纵贯托斯卡纳、意大利名城、瑞士阿尔卑斯与法兰西首都，机票、列车与四星酒店一价全含。",
+  "short_en": "A 10-day one-way escorted journey from Rome to Paris through Tuscany, the Italian lakes, the Swiss Alps and the French capital — travelling by coach and scenic rail, with 4-star hotels all included.",
+  "short_zh": "10天单程跟团之旅，从罗马一路深玩至巴黎，纵贯托斯卡纳、意大利名城、瑞士阿尔卑斯与法兰西首都，全程大巴与景观列车出行，四星酒店一价全含。",
   "desc_en": "This 10-day one-way tour traces a deep route from Rome to Paris, crossing Italy, Switzerland and France without backtracking. You roam the medieval art towns of Tuscany — Pienza, Siena, Pisa and Florence — ride the scenic train through the cliffside fishing villages of Cinque Terre, drift through romantic Venice, then climb into the Swiss Alps via Zurich, Lucerne, Interlaken and the Jungfrau region around Lake Thun and Lake Brienz. The journey ends in Paris with an in-depth Louvre tour led by a French national museum guide, a Seine river cruise, and a visit to the Palace of Versailles. With one city explored each day in Italy, all four Swiss language regions crossed, branded 4-star hotels and all taxes included, it is an efficient, all-inclusive grand tour of three countries.",
   "desc_zh": "这条10天单程线路从罗马深度玩到巴黎，贯穿意大利、瑞士与法国，全程不走回头路。你将漫游托斯卡纳的中世纪艺术古城——皮恩扎、锡耶纳、比萨与佛罗伦萨，乘景观列车探访悬崖上的五渔村，畅游浪漫水城威尼斯，再翻越阿尔卑斯山进入瑞士，途经苏黎世、卢塞恩、因特拉肯及图恩湖与布里恩茨湖之间的少女峰地区。旅程在巴黎收尾，由法兰西国家博物馆讲解师带领深度参观卢浮宫，乘塞纳河游船，并游览凡尔赛宫。意大利每天一城、瑞士四大语区贯穿、品牌四星酒店加税费全含，是一趟高效又省心的三国深度大环线。",
   "highlights": [
@@ -8522,8 +8534,8 @@
   ],
   "excludes": [
    {
-    "en": "International and intercontinental flights",
-    "zh": "国际及洲际往返机票"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
    },
    {
     "en": "Visa fees",
@@ -9129,8 +9141,8 @@
   ],
   "title_en": "Classic Italy in 6 Days: Rome to Milan One-Way Deep Tour",
   "title_zh": "意大利经典6天深度游：罗马至米兰单程之旅",
-  "short_en": "A 6-day one-way journey from Rome to Milan through Tuscany, Cinque Terre, Florence and Venice, with flights, rail and city-centre 4-star hotels included.",
-  "short_zh": "6天单程深度游，从罗马一路向北穿越托斯卡纳、五渔村、佛罗伦萨与威尼斯直抵米兰，含机票、列车与市中心四星酒店。",
+  "short_en": "A 6-day one-way journey from Rome to Milan through Tuscany, Cinque Terre, Florence and Venice, travelling by coach and scenic rail with city-centre 4-star hotels included.",
+  "short_zh": "6天单程深度游，从罗马一路向北穿越托斯卡纳、五渔村、佛罗伦萨与威尼斯直抵米兰，全程巴士搭配景观列车，含市中心四星酒店。",
   "desc_en": "This 6-day small-group tour traces Italy from south to north without backtracking, starting in the Eternal City of Rome and ending in fashion-capital Milan. Walk the ancient heart of Rome, photograph the cypress lanes of the Val d'Orcia and medieval Siena, ride the scenic train through the cliffside fishing villages of Cinque Terre, and immerse yourself in Renaissance Florence and romantic, canal-laced Venice. With intercity transport, listed attractions, daily breakfast and central 4-star hotels all included, it is a relaxed yet richly detailed introduction to classic Italy.",
   "desc_zh": "这条6天精品小团行程自南向北贯穿意大利、全程不走回头路，从永恒之城罗马出发，到时尚之都米兰结束。漫步古罗马城区，在奥尔恰谷的丝柏小径与中世纪古城锡耶纳取景，乘景观列车游览悬崖渔村五渔村，再沉浸于文艺复兴名城佛罗伦萨与碧波荡漾的水城威尼斯。城际交通、列出景点、每日早餐及市中心四星酒店全部包含，是一次轻松而细致深入的意大利经典之旅。",
   "highlights": [
@@ -9155,8 +9167,8 @@
     "zh": "罗马至米兰单程深度路线，不走回头路"
    },
    {
-    "en": "Flights and intercity rail included; central 4-star hotels every night",
-    "zh": "含机票及城际列车；每晚入住市中心四星酒店"
+    "en": "Intercity coach transfers and scenic rail included; central 4-star hotels every night",
+    "zh": "含城际巴士接送及景观列车；每晚入住市中心四星酒店"
    },
    {
     "en": "All listed attractions included, with no forced shopping stops",
@@ -9199,8 +9211,8 @@
   ],
   "excludes": [
    {
-    "en": "International flights",
-    "zh": "国际往返机票"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
    },
    {
     "en": "Personal passport fees",
@@ -10330,8 +10342,8 @@
   ],
   "title_en": "Italy in Depth: Dolomites, Puglia & the Amalfi Coast — 9-Day Small-Group Tour (Milan to Rome)",
   "title_zh": "意大利深度9天精品小团：多洛米蒂、普利亚与阿马尔菲海岸（米兰进 罗马出）",
-  "short_en": "A 9-day one-way journey down Italy from the Dolomite peaks to Venice, Puglia's trulli, the Amalfi Coast and ancient Rome — flights, rail and 4-star hotels all included.",
-  "short_zh": "9天单程纵贯意大利：从多洛米蒂雪峰到水城威尼斯，再到普利亚蘑菇屋、阿马尔菲海岸与永恒之城罗马，机票、交通与四星酒店全含。",
+  "short_en": "A 9-day one-way journey down Italy from the Dolomite peaks to Venice, Puglia's trulli, the Amalfi Coast and ancient Rome — private coach transport and 4-star hotels all included.",
+  "short_zh": "9天单程纵贯意大利：从多洛米蒂雪峰到水城威尼斯，再到普利亚蘑菇屋、阿马尔菲海岸与永恒之城罗马，全程旅游巴士与四星酒店全含。",
   "desc_en": "This 9-day small-group tour traces Italy from north to south, weaving together mountains, sea and centuries of history. Begin in fashionable Milan and the Alpine peaks of the Dolomites, glide through romantic Venice, then head down the Adriatic to Puglia's fairy-tale trulli of Alberobello and the ancient cave city of Matera. The journey climaxes along the Amalfi Coast at Positano, Capri's Blue Grotto and the buried city of Pompeii, before finishing in eternal Rome. With city-centre 4-star hotels, a licensed Chinese-speaking guide and key attractions included, it is an unhurried, all-inclusive way to see Italy's classic and lesser-known gems.",
   "desc_zh": "这趟9天精品小团从北到南纵贯意大利，将雪山、海岸与千年历史串联成一线。从时尚之都米兰与阿尔卑斯山脚下的多洛米蒂峰群出发，途经浪漫水城威尼斯，沿亚得里亚海南下，探访普利亚大区童话般的阿尔贝罗贝洛蘑菇屋与千年石头古城马泰拉。行程在阿马尔菲海岸的波西塔诺、卡普里岛蓝洞与火山掩埋的庞贝古城达到高潮，最终抵达永恒之城罗马。全程精选市中心四星酒店、专业中文导游、主要景点门票全含，是一种从容、一价全含的深度玩法，兼顾经典与小众风光。",
   "highlights": [
@@ -10400,8 +10412,12 @@
   ],
   "excludes": [
    {
-    "en": "International flights and personal passport fees",
-    "zh": "国际段机票及个人护照费用"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
+   },
+   {
+    "en": "Personal passport fees",
+    "zh": "个人护照费用"
    },
    {
     "en": "Tourist visa fees for the countries on the itinerary",
@@ -10848,8 +10864,8 @@
     "zh": "阿格里真托神殿之谷与历史名城巴勒莫"
    },
    {
-    "en": "Round-trip flights and ferry crossing included; one-way deep route saves driving time",
-    "zh": "含往返机票与跨海渡轮，单程深度路线节省行车时间"
+    "en": "Ferry crossing to Sicily included; one-way deep route saves driving time",
+    "zh": "含跨海渡轮登陆西西里，单程深度路线节省行车时间"
    },
    {
     "en": "City-centre and seaside four-star hotels with no forced shopping stops",
@@ -10888,8 +10904,8 @@
   ],
   "excludes": [
    {
-    "en": "International flights to/from Europe",
-    "zh": "国际往返机票"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
    },
    {
     "en": "Passport fees and tourist visa fees",
@@ -13344,8 +13360,8 @@
     "zh": "走进安徒生童话故乡欧登塞与菲英村，重温19世纪丹麦乡村生活"
    },
    {
-    "en": "International flight & scenic rail included, with city-centre 4-star hotels and fjord-view stays",
-    "zh": "含内陆机票与观光火车，入住市区四星级酒店及峡湾特色景观酒店"
+    "en": "Internal/domestic flight sector & scenic rail included, with city-centre 4-star hotels and fjord-view stays",
+    "zh": "含内陆段航班与观光火车，入住市区四星级酒店及峡湾特色景观酒店"
    },
    {
     "en": "All-inclusive one-way deep route with listed attractions, no forced shopping",
@@ -13354,8 +13370,8 @@
   ],
   "includes": [
    {
-    "en": "Domestic taxed flight (Copenhagen–Trondheim on Line A, or Trondheim–Copenhagen on Line B)",
-    "zh": "内陆含税机票（A线哥本哈根-特隆赫姆，或B线特隆赫姆-哥本哈根）"
+    "en": "Domestic taxed flight sector within the tour (Copenhagen–Trondheim on Line A, or Trondheim–Copenhagen on Line B)",
+    "zh": "行程内的内陆段含税机票（A线哥本哈根-特隆赫姆，或B线特隆赫姆-哥本哈根）"
    },
    {
     "en": "10 nights' hotels: 8 nights 4-star plus 2 nights fjord-view feature hotels",
@@ -13388,8 +13404,8 @@
   ],
   "excludes": [
    {
-    "en": "International flights to/from Scandinavia",
-    "zh": "往返斯堪的纳维亚的国际机票"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
    },
    {
     "en": "Personal passport and visa fees",
@@ -13993,8 +14009,8 @@
   ],
   "title_en": "Nordic Three-Country Fjord Tour: Norway, Sweden & Denmark, 13 Days",
   "title_zh": "北欧三国峡湾13天跟团游：挪威·瑞典·丹麦",
-  "short_en": "A 13-day Scandinavian loop from Stockholm through Norway's grand fjords to Sweden and Denmark, with flights, scenic rail and ferries all included.",
-  "short_zh": "13天斯堪的纳维亚环线，从斯德哥尔摩深入挪威壮丽峡湾，再到瑞典与丹麦，含机票、景观火车与渡轮全包。",
+  "short_en": "A 13-day Scandinavian loop from Stockholm through Norway's grand fjords to Sweden and Denmark, with one domestic flight, scenic rail and ferries included.",
+  "short_zh": "13天斯堪的纳维亚环线，从斯德哥尔摩深入挪威壮丽峡湾，再到瑞典与丹麦，含一段内陆航班、景观火车与渡轮。",
   "desc_en": "This 13-day small-group journey loops out of Stockholm and into the heart of Scandinavia, pairing Norway's four great fjords with the capitals and coastal towns of three countries. You fly to the Viking city of Trondheim, drive the legendary Atlantic Road, cruise the Geirangerfjord, walk to the Briksdal glacier, ride the world-famous Flåm Railway into Bergen, and hike to the cliff-top Preikestolen above Lysefjord. The route then winds through Oslo's art and architecture, the harbour cities of Gothenburg and Aalborg, Andersen's fairy-tale Odense, design-capital Copenhagen and Malmö before returning to Stockholm. With city-centre 4-star hotels, fjord-view lodges, included attractions and a one-way deep route, it captures both the wild beauty of the fjords and the slow living of the North.",
   "desc_zh": "这趟13天精品小团从斯德哥尔摩出发，深入斯堪的纳维亚腹地，把挪威四大峡湾与三国首都及海港小镇串联成一条环线。您将飞往维京古城特隆赫姆，驾行传奇的大西洋之路，乘船巡游盖朗厄尔峡湾，徒步布里克斯达尔冰川，搭乘举世闻名的弗洛姆高山火车进入卑尔根，并登上吕瑟峡湾之上的布道石。随后途经奥斯陆的艺术与建筑、海港城市哥德堡与奥尔堡、安徒生童话故乡欧登塞、设计之都哥本哈根与马尔默，最终返回斯德哥尔摩。市中心四星级酒店、峡湾景观酒店、含门票、单程深度环线，让您一次领略峡湾的磅礴之美与北欧的慢生活。",
   "highlights": [
@@ -14019,8 +14035,8 @@
     "zh": "乘精灵车前往布里克斯达尔冰川，并探访安徒生故乡欧登塞"
    },
    {
-    "en": "Three capitals and four great fjords on one deep one-way route, flights & scenic rail included",
-    "zh": "三国首都＋四大峡湾，单程深度环线，含机票与景观火车"
+    "en": "Three capitals and four great fjords on one deep one-way route, internal flight & scenic rail included",
+    "zh": "三国首都＋四大峡湾，单程深度环线，含内陆段航班与景观火车"
    },
    {
     "en": "City-centre brand-name 4-star hotels plus 2 nights in fjord-view lodges, more sightseeing time",
@@ -14033,8 +14049,8 @@
   ],
   "includes": [
    {
-    "en": "Domestic taxed flight Stockholm–Trondheim (A-route) or Trondheim–Stockholm (B-route)",
-    "zh": "斯德哥尔摩-特隆赫姆（A线）或特隆赫姆-斯德哥尔摩（B线）内陆含税机票"
+    "en": "Internal taxed flight Stockholm–Trondheim (A-route) or Trondheim–Stockholm (B-route)",
+    "zh": "斯德哥尔摩-特隆赫姆（A线）或特隆赫姆-斯德哥尔摩（B线）内陆段含税机票"
    },
    {
     "en": "12 nights' hotels: 10 nights 4-star city hotels plus 2 nights fjord-view lodges",
@@ -14067,8 +14083,8 @@
   ],
   "excludes": [
    {
-    "en": "International flights to/from Scandinavia",
-    "zh": "往返斯堪的纳维亚的国际机票"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
    },
    {
     "en": "Schengen visa fees and assistance",
@@ -15346,8 +15362,8 @@
   ],
   "title_en": "Norway Lofoten & Arctic Fjords: 6-Day Small-Group Tour (Oslo–Tromsø)",
   "title_zh": "挪威罗弗敦群岛与北极峡湾6天小团游（奥斯陆—特罗姆瑟）",
-  "short_en": "A 6-day one-way Arctic adventure through Lofoten's fishing villages, Senja's wild coast, Narvik's fjords and Tromsø, with domestic flights, whale watching and city-centre hotels included.",
-  "short_zh": "6天单程北极深度之旅，畅游罗弗敦渔村、塞尼亚野性海岸、纳尔维克峡湾与特罗姆瑟，含往返内陆机票、出海观鲸及市中心酒店。",
+  "short_en": "A 6-day one-way Arctic adventure through Lofoten's fishing villages, Senja's wild coast, Narvik's fjords and Tromsø, with domestic flight legs, whale watching and city-centre hotels included.",
+  "short_zh": "6天单程北极深度之旅，畅游罗弗敦渔村、塞尼亚野性海岸、纳尔维克峡湾与特罗姆瑟，含两段内陆航班、出海观鲸及市中心酒店。",
   "desc_en": "This 6-day small-group journey runs one-way through Arctic Norway, from Oslo via a flight to Evenes, then deep into the Lofoten archipelago, on through Narvik, the dramatic Senja island loop and finally Tromsø. You will photograph the iconic red-and-yellow fishing houses of Reine and Hamnøy, drive the scenic 'King Olav V Road' linking the islands, watch sea eagles and seals from a boat, and end with a winter whale-watching cruise on the Arctic Ocean. Highlights include two nights in traditional five-star fishing-village water cabins, a panoramic glass-house stay overlooking Narvik's fjord, and the famous 'blue hour' over Tromsø. International flights are excluded, but the two domestic flight legs, all hotels, and listed activities are included.",
   "desc_zh": "这是一趟单程的6天北极挪威小团之旅，从奥斯陆飞往埃沃内斯，深入罗弗敦群岛，再经纳尔维克、壮丽的塞尼亚环岛之旅，最终抵达特罗姆瑟。您将拍摄雷纳与哈姆诺伊标志性的红黄渔屋，行驶贯穿群岛的“奥拉夫五世国王之路”，乘船观赏海鹰与海豹栖息地，并以一场北冰洋冬季出海观鲸结束旅程。亮点包括两晚传统五星级渔村水上木屋、俯瞰纳尔维克峡湾的全景玻璃屋，以及著名的特罗姆瑟“蓝调时刻”。行程不含国际段机票，但包含两段内陆机票、全程酒店及所列活动。",
   "highlights": [
@@ -15372,8 +15388,8 @@
     "zh": "两晚传统五星级渔村水上木屋，外加全景玻璃屋特色住宿"
    },
    {
-    "en": "Round-trip domestic flights and the scenic 'King Olav V Road' linking five islands included",
-    "zh": "含往返内陆段机票及贯穿五岛的“奥拉夫五世国王之路”"
+    "en": "Two internal/domestic flight legs and the scenic 'King Olav V Road' linking five islands included",
+    "zh": "含两段内陆航班及贯穿五岛的“奥拉夫五世国王之路”"
    },
    {
     "en": "One-way deep route — no backtracking, no wasted sightseeing time",
@@ -15386,8 +15402,8 @@
   ],
   "includes": [
    {
-    "en": "Two domestic flight legs: Oslo–Evenes and Tromsø–Oslo",
-    "zh": "机票：奥斯陆—埃沃内斯、特罗姆瑟—奥斯陆往返2程内陆段机票"
+    "en": "Two internal/domestic flight legs: Oslo–Evenes and Tromsø–Oslo",
+    "zh": "内陆段航班：奥斯陆—埃沃内斯、特罗姆瑟—奥斯陆，共2段内陆航班"
    },
    {
     "en": "Ground transport by tour coach",
@@ -15416,8 +15432,8 @@
   ],
   "excludes": [
    {
-    "en": "International flights to/from Norway",
-    "zh": "国际段往返机票"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
    },
    {
     "en": "Passport and tourist visa fees",
@@ -15554,7 +15570,7 @@
   ],
   "title_en": "Norway Lofoten & Arctic Coast 6-Day Group Tour",
   "title_zh": "挪威罗弗敦群岛与北极海岸6天跟团游",
-  "short_en": "A 6-day Arctic odyssey through Lofoten's fairy-tale fishing villages, Senja's scenic peninsula and Tromsø, with domestic flights and city-centre hotels included.",
+  "short_en": "A 6-day Arctic odyssey through Lofoten's fairy-tale fishing villages, Senja's scenic peninsula and Tromsø, with internal Norwegian flights and city-centre hotels included.",
   "short_zh": "6天北极奇境之旅，深度游览罗弗敦童话渔村、塞尼亚风景半岛与特罗姆瑟，含挪威内陆段往返机票及特色酒店。",
   "desc_en": "Fly into the Arctic and journey one-way through Norway's most photographed landscapes, from the fairy-tale fishing villages of the Lofoten Islands to the dramatic peninsula of Senja and the gateway city of Tromsø. Over six days you'll see the red and yellow rorbu cabins of Hamnøy and Reine, the island football pitch of Henningsvær, the viewpoints of Senja's national scenic route, and the chance to chase whales or cod off the Arctic coast. Two nights are spent in a five-star traditional Lofoten waterside cabin hotel, with the route ending at Narvik, the world's northernmost ice-free port.",
   "desc_zh": "飞入北极圈，单程深度穿越挪威最上镜的风景线——从罗弗敦群岛的童话渔村，到雄奇壮丽的塞尼亚半岛，再到北极门户之城特罗姆瑟。六天行程中，您将欣赏哈姆诺伊与雷纳的红黄渔屋、亨宁斯韦尔岩石上的小岛足球场、塞尼亚国家风景之路的观景台，并有机会出海观鲸或海钓北大西洋鳕鱼。其中两晚入住罗弗敦传统五星级水上木屋酒店，行程终点纳尔维克是世界最北的不冻港。",
@@ -15584,7 +15600,7 @@
     "zh": "可选北冰洋观鲸巡航及罗弗敦传统海钓鳕鱼体验"
    },
    {
-    "en": "Round-trip Oslo-Evenes domestic flights included; relaxed one-way deep route",
+    "en": "Round-trip Oslo-Evenes internal/domestic flights included; relaxed one-way deep route",
     "zh": "含奥斯陆-埃沃内斯往返内陆段机票，宽松行程单程深度游"
    },
    {
@@ -15594,7 +15610,7 @@
   ],
   "includes": [
    {
-    "en": "Round-trip Oslo-Evenes domestic flights (2 internal sectors)",
+    "en": "Round-trip Oslo-Evenes internal/domestic flights (2 internal sectors)",
     "zh": "奥斯陆-埃沃内斯往返2程内陆段机票"
    },
    {
@@ -15624,8 +15640,8 @@
   ],
   "excludes": [
    {
-    "en": "International flights to/from Oslo",
-    "zh": "往返奥斯陆的国际段机票"
+    "en": "International round-trip flights to/from Europe",
+    "zh": "往返欧洲的国际机票"
    },
    {
     "en": "Passport and Schengen visa fees (single or multiple entry)",
@@ -16065,7 +16081,7 @@
     "day": 2,
     "title_en": "Blue Lagoon → Golden Circle → Seljalandsfoss",
     "title_zh": "蓝湖 → 黄金圈 → 塞里雅兰瀑布",
-    "description_en": "Meet at the Blue Lagoon hotel and set off on Iceland's classic Golden Circle, taking in Thingvellir National Park, the Geysir geothermal area and the thundering Gullfoss waterfall. Overnight at the Hotel Rangá / Horizon, ION Adventure or UMI hotel area near Seljalandsfoss.",
+    "description_en": "Meet at the Blue Lagoon hotel and set off on Iceland's classic Golden Circle, taking in Thingvellir National Park, the Geysir geothermal area and the thundering Gullfoss waterfall. Overnight at the Horizon, ION Adventure or UMI hotel area near Seljalandsfoss.",
     "description_zh": "在蓝湖酒店集合，前往冰岛经典黄金圈，游览辛格维利尔国家公园、蓋歇尔间歇泉区与气势磅礴的黄金瀑布。夜宿塞里雅兰瀑布旁的冰岛地平线酒店、ION冒险酒店或UMI酒店等同级酒店。",
     "image_url": "/media/girafe/96/01.jpg"
    },
