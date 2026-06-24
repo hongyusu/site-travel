@@ -70,3 +70,6 @@ backend/backups/*.sql
 backups/*.sql
 backend/update_*.sql
 *.sql.gz
+
+# Scraped source site + images cache (not committed)
+.scrape/
