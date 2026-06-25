@@ -326,6 +326,7 @@ class ActivityDetailResponse(ActivityResponse):
     time_slots: List[ActivityTimeSlotResponse] = []
     pricing_tiers: List[ActivityPricingTierResponse] = []
     add_ons: List[ActivityAddOnResponse] = []
+    product_features: Optional[Any] = None
 
     class Config:
         from_attributes = True

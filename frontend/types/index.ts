@@ -159,6 +159,18 @@ export interface Activity {
   time_slots?: ActivityTimeSlot[];
   pricing_tiers?: ActivityPricingTier[];
   add_ons?: ActivityAddOn[];
+  product_features?: ProductFeatures | null;
+}
+
+export interface ProductFeatureBullet {
+  tag_en?: string;
+  tag_zh?: string;
+  text_en?: string;
+  text_zh?: string;
+}
+export interface ProductFeatures {
+  bullets?: ProductFeatureBullet[];
+  images?: string[];
 }
 
 export interface ActivityImage {

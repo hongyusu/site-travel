@@ -484,6 +484,7 @@ def _get_activity_details(activity: Activity, db: Session, language: str = 'en')
         "is_skip_the_line": activity.is_skip_the_line,
         "is_active": activity.is_active,
         "is_available": activity.is_available,
+        "product_features": activity.product_features,
         "primary_image": primary_image,
         "images": images,
         "categories": categories,

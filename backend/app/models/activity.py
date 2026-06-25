@@ -112,6 +112,8 @@ class Activity(Base):
     average_rating = Column(DECIMAL(2, 1), default=0)
     total_reviews = Column(Integer, default=0)
     total_bookings = Column(Integer, default=0)
+    # 产品特色 / product features: bilingual {bullets:[{tag_en,tag_zh,text_en,text_zh}], images:[urls]}
+    product_features = Column(JSON)
 
     # Relationships
     vendor = relationship("Vendor", back_populates="activities")

@@ -11,6 +11,7 @@ import ActivityCard from '@/components/activities/ActivityCard';
 import ReviewsSection from '@/components/reviews/ReviewsSection';
 import Breadcrumbs from '@/components/layout/Breadcrumbs';
 import TimelineSection from '@/components/activities/TimelineSection';
+import ProductFeatures from '@/components/activities/ProductFeatures';
 import ActivityBadges from '@/components/activities/ActivityBadges';
 import ActivityVideo from '@/components/activities/ActivityVideo';
 import TranslationNotAvailable from '@/components/TranslationNotAvailable';
@@ -262,6 +263,11 @@ export default function ActivityDetailsPage() {
             {/* Video Preview */}
             {activity.video_url && (
               <ActivityVideo videoUrl={activity.video_url} title={activity.title} />
+            )}
+
+            {/* 产品特色 / Product highlights (image-based feature block) */}
+            {activity.product_features && (
+              <ProductFeatures data={activity.product_features} />
             )}
 
             {/* Timeline/What to Expect */}
