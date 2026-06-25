@@ -450,7 +450,7 @@ export default function ActivityDetailsPage() {
                       </button>
                       {expandedFAQs.includes(index) && (
                         <div className="px-4 pb-3">
-                          <p className="text-gray-700">{faq.answer}</p>
+                          <p className="text-gray-700 whitespace-pre-line leading-relaxed">{faq.answer}</p>
                         </div>
                       )}
                     </div>
