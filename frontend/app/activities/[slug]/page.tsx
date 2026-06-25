@@ -406,8 +406,8 @@ export default function ActivityDetailsPage() {
                     </div>
                   )}
 
-                  {/* Map */}
-                  {activity.meeting_point.latitude && activity.meeting_point.longitude ? (
+                  {/* Map (only when coordinates are available; otherwise omit) */}
+                  {activity.meeting_point.latitude && activity.meeting_point.longitude && (
                     <div className="h-64 rounded-lg mt-3 overflow-hidden border border-gray-200">
                       <iframe
                         width="100%"
@@ -418,10 +418,6 @@ export default function ActivityDetailsPage() {
                         style={{ border: 0 }}
                         title="Meeting point location"
                       />
-                    </div>
-                  ) : (
-                    <div className="h-48 bg-gray-100 rounded-lg mt-3 flex items-center justify-center">
-                      <span className="text-gray-500">{getTranslation('activity.map_not_available')}</span>
                     </div>
                   )}
                 </div>
