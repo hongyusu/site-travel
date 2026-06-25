@@ -12,7 +12,7 @@ from sqlalchemy import create_engine, text
 from sqlalchemy.orm import sessionmaker
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from app.models.activity import Activity
+from app.models.activity import Activity, ActivityImage
 
 DATABASE_URL = os.environ.get("DATABASE_URL", "postgresql://postgres:postgres@localhost:5432/findtravelmate")
 engine = create_engine(DATABASE_URL)
@@ -32,6 +32,14 @@ def run():
             if not act:
                 print("  ? missing", slug); continue
             act.product_features = feat; n += 1
+            # Header gallery = the 产品特色 banner images (per requirement).
+            imgs = feat.get("images") or []
+            if imgs:
+                s.query(ActivityImage).filter_by(activity_id=act.id).delete(synchronize_session=False)
+                for i, url in enumerate(imgs):
+                    s.add(ActivityImage(activity_id=act.id, url=url,
+                        alt_text=f"{act.title} - {i + 1}", is_primary=(i == 0),
+                        is_hero=(i == 0), order_index=i))
         s.commit()
         print(f"Set product_features on {n} activities.")
     except Exception as e:
