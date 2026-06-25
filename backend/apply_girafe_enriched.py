@@ -46,11 +46,11 @@ def run():
             for inc in t["includes"]:
                 it = ActivityInclude(activity_id=aid, item=inc["en"], is_included=True, order_index=idx)
                 s.add(it); s.flush()
-                s.add(ActivityIncludeTranslation(include_id=it.id, language="zh", item=inc["zh"])); idx += 1
+                s.add(ActivityIncludeTranslation(include_id=it.id, language="zh", item=inc.get("zh") or inc["en"])); idx += 1
             for exc in t["excludes"]:
                 it = ActivityInclude(activity_id=aid, item=exc["en"], is_included=False, order_index=idx)
                 s.add(it); s.flush()
-                s.add(ActivityIncludeTranslation(include_id=it.id, language="zh", item=exc["zh"])); idx += 1
+                s.add(ActivityIncludeTranslation(include_id=it.id, language="zh", item=exc.get("zh") or exc["en"])); idx += 1
 
             # faqs (delete + reinsert from per-tour faqs)
             fids = [x.id for x in s.query(ActivityFAQ).filter_by(activity_id=aid).all()]
@@ -62,7 +62,8 @@ def run():
                 fq = ActivityFAQ(activity_id=aid, question=f["question_en"], answer=f["answer_en"], order_index=i)
                 s.add(fq); s.flush()
                 s.add(ActivityFAQTranslation(faq_id=fq.id, language="zh",
-                    question=f["question_zh"], answer=f["answer_zh"]))
+                    question=f.get("question_zh") or f["question_en"],
+                    answer=f.get("answer_zh") or f["answer_en"]))
 
             # timeline (delete + reinsert, comprehensive descriptions)
             tids = [x.id for x in s.query(ActivityTimeline).filter_by(activity_id=aid).all()]
@@ -76,7 +77,8 @@ def run():
                     image_url=step.get("image_url"), order_index=step["day"] - 1)
                 s.add(tl); s.flush()
                 s.add(ActivityTimelineTranslation(timeline_id=tl.id, language="zh",
-                    title=step["title_zh"], description=step["description_zh"]))
+                    title=step.get("title_zh") or step["title_en"],
+                    description=step.get("description_zh") or step["description_en"]))
 
             # images (delete + reinsert from gallery)
             gallery = t.get("gallery") or []

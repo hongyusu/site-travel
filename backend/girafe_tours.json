@@ -5860,23 +5860,23 @@
   ],
   "includes": [
    {
-    "en": "Hotels: 5 nights in 4-star hotels; because special properties are used, room type cannot be chosen.",
+    "en": "Hotels: 5 nights in 4-star hotels; because special hotels are used, room type cannot be selected.",
     "zh": "【酒店】：四星级酒店5晚，由于选用特殊酒店，不可选择房型。"
    },
    {
-    "en": "Meals: 5 breakfasts (hotel buffet breakfast or breakfast in another form).",
+    "en": "Meals: 5 breakfasts - hotel buffet breakfast or breakfast in another form.",
     "zh": "【餐饮】：酒店自助早餐或其他形式早餐5餐。"
    },
    {
-    "en": "Operating costs: tourist city tax, city-entry fees, residence tax, road and bridge tolls, parking and fuel, driver-guide meal allowance and other in-itinerary operating fees.",
+    "en": "Operating fees: visitor city tax, city-entry fees, residence tax, road and bridge tolls, parking and fuel charges, driver-guide meal allowances and other in-itinerary operating costs.",
     "zh": "【执行】：游客城市税、进城费、居住税、过路过桥费、停车燃油费、司导餐补等行程内执行费用。"
    },
    {
-    "en": "Transport: a business travel van.",
+    "en": "Transport: business travel vehicle (van).",
     "zh": "【交通】：商务旅行车。"
    },
    {
-    "en": "Long-distance transport: round-trip direct TGV high-speed train tickets between Paris and Avignon/Nimes station.",
+    "en": "Major transport: round-trip direct TGV high-speed train tickets between Paris and Avignon / Nimes station.",
     "zh": "【大交通】：巴黎至阿维尼翁/尼姆火车站往返高铁直达火车票。"
    },
    {
@@ -5884,105 +5884,111 @@
     "zh": "【导游】：中文司机兼导游服务。"
    },
    {
-    "en": "Baggage: one 23 kg checked bag and one carry-on bag.",
+    "en": "Luggage: 1 piece of checked baggage up to 23 kg plus 1 carry-on.",
     "zh": "【行李】：1件23公斤行李及1件随身行李。"
    },
    {
-    "en": "Admissions: Eze hilltop botanical garden, Cassis Calanques boat cruise, perfume museum, Pont de Gau Ornithological Park, and the Aigues-Mortes salt lake plus sightseeing train.",
+    "en": "Admission tickets: Eze hilltop botanical garden, Cassis Calanques boat cruise, the perfume museum, Pont de Gau Ornithological Park, and the Aigues-Mortes salt lake plus its sightseeing train.",
     "zh": "【门票】：埃兹山顶植物园、卡西斯峡湾游船、香水博物馆、蓬德高鸟类公园门票、艾格莫尔特盐湖及观光火车。"
    }
   ],
   "excludes": [
    {
-    "en": "Passport: personal passport fees.",
+    "en": "Passport: personal passport costs.",
     "zh": "护照：个人护照费用。"
    },
    {
-    "en": "Visa: the tourist visa fees required for the countries listed in the itinerary.",
+    "en": "Visa: tourist visa fees for the countries listed in the itinerary.",
     "zh": "签证：行程中所列旅游国家所需的观光签证费用。"
    },
    {
-    "en": "Insurance: travel insurance fees (if the itinerary involves high-risk sports, verify your travel insurance covers that activity).",
+    "en": "Insurance: travel insurance (if the itinerary involves high-risk sports, please verify whether your travel insurance covers them).",
     "zh": "保险：旅游保险费用（如行程内涉及到高风险运动，请核实旅游保险是否包含该项运动）。"
    },
    {
-    "en": "Tips: gratuities to the guide and driver totaling EUR 10 per person per day, same rate for adults and children.",
+    "en": "Tips: guide and driver tips totaling EUR 10 per person per day, same price for adults and children.",
     "zh": "小费：游客支付导游和司机小费一共10欧/人/天，大小同价。"
    },
    {
-    "en": "Meals: apart from the special meals included in the itinerary, lunches and dinners are not included.",
+    "en": "Meals: apart from the special meals included in the itinerary, lunch and dinner main meals are not included.",
     "zh": "餐饮：除行程内包含的特色餐外，行程中不包含午、晚正餐费用。"
    },
    {
-    "en": "Admissions: attractions not marked as fee-included, including but not limited to sights noted as 'exterior', and all 'recommended', 'optional', 'experience' and other items where inclusion is not mentioned; pay on your own if you wish to visit.",
-    "zh": "门票：行程中未注明费用包含的景点（包括但不仅限于行程中注明“外观”的景点，以及“推荐”“可选”“体验”等所有未提及费用包含的项目，如游客需要参观，敬请自理）。"
+    "en": "Tickets: admission to sights not marked as included (including but not limited to sights marked \"exterior\", \"recommended\", \"optional\", \"experience\", etc. - any item not stated as included is at your own expense if you wish to visit).",
+    "zh": "门票：行程中未注明费用包含的景点（包括但不仅限于行程中注明\"外观\"的景点，\"推荐\"、\"可选\"、\"体验\"等所有未提及费用包含的项目，如游客需要参观，敬请自理）。"
    },
    {
-    "en": "Extended stay: any extra accommodation, transport or sightseeing beyond the itinerary.",
+    "en": "Extended stay: extra accommodation, transport and sightseeing beyond the itinerary.",
     "zh": "延长住宿：行程外额外延长的住宿、交通、观光费用。"
    },
    {
-    "en": "Personal spending: drinks and alcohol, taxis, phone charges and other personal expenses.",
+    "en": "Personal spending: drinks/alcohol, taxis, phone charges and other personal expenses.",
     "zh": "私人消费：如饮料酒类、出租车、电话费等个人消费。"
    },
    {
-    "en": "Other transport: transport not mentioned in 'included' beyond the business van or coach, such as Venice gondolas, and sightseeing trains or electric taxis in vehicle-restricted zones, payable on your own.",
+    "en": "Other transport: transport not mentioned in the inclusions beyond the business vehicle or coach, e.g. Venice gondolas, and sightseeing trains or electric cabs in vehicle-restricted zones - at your own expense.",
     "zh": "其他交通：除包含商务旅行车或者中巴之外，费用包含中未提及的其他交通费用，如威尼斯贡多拉，以及车辆限行区的观光火车、电瓶出租车等费用敬请自理。"
    },
    {
-    "en": "Free activities: night sightseeing on your own and recommended in-itinerary projects, plus any transport, meals, admissions and shopping they incur.",
+    "en": "Free activities: night-time self-guided sightseeing and recommended projects, plus the transport, dining, tickets and shopping they incur.",
     "zh": "自由活动：游客夜间自行游览及行程中的推荐项目，以及产生的交通、餐饮、门票、购物等费用。"
    },
    {
-    "en": "Experience activities: any travel experience activities not included in the itinerary.",
+    "en": "Experience activities: any travel-experience activities not included in the itinerary.",
     "zh": "体验活动：行程中没有包含的各项旅游体验活动。"
    },
    {
-    "en": "Other costs: anything not mentioned under 'included'. The company reserves the right to add a surcharge for extra costs caused by force majeure (natural disasters, war, strikes), transport delays, flight cancellations or time changes, embassy visa delays, insufficient group numbers, etc.",
-    "zh": "其他费用：费用包含中未提及的费用。如因天灾、战争、罢工等不可抗力原因，及因交通延阻、航班取消或更改时间、使馆延误出签、人数不足等特殊情况或其他非我公司原因所导致的额外费用（如在外延期签证费、住食及交通费、国家航空运价调整等），我公司有权追加差价。"
+    "en": "Other costs: any costs not mentioned in the inclusions. Where force majeure (natural disaster, war, strikes), traffic delays, flight cancellation/rescheduling, embassy visa delays, insufficient group numbers or other special circumstances not caused by us lead to extra costs (e.g. overseas visa-extension fees, accommodation, food and transport, national airfare adjustments), we reserve the right to charge the price difference.",
+    "zh": "其他费用：费用包含中未提及的费用。如因天灾、战争、罢工等不可抗力的原因，及因交通延阻、航班取消或更改时间、使馆延误出签证、人数不足等特殊情况或其他非我公司原因所引致的额外费（如在外延期签证费、住、食及交通费、国家航空运价调整等），我公司有权追加差价。"
    }
   ],
   "timeline": [
    {
     "day": 1,
-    "title_en": "Paris to Avignon - Provence Hill Villages (Lavender, Gordes & the World of A Year in Provence)",
-    "title_zh": "巴黎-阿维尼翁（漫天紫色 | 山居岁月普罗旺斯小镇）",
-    "description_en": "Take the French TGV high-speed train on your own from Paris down to southern France (no guide on the train; the ride is about 2-3 hours). On arrival you meet the group and begin the Provence hill-village tour, visiting in turn Fontaine-de-Vaucluse spring village, the medieval hilltop town of Gordes (said to be the inspiration for Miyazaki's Castle in the Sky), and the Senanque Abbey (exterior) tucked in a quiet valley amid its lavender fields, the setting of the book A Year in Provence. Overnight at the Novotel Avignon Nord or an equivalent 4-star hotel, set in the green Provencal countryside about 15 minutes from Avignon's historic center. Note: because summer TGV seats are tight and trains can be cancelled by heat, strikes or delays, the rail segment may be rerouted to Pont-du-Gard or Montpellier Sud de France station, and the order of Day 1 and the final day may be swapped (treated as an equivalent itinerary). The train is unaccompanied and tickets are name-bound, so carry your passport and e-ticket.",
+    "title_en": "Paris to Avignon - Lavender Country & the Hilltop Villages of Provence",
+    "title_zh": "巴黎 - 阿维尼翁【漫天紫色 | 山居岁月普罗旺斯小镇】",
+    "description_en": "Today you travel on your own by French TGV high-speed train from Paris down to the south of France (there is no guide on board; the ride takes about 2-3 hours). After arriving and meeting the group, you begin a tour of the hilltop villages of Provence, visiting in turn the spring village of Fontaine-de-Vaucluse, the medieval hill town of Gordes - said to be the inspiration for Hayao Miyazaki's Castle in the Sky - and the Senanque Abbey (exterior), a 12th-century Cistercian monastery hidden in one of the most beautiful valleys in France and the backdrop of the book A Year in Provence. The train ride is on named (passport-required) tickets, so carry your passport and the e-ticket. Overnight at the Novotel Avignon Nord or an equivalent 4-star hotel.",
+    "description_zh": "当天自行乘坐法国高铁TGV前往南法（高铁上无导游陪同），车程约2至3小时。抵达后集合，开启普罗旺斯小镇之旅，依次游览：泉水小镇（Fontaine-de-Vaucluse）、宫崎骏《天空之城》原型——高德古城（Gordes，中世纪石砌山城），以及塞南克修道院（外观，建于1148年，隐藏在宁静山谷中，是《山居岁月》的故事背景）。高铁为实名制车票，请携带护照及电子版火车票。夜宿：阿维尼翁城北诺富特酒店或同等4星酒店。",
     "image_url": "/media/girafe/16/00.jpg"
    },
    {
     "day": 2,
-    "title_en": "Avignon to Aigues-Mortes to Marseille - Pink Salt Lake & Flamingo Habitat",
-    "title_zh": "阿维尼翁-艾格莫尔特-马赛（梦幻粉红 | 粉色盐湖火烈鸟栖息地）",
-    "description_en": "After breakfast explore the walled old city of Avignon on your own, including the Pont d'Avignon / Pont Saint-Benezet broken bridge (exterior) and the Palais des Papes / Popes' Palace (exterior). Continue to the Pont de Gau Ornithological Park in the Camargue wetlands, a major flamingo habitat home to 300+ bird species, then to the medieval salt town of Aigues-Mortes, where you board the sightseeing tourist train to tour the pink salt lake, whose color comes from salt-loving Dunaliella algae against snow-white quartz beaches and salt hills. In the afternoon head into Marseille, where you may visit Palais Longchamp park, the Notre-Dame de la Garde basilica atop its 154m hill, and the Vieux-Port / Old Port. Overnight at the Novotel Marseille or a Crowne Plaza / equivalent 4-star hotel in the city center, close to the Old Port.",
+    "title_en": "Avignon to Aigues-Mortes to Marseille - Pink Salt Lakes & Flamingo Habitat",
+    "title_zh": "阿维尼翁 - 艾格莫尔特 - 马赛【梦幻粉红 | 粉色盐湖火烈鸟栖息地】",
+    "description_en": "After breakfast, explore the old city of Avignon on your own, including the Pont d'Avignon broken bridge (exterior) and the Palais des Papes / Popes' Palace (exterior). You then head to the Pont de Gau Ornithological Park - in the heart of the Camargue wetlands, a major flamingo habitat with 300+ bird species - and the small town of Aigues-Mortes, where you board the Aigues-Mortes sightseeing train for over an hour through the pink salt lakes (the rose color comes from salt-loving Dunaliella algae). In the afternoon, tour central Marseille, where you may visit Palais Longchamp park, the Notre-Dame de la Garde basilica (the city's guardian-virgin church on a 154m hill, with a viewing terrace), and the Old Port (Vieux-Port). Overnight at the Novotel Marseille or Crowne Plaza, or an equivalent 4-star hotel.",
+    "description_zh": "早餐后自行参观阿维尼翁古城，罗纳河断桥（外观）、阿维尼翁教皇宫（外观），随后前往蓬德高鸟类公园（Pont de Gau，卡马格湿地中心、重要火烈鸟栖息地，300多种鸟类）和南法小镇艾格莫尔特，乘坐艾格莫尔特观光火车游览粉红盐湖一个多小时（湖水因杜氏盐藻与高盐度呈粉色）。下午前往马赛市区游览，可选择参观隆尚宫公园、守护圣母圣殿（位于154米高山丘、顶端有圣母圣子金像与观景台）、马赛旧港（老港）。之后入住酒店。夜宿：马赛诺富特酒店或皇冠假日酒店同等4星级酒店。",
     "image_url": "/media/girafe/16/01.jpg"
    },
    {
     "day": 3,
-    "title_en": "Marseille to Valensole to Cannes to Saint-Paul-de-Vence to Antibes - Lavender Fields & the Riviera",
-    "title_zh": "马赛-瓦朗索勒-戛纳-圣保罗德旺斯-昂提布（彩色集市 | 薰衣草花海与马塞纳长廊的喧嚣）",
-    "description_en": "After breakfast set out for the lavender fields of Valensole and along the D907 road (during the lavender bloom), immersing yourself in the purple sea celebrated by National Geographic and the filming location of the romance dramas based on Chiung Yao's novels. In the afternoon continue to the film city and seaside resort of Cannes to see the Palais des Festivals and the Walk of Fame / Allee des Stars (300+ celebrity handprints), then stroll the seafront promenade. Visit the hilltop medieval art village of Saint-Paul-de-Vence, once home to Chagall and Picasso, then in the evening go on to Antibes to wander its old town on your own. Overnight at the Novotel Antibes Sophia Antipolis or an equivalent 4-star hotel. Note: lupins bloom from mid-to-late May and lavender typically from mid-to-late June through late July depending on altitude and weather; if lavender cannot be seen during your departure, this is replaced by a visit to a pottery town.",
+    "title_en": "Marseille to Valensole to Cannes to Saint-Paul-de-Vence to Antibes - Colorful Markets, Lavender Fields & the Bustle of the Croisette",
+    "title_zh": "马赛 - 瓦朗索勒 - 戛纳 - 圣保罗德旺斯 - 昂提布【彩色集市 | 薰衣草花海和马塞纳长廊的喧嚣】",
+    "description_en": "After breakfast, set out for the lavender fields of Valensole and the D907 road (during the lavender season), immersing yourself in the romantic purple sea. In the afternoon, continue to the seaside film capital of Cannes to see the Palais des Festivals and the Walk of Fame / Allee des Stars (with 300+ handprints of stars beside the Palais), with free time to stroll the Cannes seafront. Then visit the medieval hilltop art village of Saint-Paul-de-Vence, between Nice and Antibes, famous for its stone walls and galleries and once home to artists like Chagall and Picasso. Toward evening, head to Antibes to explore the old town on your own. Note: if lavender cannot be seen during your departure dates, this is changed to a visit to a ceramics village. Overnight at the Novotel Antibes Sophia Antipolis or an equivalent 4-star hotel.",
+    "description_zh": "早餐后出发前往瓦朗索勒及D907公路的薰衣草花田（薰衣草花期期间），置身浪漫紫色花海。下午前往南法电影重镇及海滨小城戛纳，参观影节宫、星光大道（影节宫旁、汇集300多个明星手印），自由漫步戛纳海滨大道，随后前往坐落于尼斯与昂提布之间山顶的中世纪艺术村庄圣保罗德旺斯（以石砌城墙、画廊闻名，夏加尔、毕加索等艺术家曾长期居住）。傍晚前往昂提布，自行游览昂提布老城。备注：如团期内无法参观薰衣草，则更改为参观陶瓷小镇。夜宿：诺富特安提比斯索非亚安蒂波利斯酒店或同等4星酒店。",
     "image_url": "/media/girafe/16/02.jpg"
    },
    {
     "day": 4,
-    "title_en": "Antibes to Menton to Monaco to Eze to Nice to Antibes - Princess Grace's Riviera Corniche",
-    "title_zh": "昂提布-芒通-摩纳哥-埃兹-尼斯-昂提布（柠檬色调 | 摩纳哥格蕾丝公主之路）",
-    "description_en": "In the morning depart Antibes for Menton, the lemon town, then follow the Avenue Princesse Grace and the famous Moyenne Corniche clifftop road, taking in the scenery of Villefranche-sur-Mer and visiting Monaco and its yacht harbor. In the afternoon head to the clifftop village of Eze to look down over the Mediterranean from its garden, and visit a perfume museum to learn about distillation, the perfume laboratory and the workshop. Then return to Nice for free time on the Baie des Anges / Bay of Angels pebble beach and the Promenade des Anglais, with a stroll through the old town and the Cours Saleya market. Overnight again at the Novotel Antibes Sophia Antipolis or an equivalent 4-star hotel.",
+    "title_en": "Antibes to Menton to Monaco to Eze to Nice to Antibes - Lemon Tones & Princess Grace's Road",
+    "title_zh": "昂提布 - 芒通 - 摩纳哥 - 埃兹 - 尼斯 - 昂提布【柠檬色调 | 摩纳哥格蕾丝公主之路】",
+    "description_en": "In the morning, set out from Antibes to the lemon town of Menton, then drive the Avenue Princesse de Grace and the famous Moyenne Corniche cliff road, taking in Villefranche-sur-Mer along the way and visiting Monaco and its yacht harbor. In the afternoon, head to the clifftop village of Eze to look down over the Mediterranean and visit a perfume museum (the Fragonard-style museum below Eze) to learn how perfume is distilled and blended, then return to Nice for free time at the Baie des Anges / Angel Bay pebble beach and the Promenade des Anglais. You can also wander the old town of Nice with its baroque churches, Italianate buildings and the Cours Saleya market. Overnight at the Novotel Antibes Sophia Antipolis or an equivalent 4-star hotel.",
+    "description_zh": "早上从昂提布出发前往芒通游览\"柠檬小镇\"，随后沿格蕾丝公主大道（AV. Princesse de Grace）及南法出名的峭壁之路Moyenne Corniche行驶，欣赏海滨自由城（Villefranche-sur-Mer），参观摩纳哥及游艇码头。下午前往悬崖小镇埃兹俯瞰地中海，拜访香水博物馆（位于埃兹山下、1983年落成）了解香水的蒸馏调配过程，随后返回尼斯，自由参观尼斯天使湾鹅卵石沙滩、英格兰海滨大道，并可漫步保留巴洛克教堂与意大利风格建筑的尼斯老城及萨雷雅广场集市（Cours Saleya）。夜宿：诺富特昂提布斯索非亚安蒂波利斯酒店或同等4星酒店。",
     "image_url": "/media/girafe/16/03.jpg"
    },
    {
     "day": 5,
-    "title_en": "Antibes to Cassis to Arles to Nimes - Calanques Boat Cruise & Roman Heritage",
-    "title_zh": "昂提布-卡西斯-阿尔勒-尼姆（蓝色峡湾 | 蔚蓝海岸国家公园环游）",
-    "description_en": "After breakfast leave the Riviera at Antibes and drive along the Mediterranean to the charming fishing village of Cassis, where you take a boat cruise through the Calanques National Park to see the steep limestone cliffs and turquoise water, passing the calm Port-Miou inlet, the pink-cliffed Port-Pin and the most famous Calanque d'En-Vau. Continue to the historic city of Arles, the Little Rome of the Gauls, to explore the ancient Roman amphitheatre and the landscapes immortalized by Van Gogh. In the afternoon arrive in Nimes to walk the old city and its well-preserved Roman remains. Overnight at the Best Western Hotel L'Orangerie or an equivalent 4-star hotel, set in a private garden minutes from the Nimes old town and Roman arena.",
+    "title_en": "Antibes to Cassis to Arles to Nimes - Blue Calanques & a National-Park Loop along the Cote d'Azur",
+    "title_zh": "昂提布 - 卡西斯 - 阿尔勒 - 尼姆【蓝色峡湾 | 蔚蓝海岸国家公园环游】",
+    "description_en": "After breakfast, leave Antibes on the Cote d'Azur and drive along the Mediterranean to the charming village of Cassis, where you board a boat to see the Calanques - the steep limestone cliffs and turquoise water, passing the calm Port-Miou inlet, the pink limestone cliffs of Port-Pin and the famous Calanque En-Vau. Then continue to the historic city of Arles to explore the Roman amphitheatre and the landscapes painted by Van Gogh (Arles is known as the \"little Rome of the Gauls\"). In the afternoon, reach Nimes to walk the old town and take in its well-preserved Roman remains and Provencal atmosphere. Overnight at the Best Western Orangerie hotel in Nimes or an equivalent 4-star hotel.",
+    "description_zh": "早餐后，从蔚蓝海岸的昂提布出发，沿地中海驶向迷人的卡西斯，乘坐游轮欣赏险峻的石灰岩悬崖与碧蓝海水，沿途经过宁静的Port-Miou港口峡湾、粉色石灰岩悬崖的Port-Pin峡湾以及最著名的Calanque En-Vau峡湾。随后前往历史名城阿尔勒，探索古罗马竞技场与梵高笔下的经典景观（阿尔勒被誉为\"高卢人的小罗马\"）。下午抵达尼姆，漫步古城，感受保存完好的罗马遗迹与南法风情。夜宿：贝斯特韦斯特橘园酒店或同等4星酒店。",
     "image_url": "/media/girafe/16/04.jpg"
    },
    {
     "day": 6,
-    "title_en": "Nimes to Paris - Van Gogh & the Roman City of the Water Spirit",
-    "title_zh": "尼姆-巴黎（橘黄阳光 | 梵高与古罗马秘境之旅）",
-    "description_en": "Tour the old city of Nimes on foot, the city of the water spirit, starting from the Avenue Feucheres by the station to understand the structure of the Roman aqueduct, then exploring the Maison Carree (a Corinthian-columned 1st-century BC Roman temple, now a museum) and the Jardins de la Fontaine spring-side gardens, with views from the Tour Magne Roman watchtower on the hill. Afterward, depart from Nimes or Avignon station to take the TGV high-speed train back on your own (no guide on the train), ending the southern France journey. There is no hotel on this final day. Note: due to summer rail constraints the train may be rerouted to Avignon or Montpellier Sud de France station with a shuttle bus connection, and Day 1 and the final day may be swapped (treated as an equivalent itinerary).",
+    "title_en": "Nimes to Paris - Van Gogh & the Roman Secrets of the City of Water Spirits",
+    "title_zh": "尼姆 - 巴黎【橘黄阳光 | 梵高与古罗马秘境之旅】",
+    "description_en": "Today, explore the old city of Nimes on foot - the \"city of water spirits\" - taking in the Roman wonders, including the well-preserved Roman amphitheatre, the Maison Carree (a Corinthian-columned temple of the Augustus era, about 17m high), and the Jardin de la Fontaine, the ancient spring-side garden built more than a thousand years ago, with the Tour Magne watchtower on the hill. Afterwards, depart on your own by French TGV high-speed train from Nimes or Avignon station (no guide on board), ending the tour of the south of France. No accommodation today. Note: depending on SNCF availability, trains may be adjusted to Avignon (Gare Avignon) or Montpellier Sud de France station, with shuttle buses connecting the different stations; the order of day 1 and day 6 may be swapped and is considered an equivalent itinerary.",
+    "description_zh": "当天徒步参观\"水精灵之城\"尼姆古城，探索古罗马的辉煌与神秘花园，包括保存完好的古罗马竞技场、方形神殿（Maison Carree，科林斯式圆柱、高约17米、建于奥古斯都时代）和神秘花园——古迹庭院泉边公园（Jardin de la Fontaine，建于一千多年前，丘陵上有古罗马瞭望塔马涅塔）。随后从尼姆或阿维尼翁火车站自行乘坐法国TGV高铁（高铁上无导游陪同），结束南法旅程。当天无住宿。重要条款：受夏季高铁紧张、高温停运、罢工、延期等取消风险影响，SNCF行程可能调整至阿维尼翁站（Gare Avignon）或蒙彼利埃（Montpellier Sud de France）站，届时提供穿梭巴士衔接不同火车站，第一天与最后一天的先后顺序可能调整，视为同等行程。",
     "image_url": null
    }
   ],
@@ -6029,40 +6035,46 @@
   ],
   "faqs": [
    {
-    "question_en": "Where and how does the group meet up?",
+    "question_en": "Where and how do we meet at the start of the tour?",
     "question_zh": "集合地点和方法是什么？",
-    "answer_en": "Depart from Paris Gare de Lyon or Marne-la-Vallee station and take the high-speed train on your own to meet the group at Avignon/Nimes station (see your departure notice). For some departure dates the start station is Marne-la-Vallee (Chessy), about 38 minutes from Paris Gare de Lyon via the Paris RER A line.",
-    "answer_zh": "在巴黎里昂火车站或马恩河谷火车站出发，自行乘坐高铁前往阿维尼翁/尼姆火车站集合（参见出团通知书）。本产品部分团期的出发火车站为马恩河谷（Marne-la-Vallee Chessy），距离巴黎里昂火车站约38分钟车程（巴黎轻轨A线）。"
+    "answer_en": "Depart from Paris Gare de Lyon or Marne-la-Vallee station and take the high-speed train yourself to Avignon / Nimes station to meet the group (see your departure notice). For some departure dates the start station is Marne-la-Vallee (Chessy), which is a 38-minute ride from Paris Gare de Lyon (Paris RER line A).",
+    "answer_zh": "在巴黎里昂火车站或马恩河谷火车站出发，自行乘坐高铁前往阿维尼翁/尼姆火车站集合（参见出团通知书）。本产品部分团期出发火车站为：马恩河谷（Marne-la-Vallee Chessy），距离巴黎里昂火车站38分钟车程（巴黎轻轨A线）。"
    },
    {
-    "question_en": "Where and how does the group disperse?",
+    "question_en": "Where and how do we disperse at the end of the tour?",
     "question_zh": "集散地点和方法是什么？",
-    "answer_en": "On the final day you take the train on your own from Avignon/Nimes station back to Paris Gare de Lyon or Marne-la-Vallee station (see your departure notice). For some departure dates the ending station is Marne-la-Vallee (Chessy), about 38 minutes from Paris Gare de Lyon via the Paris RER A line.",
-    "answer_zh": "当天在阿维尼翁/尼姆火车站，游客自行乘坐火车返回到巴黎里昂火车站或马恩河谷火车站（参见出团通知书）。本产品部分团期的结束火车站为马恩河谷站（Marne-la-Vallee Chessy），距离巴黎里昂火车站约38分钟车程（巴黎轻轨A线）。"
+    "answer_en": "On the final day, take the train yourself from Avignon / Nimes station back to Paris Gare de Lyon or Marne-la-Vallee station (see your departure notice). For some departure dates the end station is Marne-la-Vallee (Chessy), a 38-minute ride from Paris Gare de Lyon (Paris RER line A).",
+    "answer_zh": "当天在阿维尼翁/尼姆火车站，游客自行乘坐火车返回到巴黎里昂火车站或马恩河谷火车站（参见出团通知书）。本产品部分团期结束火车站为：马恩河谷站（Marne-la-Vallee Chessy），距离巴黎里昂火车站38分钟车程（巴黎轻轨A线）。"
    },
    {
     "question_en": "Can the train tickets be changed?",
     "question_zh": "火车票是否可以更改？",
-    "answer_en": "Train tickets are pre-booked and cannot be changed. If you do not need the train tickets, you can choose to join and leave the group at Avignon/Nimes instead. On the return day you take the train back from Avignon/Nimes; the tickets are non-refundable and non-exchangeable. If you wish to forgo a ticket, notify us in advance to cancel that one-way ticket, otherwise using tickets out of sequence may trigger a penalty cancellation.",
-    "answer_zh": "火车票提前预定不可更改：如果不需要火车票，可以选择在阿维尼翁/尼姆上下团。返回当天从阿维尼翁/尼姆乘坐火车返回，火车票不可退、不可更换。如需放弃车票，请提前通知取消该单程票，否则未按顺序使用机票/火车票可能被处罚取消。"
+    "answer_en": "Train tickets are booked in advance and cannot be changed. If you do not need train tickets, you may choose to join and leave the group in Avignon / Nimes. On the return day you go back by train from Avignon / Nimes; the train tickets are non-refundable and non-exchangeable. If you intend to forgo a ticket, please notify us in advance to cancel that one-way leg - otherwise, using tickets out of sequence may trigger a penalty cancellation.",
+    "answer_zh": "火车票提前预定不可更改：如果不需要火车票，可以选择在阿维尼翁/尼姆上下团。返回当天从阿维尼翁/尼姆乘坐火车返回，火车票不可退、不可更换。如需放弃票，请提前通知取消单程票，否则未按照顺序使用机票/火车票，可能被处罚取消。"
+   },
+   {
+    "question_en": "Is there a guide on the high-speed train?",
+    "question_zh": "高铁上有导游陪同吗？",
+    "answer_en": "No. The high-speed train has no guide on board - you board with your own ticket. Tickets are name-registered, so you must carry your passport and an electronic copy of the train ticket.",
+    "answer_zh": "没有。高铁无导游陪同，请自行持票乘坐高铁；火车票为实名制，需要携带护照及电子版火车票。"
    },
    {
     "question_en": "Do I need a visa?",
     "question_zh": "是否需要签证？",
-    "answer_en": "This product does not include visa fees; you need a Schengen visa (single or multiple entry). If you need a visa, please choose a Schengen-visa product. After booking we provide, free of charge, all materials needed to apply for the Schengen visa (see the detailed materials list). 'Worry-free visa guarantee': for travelers who sign with us at least 61 days before departure, if the visa is not obtained within 45 days before departure we bear all losses and immediately refund the full travel cost; travelers who do not meet this clause and fail to obtain a visa are refunded per the change-and-cancellation terms. A refusal must be reported to us within 48 hours with the consulate's refusal letter. Your passport must be valid for at least 6 months from the date of departure, or customs may deny entry. Visa fees, visa service fees, Schengen insurance fees and visa-center appointment fees are all non-refundable and non-transferable, even if the product is changed or cancelled.",
-    "answer_zh": "本产品不包含签证费用，需要申根签证（单次或多次入境）；如需办理签证请选择申根签证产品。预订后免费提供办理申根签证的全部材料（参考详细材料清单）。“保签无忧”：游客在出发日前61天与我社签约的旅游产品，如在出发前45天内未获取签证，我社承担所有损失，立即退还游客全部旅游费用；不符合该条款的游客如未正常获取签证，将按照“退改与取消条款”退费。如遇拒签需在48小时内通知我社并出具使领馆拒签函。护照有效期需在离境之日起至少还有六个月，否则海关有权拒绝入境。签证费、签证服务费、申根保险费、签证中心预约费均不可退款、不可更改使用者，即使产品退改签也无法退款。"
+    "answer_en": "Yes. This product requires a Schengen visa (single or multiple entry) and the visa fee is NOT included - if you need a visa, choose a Schengen-visa product. After booking we provide all the materials for applying for a Schengen visa free of charge (see the detailed materials checklist). Your passport must be valid for at least 6 months from the date of departure, or customs may deny entry. We offer a \"worry-free visa guarantee\": if you sign your travel product with us at least 61 days before departure and have not obtained the visa within 45 days before departure, we bear all losses and immediately refund the full travel cost (clients who do not meet this clause are refunded per the change/cancellation terms). If refused, notify us within 48 hours with the consulate's refusal letter and submit any supplementary/amended materials within 5 days. Visa fees, visa service fees, Schengen insurance fees and visa-center appointment fees are all non-refundable and cannot be transferred to another user, even if the product is changed or cancelled.",
+    "answer_zh": "需要。本产品需要申根签证（单次或多次入境），且不包含签证费用——如需办理签证请选择申根签证产品。预订后我社免费提供办理申根签证的全部材料（参考详细材料清单）。护照有效期需在离境之日起至少还有六个月，否则海关有权拒绝入境。\"保签无忧\"：游客在出发日前61天与我社签约，如在出发前45天内未获取签证，我社承担所有损失并立即退还全部旅游费用；不符合该条款者按\"退改与取消条款\"退费。如遇拒签需在48小时内通知我社并出具使领馆拒签函，补充或更改材料需在五天内提交。签证费、签证服务费、申根保险费、签证中心预约费均不可退款，也无法更改使用者，即使产品退改签，签证费用亦无法退款。"
    },
    {
     "question_en": "Booking, changes & cancellation",
     "question_zh": "预订、变更与取消须知",
-    "answer_en": "Free no-reason cancellation is available to both the agency and the traveler up to 30 days before departure (the 30th day excluded). This is a join-in group tour (sharing the vehicle with other agencies' guests); the announced minimum group size is 10, and if fewer than 10 sign up 30 days before departure either party may cancel without liability. Pay promptly to lock in pricing; orders need a second confirmation within 48 hours, otherwise they auto-refund, so book at least 14 days ahead. All pricing is quoted in EUR; if you pay in CNY the amount is the real-time CNY value calculated on the day of payment from the Bank of China 'euro selling' rate. Room types: two people booking together default to a standard double (bed type assigned by the hotel, big bed or twin, not selectable); a triple family room is for two parents plus one minor (bed configuration assigned by the hotel); solo travelers pay a single-room supplement deposit unless they request a shared room. European hotels are all non-smoking, no cooking in rooms, no free toiletries or free hot water, check-in 14:00 / check-out 11:00, and air conditioning is not standard. Listed hotel names are preferred properties; if full, an equivalent same-star hotel is substituted without separate notice. Key contingency note: because of tight summer TGV seats, heat-related cancellations, strikes and delays, the SNCF segment may be rerouted to Pont-du-Gard, Avignon or Montpellier Sud de France station with a shuttle bus connection, and Day 1 and the final day may be swapped - the content is identical and this is treated as an equivalent itinerary, not a change. During the Avignon theatre festival (4-25 July 2026) hotels may be moved to equivalent 4-star hotels in nearby cities. You must arrive at the meeting point one day before the tour starts and leave the dispersal point one day after it ends (reasonable connection window 07:00-21:00). The train is unaccompanied and tickets are name-bound; carry your passport and e-ticket.",
-    "answer_zh": "出发前30天（不含第30天）旅行社与旅行者均有权无理由取消。本产品为散客拼团（可能与其他旅行社客人合并用车），成团人数为10人，行程开始前30天（不含第30天）未达成团人数双方均可解约且不担违约责任。请及时支付以锁定价格；订单支付后需组团社在48小时内二次确认，超48小时未确认默认自动退款，建议至少提前14天预订。所有定价以欧元为计价单位，如选择人民币支付，则以付款当日本网站依据中国银行实时“欧元卖出价”自动计算的人民币实时价格为准。房型：两人同时报名默认标准双人间（床型由酒店安排，大床或双床，不可指定）；三人家庭间默认两位父母加一位未成年儿童（床型由酒店安排）；单人报名默认含单人房差押金，除非备注要求单人入住。欧洲酒店均禁烟、禁止房内做饭、不提供一次性洗漱用品及免费开水，入住14:00、退房11:00，且空调非标配。所列酒店为优先入住酒店，如订满则换为相同星级同等酒店，恕不另行通知。重要应急条款：因夏季高铁位置紧张、高温停运、罢工、延期等取消风险，SNCF行程可能调整到嘉尔站（Pont-du-Gard）、阿维尼翁站或蒙彼利埃（Montpellier Sud de France）站并提供穿梭巴士衔接，第一天与最后一天行程可能对调，内容完全一致，视为同等行程而非行程更改。2026年7月4日至7月25日阿维尼翁戏剧节期间，酒店可能调整到周边城市的同等四星级酒店。游客须在出团前一天到达集合地、结束后一天离开集散地（合理衔接时段为07:00至21:00）。高铁无导游陪同，火车票为实名制，请携带护照及电子版火车票。"
+    "answer_en": "Pricing is in EUR; if you pay in CNY, the amount is the real-time CNY value auto-calculated from the Bank of China \"euro selling\" exchange rate on the day of payment (refunds use the same-day rate; any exchange differences or bank fees are borne by the traveler). Free no-reason cancellation: both agency and traveler may cancel for any reason up to 30 days before departure (excluding the 30th day); after the group is confirmed, cancellation follows the change/cancellation terms. This is a shared group product with a required group size of 10 people - if 10 is not reached by 30 days before departure, either side may withdraw, and not reaching the minimum does not create agency liability. Room types: two travelers default to a standard twin (bed type assigned by the hotel, not selectable - could be a double or twin); solo travelers pay a single-room supplement deposit unless successfully matched for room-sharing; a triple/family room is for two parents plus one minor child with bed types assigned by the hotel. All European hotels are non-smoking, no cooking in rooms, no free toiletries or free hot water; check-in 14:00, check-out 11:00, and air-conditioning is not a standard feature. Listed hotel names are preferred; if full, an equivalent same-star hotel is substituted without further notice. Important itinerary contingencies: the order of day 1 and day 6 may shift by a day with identical content (an equivalent itinerary, not a change); due to summer rail crowding, heat-related stoppages, strikes and delays, SNCF may reroute to Pont-du-Gard, Avignon (Gare Avignon) or Montpellier Sud de France stations with shuttle buses connecting them; some dates may use Marne-la-Vallee station (ask sales before buying); during the Avignon theatre festival (4-25 July 2026) hotels may be moved to equivalent 4-star hotels in nearby cities per the departure notice. You must arrive at the meeting point one day before the tour starts and leave one day after it ends. Book at least 14 days ahead; orders require a second confirmation within 48 hours or are auto-refunded.",
+    "answer_zh": "本产品以欧元计价；如选择人民币支付，则以当天支付时本网站依据中国银行实时外汇牌价\"欧元卖出价\"自动计算出的人民币实时价格为准（退款同样适用申请当日即时汇率，汇率差异或银行手续费由旅行者承担）。免费取消：出发前30天（不含第30天）旅行社和旅行者均可无理由申请取消；宣布成团后取消按《更改与取消条例条款》承担违约责任。本产品为散客拼团，成团人数为10人，行程开始前30天（不含第30天）未达成团人数，双方均有权解除合同，未达最低成团人数不产生旅行社赔偿责任。房型：两人同时报名默认入住标准双人间（床型由酒店安排不可选，可能是大床房或双床房）；单人报名默认含单人房差押金，拼房成功按比例退还；三人家庭间默认为两位父母与一位未成年儿童，床型由酒店安排。欧洲所有酒店禁烟、禁止房内做饭、不提供一次性洗漱用品及免费开水，入住14:00、退房11:00，且不以安装空调为标准设施。行程内列明酒店为优先入住酒店，如订满则换为相同星级的相近酒店，不再另行通知。重要行程条款：第一天与最后一天的先后顺序可能整体调整一天，游览内容完全一致，视为同等行程；受夏季高铁紧张、高温停运、罢工、延期等取消风险影响，SNCF可能调整至嘉尔站（Pont-du-Gard）、阿维尼翁站（Gare Avignon）或蒙彼利埃（Montpellier Sud de France）站，并提供穿梭巴士衔接；部分团期可能包含马恩河谷火车站（购买前请咨询销售）；2026年7月4日至7月25日阿维尼翁戏剧节期间，酒店可能调整到周边城市同等四星级酒店，以出团通知书为准。请在参团日前一天抵达集合地、离团日后一天离开集散地；建议提前至少14天预订，订单需在48小时内二次确认，否则默认自动退款。"
    },
    {
     "question_en": "Health & safety requirements",
     "question_zh": "健康与安全须知",
-    "answer_en": "Please have a health check before travel. Do not sign up if you have: an infectious disease (e.g. active tuberculosis, typhoid); cardiovascular disease (severe hypertension, heart failure, myocardial ischemia, myocardial infarction); cerebrovascular disease (cerebral embolism, hemorrhage, brain tumor); respiratory disease (emphysema, cor pulmonale); a mental illness (epilepsy and other psychiatric conditions); severe anemia (hemoglobin below 50 g/L); or are recovering from major surgery. Pregnancy: from week 35 you cannot join under any circumstances; from week 28 a doctor's report within 7 days plus an attending physician's consent are required; under 28 weeks, sign up with caution, sign the liability waiver, and you cannot take part in adventure, skiing, sea-going, high-altitude or outdoor activities. Disabled travelers need a doctor's report within 7 days plus consent, must be accompanied by an immediate family member, and must apply at least 61 days ahead for a reserved place and facilities. Travelers over 70 need a health certificate and physical-exam report and an immediate-family escort (or sign the waiver); the long itinerary requires a certain walking ability. Minors (under 18) must be accompanied by an immediate relative or guardian; some sights have special rules for under-18/12/6; infants under 30 kg need a confirmed child safety seat; an unaccompanied minor needs a parental authorization letter; infants under 2 cannot join. Per Article 15 of the Tourism Law, travelers must truthfully declare health information relevant to the trip (pregnancy, lactation, chronic illness, infectious-disease history, suspected symptoms, recent travel to epidemic areas) and follow safety warnings; concealment that causes harm or transmission means the traveler bears liability, including possible civil compensation and administrative penalties.",
-    "answer_zh": "出行前请做一次必要的身体检查，如有下列情况请勿报名：传染性疾病（如活动期肺结核、伤寒）；心血管疾病（严重高血压、心功能不全、心肌缺氧、心肌梗塞）；脑血管疾病（脑栓塞、脑出血、脑肿瘤）；呼吸系统疾病（肺气肿、肺心病）；精神病（癫痫及各种精神病）；严重贫血（血红蛋白低于50克/升）；大中型手术恢复期患者。孕妇：妊娠第35周及以上任何情况下都无法参团；第28周及以上需提供7日内医生检查报告及主治医生同意书；第28周以下请慎重报名，需签署免责声明书，且无法参加探险、滑雪、出海、高空、户外等项目。残疾人需提供7日内医生检查报告及同意书、需直系家属陪同，并提前至少61天申请预留位置及专用设施。70周岁以上老年人需提供健康证明、体检报告并由直系家属陪同（否则需签署免责声明书），因行程较长需有一定步行能力。未成年人（未满18周岁）须由直系亲属或监护人陪同；部分景点对未满18/12/6周岁有特殊限定；30公斤以下儿童需提前确认安全座椅；无父母陪同的未成年人需持父母授权书；不接受2周岁以下婴儿参团。根据《旅游法》第15条，游客需如实告知与旅游相关的个人健康信息（妊娠期、哺乳期、慢性病、传染病史、疑似症状或近期疫区旅居史）并遵守安全警示，若因隐瞒导致人身损害或传播风险，游客须自行承担相应责任，并可能面临民事赔偿及行政处罚。"
+    "answer_en": "Please have a health check before departure. Do NOT book if you have any of the following: infectious diseases (e.g. active tuberculosis, typhoid); cardiovascular disease (e.g. severe hypertension, cardiac insufficiency, myocardial ischemia, myocardial infarction); cerebrovascular disease (e.g. cerebral embolism, cerebral hemorrhage, brain tumor); respiratory disease (e.g. emphysema, cor pulmonale); mental illness (e.g. epilepsy and various psychiatric conditions); severe anemia (hemoglobin below 50 g/L); or recovery from major/medium surgery. Pregnancy: women at 35+ weeks cannot join under any circumstances; at 28+ weeks a doctor's exam report (within 7 days) and attending physician's consent are required; under 28 weeks, book with caution, sign the agency disclaimer, and adventure/skiing/sea-going/high-altitude/outdoor items cannot be joined. Travelers with disabilities need a doctor's report (within 7 days) plus consent, an immediate-family escort, and must apply at least 61 days ahead for a reserved spot and facilities. Elderly travelers over 70 need a health certificate, physical exam report and immediate-family escort (or must sign the disclaimer); the tour involves a lot of walking and is physically demanding, so those not up to it should reconsider. Minors (under 18) must be accompanied by immediate family or a guardian; this product does not accept infants under 2 years old; for infants under 6 or children under 30 kg, confirm a safe child seat with us in advance. Per Article 15 of the Tourism Law, travelers must truthfully declare health information relevant to the trip (including pregnancy, breastfeeding, chronic illness, infectious-disease history, suspected symptoms or recent travel to epidemic areas) and follow safety warnings; concealing such information that leads to harm or loss is the traveler's own responsibility and may incur civil and administrative liability.",
+    "answer_zh": "出行前请做一次必要的身体检查，如存在下列情况请勿报名：传染性疾病患者（如活动期肺结核、伤寒等）；心血管疾病患者（如严重高血压、心功能不全、心肌缺氧、心肌梗塞等）；脑血管疾病患者（如脑栓塞、脑出血、脑肿瘤等）；呼吸系统疾病患者（如肺气肿、肺心病等）；精神病患者（如癫痫及各种精神病）；严重贫血患者（血红蛋白水平在50克/升以下）；大中型手术恢复期病患者。孕妇：妊娠35周及以上任何情况下都无法参团；28周及以上需提供7日内医生检查报告及主治医生同意书；28周以下请慎重报名，需签署旅行社免责声明书，且无法参加探险、滑雪、出海、高空、户外等项目。残疾人需提供7日内医生检查报告及同意书、需直系家属陪同，并至少提前61天申请预留位置及专用设施。70周岁以上老年人出游需提供健康证明、体检报告并由直系家属陪同（否则需签署免责声明书）；本行程较长、对体力要求较高，体力不支者请慎重报名。未成年人（未满18周岁）需由直系亲属或监护人陪同，本产品不接受2周岁以下婴儿参团；如有6岁以下婴儿或30公斤以下儿童，请提前与我社确认安全儿童座椅。根据《旅游法》第15条，旅游者需如实告知与旅游活动相关的个人健康信息（包括妊娠期、哺乳期、慢性病、传染病史、疑似症状或近期疫区旅居史），并遵守安全警示规定，若因隐瞒健康信息导致人身损害或财产损失，旅游者需自行承担责任，并可能面临民事赔偿及行政处罚。"
    }
   ]
  },
