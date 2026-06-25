@@ -1,8 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { ActivityTimeline, TimelineSubsection, TimelineAttraction } from "@/types";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Image from "next/image";
+import { ChevronDown } from "lucide-react";
 
 interface TimelineSectionProps {
   timelines: ActivityTimeline[];
@@ -67,49 +69,79 @@ function Attractions({ items, lang }: { items?: TimelineAttraction[]; lang: stri
   );
 }
 
+function DayBody({ step, lang, labels }: { step: ActivityTimeline; lang: string; labels: any }) {
+  const s = step.sections;
+  if (s) {
+    return (
+      <div className="pl-1 pt-3">
+        <Sub label={labels.overview} sub={s.overview} lang={lang} />
+        <Sub label={labels.accommodation} sub={s.accommodation} lang={lang} />
+        <Sub label={labels.highlights} sub={s.highlights} lang={lang} />
+        <Attractions items={s.attractions} lang={lang} />
+      </div>
+    );
+  }
+  return (
+    <div className="pl-1 pt-3">
+      {step.description && <p className="text-gray-700 mb-3">{step.description}</p>}
+      {step.image_url && (
+        <div className="relative h-48 w-full rounded-lg overflow-hidden">
+          <Image src={step.image_url} alt={step.title} fill className="object-cover" />
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function TimelineSection({ timelines }: TimelineSectionProps) {
   const { language } = useLanguage();
   const lang = language as string;
+  const [open, setOpen] = useState<Set<number>>(
+    () => new Set(timelines && timelines.length ? [timelines[0].step_number] : [])
+  );
+
   if (!timelines || timelines.length === 0) return null;
 
   const labels = lang === "zh"
-    ? { heading: "每日行程", day: "第", overview: "行程概述", accommodation: "住宿", highlights: "行程高亮" }
-    : { heading: "Day-by-day itinerary", day: "Day", overview: "Itinerary overview", accommodation: "Accommodation", highlights: "Highlights" };
+    ? { heading: "每日行程", day: "第", overview: "行程概述", accommodation: "住宿", highlights: "行程高亮", expand: "展开全部", collapse: "收起全部" }
+    : { heading: "Day-by-day itinerary", day: "Day", overview: "Itinerary overview", accommodation: "Accommodation", highlights: "Highlights", expand: "Expand all", collapse: "Collapse all" };
+
+  const toggle = (n: number) =>
+    setOpen((prev) => {
+      const s = new Set(prev);
+      s.has(n) ? s.delete(n) : s.add(n);
+      return s;
+    });
+  const allOpen = open.size === timelines.length;
+  const toggleAll = () => setOpen(allOpen ? new Set() : new Set(timelines.map((t) => t.step_number)));
 
   return (
     <div className="bg-paper rounded-lg shadow-sm p-6 mb-6">
-      <h2 className="text-2xl font-bold mb-6">{labels.heading}</h2>
+      <div className="flex items-center justify-between mb-4">
+        <h2 className="text-2xl font-bold">{labels.heading}</h2>
+        <button onClick={toggleAll} className="text-sm text-primary hover:underline whitespace-nowrap">
+          {allOpen ? labels.collapse : labels.expand}
+        </button>
+      </div>
 
-      <div className="space-y-8">
+      <div className="divide-y divide-gray-100">
         {timelines.map((step) => {
-          const s = step.sections;
+          const isOpen = open.has(step.step_number);
           return (
-            <div key={step.id} className="border-b border-gray-100 pb-6 last:border-0 last:pb-0">
-              {/* Day header */}
-              <div className="flex items-center gap-3 mb-4">
+            <div key={step.id} className="py-1">
+              <button
+                type="button"
+                onClick={() => toggle(step.step_number)}
+                className="w-full flex items-center gap-3 py-3 text-left hover:bg-gray-50 rounded-lg transition-colors"
+                aria-expanded={isOpen}
+              >
                 <span className="flex-shrink-0 inline-flex items-center justify-center min-w-[3rem] h-8 px-2 rounded-full bg-primary text-white text-sm font-semibold">
                   {lang === "zh" ? `第${step.step_number}天` : `${labels.day} ${step.step_number}`}
                 </span>
-                <h3 className="text-lg font-semibold text-gray-900">{step.title}</h3>
-              </div>
-
-              {s ? (
-                <div className="pl-1">
-                  <Sub label={labels.overview} sub={s.overview} lang={lang} />
-                  <Sub label={labels.accommodation} sub={s.accommodation} lang={lang} />
-                  <Sub label={labels.highlights} sub={s.highlights} lang={lang} />
-                  <Attractions items={s.attractions} lang={lang} />
-                </div>
-              ) : (
-                <div className="pl-1">
-                  {step.description && <p className="text-gray-700 mb-3">{step.description}</p>}
-                  {step.image_url && (
-                    <div className="relative h-48 w-full rounded-lg overflow-hidden">
-                      <Image src={step.image_url} alt={step.title} fill className="object-cover" />
-                    </div>
-                  )}
-                </div>
-              )}
+                <h3 className="flex-1 text-base sm:text-lg font-semibold text-gray-900">{step.title}</h3>
+                <ChevronDown className={`w-5 h-5 flex-shrink-0 text-gray-400 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+              </button>
+              {isOpen && <DayBody step={step} lang={lang} labels={labels} />}
             </div>
           );
         })}
