@@ -19,7 +19,7 @@ import { formatDuration } from '@/lib/utils';
 import { useLanguage } from '@/contexts/LanguageContext';
 import {
   Star, Clock, Users, Globe, Check, X, MapPin,
-  ChevronDown, ChevronUp, Shield, Award
+  ChevronDown, ChevronUp, ChevronLeft, ChevronRight, Shield, Award
 } from 'lucide-react';
 
 export default function ActivityDetailsPage() {
@@ -30,11 +30,28 @@ export default function ActivityDetailsPage() {
   const [similarActivities, setSimilarActivities] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
   const [expandedFAQs, setExpandedFAQs] = useState<number[]>([]);
 
   useEffect(() => {
     fetchActivity();
   }, [slug, language]);
+
+  const imageCount = activity?.images?.length ?? 0;
+  useEffect(() => {
+    if (!lightboxOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setLightboxOpen(false);
+      else if (e.key === 'ArrowRight') setSelectedImage((i) => (i + 1) % imageCount);
+      else if (e.key === 'ArrowLeft') setSelectedImage((i) => (i - 1 + imageCount) % imageCount);
+    };
+    window.addEventListener('keydown', onKey);
+    document.body.style.overflow = 'hidden';
+    return () => {
+      window.removeEventListener('keydown', onKey);
+      document.body.style.overflow = '';
+    };
+  }, [lightboxOpen, imageCount]);
 
   const fetchActivity = async () => {
     try {
@@ -105,7 +122,7 @@ export default function ActivityDetailsPage() {
       <div className="bg-black">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 py-4">
-            <div className="relative h-96 lg:h-[500px]">
+            <div className="relative h-96 lg:h-[500px] cursor-pointer group" onClick={() => setLightboxOpen(true)}>
               <Image
                 src={activity.images[selectedImage]?.url || '/placeholder-activity.jpg'}
                 alt={activity.title}
@@ -113,6 +130,11 @@ export default function ActivityDetailsPage() {
                 className="object-cover rounded-lg"
                 unoptimized
               />
+              {activity.images.length > 0 && (
+                <div className="absolute bottom-3 right-3 bg-black/60 text-white text-sm px-3 py-1.5 rounded-full group-hover:bg-black/80 transition-colors">
+                  {language === 'zh' ? `查看全部 ${activity.images.length} 张照片` : `View all ${activity.images.length} photos`}
+                </div>
+              )}
             </div>
             <div className="grid grid-cols-2 gap-4">
               {activity.images.slice(0, 4).map((image, index) => (
@@ -121,7 +143,7 @@ export default function ActivityDetailsPage() {
                   className={`relative h-40 lg:h-60 cursor-pointer rounded-lg overflow-hidden ${
                     selectedImage === index ? 'ring-4 ring-primary' : ''
                   }`}
-                  onClick={() => setSelectedImage(index)}
+                  onClick={() => (index === 3 && activity.images.length > 4 ? setLightboxOpen(true) : setSelectedImage(index))}
                 >
                   <Image
                     src={image.url}
@@ -131,7 +153,7 @@ export default function ActivityDetailsPage() {
                     unoptimized
                   />
                   {index === 3 && activity.images.length > 4 && (
-                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
+                    <div className="absolute inset-0 bg-black/60 flex items-center justify-center hover:bg-black/70 transition-colors">
                       <span className="text-white text-2xl font-bold">
                         +{activity.images.length - 4}
                       </span>
@@ -143,6 +165,63 @@ export default function ActivityDetailsPage() {
           </div>
         </div>
       </div>
+
+      {/* Fullscreen lightbox — browse all header images */}
+      {lightboxOpen && activity.images.length > 0 && (
+        <div
+          className="fixed inset-0 z-[100] bg-black/95 flex flex-col"
+          onClick={() => setLightboxOpen(false)}
+        >
+          <div className="flex items-center justify-between px-4 py-3 text-white text-sm">
+            <span>{selectedImage + 1} / {activity.images.length}</span>
+            <button
+              onClick={() => setLightboxOpen(false)}
+              className="p-2 rounded-full hover:bg-white/10"
+              aria-label="Close"
+            >
+              <X className="w-6 h-6" />
+            </button>
+          </div>
+
+          <div className="relative flex-1 flex items-center justify-center px-4" onClick={(e) => e.stopPropagation()}>
+            <button
+              onClick={() => setSelectedImage((i) => (i - 1 + activity.images.length) % activity.images.length)}
+              className="absolute left-2 sm:left-6 z-10 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white"
+              aria-label="Previous"
+            >
+              <ChevronLeft className="w-7 h-7" />
+            </button>
+            <img
+              src={activity.images[selectedImage]?.url}
+              alt={`${activity.title} - ${selectedImage + 1}`}
+              className="max-h-[78vh] max-w-full object-contain select-none"
+            />
+            <button
+              onClick={() => setSelectedImage((i) => (i + 1) % activity.images.length)}
+              className="absolute right-2 sm:right-6 z-10 p-2 sm:p-3 rounded-full bg-white/10 hover:bg-white/20 text-white"
+              aria-label="Next"
+            >
+              <ChevronRight className="w-7 h-7" />
+            </button>
+          </div>
+
+          <div className="px-4 py-3 overflow-x-auto" onClick={(e) => e.stopPropagation()}>
+            <div className="flex gap-2 justify-start sm:justify-center min-w-min">
+              {activity.images.map((image, index) => (
+                <button
+                  key={image.id}
+                  onClick={() => setSelectedImage(index)}
+                  className={`relative h-14 w-20 flex-shrink-0 rounded overflow-hidden ${
+                    selectedImage === index ? 'ring-2 ring-primary' : 'opacity-60 hover:opacity-100'
+                  }`}
+                >
+                  <img src={image.url} alt="" className="h-full w-full object-cover" />
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="container mx-auto px-4 py-8">
         {/* Breadcrumbs */}
