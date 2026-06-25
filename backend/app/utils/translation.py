@@ -150,7 +150,8 @@ def get_translated_timelines(timelines: List[ActivityTimeline], language: str, d
             'description': t.description,
             'duration_minutes': t.duration_minutes,
             'image_url': t.image_url,
-            'order_index': t.order_index
+            'order_index': t.order_index,
+            'sections': t.sections
         } for t in timelines]
 
     result = []
@@ -168,7 +169,8 @@ def get_translated_timelines(timelines: List[ActivityTimeline], language: str, d
                 'description': translation.description,
                 'duration_minutes': timeline.duration_minutes,
                 'image_url': timeline.image_url,
-                'order_index': timeline.order_index
+                'order_index': timeline.order_index,
+                'sections': timeline.sections
             })
 
     return result

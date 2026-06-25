@@ -38,6 +38,24 @@ export interface Destination {
   is_featured: boolean;
 }
 
+export interface TimelineSubsection {
+  text_en?: string;
+  text_zh?: string;
+  images?: string[];
+}
+export interface TimelineAttraction {
+  name_en?: string;
+  name_zh?: string;
+  text_en?: string;
+  text_zh?: string;
+  images?: string[];
+}
+export interface DaySections {
+  overview?: TimelineSubsection;
+  accommodation?: TimelineSubsection;
+  highlights?: TimelineSubsection;
+  attractions?: TimelineAttraction[];
+}
 export interface ActivityTimeline {
   id: number;
   step_number: number;
@@ -46,6 +64,7 @@ export interface ActivityTimeline {
   duration_minutes?: number;
   image_url?: string;
   order_index: number;
+  sections?: DaySections | null;
 }
 
 export interface ActivityTimeSlot {

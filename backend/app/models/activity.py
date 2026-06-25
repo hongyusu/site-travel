@@ -1,6 +1,6 @@
 """Activity related models."""
 
-from sqlalchemy import Column, Integer, String, Boolean, DECIMAL, ForeignKey, DateTime, Text, ARRAY, Float, text
+from sqlalchemy import Column, Integer, String, Boolean, DECIMAL, ForeignKey, DateTime, Text, ARRAY, Float, text, JSON
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
@@ -263,6 +263,9 @@ class ActivityTimeline(Base):
     duration_minutes = Column(Integer)
     image_url = Column(String(500))
     order_index = Column(Integer, default=0)
+    # Rich per-day subsections (Girafe layout): bilingual {overview, accommodation,
+    # highlights, attractions[]} each with text_en/text_zh + images[]. NULL = legacy day.
+    sections = Column(JSON)
 
     # Relationships
     activity = relationship("Activity", back_populates="timelines")

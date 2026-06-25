@@ -1,6 +1,6 @@
 """Activity related schemas."""
 
-from typing import Optional, List
+from typing import Optional, List, Any
 from pydantic import BaseModel, Field
 from datetime import datetime
 from decimal import Decimal
@@ -106,6 +106,7 @@ class ActivityTimelineResponse(BaseModel):
     description: Optional[str]
     duration_minutes: Optional[int]
     image_url: Optional[str]
+    sections: Optional[Any] = None
 
     class Config:
         from_attributes = True
