@@ -129,7 +129,7 @@ export default function TermsPage() {
                 For questions about these Terms, please contact us at:
               </p>
               <p className="text-gray-700">
-                Email: legal@finuo.fi<br />
+                Email: booking@finuo.fi<br />
                 Address: 123 Market Street, San Francisco, CA 94103
               </p>
             </section>

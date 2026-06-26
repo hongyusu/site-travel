@@ -122,13 +122,9 @@ export default function ContactPage() {
             <div className="bg-paper rounded-lg shadow p-6">
               <Mail className="w-10 h-10 text-primary mb-3" />
               <h3 className="text-xl font-bold text-gray-900 mb-2">Email</h3>
-              <p className="text-gray-600 mb-2">General Inquiries:</p>
-              <a href="mailto:support@finuo.fi" className="text-primary hover:underline">
-                support@finuo.fi
-              </a>
-              <p className="text-gray-600 mt-3 mb-2">Vendor Support:</p>
-              <a href="mailto:vendors@finuo.fi" className="text-primary hover:underline">
-                vendors@finuo.fi
+              <p className="text-gray-600 mb-2">General &amp; vendor inquiries:</p>
+              <a href="mailto:booking@finuo.fi" className="text-primary hover:underline">
+                booking@finuo.fi
               </a>
             </div>
 

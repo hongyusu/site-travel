@@ -43,8 +43,8 @@ export default function PressPage() {
               <div className="space-y-3 text-gray-700">
                 <p className="flex items-center">
                   <Mail className="w-5 h-5 text-primary mr-2" />
-                  <a href="mailto:press@finuo.fi" className="text-primary hover:underline">
-                    press@finuo.fi
+                  <a href="mailto:booking@finuo.fi" className="text-primary hover:underline">
+                    booking@finuo.fi
                   </a>
                 </p>
                 <p className="text-gray-600">
@@ -132,7 +132,7 @@ export default function PressPage() {
           <p className="text-xl mb-6">
             Get in touch with our press team for interviews, quotes, and exclusive content
           </p>
-          <a href="mailto:press@finuo.fi" className="btn-secondary inline-block">
+          <a href="mailto:booking@finuo.fi" className="btn-secondary inline-block">
             Contact Press Team
           </a>
         </div>

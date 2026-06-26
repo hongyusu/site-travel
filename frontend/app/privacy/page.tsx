@@ -89,7 +89,7 @@ export default function PrivacyPage() {
                 <li>Withdraw consent at any time</li>
               </ul>
               <p className="text-gray-700 mt-4">
-                To exercise these rights, please contact us at privacy@finuo.fi
+                To exercise these rights, please contact us at booking@finuo.fi
               </p>
             </section>
 
@@ -123,7 +123,7 @@ export default function PrivacyPage() {
                 If you have questions about this Privacy Policy, please contact us at:
               </p>
               <p className="text-gray-700">
-                Email: privacy@finuo.fi<br />
+                Email: booking@finuo.fi<br />
                 Address: 123 Market Street, San Francisco, CA 94103
               </p>
             </section>

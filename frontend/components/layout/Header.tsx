@@ -71,7 +71,7 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-ink/90 backdrop-blur-md border-b border-cream/[0.08] sticky top-0 z-50">
+    <header className="bg-white/90 backdrop-blur-md border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

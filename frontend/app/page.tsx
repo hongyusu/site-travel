@@ -83,10 +83,10 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-ink via-ink/30 to-ink/50"></div>
         <div className="relative z-10 container mx-auto px-4 text-center">
-          <h1 className="font-serif font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-cream mb-5 drop-shadow-lg">
+          <h1 className="font-serif font-normal text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white mb-5 drop-shadow-lg">
             {getTranslation('homepage.hero.title')}
           </h1>
-          <p className="text-base sm:text-lg md:text-xl font-light text-cream/80 tracking-wide mb-10 drop-shadow-md">
+          <p className="text-base sm:text-lg md:text-xl font-light text-white/90 tracking-wide mb-10 drop-shadow-md">
             {getTranslation('homepage.hero.subtitle')}
           </p>
           <div className="max-w-3xl mx-auto">
