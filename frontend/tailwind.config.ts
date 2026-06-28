@@ -15,11 +15,11 @@ const config: Config = {
     extend: {
       colors: {
         ink: "#0D0D0D",
-        paper: "#FFFFFF",
+        paper: "#FFFDF9",
         cream: {
-          DEFAULT: "#1A1A1A",
-          dim: "rgba(26, 26, 26, 0.62)",
-          faint: "rgba(26, 26, 26, 0.42)",
+          DEFAULT: "#2B2722",
+          dim: "rgba(43, 39, 34, 0.62)",
+          faint: "rgba(43, 39, 34, 0.42)",
         },
         primary: {
           DEFAULT: "#C4A35A",
@@ -52,10 +52,13 @@ const config: Config = {
           light: "rgba(220, 38, 38, 0.12)",
         },
         gray: {
-          50: "#F9FAFB",
-          100: "#F3F4F6",
-          200: "#E5E7EB",
-          300: "#D1D5DB",
+          // Low end warmed toward ivory so page wrappers (bg-gray-50) and
+          // hairline borders (gray-200/300) match the warm theme. 400-900 stay
+          // neutral for reliable body-text contrast.
+          50: "#F6F1E7",
+          100: "#EFE9DC",
+          200: "#E6DECF",
+          300: "#D8CFBE",
           400: "#9CA3AF",
           500: "#6B7280",
           600: "#4B5563",
