@@ -109,22 +109,26 @@ export const endpoints = {
   similarActivities: (id: number) => `/activities/${id}/similar`,
 
   // Bookings
-  bookings: '/bookings',
+  // NOTE: collection-root routes are registered at "/" on the backend, so they
+  // MUST keep the trailing slash. Without it FastAPI 307-redirects to the
+  // trailing-slash path, and behind the TLS proxy that redirect downgrades to
+  // http:// — which the browser blocks as mixed content (cart/checkout fail).
+  bookings: '/bookings/',
   myBookings: '/bookings/my',
   bookingDetail: (ref: string) => `/bookings/${ref}`,
   cancelBooking: (ref: string) => `/bookings/${ref}/cancel`,
   availability: (activityId: number) => `/bookings/${activityId}/availability`,
 
-  // Cart
-  cart: '/cart',
+  // Cart (cart + clearCart hit the "/" route — keep the trailing slash, see note above)
+  cart: '/cart/',
   addToCart: '/cart/add',
   updateCartItem: (id: number) => `/cart/${id}`,
   removeFromCart: (id: number) => `/cart/${id}`,
-  clearCart: '/cart',
+  clearCart: '/cart/',
   cartTotal: '/cart/total',
 
-  // Reviews
-  reviews: '/reviews',
+  // Reviews (create hits the "/" route — keep the trailing slash, see note above)
+  reviews: '/reviews/',
   activityReviews: (activityId: number) => `/reviews/activity/${activityId}`,
   myReviews: '/reviews/my',
   markHelpful: (id: number) => `/reviews/${id}/helpful`,
