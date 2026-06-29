@@ -106,7 +106,7 @@ def get_destination_by_slug(
 
 # All activities are presented to customers under a single clubbed brand,
 # regardless of the underlying vendor that owns each activity.
-BRAND_VENDOR_NAME = "Sino Adventure"
+BRAND_VENDOR_NAME = "Nordic Adventure"
 
 
 @router.get("/providers")
