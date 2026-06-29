@@ -54,6 +54,9 @@ export default function SearchPage() {
   const [filters, setFilters] = useState<SearchParams>(getFiltersFromURL());
 
   useEffect(() => {
+    // Keep the filters state in sync with the URL (the source of truth) on every
+    // navigation, so load-more / sort / the sidebar never act on stale filters.
+    setFilters(getFiltersFromURL());
     fetchData();
     fetchMetadata();
   }, [searchParams]);
@@ -126,32 +129,28 @@ export default function SearchPage() {
   };
 
   const handleLoadMore = async () => {
-    if (pagination && pagination.has_next) {
-      const nextPage = pagination.page + 1;
-      const newFilters = { ...filters, page: nextPage };
+    if (!pagination || !pagination.has_next || loadingMore) return;
 
-      // Update URL without triggering full refetch
-      const params = new URLSearchParams();
-      Object.entries(newFilters).forEach(([key, value]) => {
-        if (value !== undefined && value !== null && value !== '') {
-          params.set(key, String(value));
-        }
-      });
+    const nextPage = pagination.page + 1;
+    // Read the active filters from the URL (same source as fetchData) so the
+    // next page matches the currently displayed result set — not a stale copy
+    // of the filters state.
+    const newFilters = { ...getFiltersFromURL(), page: nextPage };
 
-      // Fetch more data and append
-      setLoadingMore(true);
-      try {
-        const response = await apiClient.activities.search(newFilters);
-        setActivities(prev => [...prev, ...response.data.data]);
-        setPagination(response.data.pagination);
+    setLoadingMore(true);
+    try {
+      const response = await apiClient.activities.search(newFilters);
+      setActivities(prev => [...prev, ...response.data.data]);
+      setPagination(response.data.pagination);
 
-        // Update URL without triggering useEffect
-        window.history.replaceState({}, '', `/search?${params.toString()}`);
-      } catch (error) {
-        console.error('Error loading more activities:', error);
-      } finally {
-        setLoadingMore(false);
-      }
+      // Reflect the page in the URL without retriggering the fetch effect.
+      const params = new URLSearchParams(searchParams.toString());
+      params.set('page', String(nextPage));
+      window.history.replaceState({}, '', `/search?${params.toString()}`);
+    } catch (error) {
+      console.error('Error loading more activities:', error);
+    } finally {
+      setLoadingMore(false);
     }
   };
 
