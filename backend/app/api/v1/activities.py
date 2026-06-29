@@ -104,24 +104,49 @@ def get_destination_by_slug(
     return destination
 
 
-# All activities are presented to customers under a single clubbed brand,
-# regardless of the underlying vendor that owns each activity.
-BRAND_VENDOR_NAME = "Nordic Adventure"
+# Every activity is presented to customers under one of three display brands,
+# derived from the underlying vendor: Finuo's own activities keep their brand,
+# Girafe activities map to "Finuo-Giraffe", and everything else (all other
+# vendors) is clubbed under "Nordic Adventure".
+BRAND_FINUO = "Finuo"
+BRAND_GIRAFFE = "Finuo-Giraffe"
+BRAND_NORDIC = "Nordic Adventure"
+
+# Negative sentinel "vendor_id" values let the providers filter select a whole
+# brand group (real vendor ids are positive).
+BRAND_SENTINELS = {-2: BRAND_FINUO, -3: BRAND_GIRAFFE, -1: BRAND_NORDIC}
+
+
+def brand_for_vendor(company_name: Optional[str]) -> str:
+    """Map a real vendor company name to its customer-facing display brand."""
+    name = (company_name or "").lower()
+    if "girafe" in name or "giraffe" in name:
+        return BRAND_GIRAFFE
+    if name.startswith("finuo"):
+        return BRAND_FINUO
+    return BRAND_NORDIC
 
 
 @router.get("/providers")
 def get_providers(db: Session = Depends(get_db)):
-    """All public activities are clubbed under a single brand provider."""
-    total = (
-        db.query(func.count(Activity.id))
+    """Group active activities into the three display brands, with counts."""
+    rows = (
+        db.query(Vendor.company_name, func.count(Activity.id))
+        .join(Activity, Activity.vendor_id == Vendor.id)
         .filter(Activity.is_active == True)
-        .scalar()
+        .group_by(Vendor.company_name)
+        .all()
     )
-    if not total:
-        return []
-    # id 0 is a sentinel for the clubbed brand; the search endpoint treats a
-    # falsy vendor_id as "no vendor filter", so selecting it returns everything.
-    return [{"id": 0, "company_name": BRAND_VENDOR_NAME, "activity_count": total}]
+    counts = {BRAND_FINUO: 0, BRAND_GIRAFFE: 0, BRAND_NORDIC: 0}
+    for company_name, n in rows:
+        counts[brand_for_vendor(company_name)] += n
+    # Keep a stable order; only surface brands that actually have activities.
+    order = [(-2, BRAND_FINUO), (-3, BRAND_GIRAFFE), (-1, BRAND_NORDIC)]
+    return [
+        {"id": sid, "company_name": brand, "activity_count": counts[brand]}
+        for sid, brand in order
+        if counts[brand] > 0
+    ]
 
 
 @router.get("/search", response_model=PaginatedResponse[ActivityResponse])
@@ -269,9 +294,19 @@ def search_activities(
     if is_available is not None:
         query = query.filter(Activity.is_available == is_available)
 
-    # Provider / vendor filter. A falsy vendor_id (incl. the clubbed-brand
-    # sentinel 0) means "all providers", so the single brand returns everything.
-    if vendor_id:
+    # Provider / vendor filter. Negative ids are brand-group sentinels that map
+    # to a set of real vendors; positive ids select a single real vendor; a
+    # falsy id (0 / None) means "all brands".
+    if vendor_id is not None and vendor_id < 0:
+        brand = BRAND_SENTINELS.get(vendor_id)
+        brand_vendor_ids = [
+            v.id
+            for v in db.query(Vendor.id, Vendor.company_name).all()
+            if brand_for_vendor(v.company_name) == brand
+        ]
+        # Use an impossible id when a brand has no vendors so nothing matches.
+        query = query.filter(Activity.vendor_id.in_(brand_vendor_ids or [-999]))
+    elif vendor_id:
         query = query.filter(Activity.vendor_id == vendor_id)
 
     # Vendor filter
@@ -500,7 +535,7 @@ def _get_activity_details(activity: Activity, db: Session, language: str = 'en')
         "meeting_point": translated_meeting_point,
         "vendor": {
             "id": vendor.id,
-            "company_name": BRAND_VENDOR_NAME,
+            "company_name": brand_for_vendor(vendor.company_name),
             "is_verified": vendor.is_verified
         },
         # New enhanced fields
