@@ -16,7 +16,7 @@ export default function DestinationCard({
   destination,
   variant = 'default'
 }: DestinationCardProps) {
-  const { getCountryName } = useLanguage();
+  const { getCountryName, getTranslation } = useLanguage();
   const heightClass = variant === 'large' ? 'h-80' : 'h-64';
 
   return (
@@ -43,7 +43,7 @@ export default function DestinationCard({
           <h3 className="text-2xl font-bold mb-1">{destination.name}</h3>
           {destination.is_featured && (
             <span className="inline-block bg-primary px-2 py-1 rounded text-xs font-medium">
-              Popular destination
+              {getTranslation('dest.popular')}
             </span>
           )}
         </div>

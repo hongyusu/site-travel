@@ -8,7 +8,7 @@ import { Search } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function DestinationsPage() {
-  const { getCountryName } = useLanguage();
+  const { getCountryName, getTranslation } = useLanguage();
   const [destinations, setDestinations] = useState<Destination[]>([]);
   const [filteredDestinations, setFilteredDestinations] = useState<Destination[]>([]);
   const [loading, setLoading] = useState(true);
@@ -56,9 +56,9 @@ export default function DestinationsPage() {
       {/* Header */}
       <div className="bg-primary text-ink py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold mb-4">Explore Destinations</h1>
+          <h1 className="text-4xl font-bold mb-4">{getTranslation('dest.explore_title')}</h1>
           <p className="text-xl mb-8">
-            Discover amazing activities in cities around the world
+            {getTranslation('dest.subtitle')}
           </p>
 
           {/* Search */}
@@ -67,7 +67,7 @@ export default function DestinationsPage() {
               <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
                 type="text"
-                placeholder="Search destinations..."
+                placeholder={getTranslation('dest.search_placeholder')}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="w-full pl-12 pr-4 py-3 rounded-full text-gray-900 focus:outline-none focus:ring-2 focus:ring-white"
@@ -88,10 +88,10 @@ export default function DestinationsPage() {
         ) : filteredDestinations.length === 0 ? (
           <div className="text-center py-12">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              No destinations found
+              {getTranslation('dest.none_found')}
             </h3>
             <p className="text-gray-600">
-              Try adjusting your search query
+              {getTranslation('dest.adjust_query')}
             </p>
           </div>
         ) : (
@@ -116,7 +116,7 @@ export default function DestinationsPage() {
         {/* Featured Destinations */}
         {!loading && !searchQuery && destinations.filter(d => d.is_featured).length > 0 && (
           <div className="mt-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">Featured Destinations</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">{getTranslation('dest.featured')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {destinations.filter(d => d.is_featured).map(dest => (
                 <DestinationCard key={dest.id} destination={dest} variant="large" />
