@@ -133,20 +133,18 @@ export default function SearchPage() {
 
     const nextPage = pagination.page + 1;
     // Read the active filters from the URL (same source as fetchData) so the
-    // next page matches the currently displayed result set — not a stale copy
-    // of the filters state.
+    // next page matches the currently displayed result set.
     const newFilters = { ...getFiltersFromURL(), page: nextPage };
 
+    // NOTE: do NOT write the page back to the URL here. In Next 14.1+,
+    // window.history.replaceState syncs with useSearchParams(), which would
+    // retrigger the [searchParams] effect and reset the list to a single page
+    // — defeating the append. Load-more is intentionally URL-less.
     setLoadingMore(true);
     try {
       const response = await apiClient.activities.search(newFilters);
       setActivities(prev => [...prev, ...response.data.data]);
       setPagination(response.data.pagination);
-
-      // Reflect the page in the URL without retriggering the fetch effect.
-      const params = new URLSearchParams(searchParams.toString());
-      params.set('page', String(nextPage));
-      window.history.replaceState({}, '', `/search?${params.toString()}`);
     } catch (error) {
       console.error('Error loading more activities:', error);
     } finally {
