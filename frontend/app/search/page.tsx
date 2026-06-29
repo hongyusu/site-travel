@@ -42,6 +42,9 @@ export default function SearchPage() {
     if (searchParams.get('instant_confirmation')) filters.instant_confirmation = searchParams.get('instant_confirmation') === 'true';
     if (searchParams.get('skip_the_line')) filters.skip_the_line = searchParams.get('skip_the_line') === 'true';
     if (searchParams.get('bestseller')) filters.bestseller = searchParams.get('bestseller') === 'true';
+    const availability = searchParams.get('is_available');
+    if (availability === 'true') filters.is_available = true;
+    else if (availability === 'false') filters.is_available = false;
     if (searchParams.get('sort_by')) filters.sort_by = searchParams.get('sort_by') as any;
     if (searchParams.get('page')) filters.page = parseInt(searchParams.get('page')!);
 

@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { CheckCircle, ArrowLeft, Calendar, Users, MapPin, Clock } from 'lucide-react';
 import { apiClient } from '@/lib/api';
 import { useLocation } from '@/contexts/LocationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import OrderTimeline from '@/components/orders/OrderTimeline';
 import OrderStatusBadge from '@/components/orders/OrderStatusBadge';
 import Image from 'next/image';
@@ -45,6 +46,7 @@ function OrderConfirmationContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { formatPrice } = useLocation();
+  const { getTranslation } = useLanguage();
   const bookingRef = searchParams.get('ref');
 
   const [booking, setBooking] = useState<Booking | null>(null);
@@ -97,7 +99,7 @@ function OrderConfirmationContent() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading your booking...</p>
+          <p className="mt-4 text-gray-600">{getTranslation('oc.loading')}</p>
         </div>
       </div>
     );
@@ -109,10 +111,10 @@ function OrderConfirmationContent() {
         <div className="text-center">
           <div className="text-red-500 text-xl mb-4">⚠️</div>
           <h2 className="text-xl font-semibold text-gray-900 mb-2">
-            {error || 'Booking not found'}
+            {error || getTranslation('oc.not_found')}
           </h2>
           <Link href="/" className="text-primary hover:underline">
-            Return to homepage
+            {getTranslation('oc.return_home')}
           </Link>
         </div>
       </div>
@@ -128,13 +130,13 @@ function OrderConfirmationContent() {
             <CheckCircle className="w-10 h-10 text-green-600" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Booking Confirmed!
+            {getTranslation('oc.confirmed')}
           </h1>
           <p className="text-gray-600 mb-4">
-            Your booking reference is <span className="font-semibold text-primary">{booking.booking_ref}</span>
+            {getTranslation('oc.reference_is')} <span className="font-semibold text-primary">{booking.booking_ref}</span>
           </p>
           <p className="text-sm text-gray-500">
-            A confirmation email has been sent to {booking.customer_email}
+            {getTranslation('oc.email_sent')} {booking.customer_email}
           </p>
         </div>
 
@@ -143,7 +145,7 @@ function OrderConfirmationContent() {
           <div className="lg:col-span-2 space-y-6">
             {/* Activity Details */}
             <div className="bg-paper rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Activity Details</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">{getTranslation('oc.activity_details')}</h2>
               <div className="flex gap-4">
                 {booking.activity.primary_image && (
                   <div className="w-32 h-32 rounded-lg overflow-hidden flex-shrink-0">
@@ -169,8 +171,8 @@ function OrderConfirmationContent() {
                     </div>
                     <div className="flex items-center">
                       <Users className="w-4 h-4 mr-2" />
-                      {booking.adults} {booking.adults === 1 ? 'Adult' : 'Adults'}
-                      {booking.children > 0 && `, ${booking.children} ${booking.children === 1 ? 'Child' : 'Children'}`}
+                      {booking.adults} {booking.adults === 1 ? getTranslation('common.adult') : getTranslation('common.adults')}
+                      {booking.children > 0 && `, ${booking.children} ${booking.children === 1 ? getTranslation('common.child') : getTranslation('common.children')}`}
                     </div>
                     {booking.activity.duration_minutes && (
                       <div className="flex items-center">
@@ -185,7 +187,7 @@ function OrderConfirmationContent() {
 
             {/* Order Timeline */}
             <div className="bg-paper rounded-lg shadow-sm p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Order Status</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-6">{getTranslation('oc.order_status')}</h2>
               <OrderTimeline
                 bookingStatus={booking.status}
                 createdAt={booking.created_at}
@@ -202,7 +204,7 @@ function OrderConfirmationContent() {
             {/* Special Requirements */}
             {booking.special_requirements && (
               <div className="bg-paper rounded-lg shadow-sm p-6">
-                <h2 className="text-xl font-semibold text-gray-900 mb-3">Special Requirements</h2>
+                <h2 className="text-xl font-semibold text-gray-900 mb-3">{getTranslation('oc.special_requirements')}</h2>
                 <p className="text-gray-700">{booking.special_requirements}</p>
               </div>
             )}
@@ -212,23 +214,23 @@ function OrderConfirmationContent() {
           <div className="space-y-6">
             {/* Booking Summary */}
             <div className="bg-paper rounded-lg shadow-sm p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Booking Summary</h3>
+              <h3 className="font-semibold text-gray-900 mb-4">{getTranslation('oc.booking_summary')}</h3>
               <div className="space-y-3 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Status</span>
+                  <span className="text-gray-600">{getTranslation('oc.status')}</span>
                   <OrderStatusBadge status={booking.status} />
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Reference</span>
+                  <span className="text-gray-600">{getTranslation('oc.reference')}</span>
                   <span className="font-medium">{booking.booking_ref}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Participants</span>
+                  <span className="text-gray-600">{getTranslation('oc.participants')}</span>
                   <span className="font-medium">{booking.total_participants}</span>
                 </div>
                 <div className="border-t pt-3 mt-3">
                   <div className="flex justify-between text-lg font-semibold">
-                    <span>Total</span>
+                    <span>{getTranslation('oc.total')}</span>
                     <span>{formatPrice(booking.total_price)}</span>
                   </div>
                 </div>
@@ -237,7 +239,7 @@ function OrderConfirmationContent() {
 
             {/* Contact Information */}
             <div className="bg-paper rounded-lg shadow-sm p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Contact Information</h3>
+              <h3 className="font-semibold text-gray-900 mb-4">{getTranslation('oc.contact_info')}</h3>
               <div className="space-y-2 text-sm text-gray-600">
                 <div>
                   <div className="font-medium text-gray-900">{booking.customer_name}</div>
@@ -253,14 +255,14 @@ function OrderConfirmationContent() {
                 href="/orders"
                 className="btn-primary w-full text-center block"
               >
-                View All Orders
+                {getTranslation('oc.view_all_orders')}
               </Link>
               <Link
                 href="/"
                 className="btn-secondary w-full text-center flex items-center justify-center"
               >
                 <ArrowLeft className="w-4 h-4 mr-2" />
-                Continue Shopping
+                {getTranslation('oc.continue_shopping')}
               </Link>
             </div>
           </div>
@@ -271,12 +273,13 @@ function OrderConfirmationContent() {
 }
 
 export default function OrderConfirmationPage() {
+  const { getTranslation } = useLanguage();
   return (
     <Suspense fallback={
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+          <p className="mt-4 text-gray-600">{getTranslation('oc.loading_short')}</p>
         </div>
       </div>
     }>

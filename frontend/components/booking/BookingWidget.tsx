@@ -84,7 +84,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
 
   const handleAddToCart = async () => {
     if (!bookingDate) {
-      alert('Please select a date');
+      alert(getTranslation('bw.select_date'));
       return;
     }
 
@@ -120,7 +120,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
       router.push('/cart');
     } catch (error) {
       console.error('Error adding to cart:', error);
-      alert('Failed to add to cart. Please try again.');
+      alert(getTranslation('bw.add_error'));
     } finally {
       setLoading(false);
     }
@@ -237,7 +237,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
         <div className="flex items-center justify-between mb-3 p-3 border border-gray-200 rounded-lg">
           <div>
             <div className="font-medium">{getTranslation('booking.adult')}</div>
-            <div className="text-sm text-gray-500">Age 18+</div>
+            <div className="text-sm text-gray-500">{getTranslation('bw.age_adult')}</div>
           </div>
           <div className="flex items-center space-x-3">
             <button
@@ -261,7 +261,7 @@ export default function BookingWidget({ activity }: BookingWidgetProps) {
           <div className="flex items-center justify-between p-3 border border-gray-200 rounded-lg">
             <div>
               <div className="font-medium">{getTranslation('booking.child')}</div>
-              <div className="text-sm text-gray-500">Age 0-17</div>
+              <div className="text-sm text-gray-500">{getTranslation('bw.age_child')}</div>
             </div>
             <div className="flex items-center space-x-3">
               <button

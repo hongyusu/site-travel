@@ -24,7 +24,7 @@ interface TravelerInfo {
 export default function CheckoutPage() {
   const router = useRouter();
   const { formatPrice } = useLocation();
-  const { getTranslation } = useLanguage();
+  const { getTranslation, getCountryName } = useLanguage();
   const [user, setUser] = useState<any>(null);
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -201,7 +201,7 @@ export default function CheckoutPage() {
               {/* Login/Guest Option */}
               {!user && (
                 <div className="bg-paper rounded-lg shadow p-6 mb-6">
-                  <h2 className="text-xl font-bold mb-4">Account</h2>
+                  <h2 className="text-xl font-bold mb-4">{getTranslation('checkout.account')}</h2>
                   <div className="space-y-3">
                     <label className="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
                       <input
@@ -211,8 +211,8 @@ export default function CheckoutPage() {
                         className="mr-3"
                       />
                       <div>
-                        <div className="font-medium">Login or create account</div>
-                        <div className="text-sm text-gray-600">Save your booking details and earn rewards</div>
+                        <div className="font-medium">{getTranslation('checkout.login_create')}</div>
+                        <div className="text-sm text-gray-600">{getTranslation('checkout.login_create_sub')}</div>
                       </div>
                     </label>
                     <label className="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
@@ -223,15 +223,15 @@ export default function CheckoutPage() {
                         className="mr-3"
                       />
                       <div>
-                        <div className="font-medium">Continue as guest</div>
-                        <div className="text-sm text-gray-600">Quick checkout without creating an account</div>
+                        <div className="font-medium">{getTranslation('checkout.guest')}</div>
+                        <div className="text-sm text-gray-600">{getTranslation('checkout.guest_sub')}</div>
                       </div>
                     </label>
                   </div>
                   {!isGuest && (
                     <div className="mt-4 pt-4 border-t">
                       <Link href="/login?redirect=/checkout" className="btn-primary">
-                        Login / Sign Up
+                        {getTranslation('checkout.login_signup')}
                       </Link>
                     </div>
                   )}
@@ -240,7 +240,7 @@ export default function CheckoutPage() {
 
               {/* Traveler Information */}
               <div className="bg-paper rounded-lg shadow p-6 mb-6">
-                <h2 className="text-xl font-bold mb-4">Traveler Information</h2>
+                <h2 className="text-xl font-bold mb-4">{getTranslation('checkout.traveler_info')}</h2>
 
                 <div className="grid grid-cols-2 gap-4 mb-4">
                   <div>
@@ -281,7 +281,7 @@ export default function CheckoutPage() {
                     required
                   />
                   <p className="text-sm text-gray-500 mt-1">
-                    We'll send your booking confirmation here
+                    {getTranslation('checkout.email_helper')}
                   </p>
                 </div>
 
@@ -301,37 +301,37 @@ export default function CheckoutPage() {
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Country/Region *
+                      {getTranslation('checkout.country')}
                     </label>
                     <select
                       value={travelerInfo.country}
                       onChange={(e) => handleInputChange('country', e.target.value)}
                       className="input-field"
                     >
-                      <option value="United States">United States</option>
-                      <option value="United Kingdom">United Kingdom</option>
-                      <option value="Canada">Canada</option>
-                      <option value="Australia">Australia</option>
-                      <option value="Germany">Germany</option>
-                      <option value="France">France</option>
-                      <option value="Spain">Spain</option>
-                      <option value="Italy">Italy</option>
-                      <option value="Japan">Japan</option>
-                      <option value="Other">Other</option>
+                      <option value="United States">{getCountryName('United States')}</option>
+                      <option value="United Kingdom">{getCountryName('United Kingdom')}</option>
+                      <option value="Canada">{getCountryName('Canada')}</option>
+                      <option value="Australia">{getCountryName('Australia')}</option>
+                      <option value="Germany">{getCountryName('Germany')}</option>
+                      <option value="France">{getCountryName('France')}</option>
+                      <option value="Spain">{getCountryName('Spain')}</option>
+                      <option value="Italy">{getCountryName('Italy')}</option>
+                      <option value="Japan">{getCountryName('Japan')}</option>
+                      <option value="Other">{getCountryName('Other')}</option>
                     </select>
                   </div>
                 </div>
 
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Special Requirements (Optional)
+                    {getTranslation('checkout.special_requirements')}
                   </label>
                   <textarea
                     value={travelerInfo.specialRequirements}
                     onChange={(e) => handleInputChange('specialRequirements', e.target.value)}
                     rows={4}
                     className="input-field"
-                    placeholder="Any special requests or requirements..."
+                    placeholder={getTranslation('checkout.special_placeholder')}
                   />
                 </div>
 
@@ -340,11 +340,11 @@ export default function CheckoutPage() {
                   <div className="flex items-start">
                     <Info className="w-5 h-5 text-blue-600 mt-0.5 mr-3 flex-shrink-0" />
                     <div className="text-sm text-blue-900">
-                      <p className="font-medium mb-1">Important:</p>
+                      <p className="font-medium mb-1">{getTranslation('checkout.important')}</p>
                       <ul className="list-disc list-inside space-y-1">
-                        <li>Please ensure all names match your travel documents</li>
-                        <li>You'll receive confirmation and tickets via email</li>
-                        <li>Some activities may require additional information</li>
+                        <li>{getTranslation('checkout.important_1')}</li>
+                        <li>{getTranslation('checkout.important_2')}</li>
+                        <li>{getTranslation('checkout.important_3')}</li>
                       </ul>
                     </div>
                   </div>
@@ -366,8 +366,8 @@ export default function CheckoutPage() {
                     />
                     <CreditCard className="w-6 h-6 mr-3 text-gray-600" />
                     <div>
-                      <div className="font-medium">Credit / Debit Card</div>
-                      <div className="text-sm text-gray-600">Secure payment with card</div>
+                      <div className="font-medium">{getTranslation('checkout.card')}</div>
+                      <div className="text-sm text-gray-600">{getTranslation('checkout.card_sub')}</div>
                     </div>
                   </label>
 
@@ -382,8 +382,8 @@ export default function CheckoutPage() {
                     />
                     <div className="w-6 h-6 mr-3 bg-gray-200 rounded" />
                     <div>
-                      <div className="font-medium">PayPal (Coming Soon)</div>
-                      <div className="text-sm text-gray-600">Fast and secure checkout</div>
+                      <div className="font-medium">{getTranslation('checkout.paypal')}</div>
+                      <div className="text-sm text-gray-600">{getTranslation('checkout.paypal_sub')}</div>
                     </div>
                   </label>
                 </div>
@@ -391,7 +391,7 @@ export default function CheckoutPage() {
                 {paymentMethod === 'card' && (
                   <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                     <p className="text-sm text-gray-600">
-                      You will be redirected to our secure payment provider to complete your purchase.
+                      {getTranslation('checkout.redirect_note')}
                     </p>
                   </div>
                 )}
@@ -407,13 +407,13 @@ export default function CheckoutPage() {
                     className="mt-1 mr-3"
                   />
                   <div className="text-sm">
-                    I agree to the{' '}
+                    {getTranslation('checkout.agree_prefix')}{' '}
                     <Link href="/terms" className="text-primary hover:underline">
-                      Terms and Conditions
+                      {getTranslation('checkout.terms_link')}
                     </Link>
-                    {' '}and{' '}
+                    {' '}{getTranslation('checkout.and')}{' '}
                     <Link href="/privacy" className="text-primary hover:underline">
-                      Privacy Policy
+                      {getTranslation('checkout.privacy_link')}
                     </Link>
                     . I understand that my booking is subject to the activity provider's cancellation policy.
                   </div>
@@ -447,8 +447,8 @@ export default function CheckoutPage() {
                         {new Date(item.booking_date).toLocaleDateString()}
                       </p>
                       <p className="text-xs text-gray-600">
-                        {item.adults} adult{item.adults > 1 ? 's' : ''}
-                        {item.children > 0 && `, ${item.children} child${item.children > 1 ? 'ren' : ''}`}
+                        {item.adults} {item.adults > 1 ? getTranslation('common.adults') : getTranslation('common.adult')}
+                        {item.children > 0 && `, ${item.children} ${item.children > 1 ? getTranslation('common.children') : getTranslation('common.child')}`}
                       </p>
                       <p className="text-sm font-medium text-gray-900 mt-1">
                         {formatPrice(item.price)}
@@ -461,15 +461,15 @@ export default function CheckoutPage() {
               {/* Price Breakdown */}
               <div className="space-y-3 border-t pt-4">
                 <div className="flex justify-between text-gray-600">
-                  <span>Subtotal</span>
+                  <span>{getTranslation('cart.subtotal')}</span>
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
-                  <span>Service Fee</span>
+                  <span>{getTranslation('checkout.service_fee')}</span>
                   <span>{formatPrice(serviceFee)}</span>
                 </div>
                 <div className="border-t pt-3 flex justify-between text-lg font-bold">
-                  <span>Total</span>
+                  <span>{getTranslation('cart.total')}</span>
                   <span>{formatPrice(total)}</span>
                 </div>
               </div>
@@ -481,18 +481,17 @@ export default function CheckoutPage() {
                 disabled={processing}
                 className="btn-primary w-full mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {processing ? 'Processing...' : `Complete Booking • ${formatPrice(total)}`}
+                {processing ? getTranslation('checkout.processing') : `${getTranslation('checkout.complete_booking')} • ${formatPrice(total)}`}
               </button>
 
               {/* Security Badge */}
               <div className="mt-6 pt-6 border-t text-center">
                 <div className="flex items-center justify-center text-sm text-gray-600 mb-2">
                   <Shield className="w-5 h-5 text-success mr-2" />
-                  Secure Payment
+                  {getTranslation('checkout.secure_payment')}
                 </div>
                 <p className="text-xs text-gray-500">
-                  Your payment information is encrypted and secure.
-                  We never store your card details.
+                  {getTranslation('cart.secure_note')}. {getTranslation('checkout.no_card_storage')}
                 </p>
               </div>
 

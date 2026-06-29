@@ -104,25 +104,24 @@ def get_destination_by_slug(
     return destination
 
 
+# All activities are presented to customers under a single clubbed brand,
+# regardless of the underlying vendor that owns each activity.
+BRAND_VENDOR_NAME = "Sino Adventure"
+
+
 @router.get("/providers")
 def get_providers(db: Session = Depends(get_db)):
-    """List providers (vendors) that have at least one active activity, with counts."""
-    rows = (
-        db.query(
-            Vendor.id,
-            Vendor.company_name,
-            func.count(Activity.id).label("activity_count"),
-        )
-        .join(Activity, Activity.vendor_id == Vendor.id)
+    """All public activities are clubbed under a single brand provider."""
+    total = (
+        db.query(func.count(Activity.id))
         .filter(Activity.is_active == True)
-        .group_by(Vendor.id, Vendor.company_name)
-        .order_by(Vendor.company_name)
-        .all()
+        .scalar()
     )
-    return [
-        {"id": r.id, "company_name": r.company_name, "activity_count": r.activity_count}
-        for r in rows
-    ]
+    if not total:
+        return []
+    # id 0 is a sentinel for the clubbed brand; the search endpoint treats a
+    # falsy vendor_id as "no vendor filter", so selecting it returns everything.
+    return [{"id": 0, "company_name": BRAND_VENDOR_NAME, "activity_count": total}]
 
 
 @router.get("/search", response_model=PaginatedResponse[ActivityResponse])
@@ -143,6 +142,7 @@ def search_activities(
     instant_confirmation: Optional[bool] = Query(None, description="Instant confirmation only"),
     skip_the_line: Optional[bool] = Query(None, description="Skip the line only"),
     bestseller: Optional[bool] = Query(None, description="Bestsellers only"),
+    is_available: Optional[bool] = Query(None, description="Filter by availability (true=available, false=unavailable)"),
     vendor_only: Optional[bool] = Query(None, description="Show only current vendor's activities"),
     sort_by: str = Query("recommended", description="Sort: recommended, price_asc, price_desc, rating, duration"),
     language: str = Query('en', description="Language for translation (en, es, zh, fr)"),
@@ -265,8 +265,13 @@ def search_activities(
     if bestseller is not None:
         query = query.filter(Activity.is_bestseller == bestseller)
 
-    # Provider / vendor filter
-    if vendor_id is not None:
+    # Availability filter (provider-set "available for booking" flag)
+    if is_available is not None:
+        query = query.filter(Activity.is_available == is_available)
+
+    # Provider / vendor filter. A falsy vendor_id (incl. the clubbed-brand
+    # sentinel 0) means "all providers", so the single brand returns everything.
+    if vendor_id:
         query = query.filter(Activity.vendor_id == vendor_id)
 
     # Vendor filter
@@ -495,7 +500,7 @@ def _get_activity_details(activity: Activity, db: Session, language: str = 'en')
         "meeting_point": translated_meeting_point,
         "vendor": {
             "id": vendor.id,
-            "company_name": vendor.company_name,
+            "company_name": BRAND_VENDOR_NAME,
             "is_verified": vendor.is_verified
         },
         # New enhanced fields

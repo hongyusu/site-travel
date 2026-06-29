@@ -361,6 +361,7 @@ export interface SearchParams {
   instant_confirmation?: boolean;
   skip_the_line?: boolean;
   bestseller?: boolean;
+  is_available?: boolean;
   sort_by?: 'recommended' | 'price_asc' | 'price_desc' | 'rating' | 'duration';
   page?: number;
   per_page?: number;

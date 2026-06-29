@@ -114,7 +114,7 @@ export default function CartPage() {
           <ShoppingCart className="w-24 h-24 text-gray-300 mx-auto mb-4" />
           <h1 className="text-2xl font-bold text-gray-900 mb-4">{getTranslation('cart.empty')}</h1>
           <p className="text-gray-600 mb-8">
-            Looks like you haven't added any activities yet
+            {getTranslation('cart.empty_subtitle')}
           </p>
           <Link href="/search" className="btn-primary">
             {getTranslation('cart.browse_activities')}
@@ -159,20 +159,20 @@ export default function CartPage() {
 
                     <div className="text-sm text-gray-600 space-y-1">
                       <div>
-                        Date: {new Date(item.booking_date).toLocaleDateString('en-US', {
+                        {getTranslation('cart.date')}: {new Date(item.booking_date).toLocaleDateString('en-US', {
                           weekday: 'long',
                           year: 'numeric',
                           month: 'long',
                           day: 'numeric'
                         })}
                       </div>
-                      {item.booking_time && <div>Time: {item.booking_time}</div>}
+                      {item.booking_time && <div>{getTranslation('cart.time')}: {item.booking_time}</div>}
                     </div>
 
                     {/* Quantity Controls */}
                     <div className="mt-3 flex items-center space-x-6">
                       <div className="flex items-center">
-                        <label className="text-sm text-gray-600 mr-2">Adults:</label>
+                        <label className="text-sm text-gray-600 mr-2">{getTranslation('common.adults')}</label>
                         <div className="flex items-center">
                           <button
                             onClick={() => handleUpdateQuantity(item.id, Math.max(1, item.adults - 1), item.children)}
@@ -193,7 +193,7 @@ export default function CartPage() {
                       </div>
 
                       <div className="flex items-center">
-                        <label className="text-sm text-gray-600 mr-2">Children:</label>
+                        <label className="text-sm text-gray-600 mr-2">{getTranslation('common.children')}</label>
                         <div className="flex items-center">
                           <button
                             onClick={() => handleUpdateQuantity(item.id, item.adults, Math.max(0, item.children - 1))}
@@ -225,7 +225,7 @@ export default function CartPage() {
                         className="text-red-600 hover:text-red-700 flex items-center disabled:opacity-50"
                       >
                         <Trash2 className="w-4 h-4 mr-1" />
-                        {removing === item.id ? 'Removing...' : 'Remove'}
+                        {removing === item.id ? getTranslation('cart.removing') : getTranslation('cart.remove')}
                       </button>
                     </div>
                   </div>
@@ -241,17 +241,17 @@ export default function CartPage() {
 
               <div className="space-y-3 mb-6">
                 <div className="flex justify-between text-gray-600">
-                  <span>Subtotal</span>
+                  <span>{getTranslation('cart.subtotal')}</span>
                   <span>{formatPrice(subtotal)}</span>
                 </div>
                 {tax > 0 && (
                   <div className="flex justify-between text-gray-600">
-                    <span>Tax</span>
+                    <span>{getTranslation('cart.tax')}</span>
                     <span>{formatPrice(tax)}</span>
                   </div>
                 )}
                 <div className="border-t pt-3 flex justify-between text-lg font-bold">
-                  <span>Total</span>
+                  <span>{getTranslation('cart.total')}</span>
                   <span>{formatPrice(total)}</span>
                 </div>
               </div>
@@ -279,7 +279,7 @@ export default function CartPage() {
                   {getTranslation('cart.secure_checkout')}
                 </div>
                 <p className="text-xs">
-                  Your payment information is encrypted and secure
+                  {getTranslation('cart.secure_note')}
                 </p>
               </div>
             </div>

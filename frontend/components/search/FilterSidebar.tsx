@@ -73,6 +73,15 @@ export default function FilterSidebar({
     onFilterChange(updated);
   };
 
+  const handleAvailabilityChange = (value: string) => {
+    const updated = { ...localFilters };
+    if (value === 'available') updated.is_available = true;
+    else if (value === 'unavailable') updated.is_available = false;
+    else delete updated.is_available;
+    setLocalFilters(updated);
+    onFilterChange(updated);
+  };
+
   const clearFilters = () => {
     const cleared: SearchParams = { q: localFilters.q };
     setLocalFilters(cleared);
@@ -140,7 +149,7 @@ export default function FilterSidebar({
         <div className="border-t pt-4">
           <h4 className="font-medium mb-3">{getTranslation('filter.provider')}</h4>
           <select
-            value={localFilters.vendor_id || ''}
+            value={localFilters.vendor_id ?? ''}
             onChange={(e) => handleProviderChange(e.target.value)}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent min-h-[44px] text-base"
           >
@@ -153,6 +162,20 @@ export default function FilterSidebar({
           </select>
         </div>
       )}
+
+      {/* Availability Filter */}
+      <div className="border-t pt-4">
+        <h4 className="font-medium mb-3">{getTranslation('filter.availability')}</h4>
+        <select
+          value={localFilters.is_available === true ? 'available' : localFilters.is_available === false ? 'unavailable' : ''}
+          onChange={(e) => handleAvailabilityChange(e.target.value)}
+          className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent min-h-[44px] text-base"
+        >
+          <option value="">{getTranslation('filter.availability_all')}</option>
+          <option value="available">{getTranslation('filter.available_only')}</option>
+          <option value="unavailable">{getTranslation('filter.unavailable_only')}</option>
+        </select>
+      </div>
 
       {/* Price Range */}
       <div className="border-t pt-4">

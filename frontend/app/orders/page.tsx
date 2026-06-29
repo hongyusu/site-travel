@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { Calendar, Users, ArrowRight, Filter } from 'lucide-react';
 import { apiClient } from '@/lib/api';
 import { useLocation } from '@/contexts/LocationContext';
+import { useLanguage } from '@/contexts/LanguageContext';
 import OrderStatusBadge from '@/components/orders/OrderStatusBadge';
 import Image from 'next/image';
 
@@ -32,6 +33,7 @@ interface Booking {
 
 export default function MyOrdersPage() {
   const { formatPrice } = useLocation();
+  const { getTranslation } = useLanguage();
   const [bookings, setBookings] = useState<Booking[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'upcoming' | 'past'>('all');
@@ -103,7 +105,7 @@ export default function MyOrdersPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto"></div>
-            <p className="mt-4 text-gray-600">Loading your orders...</p>
+            <p className="mt-4 text-gray-600">{getTranslation('orders.loading')}</p>
           </div>
         </div>
       </div>
@@ -115,8 +117,8 @@ export default function MyOrdersPage() {
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">My Orders</h1>
-          <p className="text-gray-600">View and manage all your bookings</p>
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">{getTranslation('orders.title')}</h1>
+          <p className="text-gray-600">{getTranslation('orders.subtitle')}</p>
         </div>
 
         {/* Filters */}
@@ -124,7 +126,7 @@ export default function MyOrdersPage() {
           <div className="flex items-center gap-4 flex-wrap">
             <div className="flex items-center gap-2">
               <Filter className="w-5 h-5 text-gray-600" />
-              <span className="text-sm font-medium text-gray-700">Filters:</span>
+              <span className="text-sm font-medium text-gray-700">{getTranslation('orders.filters')}</span>
             </div>
 
             {/* Time Filter */}
@@ -137,7 +139,7 @@ export default function MyOrdersPage() {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                All
+                {getTranslation('orders.all')}
               </button>
               <button
                 onClick={() => setFilter('upcoming')}
@@ -147,7 +149,7 @@ export default function MyOrdersPage() {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                Upcoming
+                {getTranslation('orders.upcoming')}
               </button>
               <button
                 onClick={() => setFilter('past')}
@@ -157,7 +159,7 @@ export default function MyOrdersPage() {
                     : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                 }`}
               >
-                Past
+                {getTranslation('orders.past')}
               </button>
             </div>
 
@@ -167,12 +169,12 @@ export default function MyOrdersPage() {
               onChange={(e) => setStatusFilter(e.target.value)}
               className="px-4 py-2 border border-gray-300 rounded-lg text-sm"
             >
-              <option value="all">All Statuses</option>
-              <option value="pending_vendor_approval">Awaiting Approval</option>
-              <option value="confirmed">Confirmed</option>
-              <option value="completed">Completed</option>
-              <option value="cancelled">Cancelled</option>
-              <option value="rejected">Rejected</option>
+              <option value="all">{getTranslation('orders.all_statuses')}</option>
+              <option value="pending_vendor_approval">{getTranslation('orders.awaiting')}</option>
+              <option value="confirmed">{getTranslation('orders.confirmed')}</option>
+              <option value="completed">{getTranslation('orders.completed')}</option>
+              <option value="cancelled">{getTranslation('orders.cancelled')}</option>
+              <option value="rejected">{getTranslation('orders.rejected')}</option>
             </select>
           </div>
         </div>
@@ -181,16 +183,16 @@ export default function MyOrdersPage() {
         {filteredBookings.length === 0 ? (
           <div className="bg-paper rounded-lg shadow-sm p-12 text-center">
             <div className="text-gray-400 text-5xl mb-4">📭</div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">No bookings found</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">{getTranslation('orders.none_title')}</h3>
             <p className="text-gray-600 mb-6">
               {filter === 'upcoming'
-                ? "You don't have any upcoming bookings"
+                ? getTranslation('orders.none_upcoming')
                 : filter === 'past'
-                ? "You don't have any past bookings"
-                : "You haven't made any bookings yet"}
+                ? getTranslation('orders.none_past')
+                : getTranslation('orders.none_any')}
             </p>
             <Link href="/" className="btn-primary inline-block">
-              Browse Activities
+              {getTranslation('orders.browse')}
             </Link>
           </div>
         ) : (
@@ -224,7 +226,7 @@ export default function MyOrdersPage() {
                           {booking.activity.title}
                         </h3>
                         <div className="text-sm text-gray-600">
-                          Ref: {booking.booking_ref}
+                          {getTranslation('orders.ref')} {booking.booking_ref}
                         </div>
                       </div>
                       <OrderStatusBadge status={booking.status} />
@@ -244,8 +246,8 @@ export default function MyOrdersPage() {
                       <div className="flex items-center text-gray-600">
                         <Users className="w-4 h-4 mr-2 flex-shrink-0" />
                         <div>
-                          {booking.adults} {booking.adults === 1 ? 'Adult' : 'Adults'}
-                          {booking.children > 0 && `, ${booking.children} ${booking.children === 1 ? 'Child' : 'Children'}`}
+                          {booking.adults} {booking.adults === 1 ? getTranslation('common.adult') : getTranslation('common.adults')}
+                          {booking.children > 0 && `, ${booking.children} ${booking.children === 1 ? getTranslation('common.child') : getTranslation('common.children')}`}
                         </div>
                       </div>
 
