@@ -79,7 +79,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.newsletter_desc': 'Get travel tips and inspiration delivered to your inbox.',
     'footer.subscribe': 'Subscribe',
     'footer.your_email': 'Your email',
-    'footer.copyright': '© 2024 FinuoTravel. All rights reserved.',
+    'footer.copyright': '© {year} FinuoTravel. All rights reserved.',
     'page.terms': 'Terms of Service',
     'page.cookies': 'Cookie Policy',
 
@@ -693,7 +693,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.newsletter_desc': 'Recibe consejos de viaje e inspiración en tu bandeja de entrada.',
     'footer.subscribe': 'Suscribirse',
     'footer.your_email': 'Tu email',
-    'footer.copyright': '© 2024 FinuoTravel. Todos los derechos reservados.',
+    'footer.copyright': '© {year} FinuoTravel. Todos los derechos reservados.',
     'page.terms': 'Términos de Servicio',
     'page.cookies': 'Política de Cookies',
 
@@ -1307,7 +1307,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.newsletter_desc': '获取旅行贴士和灵感，直送您的邮箱。',
     'footer.subscribe': '订阅',
     'footer.your_email': '您的邮箱',
-    'footer.copyright': '© 2024 FinuoTravel. 版权所有。',
+    'footer.copyright': '© {year} FinuoTravel. 版权所有。',
     'page.terms': '服务条款',
     'page.cookies': 'Cookie政策',
 
@@ -1921,7 +1921,7 @@ const translations: Record<Language, Record<string, string>> = {
     'footer.newsletter_desc': 'Recevez des conseils de voyage et de l\'inspiration dans votre boîte de réception.',
     'footer.subscribe': 'S\'abonner',
     'footer.your_email': 'Votre email',
-    'footer.copyright': '© 2024 FinuoTravel. Tous droits réservés.',
+    'footer.copyright': '© {year} FinuoTravel. Tous droits réservés.',
     'page.terms': 'Conditions d\'utilisation',
     'page.cookies': 'Politique des cookies',
 
