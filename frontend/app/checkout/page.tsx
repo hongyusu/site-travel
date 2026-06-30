@@ -30,7 +30,6 @@ export default function CheckoutPage() {
   const [loading, setLoading] = useState(true);
   const [processing, setProcessing] = useState(false);
   const [isGuest, setIsGuest] = useState(true);
-  const [paymentMethod, setPaymentMethod] = useState('card');
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [travelerInfo, setTravelerInfo] = useState<TravelerInfo>({
     firstName: '',
@@ -360,50 +359,18 @@ export default function CheckoutPage() {
                 </div>
               </div>
 
-              {/* Payment Method */}
+              {/* Payment — methods are presented on Stripe's hosted page */}
               <div className="bg-paper rounded-lg shadow p-6 mb-6">
                 <h2 className="text-xl font-bold mb-4">{getTranslation('checkout.payment_method')}</h2>
-
-                <div className="space-y-3">
-                  <label className="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50">
-                    <input
-                      type="radio"
-                      value="card"
-                      checked={paymentMethod === 'card'}
-                      onChange={(e) => setPaymentMethod(e.target.value)}
-                      className="mr-3"
-                    />
-                    <CreditCard className="w-6 h-6 mr-3 text-gray-600" />
-                    <div>
-                      <div className="font-medium">{getTranslation('checkout.card')}</div>
-                      <div className="text-sm text-gray-600">{getTranslation('checkout.card_sub')}</div>
-                    </div>
-                  </label>
-
-                  <label className="flex items-center p-4 border border-gray-200 rounded-lg cursor-pointer hover:bg-gray-50 opacity-50">
-                    <input
-                      type="radio"
-                      value="paypal"
-                      checked={paymentMethod === 'paypal'}
-                      onChange={(e) => setPaymentMethod(e.target.value)}
-                      className="mr-3"
-                      disabled
-                    />
-                    <div className="w-6 h-6 mr-3 bg-gray-200 rounded" />
-                    <div>
-                      <div className="font-medium">{getTranslation('checkout.paypal')}</div>
-                      <div className="text-sm text-gray-600">{getTranslation('checkout.paypal_sub')}</div>
-                    </div>
-                  </label>
-                </div>
-
-                {paymentMethod === 'card' && (
-                  <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-                    <p className="text-sm text-gray-600">
+                <div className="flex items-start p-4 border border-gray-200 rounded-lg">
+                  <CreditCard className="w-6 h-6 mr-3 text-success flex-shrink-0" />
+                  <div>
+                    <div className="font-medium">{getTranslation('checkout.secure_payment')}</div>
+                    <p className="text-sm text-gray-600 mt-1">
                       {getTranslation('checkout.redirect_note')}
                     </p>
                   </div>
-                )}
+                </div>
               </div>
 
               {/* Terms and Conditions */}
