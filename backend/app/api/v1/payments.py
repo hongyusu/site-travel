@@ -33,6 +33,32 @@ def _stripe():
     return stripe
 
 
+def refund_booking_payment(booking) -> bool:
+    """Refund a paid booking's Stripe payment. Returns True on success.
+
+    Used when a paid booking is rejected/cancelled. Derives the PaymentIntent
+    from the stored Checkout session, so no extra column is needed.
+    """
+    stripe = _stripe()
+    if stripe is None:
+        return False
+    if getattr(booking, "payment_status", None) != "paid":
+        return False
+    sid = getattr(booking, "stripe_session_id", None)
+    if not sid:
+        return False
+    try:
+        cs = stripe.checkout.Session.retrieve(sid)
+        payment_intent = cs.get("payment_intent")
+        if not payment_intent:
+            return False
+        stripe.Refund.create(payment_intent=payment_intent)
+        return True
+    except Exception as e:
+        logger.error(f"Refund failed for booking {getattr(booking, 'id', '?')}: {e}")
+        return False
+
+
 def _cents(amount) -> int:
     return int((Decimal(str(amount or 0)) * 100).to_integral_value())
 
@@ -167,6 +193,9 @@ def confirm_checkout(
         if not activity:
             continue
         participants = (it.adults or 0) + (it.children or 0)
+        # Payment is captured now; activities without instant confirmation still
+        # go through the vendor-approval queue (just already paid).
+        instant = bool(activity.instant_confirmation)
         booking = Booking(
             user_id=current_user.id if current_user else None,
             activity_id=activity.id,
@@ -180,8 +209,8 @@ def confirm_checkout(
             price_per_child=activity.price_child,
             total_price=it.price or 0,
             currency=getattr(activity, "price_currency", "EUR") or "EUR",
-            status=BookingStatus.CONFIRMED,
-            confirmed_at=datetime.utcnow(),
+            status=BookingStatus.CONFIRMED if instant else BookingStatus.PENDING_VENDOR_APPROVAL,
+            confirmed_at=datetime.utcnow() if instant else None,
             payment_status="paid",
             stripe_session_id=sid,
             customer_name=md.get("customer_name") or None,

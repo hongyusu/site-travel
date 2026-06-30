@@ -473,6 +473,16 @@ def reject_booking(
     booking.rejection_reason = rejection_reason
     booking.vendor_rejected_at = datetime.utcnow()
 
+    # Refund the captured payment, if any. Rejection failure must not block the
+    # refund attempt, and a failed refund must not block the rejection — if it
+    # fails, payment_status stays 'paid' so it can be reconciled manually.
+    if getattr(booking, "payment_status", None) == "paid":
+        from app.api.v1.payments import refund_booking_payment
+        if refund_booking_payment(booking):
+            booking.payment_status = "refunded"
+        else:
+            logger.error(f"Booking {booking.id} rejected but refund not completed")
+
     db.commit()
     db.refresh(booking)
 
