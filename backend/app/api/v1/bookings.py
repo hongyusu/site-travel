@@ -265,6 +265,14 @@ def cancel_booking(
     booking.status = BookingStatus.CANCELLED
     booking.cancelled_at = datetime.utcnow()
 
+    # Full refund of the captured payment, if any.
+    if getattr(booking, "payment_status", None) == "paid":
+        from app.api.v1.payments import refund_booking_payment
+        if refund_booking_payment(booking):
+            booking.payment_status = "refunded"
+        else:
+            logger.error(f"Booking {booking.id} cancelled but refund not completed")
+
     db.commit()
     db.refresh(booking)
 
@@ -614,6 +622,14 @@ def vendor_cancel_booking(
     booking.status = BookingStatus.CANCELLED
     booking.rejection_reason = reason  # Reuse this field for cancellation reason
     booking.cancelled_at = datetime.utcnow()
+
+    # Full refund of the captured payment, if any.
+    if getattr(booking, "payment_status", None) == "paid":
+        from app.api.v1.payments import refund_booking_payment
+        if refund_booking_payment(booking):
+            booking.payment_status = "refunded"
+        else:
+            logger.error(f"Booking {booking.id} cancelled but refund not completed")
 
     db.commit()
     db.refresh(booking)
