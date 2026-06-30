@@ -49,6 +49,8 @@ services:
       DEBUG: "False"
       REDIS_URL: redis://redis:6379/0
       CORS_ORIGINS: '["https://travel.finuo.fi","http://178.104.206.21:8083","http://localhost:3000"]'
+      # Stripe (optional). Set STRIPE_SECRET_KEY in .env on the host to enable payments.
+      STRIPE_SECRET_KEY: ${STRIPE_SECRET_KEY:-}
     volumes:
       - ./backend/backups:/backups
     depends_on:

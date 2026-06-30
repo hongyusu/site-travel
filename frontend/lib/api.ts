@@ -119,6 +119,10 @@ export const endpoints = {
   cancelBooking: (ref: string) => `/bookings/${ref}/cancel`,
   availability: (activityId: number) => `/bookings/${activityId}/availability`,
 
+  // Payments
+  checkoutSession: '/payments/checkout-session',
+  confirmPayment: '/payments/confirm',
+
   // Cart (cart + clearCart hit the "/" route — keep the trailing slash, see note above)
   cart: '/cart/',
   addToCart: '/cart/add',
@@ -210,6 +214,13 @@ export const apiClient = {
       api.post(endpoints.cancelBooking(ref)),
     getAvailability: (activityId: number, date: string) =>
       api.get(endpoints.availability(activityId), { params: { date } }),
+  },
+
+  payments: {
+    createCheckoutSession: (data: any) =>
+      api.post(endpoints.checkoutSession, data),
+    confirm: (sessionId: string) =>
+      api.post(endpoints.confirmPayment, { session_id: sessionId }),
   },
 
   cart: {

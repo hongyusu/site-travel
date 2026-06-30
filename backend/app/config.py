@@ -55,6 +55,10 @@ class Settings(BaseSettings):
     FREE_CANCELLATION_HOURS: int = 24
     DEFAULT_CURRENCY: str = "EUR"
 
+    # Stripe payments (optional — checkout falls back to no-payment flow if unset)
+    STRIPE_SECRET_KEY: str = ""
+    SERVICE_FEE_RATE: float = 0.05  # 5% service fee, matches the checkout summary
+
     # Email
     RESEND_API_KEY: str = ""
     EMAIL_FROM: str = "onboarding@resend.dev"  # Use verified domain for testing

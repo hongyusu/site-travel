@@ -48,32 +48,46 @@ function OrderConfirmationContent() {
   const { formatPrice } = useLocation();
   const { getTranslation } = useLanguage();
   const bookingRef = searchParams.get('ref');
+  const sessionId = searchParams.get('session_id');
 
   const [booking, setBooking] = useState<Booking | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!bookingRef) {
-      setError('No booking reference provided');
-      setLoading(false);
-      return;
-    }
+    let cancelled = false;
 
-    const fetchBooking = async () => {
+    const run = async () => {
       try {
-        const response = await apiClient.bookings.getByRef(bookingRef);
-        setBooking(response.data);
+        let ref = bookingRef;
+
+        // Returning from Stripe Checkout: confirm the payment (which creates
+        // the bookings) and use the resulting reference.
+        if (!ref && sessionId) {
+          const conf = await apiClient.payments.confirm(sessionId);
+          ref = conf.data?.first_ref || null;
+        }
+
+        if (!ref) {
+          if (!cancelled) setError(getTranslation('oc.not_found'));
+          return;
+        }
+
+        const response = await apiClient.bookings.getByRef(ref);
+        if (!cancelled) setBooking(response.data);
       } catch (err) {
-        console.error('Error fetching booking:', err);
-        setError('Failed to load booking details');
+        console.error('Error loading confirmation:', err);
+        if (!cancelled) setError(getTranslation('oc.not_found'));
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     };
 
-    fetchBooking();
-  }, [bookingRef]);
+    run();
+    return () => {
+      cancelled = true;
+    };
+  }, [bookingRef, sessionId]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);

@@ -115,15 +115,10 @@ export default function CheckoutPage() {
     return true;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-
-    if (!validateForm()) return;
-
-    setProcessing(true);
-    try {
-      // Create bookings for each cart item
-      const bookingPromises = cartItems.map(item =>
+  // Fallback when Stripe is not configured: create bookings directly (no charge).
+  const completeWithoutPayment = async () => {
+    const bookingResponses = await Promise.all(
+      cartItems.map(item =>
         apiClient.bookings.create({
           activity_id: item.activity.id,
           booking_date: item.booking_date,
@@ -135,27 +130,41 @@ export default function CheckoutPage() {
           customer_phone: travelerInfo.phone,
           special_requirements: travelerInfo.specialRequirements
         })
-      );
+      )
+    );
+    await Promise.all(cartItems.map(item => apiClient.cart.remove(item.id)));
+    toast.success(getTranslation('checkout.booking_success'));
+    const firstBookingRef = bookingResponses[0]?.data?.booking_ref;
+    router.push(firstBookingRef ? `/order-confirmation?ref=${firstBookingRef}` : '/orders');
+  };
 
-      const bookingResponses = await Promise.all(bookingPromises);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-      // Clear cart
-      const clearPromises = cartItems.map(item => apiClient.cart.remove(item.id));
-      await Promise.all(clearPromises);
+    if (!validateForm()) return;
 
-      toast.success(getTranslation('checkout.booking_success'));
+    setProcessing(true);
+    try {
+      // Create a Stripe Checkout Session and redirect to the hosted payment page.
+      const res = await apiClient.payments.createCheckoutSession({
+        origin: window.location.origin,
+        customer_name: `${travelerInfo.firstName} ${travelerInfo.lastName}`,
+        customer_email: travelerInfo.email,
+        customer_phone: travelerInfo.phone,
+        special_requirements: travelerInfo.specialRequirements,
+      });
 
-      // Redirect to order confirmation page with the first booking reference
-      const firstBookingRef = bookingResponses[0]?.data?.booking_ref;
-      if (firstBookingRef) {
-        router.push(`/order-confirmation?ref=${firstBookingRef}`);
-      } else {
-        router.push('/orders');
+      if (res.data?.url) {
+        window.location.href = res.data.url; // leave the spinner up while navigating away
+        return;
       }
+
+      // Payments disabled on the backend → fall back to the no-charge flow.
+      await completeWithoutPayment();
+      setProcessing(false);
     } catch (error) {
-      console.error('Error creating booking:', error);
+      console.error('Error starting checkout:', error);
       toast.error(getTranslation('checkout.booking_error'));
-    } finally {
       setProcessing(false);
     }
   };

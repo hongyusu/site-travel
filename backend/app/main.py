@@ -6,7 +6,7 @@ from contextlib import asynccontextmanager
 
 from app.config import settings
 from app.database import init_db
-from app.api.v1 import auth, activities, bookings, cart, reviews, admin, wishlist
+from app.api.v1 import auth, activities, bookings, cart, reviews, admin, wishlist, payments
 
 
 @asynccontextmanager
@@ -66,6 +66,7 @@ app.include_router(cart.router, prefix="/api/v1/cart", tags=["Cart"])
 app.include_router(reviews.router, prefix="/api/v1/reviews", tags=["Reviews"])
 app.include_router(wishlist.router, prefix="/api/v1", tags=["Wishlist"])
 app.include_router(admin.router, prefix="/api/v1/admin", tags=["Admin"])
+app.include_router(payments.router, prefix="/api/v1/payments", tags=["Payments"])
 
 
 if __name__ == "__main__":

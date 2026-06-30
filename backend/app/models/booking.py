@@ -52,6 +52,11 @@ class Booking(Base):
     # Status
     status = Column(SQLEnum(BookingStatus), default=BookingStatus.PENDING, nullable=False)
 
+    # Payment (Stripe Checkout). payment_status: 'paid' once the Checkout
+    # session is confirmed; null for legacy / no-payment bookings.
+    payment_status = Column(String(30))
+    stripe_session_id = Column(String(255), index=True)
+
     # Customer details (for guest checkout)
     customer_name = Column(String(255))
     customer_email = Column(String(255))
