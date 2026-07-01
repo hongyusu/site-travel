@@ -2603,13 +2603,26 @@ const translations: Record<Language, Record<string, string>> = {
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('zh')
 
-  // Load language from localStorage on mount
+  // Resolve language on mount: a ?lang= URL param wins (enables per-language
+  // shareable / hreflang links), otherwise fall back to the saved preference.
   useEffect(() => {
+    const urlLang = new URLSearchParams(window.location.search).get('lang') as Language
+    if (urlLang && languages.some(l => l.code === urlLang)) {
+      setLanguageState(urlLang)
+      localStorage.setItem('preferredLanguage', urlLang)
+      return
+    }
     const savedLanguage = localStorage.getItem('preferredLanguage') as Language
     if (savedLanguage && languages.some(l => l.code === savedLanguage)) {
       setLanguageState(savedLanguage)
     }
   }, [])
+
+  // Keep <html lang> in sync with the active language (it's hardcoded in the
+  // server layout, so correct it client-side for accessibility / SEO).
+  useEffect(() => {
+    document.documentElement.lang = language
+  }, [language])
 
   const setLanguage = (newLanguage: Language) => {
     setLanguageState(newLanguage)
